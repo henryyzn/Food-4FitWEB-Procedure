@@ -1,0 +1,1357 @@
+@import '../mixins.scss';
+@import '../colors.scss';
+@import '../keyframes.scss';
+
+.clearfix{
+    &:after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+.generic-modal.show{
+	display: flex;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	font-family: "Roboto Regular";
+	position: relative;
+}
+.main-login {
+    @include bloco(100%, 100%, 100vh);
+	position: relative;
+	margin: 0 auto;
+	background-color: $lightgrey;
+    @include display(flex, row, center, center);
+    .image-bg-login{
+        @include bloco(100%, 100%, 100vh);
+        background-image: url("../../images/cms/backgrounds/login-bg.jpg");
+        background-size: cover;
+        position: relative;
+        @include display(flex, column, center, center);
+        >h2{
+            @include texto(126px, $white, 'Roboto Black', 116px, left);
+            z-index: 999;
+            >span{
+                @include texto(24px, $mediumgrey, 'Roboto Medium Italic', 32px, left);
+            }
+        }
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(45deg, rgba(156, 194, 131, .9), rgba(237, 191, 133, .2));
+        }
+    }
+    .form-login-wrapper{
+        @include bloco(100%, 100%, 100vh);
+        background: $white;
+        @include display(flex, column, center, center);
+        >figure{
+            @include bloco($width: 300px, $height: 300px);
+            >img{
+                @include img-fit(300px, 300px);
+                background-image: url("../../images/logo/logo.svg");
+                background-size: cover;
+                -webkit-animation: pulse 3s infinite ease-in-out;
+                -o-animation: pulse 3s infinite ease-in-out;
+                -ms-animation: pulse 3s infinite ease-in-out;
+                -moz-animation: pulse 3s infinite ease-in-out;
+                animation: pulse 3s infinite ease-in-out;
+            }
+        }
+    }
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 50px;
+	background-color: #9CC283;
+}
+#form-login{
+    >input{
+        @include bloco($width: 100%, $height: 50px);
+        display: block;
+        border-radius: 5px;
+        background-color: $mediumgrey;
+        outline: none;
+        border: none;
+        text-indent: 12px;
+        box-sizing: border-box;
+        transition: 200ms ease-in-out;
+        font-size: 16px;
+        &:focus{
+            background-color: $olivine;
+            color: $white;
+        }
+        &:focus::-webkit-input-placeholder { color: $lightgrey; font-family: 'Roboto Medium Italic' }
+    }
+    #rodape{
+        @include texto(21px, $grey, 'Roboto Bold');
+        @include display(flex, row, space-between, center);
+        margin-top: 20px;
+        >a{
+            @include texto(18px, $grey, 'Roboto Medium Italic');
+        }
+        >input{
+            @include bloco($width: 100px, $height: 40px);
+            border-radius: 5px;
+            background-color: #9cc283;
+            outline: none;
+            border: none;
+            @include texto(inherit, $white, 'Roboto Bold', 18px, center);
+            cursor: pointer;
+        }
+    }
+}
+
+
+#botao-voltar {
+    @include texto(28px, $black, 'Roboto Bold', auto, center);
+    @include position(absolute, 10px, null, null, 10px);
+    z-index: 1;
+}
+
+#main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.separator {
+    width: 100%;
+    height: 3px;
+    background-color: #EFEFEF;
+    border-radius: 50px;
+    box-sizing: border-box;
+    margin: 5px auto;
+}
+#perfil {
+    width: 100%;
+    height: 70px;
+    position: relative;
+    padding: 10px 0;
+    box-sizing: border-box;
+    #avatar {
+        @include bloco($width: 50px, $height: 50px);
+        @include display(flex, row, center, center);
+        @include position(absolute, $top: 50%, $left: 0px, $right: null, $bottom: null);
+        border-radius: 50%;
+        transition: width 500ms, height 500ms;
+        box-shadow: 5px 5px 10px rgba(0,0,0,.1);
+        transform: translateY(-50%);
+        box-sizing: border-box;
+        background-color: $olivine;
+        overflow: hidden;
+        position: relative;
+        >img{
+            @include img-fit(50px, 50px);
+        }
+        &[data-siglas] {
+            background: linear-gradient(-45deg, #9CC283, #EDBF85);
+            &:before{
+                content: attr(data-siglas);
+                vertical-align: middle;
+                @include texto(25px, $white, 'Roboto Bold', 25px, center);
+                transition: font-size 300ms;
+            }
+        }
+    }
+    #informacoes {
+        box-sizing: border-box;
+        position: absolute;
+        overflow: hidden;
+        width: calc(100% - 50px);
+        height: 50px;
+        transition: width 500ms;
+        left: 50px;
+        top: 10px;
+        display: flex;
+        align-items: center;
+    }
+    #informacoes-content {
+        padding-left: 10px;
+    }
+    #nome {
+        font-size: 18px;
+        color: #000000;
+        font-family: "Roboto Bold";
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    #email {
+        font-size: 16px;
+        color: #000000;
+        font-family: "Roboto Regular";
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    #dropdown {
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #000000;
+        position: absolute;
+        right: 8px;
+        top: 0;
+    }
+}
+
+
+#main-content {
+    height: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    >header{
+        height: 50px;
+        background: linear-gradient(45deg, #9CC283, #EDBF85);
+        padding: 5px;
+        @include display(flex, row, space-between, center);
+        flex-shrink: 0;
+        >div{
+            display: flex;
+            align-items: center;
+            >input{
+                @include bloco($width: 400px, $height: 40px);
+                border-radius: 5px;
+                background-color: #ffffff;
+                outline: none;
+                border: none;
+                text-indent: 15px;
+                margin-right: 10px;
+            }
+            >input::placeholder {
+                color: #9F9F9F;
+                font-size: 16px;
+                font-family: "Roboto Medium Italic";
+            }
+            >img{
+                cursor: pointer;
+            }
+        }
+        #titulo-pagina{
+            @include texto(21px, $white, 'Roboto Bold');
+            padding-left: 20px;
+            text-transform: uppercase;
+            flex: 0 0 350px;
+        }
+        #ultimas-interacoes {
+            @include texto(18px, $white, 'Roboto Bold');
+            text-transform: uppercase;
+            padding-right: 20px;
+        }
+        #notificacoes {
+            @include bloco($width: 30px, $height: 30px);
+            margin-right: 20px;
+            position: relative;
+            >img{
+                @include img-fit(30px, 30px);
+            }
+            >span {
+                @include position(absolute, -5px, -5px, null, null);
+                @include bloco($width: 15px, $height: 15px);
+                @include texto(10px, $white, 'Roboto Light');
+                @include display(flex, row, center, center);
+                background-color: $sunsetorange;
+                border-radius: 50%;
+                padding: 1px;
+            }
+        }
+        .btn-logout{
+            padding-right: 10px;
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+img.btn-logout:hover {
+    cursor: pointer;
+}
+
+#page-content, #form-content {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#list-content {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#tooltip {
+    position: absolute;
+    background: #000000;
+    height: 25px;
+    line-height: 25px;
+    color: #ffffff;
+    padding: 3px 20px;
+    display: none;
+    font-family: "Roboto Bold";
+}
+
+.aside-register-menu{
+    @include bloco(100%, 400px, 100vh, auto);
+    background: $lightgrey;
+    @include position(absolute, 0px, 0px, 0px, null);
+    z-index: 999;
+    box-sizing: border-box;
+    border: 20px solid transparent;
+    overflow: auto;
+    transition: 200ms ease-in-out;
+    display: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+.aside-register-menu [data-imagem-upload] img {
+    @include img-fit(360px, 360px);
+    display: block;
+}
+
+.aside-register-menu{
+    input[type="file"] {
+	    display: none;
+    }
+    .file-label {
+        width: 360px;
+        height: 50px;
+        background-color: $olivine;
+        @include display(flex, row, center, center);
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $white;
+        font-family: 'Roboto Bold';
+        border-radius: 5px;
+        margin: 20px auto 20px auto;
+        cursor: pointer;
+    }
+    .status {
+        display: block;
+        font-family: "Roboto Regular";
+        font-size: 18px;
+        margin: 0 20px;
+    }
+    .select-block {
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+        >label {
+            display: block;
+            font-family: "Roboto Medium";
+            font-size: 15px;
+        }
+    }
+}
+.cms-table{
+    @include bloco(100%, 100%, auto);
+    border-collapse: collapse;
+    z-index: 1;
+}
+#flex{
+    @include display(flex, row, flex-start, center);
+}
+.label-fix{
+    font-size: 18px;
+    font-family: "Roboto Bold";
+    color: #000;
+    display: block;
+}
+.label-fix-result{
+    font-size: 16px;
+    font-family: "Roboto Medium Italic";
+    max-width: 500px;
+    color: $grey;
+    display: block;
+    margin-bottom: 20px;
+}
+.label-fix-link{
+    font-size: 16px;
+    font-family: "Roboto Medium Italic";
+    color: $sunsetorange;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+.cms-table>tbody>tr:first-child {
+   background: #f2f2f2;
+}
+.cms-table-title{
+    font-size: 18px;
+    color: $black;
+    font-family: 'Roboto Bold';
+    padding: 20px;
+    display: block;
+}
+.cms-table-result{
+    font-size: 18px;
+    color: $grey;
+    font-family: 'Roboto Medium';
+    padding: 20px;
+    display: block;
+}
+.cms-table-img{
+    @include img-fit(50px, 50px);
+    border-radius: 50%;
+    margin: 10px 0px 10px 10px;
+}
+.cms-table-opts{
+    @include bloco(auto, auto, 40px);
+    @include display(flex, row, flex-start, center);
+    >img{
+        @include img-fit(40px, 40px);
+        &:first-child{
+            padding-left: 20px;
+        }
+    }
+    >hr{
+        width: 3px;
+        height: 40px;
+        box-sizing: border-box;
+        border: none;
+        margin: 0px 10px 0px 10px;
+        background: $black;
+        border-radius: 5px;
+    }
+}
+.jq-toast-single {
+    @include display(flex, column, center, center);
+    @include texto(21px, $white, 'Roboto Bold', 20px);
+    background-color: $olivine;
+    border-radius: 5px;
+    padding: 30px 10px;
+    width: 95%;
+    box-sizing: border-box;
+}
+
+#tabela-items {
+    width: 100%;
+    border: solid #9CC283 none;
+    box-sizing: border-box;
+    .coluna {
+        flex: 1 1 0;
+        display: flex;
+        &:last-of-type{
+            flex: 0 0 280px;
+            align-items: center;
+            justify-content: center;
+        }
+        &.image-large {
+            flex: 0 0 385px;
+        }
+        &.image-small {
+            flex: 0 0 185px;
+        }
+        &.medium {
+            flex: 2 1 0;
+        }
+        &.large {
+            flex: 3 1 0;
+        }
+        &.full {
+            flex-grow: 1;
+        }
+    }
+    .linha {
+        @include display(flex, row, space-between, center);
+        &:first-child {
+            background-color: $mediumgrey;
+            .coluna {
+                @include texto(18px, $black, 'Roboto Bold', 60px);
+                padding-left: 20px;
+                text-transform: uppercase;
+                height: 60px;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        &.height-100 {
+            height: 100px;
+        }
+    }
+    .toggle, .editar, .excluir{
+        @include img-fit(40px, 40px);
+    }
+    .visualizar{
+        @include img-fit(40px, 40px);
+    }
+}
+.coluna{
+    .desativar{
+        background-image: url("../../images/cms/symbols/desativar.svg");
+    }
+    .ativar{
+        background-image: url("../../images/cms/symbols/ativar.svg");
+    }
+    .editar{
+        background-image: url("../../images/cms/symbols/editar.svg");
+    }
+    .excluir{
+        background-image: url("../../images/cms/symbols/excluir.svg");
+    }
+    .visualizar{
+        background-image: url("../../images/cms/symbols/visualizar.svg");
+    }
+}
+#tabela-items .linha + .linha:nth-child(even) {
+	background-color: #FAFAFA;
+}
+#tabela-items .linha + .linha .coluna.middle-align>span {
+    @include texto(21px, $darkgrey, 'Roboto Bold', 23px, center);
+	margin: auto;
+}
+#tabela-items .linha + .linha .coluna.middle-left-align>span {
+    @include texto(21px, $darkgrey, 'Roboto Bold');
+	margin: auto 0;
+}
+#tabela-items .linha + .linha .coluna.descricao {
+	overflow: hidden;
+}
+#tabela-items .linha + .linha .coluna.descricao>div {
+    @include texto(18px, $darkgrey, 'Roboto Regular', 24px);
+	margin: auto;
+}
+#tabela-items .linha + .linha .coluna:first-of-type img {
+	height: 90px;
+    width: 90%;
+    margin: auto;
+}
+#tabela-items .linha + .linha .coluna:last-of-type hr {
+    width: 3px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    margin: 0 10px;
+}
+#tabs {
+    @include bloco($width: 100%, $height: 110px);
+    @include display(flex, $justifycontent: center, $alignitems: center);
+}
+#tabs>span{
+    @include bloco($width: 250px, $height: 70px);
+    @include texto(18px, #D9D9D9, 'Roboto Bold', 70px, center);
+    cursor: pointer;
+    &:first-child {
+        border-top-left-radius: 35px;
+        border-bottom-left-radius: 35px;
+    }
+    &:last-child {
+        border-top-right-radius: 35px;
+        border-bottom-right-radius: 35px;
+    }
+    &.active {
+        color: $white;
+        background-color: #4d4d4d;
+    }
+}
+#tabs-content>*{
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.sceditor-container {
+    margin-bottom: 15px;
+    margin-top: 5px;
+    height: 200px;
+}
+.imagem-upload-wrapper {
+    position: relative;
+    >div {
+        width: 100%;
+        height: 250px;
+        background-color: $mediumgrey;
+        >img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    >input {
+        opacity: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    >label {
+        @include texto(16px, $grey, 'Roboto Italic');
+        margin: 10px 0;
+    }
+}
+
+#container-form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-generic{
+    .controls {
+        @include bloco($width: 100%, $height: auto);
+        @include display(flex, row, flex-end, center);
+        .cancel{
+            @include texto(16px, $grey, 'Roboto Italic', 28px);
+            cursor: pointer;
+            margin: 0 20px;
+        }
+    }
+    >input[type="submit"] {
+        display: none;
+    }
+}
+#sidebar {
+    @include bloco(100%, 350px, 100vh);
+    background-color: $white;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    box-shadow: 0px 0px 72px 10px rgba(0,0,0,0.1);
+    transition: width 500ms;
+    flex-shrink: 0;
+    z-index: 999;
+}
+#sidebar::-webkit-scrollbar {
+    display: none;
+}
+#sidebar-header {
+    width: 100%;
+    height: 70px;
+    position: relative;
+    >h1{
+        @include texto(26px, $olivine, 'Roboto Black', 30px);
+        overflow: hidden;
+        width: 100%;
+        white-space: nowrap;
+        transition: opacity 400ms;
+        >span{
+            font-family: 'Roboto Bold';
+            display: block;
+        }
+    }
+}
+
+#sidebar-collapse {
+    @include position(absolute, 20px, 7.8px, $bottom: null, $left: null);
+    @include bloco($width: 30px, $height: 30px);
+    border-radius: 50%;
+    transform: rotate(360deg);
+    transition: transform 500ms;
+    >img {
+        max-width: 100%;
+        display: block;
+    }
+}
+#sidebar nav {
+    padding: 5px 0;
+}
+
+#sidebar nav a {
+    @include texto(16px, $darkgrey, 'Roboto Bold');
+    height: 35px;
+    padding: 2px 0;
+    position: relative;
+    transition: 100ms ease-in-out;
+}
+
+#sidebar nav a::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#sidebar nav a.active, #sidebar nav a:hover {
+    background-color: #ededed;
+}
+
+#sidebar nav .image {
+    @include bloco($width: 40px, $height: 40px); @include display(flex, row, center, center);
+}
+
+#sidebar nav .label {
+    @include texto(18px, $darkgrey, 'Roboto Medium');
+    @include display(flex, row, $alignitems: center, $justifycontent: null);
+    @include position(absolute, 0px, $left: 45px, $right: null, $bottom: null);
+    width: calc(100% - 45px);
+    height: 40px;
+    padding-top: 1.5px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 500ms, color 300ms;
+}
+
+#sidebar nav .badge {
+    @include texto(18px, $grey, 'Roboto Regular');
+    position: absolute;
+    right: 10px;
+}
+
+#sidebar.collapse {
+    width: 75px;
+}
+
+#sidebar.collapse #informacoes {
+    width: 0;
+}
+
+#sidebar.collapse nav .label {
+    width: 0;
+    color: rgba(0, 0, 0, 0);
+}
+
+#sidebar.collapse h1 {
+    opacity: 0;
+}
+
+#sidebar.collapse #perfil #avatar {
+    width: 45px;
+    height: 45px;
+}
+
+#sidebar.collapse #perfil #avatar::before {
+    font-size: 18px;
+}
+
+#sidebar.collapse #perfil #dropdown {
+    display: none;
+}
+
+#sidebar.collapse #sidebar-collapse {
+    transform: rotate(180deg);
+}
+#page-actions {
+    @include bloco($width: 100%, $height: 50px); @include display(flex, row, space-between, center);
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 15px 0px;
+    >a {
+        text-decoration: none;
+        @include display(flex, row, center, center);
+        >img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        >span {
+            @include texto(16px, $black, 'Roboto Bold');
+        }
+    }
+}
+#form-two-sides {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+#form-left-side {
+    flex: 1 0 0;
+    .no-padding {
+        padding: 0;
+    }
+}
+#form-right-side {
+    @include bloco(100%, 450px);
+    background-color: $lightgrey;
+    @include display(flex, column, space-between, null);
+    box-sizing: border-box;
+    div:last-of-type {
+        .preco-prato {
+            @include display(flex, column, center, center);
+            @include bloco($width: 100%, $height: 80px);
+            >span {
+                @include texto($size: 30px, $family: "Roboto Light", $align: center);
+            }
+        }
+    }
+}
+[data-crud-controller] {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.description {
+    font-family: "Roboto Italic";
+}
+
+#form-right-side [data-imagem-upload]>img {
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: 0px 20px 20px 20px;
+}
+
+#form-right-side [data-imagem-upload] {
+    .image-upload {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+}
+
+#form-right-side [data-imagem-upload] .thumbnails {
+    @include display(flex, row, space-around, center);
+    margin-top: 20px;
+    img {
+        @include img-fit(85px, 85px);
+        &.active {
+            border: solid $olivine 2px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+#form-right-side{
+    input[type="file"] {
+	    display: none;
+    }
+    .file-label {
+        width: 400px;
+        height: 50px;
+        background-color: $olivine;
+        @include display(flex, row, center, center);
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $white;
+        font-family: 'Roboto Bold';
+        border-radius: 5px;
+        margin: 10px 20px;
+        cursor: pointer;
+    }
+    .status {
+        display: block;
+        font-family: "Roboto Regular";
+        font-size: 18px;
+        margin: 0 20px;
+    }
+    .select-block {
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+        >label {
+            display: block;
+            font-family: "Roboto Medium";
+            font-size: 15px;
+        }
+    }
+}
+
+#btn-save {
+    background-color: #6a6a6a;
+    @include bloco($width: 450px, $height: 50px);
+    margin-top: 10px;
+    @include display(flex, row, center, center);
+    cursor: pointer;
+    >img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    >span {
+        @include texto(18px, $white, 'Roboto Regular');
+        text-transform: uppercase;
+    }
+}
+
+.shops-wrapper{
+    @include bloco(100%, 100%, 100%);
+    @include display(flex, row, space-between, flex-start);
+    .shop-form{
+        box-sizing: border-box;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+    }
+    .shops-view{
+        @include bloco(100%, 500px, 100%);
+        background-color: $mediumgrey;
+        overflow-y: auto;
+    }
+}
+.shop-card{
+    @include bloco($width: 100%, $height: 100%);
+    box-sizing: border-box;
+    border: 20px solid transparent;
+    transition: 200ms ease-in-out;
+    background-color: $lightgrey;
+    cursor: pointer;
+    &:hover{
+        background: $mediumgrey;
+    }
+    >h2{
+        @include texto(16px, $grey, 'Roboto Italic');
+        cursor: pointer;
+        &:hover{
+            color: $olivine;
+        }
+    }
+    >h3{
+        @include texto(18px, $black, 'Roboto Bold');
+        cursor: pointer;
+    }
+    >div{
+        @include bloco($width: 100%, $height: 100%);
+        @include display(flex, row, flex-start, center);
+        >span{
+            @include texto(14px, $black, 'Roboto Medium');
+            padding-right: 15px;
+            transition: 200ms ease-in-out;
+            &:hover{
+                color: $olivine;
+                cursor: pointer;
+            }
+        }
+        #dlt{
+            &:hover{
+                color: $sunsetorange;
+                cursor: pointer;
+            }
+        }
+    }
+}
+#message{
+    @include texto(16px, $grey, 'Roboto Medium Italic');
+}
+
+.dash-wrapper{
+    @include bloco(100%, 100%, 100%);
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 30px 30px;
+    grid-template-areas: "one two" "three four" "three five";
+    box-sizing: border-box;
+    border: 30px solid transparent;
+
+    .one { grid-area: one; }
+
+    .two { grid-area: two; }
+
+    .three {
+        grid-area: three;
+        box-sizing: border-box;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        padding-bottom: 20px;
+    }
+
+    .four { grid-area: four; }
+
+    .five { grid-area: five; }
+
+    .card-dash{
+        height: auto;
+        background-color: $lightgrey;
+        border-radius: 5px;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+        .title{
+            @include texto(18px, $black, 'Roboto Bold');
+            margin: 0;
+        }
+        .subtitle{
+            @include texto(16px, $grey, 'Roboto Medium Italic');
+        }
+        >p{
+            @include texto(16px, $darkgrey, 'Roboto Regular', 23px, left);
+            width: 90%;
+        }
+    }
+}
+.interact-card{
+    @include bloco($width: 100%, $height: auto);
+    border-radius: 3px;
+    background: $mediumgrey;
+    box-sizing: border-box;
+    position: relative;
+    @include display(flex, row, flex-start, center);
+    >figure{
+        @include bloco($width: 50px, $height: 50px);
+        min-width: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        >img{
+            @include img-fit(50px, 50px);
+        }
+    }
+    >span{
+        @include texto(16px, $grey, 'Roboto Medium Italic');
+        margin: 0px;
+        @include position(absolute, null, 10px, 10px, null);
+    }
+    >div{
+        display: flex;
+        width: 100%;
+        >h2{
+            @include texto(18px, $black, 'Roboto Bold');
+            margin: 0px;
+        }
+        >p{
+            @include texto(16px, $grey, 'Roboto Medium Italic');
+            margin: 0px;
+        }
+    }
+}
+.contact-wrapper{
+    @include bloco($width: 100%, $height: auto);
+    .contact-title-row{
+        @include bloco($width: 100%, $height: auto);
+        @include display(flex, row, flex-start, center);
+        padding: 20px;
+        box-sizing: border-box;
+        >div{
+            background-color: $olivine;
+            @include bloco($width: auto, $height: auto);
+            border-radius: 5px;
+            >span{
+                @include texto(18px, $white, 'Roboto Medium');
+                padding: 10px;
+            }
+        }
+    }
+    table{
+        @include bloco($width: 100%, $height: auto);
+        border-collapse: collapse;
+        #contact-table-trow{
+            background-color: $mediumgrey;
+            >td{
+                >span{
+                    @include texto(18px, $black, 'Roboto Bold');
+                    padding: 12px;
+                }
+            }
+        }
+        .contact-table-rrow{
+            >td{
+                >span{
+                    @include texto(16px, $grey, 'Roboto Medium');
+                }
+                >div>img{
+                    @include img-fit(40px, 40px);
+                    display: inline-block;
+                    padding: 10px 0px 10px 0px;
+                }
+            }
+        }
+    }
+}
+.table-diario{
+    @include bloco($width: 100%, $height: auto);
+    border-collapse: collapse;
+    #contact-table-trow{
+        background-color: $mediumgrey;
+        >td{
+            >span{
+                @include texto(18px, $black, 'Roboto Bold');
+                padding: 12px;
+            }
+        }
+    }
+    .contact-table-rrow{
+        >td{
+            >span{
+                @include texto(16px, $grey, 'Roboto Medium');
+            }
+            >div>img{
+                @include img-fit(40px, 40px);
+                display: inline-block;
+                padding: 10px 0px 10px 0px;
+            }
+        }
+    }
+}
+
+
+//Pratos
+.pratos-wrapper{
+    @include bloco($width: 100%, $height: auto);
+}
+.edit-btns{
+	@include bloco($width: auto, $maxwidth: null, $height: 30px);
+	@include display(flex, row, space-between, center);
+	@include position(absolute, 10px, $right: null, $bottom: null, $left: 10px);
+	-webkit-transition: 200ms ease-in-out;
+	   -moz-transition: 200ms ease-in-out;
+	    -ms-transition: 200ms ease-in-out;
+	     -o-transition: 200ms ease-in-out;
+	        transition: 200ms ease-in-out;
+	>img{
+		@include img-fit(28px, 28px);
+        margin-right: 5px;
+		&:hover{
+			-webkit-transform: scale(1.04);
+			   -moz-transform: scale(1.04);
+			    -ms-transform: scale(1.04);
+			     -o-transform: scale(1.04);
+			        transform: scale(1.04);
+		}
+	}
+}
+
+.generic-card-ovy{
+    /*Container acima do card da grelha genérica responsiva*/
+    @include bloco(100%, 100%, auto, false);
+    @include display(flex, column, center, center);
+    @include position(absolute, 0, 0, 0, 0);
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    box-shadow: $shadow;
+    transition: 200ms ease-in-out;
+}
+
+.categoria-prato{
+    @include texto(16px, $white, 'Roboto Regular', 21px, center);
+    width: 80%;
+    margin: 0 auto;
+}
+
+.status-prato{
+    @include bloco($width: auto, $height: 25px);
+	@include position(absolute, 13px, 10px, $bottom: null, $left: null);
+    >span{
+        @include texto(18px, $white, 'Roboto Medium');
+    }
+}
+.avaliacoes-pratos{
+    @include position(absolute, null, null, 30px, 50%);
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: $white;
+}
+.state-row{
+    width: auto; height: auto; display: flex; align-items: center;
+    >label{
+        display: block;
+        color: $white;
+    }
+}
+
+.center{
+    /*Container acima do card da grelha genérica responsiva*/
+    @include bloco(100%, 100%, auto, false);
+    @include display(flex, column, center, center);
+    @include position(absolute, 0, 0, 0, 0);
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    box-shadow: $shadow;
+    transition: 200ms ease-in-out;
+}
+.session-name{
+    /*Nome do prato da grelha genérica responsiva*/
+    @include titulo(26px, $white, 'Roboto Bold', false, center);
+    width: 80%;
+    margin: 0 auto 15px auto;
+}
+.session-separator{
+    /*Separador da grelha genérica responsiva*/
+    width: 30px;
+    height: 3px;
+    border-radius: 30px;
+    background-color: $white;
+}
+.session-description{
+    /*Descrição do prato da grelha genérica responsiva*/
+    @include texto(16px, $white, 'Roboto Regular', 21px, center);
+    width: 80%;
+    margin: 0 auto;
+}
+.full-img{
+    /*Imagem do card da grelha genérica responsiva*/
+    @include img-fit(100%, 300px);
+    max-width: 100%;
+    border-radius: 10px;
+    transition: 300ms ease-in-out;
+}
+
+.saude-wrapper{
+    @include bloco($width: 100%, $height: auto);
+    @include display(flex, row, null, null);
+}
+.saude-content{
+    @include bloco($width: 100%, $height: auto);
+    >h2{
+        @include texto(21px, $black, 'Roboto Bold', 23px, center);
+    }
+}
+.saude-flex{
+    @include bloco($width: 100%, $height: auto);
+    @include display(flex, row, null, null);
+    .column1{
+        @include bloco($width: 100%, $height: auto);
+        box-sizing: border-box;
+        padding-right: 30px;
+        padding-left: 15px;
+    }
+    .column2{
+        @include bloco($width: 100%, $height: auto);
+        box-sizing: border-box;
+        padding-left: 30px;
+        padding-right: 15px;
+    }
+}
+.fitsession-card-img{
+    /*Imagem do card da grelha genérica responsiva*/
+    @include img-fit(100%, 300px);
+    max-width: 100%;
+    border-radius: 10px;
+    transition: 300ms ease-in-out;
+}
+.fitsession-card-overlay{
+    /*Container acima do card da grelha genérica responsiva*/
+    @include bloco(100%, 100%, auto, false);
+    @include display(flex, column, center, center);
+    @include position(absolute, 0, 0, 0, 0);
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    box-shadow: $shadow;
+    transition: 200ms ease-in-out;
+}
+.fitsession-name{
+    /*Nome do prato da grelha genérica responsiva*/
+    @include titulo(26px, $white, 'Roboto Bold', 32px, center);
+    width: 80%;
+    margin: 0 auto;
+    &:after{
+        content:"";
+        display: block;
+        width: 30px;
+        height: 3px;
+        border-radius: 30px;
+        background-color: $white;
+        margin: 15px auto 20px auto;
+    }
+}
+
+.parceiros-wrapper{
+    @include bloco(100%, 100%, 100%);
+    position: relative;
+    >div:first-child{
+        @include display(flex, row, center, center);
+    }
+}
+
+[data-crud-template] {
+    display: none;
+}
+
+//Diario de Bordo
+.diario-border-wrapper{
+    @include bloco(100%, 100%, 100%);
+    @include display(flex, row);
+    table{@include bloco(100%, 100%, 100%);}
+}
+
+.menu-lateral-diario{
+    @include bloco(100%, 350px, 100vh);
+    background: $olivine;
+    >div{
+        h2{
+            @include texto(28px,  $white, "Roboto Bold");
+            padding: 16px;
+        }
+        background-color: bisque;
+    }
+    table{
+        @include bloco($width: 100%, $height: auto);
+        border-collapse: collapse;
+        #contact-table-trow{
+            background-color: $mediumgrey;
+            >td{
+                >span{
+                    @include texto(18px, $black, 'Roboto Bold');
+                    padding: 12px;
+                }
+            }
+        }
+        .contact-table-rrow{
+            >td{
+                >span{
+                    @include texto(16px, $grey, 'Roboto Medium');
+                }
+                >div>img{
+                    @include img-fit(40px, 40px);
+                    display: inline-block;
+                    padding: 10px 0px 10px 0px;
+                }
+            }
+        }
+    }
+}
+
+.profile-wrapper{
+    @include bloco(100%, 100%, 90vh);
+    @include display(flex, row, center, center);
+}
+.profile-aside{
+    @include bloco(100%, 390px, 100%);
+    @include display(flex, column, center, center);
+    margin-right: 60px;
+    >figure{
+        @include bloco($width: 300px, $height: 300px);
+        border-radius: 50%;
+        box-sizing: border-box;
+        border: 6px solid $olivine;
+        margin: 0 auto 20px auto;
+        background-color: $olivine;
+        overflow: hidden;
+        position: relative;
+        >img{
+            @include img-fit(300px, 300px);
+        }
+        &[data-siglas] {
+            &:before{
+                content: attr(data-siglas);
+                vertical-align: middle;
+                @include texto(150px, $white, 'Roboto Bold', 300px, center);
+            }
+        }
+    }
+    >h2{
+        @include texto(21px, $black, 'Roboto Bold', 28px, center);
+    }
+    >span{
+        @include texto(18px, $grey, 'Roboto Medium Italic', 28px, center);
+    }
+}
+.lbl-ext{
+    @include texto(18px, $black, 'Roboto Bold');
+}
+.lbl-result{
+    @include texto(16px, $grey, 'Roboto Regular');
+    margin-bottom: 20px;
+}
+@-webkit-keyframes autofill {
+    to {
+        background: #E8E8E8;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}

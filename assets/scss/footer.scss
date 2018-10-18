@@ -1,0 +1,17 @@
+@import 'colors.scss';
+@import 'mixins.scss';
+
+/* RODAPÉ */
+#footer-flat{
+	//Container-mãe do rodapé
+	@include bloco(100%, 100%, auto);
+	background: $lightgrey;
+}
+#footer-flat-content{
+	//Container-filho do rodapé
+	@include bloco(100%, 100%, auto);
+	span{/*Nome da Loja no rodapé*/@include texto(38px, $gold, 'Roboto Black', false, center); width: 85%; margin: 0 auto;}
+	p{/*Descrição no rodapé*/@include texto(18px, $black, 'Roboto regular', false, center); width: 85%; margin: 0 auto;}
+	b{/*Copyright*/@include texto(21px, $black, 'Roboto Bold', false, center); width: 85%; margin: 0 auto;}
+	a{/*Termos de Uso*/@include texto(18px, $grey, 'Roboto Medium Italic', false, center); margin: 0 auto;}
+}

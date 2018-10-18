@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 12" width="25" height="23">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M0,12.5h13.5v-13.5h-13.5z" />
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #7f7f7f }
+	</style>
+	<g id="Mask Group 65" clip-path="url(#cp1)">
+		<g id="three-buildings">
+			<g id="Group 264">
+				<path id="Path 130" class="shp0" d="M3.65,0.29h6.2v10.92h-2.38v-2.44h-1.43v2.44h-2.38zM7.18,3.01h1.43v-1.43h-1.43zM7.18,5.31h1.43v-1.43h-1.43zM7.18,7.62h1.43v-1.43h-1.43zM4.88,3.01h1.43v-1.43h-1.43zM4.88,5.31h1.43v-1.43h-1.43zM4.88,7.62h1.43v-1.43h-1.43z" />
+				<path id="Path 131" class="shp0" d="M13.5,1.27v9.94h-2.17v-2.22h-0.92v-7.72zM12.38,7.94v-1.3h-1.3v1.3zM12.38,5.84v-1.31h-1.3v1.31zM12.38,3.75v-1.3h-1.3v1.3z" />
+				<path id="Path 132" class="shp0" d="M0,1.27h3.09v7.72h-0.92v2.22h-2.17zM1.12,3.75h1.3v-1.3h-1.3zM1.12,5.84h1.3v-1.31h-1.3zM1.12,7.94h1.3v-1.3h-1.3z" />
+			</g>
+		</g>
+	</g>
+</svg>

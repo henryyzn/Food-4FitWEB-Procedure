@@ -1,0 +1,724 @@
+@import 'mixins.scss';
+@import 'colors.scss';
+
+::-webkit-scrollbar{
+	/*Estilização da scrollbar*/
+	width: 7px;
+	background: transparent;
+}
+::-webkit-scrollbar-thumb{
+	/*Estilização da scrollbar*/
+	border-radius: 50px;
+	background-color: $olivine;
+}
+.main{
+	/*Container-mãe do block do site*/
+	@include bloco(100%, 1200px, auto);
+	@include display(flex, column);
+	background-color: $lightgrey;
+    margin: 124px auto 0px auto;
+	z-index: 1;
+}
+
+.jq-toast-single {
+	/*Estilo do toast*/
+    @include display(flex, column, center, center);
+    @include texto(21px, $white, 'Roboto Bold', 20px);
+    background-color: $olivine;
+    border-radius: 5px;
+    padding: 30px 10px;
+    width: 95%;
+    box-sizing: border-box;
+}
+/* TÍTULO DA PÁGINA */
+#page-title{
+	/*Título da página*/
+	display: block;
+	font-size: 18px;
+	letter-spacing: -0.2px;
+	font-family: "Roboto Bold";
+	color: #000;
+	padding: 30px;
+	text-align: center;
+    margin: 0 auto;
+	padding-bottom: 0px;
+	animation: fadeIn 1.5s linear;
+	&:after{
+		/*Barra separada do título da página*/
+		content: "";
+		display: block;
+		width: 30px;
+		height: 3px;
+		margin: auto;
+		border-radius: 30px;
+		background-color: #000;
+		margin-top: 8px;
+		animation: fadeIn 1s linear;
+	}
+}
+#page-subtitle{
+    width: 90%;
+    max-width: 460px;
+    height: auto;
+    text-align: center;
+    color: #7F7F7F;
+    font-family: "Roboto Regular";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 auto;
+    margin-top: 5px;
+    animation: fadeIn 1s linear;
+}
+//=================================================
+/* GRID GENÉRICO */
+.generic-grid{
+    /*Container-mãe da grelha genérica responsiva*/
+    @include bloco(100%, 100%, 100%, false);
+    box-sizing: border-box;
+    border: 30px solid transparent;
+    margin: 0 auto;
+    @include display(grid, false, flex-start, flex-start);
+    display: -moz-grid;
+    grid-auto-flow: row;
+    grid-gap: 30px 30px;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    -moz-grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+
+    /* GRID GENÉRICO */
+	.generic-grid{
+	    /*Container-mãe da grelha genérica responsiva*/
+	    @include bloco(100%, 100%, 100%, false);
+	    box-sizing: border-box;
+	    border: 0px solid;
+	    margin: 0 auto;
+	    display:-ms-grid;
+   		display:grid;
+        -ms-grid-columns:1fr 1fr 1fr;
+        grid-template-columns:1fr 1fr 1fr;
+		grid-template-areas:"one two three";
+    }
+	.one{
+		-ms-grid-row:1;
+	    -ms-grid-column:1;
+	    grid-area:one;
+	}
+	.two{
+		-ms-grid-row:1;
+		-ms-grid-column:2;
+		grid-area:two;
+	}
+	.three{
+		-ms-grid-row:1;
+	    -ms-grid-column:3;
+	    grid-area:three;
+	}
+	.four{
+		-ms-grid-row:1;
+	    -ms-grid-column:1;
+	    -mg-grid-row: 2;
+	    grid-area:one;
+	}
+	.five{
+		-ms-grid-row:1;
+		-ms-grid-column:2;
+		-mg-grid-row: 2;
+		grid-area:two;
+	}
+	.six{
+		-ms-grid-row:1;
+	    -ms-grid-column:3;
+	    -mg-grid-row: 2;
+	    grid-area:three;
+	}
+	.seven{
+		-ms-grid-row:1;
+	    -ms-grid-column:1;
+	    -mg-grid-row: 3;
+	    grid-area:one;
+	}
+	.eight{
+		-ms-grid-row:1;
+		-ms-grid-column:2;
+		-mg-grid-row: 3;
+		grid-area:two;
+	}
+	.nine{
+		-ms-grid-row:1;
+	    -ms-grid-column:3;
+	    -mg-grid-row: 3;
+	    grid-area:three;
+	}
+	.generic-card{
+		box-sizing: border-box;
+		margin: 30px 15px 30px 15px;
+	}
+}
+.generic-card{
+    /*Card da grelha genérica responsiva*/
+    @include bloco($maxwidth: 100%, $height: auto);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: $shadow;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+    position: relative;
+    &:hover .generic-card-img{
+        /*Ação ao mover o mouse no card da grelha genérica responsiva*/
+        transform: scale(1.08);
+    }
+    &:hover .fitsession-card-img{
+        /*Ação ao mover o mouse no card da grelha genérica responsiva*/
+        transform: scale(1.08);
+    }
+}
+.generic-card-img{
+    /*Imagem do card da grelha genérica responsiva*/
+    @include img-fit(false, false);
+    max-width: 100%;
+    border-radius: 10px;
+    transition: 300ms ease-in-out;
+}
+
+.generic-card-overlay{
+    /*Container acima do card da grelha genérica responsiva*/
+    @include bloco(100%, 100%, auto, false);
+    @include display(flex, column, flex-end, center);
+    @include position(absolute, 0, 0, 0, 0);
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    box-shadow: $shadow;
+    transition: 200ms ease-in-out;
+}
+.card-dish-name{
+    /*Nome do prato da grelha genérica responsiva*/
+    @include titulo(26px, $white, 'Roboto Bold', false, center);
+    width: 80%;
+    margin: 0 auto;
+}
+.card-dish-separator{
+    /*Separador da grelha genérica responsiva*/
+    width: 30px;
+    height: 3px;
+    border-radius: 30px;
+    background-color: $white;
+}
+.card-dish-description{
+    /*Descrição do prato da grelha genérica responsiva*/
+    @include texto(16px, $white, 'Roboto Regular', 21px, center);
+    width: 80%;
+    margin: 0 auto;
+}
+.card-dish-price{
+    /*Preço do prato da grelha genérica responsiva*/
+    @include bloco(160px, false, 40px, false);
+    @include display(flex, row, center, center);
+    background: $sunsetorange;
+    transition: 50ms ease-out;
+    border-radius: 5px;
+    >span{
+        @include texto(18px, $white, 'Roboto Medium');
+    }
+    >div{
+        @include bloco(
+            $width: 28px, $height: 28px
+        );
+        >img{
+            max-width: 100%;
+            display: block;
+        }
+    }
+    &:hover{
+        transform: scale(1.02);
+    }
+    &:active{
+        background: #C63939;
+    }
+}
+
+/* MODAL GENERICO */
+.generic-modal{
+	//Fundo do modal genérico
+	@include bloco(100vw, 100vw, 100vh);
+	@include position(fixed, 0, 0, 0, 0);
+    @include display(none, column, center, center);
+    z-index: 999999;
+	box-sizing: border-box;
+	border: 30px solid transparent;
+	background: rgba(0, 0, 0, 0.5);
+	.generic-modal-wrapper{
+		//Holder do modal
+		@include bloco($width: auto, $height: auto);
+		@include display(flex, column, center, center);
+		box-sizing: border-box;
+		padding-left: 30px;
+		padding-right: 30px;
+		border-radius: 10px;
+		background-color: $white;
+		position: relative;
+		.close-modal{
+			//Botão para fechar o modal
+			@include bloco($width: 21px, $height: 21px);
+			@include position(absolute, 15px, 15px, false, false);
+			overflow: hidden;
+		    >img{
+		    	//Imagem do botão
+				@include img-fit(21px, 21px);
+			}
+		}
+		>p{
+			//Texto do modal
+			width: 80%;
+			display: block;
+			font-family: "Roboto Regular";
+			color: #282828;
+			text-align: center;
+			font-size: 16px;
+			line-height: 21px;
+			margin: 0 auto;
+			a{
+				//Link do texto do modal
+				font-family: "Roboto Bold Italic";
+				color: #E85858;
+				text-decoration: none;
+			}
+		}
+	}
+	.generic-modal-row{
+		//Linha do modal
+		@include bloco(100%, 100%, auto);
+		box-sizing: border-box;
+		padding-left: 30px;
+		padding-right: 30px;
+		@include display(flex, row, false, false);
+		>h2{
+			//Titulo da linha
+			@include titulo(28px, $black, 'Roboto Bold', 31px, center);
+			&:after{
+				content: "";
+				display: block;
+				width: 80px;
+				height: 5px;
+				border-radius: 50px;
+				background-color: $black;
+				margin: 20px auto;
+			}
+		}
+	}
+	.btn-generic-modal{
+		//Botões do modal
+		@include bloco(auto, false, auto);
+		box-sizing: border-box;
+		border-radius: 5px;
+		transition: 200ms ease-in-out;
+	    cursor: pointer;
+	    &:hover{
+			-webkit-transform: scale(1.05);
+			   -moz-transform: scale(1.05);
+			    -ms-transform: scale(1.05);
+			     -o-transform: scale(1.05);
+			        transform: scale(1.05);
+	    }
+	    &.confirm{
+			background-color: #9CC283;
+			>span{
+				@include titulo(18px, $white, 'Roboto Bold', false, center);
+				padding: 16px;
+				width: 90%;
+				box-sizing: border-box;
+			}
+		}
+		&.cancel{
+			background-color: #282828;
+			>span{
+				@include titulo(18px, $grey, 'Roboto Medium Italic', false, center);
+				padding: 16px;
+				width: 90%;
+				box-sizing: border-box;
+			}
+		}
+	}
+}
+/* FORMULÁRIOS */
+.form-generic{
+	position: relative;
+}
+.form-title{
+    font-size: 18px;
+    color: $black;
+    font-family: "Roboto Regular";
+    padding-bottom: 15px;
+    text-align: left;
+}
+.form-subtitle{
+    font-size: 16px;
+    color: $darkgrey;
+    font-family: "Roboto Light";
+    line-height: 21px;
+    padding-bottom: 15px;
+    text-align: left;
+}
+.aviso-contato{
+    @include texto(14px, $darkgrey, 'Roboto Italic', 23px, left);
+}
+.form-generic-content{
+  	height: auto;
+	.label-generic{
+	  	font-size: 18px;
+	  	font-family: "Roboto Bold";
+	  	color: #000;
+	  	display: block;
+	}
+	.label-rdo{
+	  	font-size: 16px;
+	  	font-family: "Roboto Bold";
+	  	color: #000;
+	}
+	.input-generic{
+	  	width: 100%;
+	  	border-radius: 5px;
+	  	display: block;
+	  	background-color: $mediumgrey;
+	  	border: none;
+	  	outline: none;
+	  	height: 40px;
+	  	text-indent: 15px;
+	  	font-family: "Roboto Regular";
+	  	font-size: 16px;
+	  	margin-top: 5px;
+		margin-bottom: 15px;
+        transition: 200ms ease-in-out;
+        &:focus{
+            background-color: $olivine;
+            color: $white;
+        }
+        &:focus::-webkit-input-placeholder { color: $white; }
+	}
+	input[type=radio]{
+	  	margin-right: 5px;
+		margin-top: 5px;
+		margin-bottom: 15px;
+	}
+	.textarea-generic{
+		width: 100%;
+	  	resize: none;
+	  	height: 150px;
+	  	background-color: #E8E8E8;
+	  	border-radius: 5px;
+	  	border: none;
+	  	outline: none;
+	  	box-sizing: border-box;
+	  	font-family: "Roboto Regular";
+	  	font-size: 16px;
+	  	margin-top: 5px;
+	  	margin-bottom: 15px;
+	  	padding: 15px;
+	}
+	.file-generic{
+		width: 100%;
+		height: auto;
+		min-height: 230px;
+		background-color: #E8E8E8;
+	  	border-radius: 5px;
+	  	border: none;
+	  	outline: none;
+	  	box-sizing: border-box;
+	  	font-family: "Roboto Regular";
+	  	font-size: 16px;
+	  	margin-top: 5px;
+	  	margin-bottom: 15px;
+	  	padding: 15px;
+	}
+    .label-fix{
+	  	font-size: 18px;
+	  	font-family: "Roboto Bold";
+	  	color: #000;
+	  	display: block;
+	}
+    .label-fix-result{
+        font-size: 16px;
+	  	font-family: "Roboto Medium Italic";
+	  	color: $grey;
+	  	display: block;
+
+    }
+    .label-rdo-generic{
+    	font-size: 16px;
+	  	font-family: "Roboto Medium";
+	  	color: #000;
+	  	display: inline-block;
+    }
+}
+.form-row{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+	>span{
+	    font-family:'Roboto Medium Italic';
+	    color: #7F7F7F;
+	    font-size: 18px;
+	    display: block;
+	    transition: 200ms ease-in-out;
+		&:hover{
+		    color: #282828;
+		    cursor: pointer;
+		}
+	}
+    >.form-column {
+        margin-left: 5px;
+        margin-right: 5px;
+        &.form-group-6 {
+            width: 50%;
+        }
+
+        &.form-group-4 {
+            width: 33.33%;
+        }
+
+        &:first-of-type {
+            margin-left: 0;
+        }
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}
+/* BOTÃO GENÉRICO */
+.btn-generic{
+    /*Botão genérico*/
+    @include bloco(auto, 120px, auto);
+    @include display(flex, row, center, center);
+    box-sizing: border-box;
+    background: $olivine;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 300ms ease-out;
+    box-shadow: $shadow;
+    >span{
+    	/*Texto do botão genérico*/
+    	@include texto(16px, $white, 'Roboto Bold', 18px, center);
+	    margin: 0 auto;
+	    box-sizing: border-box;
+	    padding: 10px;
+    }
+    &:hover{
+	    /*Ação ao mover o mouse no botão genérico*/
+	    transform: scale(1.02);
+	    cursor: pointer;
+    }
+    &:active{
+        background: #799B63;
+    }
+}
+.btn-generic-disabled{
+    /*Botão genérico desabilitado*/
+    @include bloco(auto, 120px, auto);
+    @include display(flex, column, center, center);
+    background: $darkgrey;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 300ms ease-out;
+    span{
+	    /*Texto do botão genérico desativado*/
+	    @include texto(16px, $grey, 'Roboto Bold Italic', 18px, center);
+	    margin: 0 auto;
+	    box-sizing: border-box;
+	    padding: 10px;
+	}
+}
+
+/*CLASSES DO SLIDER*/
+.slider-1200-250{
+	@include bloco(100%, 1200px, auto);
+	background: $lightgrey;
+
+	.slider_content{
+        width: 100%;
+        height: 0;
+        padding-bottom: 22%;
+        position: relative;
+
+        #slider {
+            margin: 0;
+            position: absolute;
+            list-style: none;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+	}
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 300ms ease;
+    border-radius: 0 3px 3px 0;
+    z-index: 999;
+    text-decoration: none;
+    background: rgba(0,0,0,0.1);
+    &:hover{
+    	background: rgba(0,0,0,0.2);
+    	color: $olivine;
+    }
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* CHECKBOX ESTILIZADO */
+.switch_box{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 45px;
+    justify-content: center;
+    align-items: center;
+}
+input[type="checkbox"].switch-styled{
+    font-size: 30px;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    width: 45px;
+    height: 26px;
+    background: #7f7f7f;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch-styled:checked{
+    background: #9CC823;
+}
+
+input[type="checkbox"].switch-styled:after{
+    position: absolute;
+    content: "";
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #fff;
+
+    -webkit-transform: scale(.7);
+            transform: scale(.7);
+    left: 0;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch-styled:checked:after{
+    left: calc(100% - 26px);
+}
+.hide{
+    display: none;
+}
+/* BLOCO/WRAPPER GENÉRICO - 100% DE LARGURA */
+.generic-block{
+	@include bloco(100%, false, auto, false);
+    position: relative;
+    background-color: $lightgrey;
+    overflow: hidden;
+}
+
+/* ESTRELAS DE AVALIAÇÃO */
+.avaliation-stars{
+	@include bloco(125px, false, auto, false);
+    @include display(flex, row, space-between, flex-start);
+	.avaliation-stars-image{
+	    @include bloco($width: 20px, $height: 20px);
+    	@include display($display: inline-block);
+    	transition: 200ms ease-in-out;
+		&:hover{
+			-webkit-transform: scale(1.02);
+			   -moz-transform: scale(1.02);
+			    -ms-transform: scale(1.02);
+			     -o-transform: scale(1.02);
+			        transform: scale(1.02);
+		}
+	}
+}
+
+/* MENU CONTEXTUAL DE TRÊS PONTOS */
+.options-dots{
+	@include bloco($width: 30px, $height: auto);
+	@include position(absolute, 20px, 10px, false, false);
+	>img{
+		@include img-fit(30px, 30px);
+		transition: 200ms ease-in-out;
+		&:hover{
+			-webkit-transform: scale(1.02);
+			   -moz-transform: scale(1.02);
+			    -ms-transform: scale(1.02);
+			     -o-transform: scale(1.02);
+			        transform: scale(1.02);
+		}
+	}
+}
+
+/*BARRA DE REDES SOCIAIS*/
+.social-bar{
+	@include bloco($width: 100px, $height: 28px);
+    @include display(flex, row, space-between, center);
+	@include position(absolute, false, 20px, 30px, false);
+    >img{
+    	@include img-fit(28px, 28px);
+		transition: 200ms ease-in-out;
+		&:hover{
+			-webkit-transform: scale(1.02);
+			   -moz-transform: scale(1.02);
+			    -ms-transform: scale(1.02);
+			     -o-transform: scale(1.02);
+			        transform: scale(1.02);
+		}
+    }
+}
+
+.social-share{
+    width: 109px;
+    height: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    >img{
+    	@include img-fit(28px, 28px);
+    }
+}
+
+.display-none {
+    display: none!important;
+}
+
+.display-flex {
+    display: flex!important;
+}

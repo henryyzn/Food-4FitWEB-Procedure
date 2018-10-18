@@ -1,0 +1,22 @@
+/* DIMENSIONADORES */
+//Ajusta as larguras para os valores desejados
+$tamanhos: (10px, 20px, 30px, 40px, 50px, 60px, 70px, 80px, 90px, 100px, 120px, 150px, 175px, 200px, 250px, 300px, 350px, 400px, 450px, 500px, 550px, 600px, 650px, 700px, 750px, 800px, 850px, 900px, 950px, 1000px, 1100px, 1200px);
+
+//Separa as classes em unidades
+//a partir dos tamanhos definidos acima
+@each $espaco in $tamanhos {
+    .width-#{$espaco} {
+        width: 95%;
+        max-width: #{$espaco};
+    }
+    .height-#{$espaco} {
+        height: 95%;
+        max-height: #{$espaco};
+    }
+}
+.width-100{
+    width: 100%;
+}
+.height-100{
+    height: 100%;
+}
