@@ -1,6 +1,6 @@
 <?php
-    require_once("../../controller/FuncionarioController.class.php");
-    $funcionario = FuncionarioController::getFuncionarioAtual();
+    //require_once("../../controller/FuncionarioController.class.php");
+    //$funcionario = FuncionarioController::getFuncionarioAtual();
 ?>
 
 <div class="profile-wrapper">

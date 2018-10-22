@@ -1,7 +1,4 @@
-<?php
-    require_once("../../controller/CategoriaIngredienteController.class.php");
-    $categorias = CategoriaIngredienteController::montarSelectCategorias();
-?>
+
 
 <div id="form-two-sides">
     <div id="form-left-side" class="no-padding">
