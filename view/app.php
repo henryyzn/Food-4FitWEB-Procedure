@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../assets/css/bases.css">
     <link rel="stylesheet" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
-    <link rel="stylesheet" href=../"assets/css/colors.css">
+    <link rel="stylesheet" href="../assets/css/colors.css">
     <link rel="stylesheet" href="../assets/css/font-style.css">
     <link rel="stylesheet" href="../assets/css/align.css">
     <link rel="stylesheet" href="../assets/css/keyframes.css">
