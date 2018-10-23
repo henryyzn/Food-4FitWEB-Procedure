@@ -10,7 +10,6 @@
             <figure id="avatar">
                 <img src="../../assets/images/" alt="">
             </figure>
-            <figure id="avatar"></figure>
         <div id="informacoes">
             <div id="informacoes-content">
                 <span id="nome"></span>

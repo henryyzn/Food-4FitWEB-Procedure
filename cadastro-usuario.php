@@ -47,6 +47,6 @@
             <p>Clique <a href="index.php">aqui</a> para pular</p>
         </article>
     </div>
-	<?php require_once("../components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
+	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 </body>
 </html>

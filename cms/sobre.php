@@ -19,39 +19,25 @@
          <section id="main">
             <?php require_once("./components/sidebar.php") ?>
             <div id="main-content">
-                <header class="animate fast fadeInDown">
-                    <span id="titulo-pagina"></span>
-                    <div>
-                        <input type="search" placeholder="Pesquise por algo">
-                        <img src="../../assets/images/cms/icons/pesquisa.svg" alt="Pesquisar">
-                    </div>
-                    <div>
-                        <span id="ultimas-interacoes">Últimas Interações</span>
-                        <div id="notificacoes">
-                            <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
-                            <span>12</span>
-                        </div>
-                        <img class="btn-logout" src="../../assets/images/cms/icons/sair-navbar.svg" alt="Sair">
-                    </div>
-                </header>
+            <?php require_once("components/navbar.php") ?>
                 <div id="page-content">
                     <div id="tabs">
-                        <span data-for="#container-form">Adicionar Bloco</span>
-                        <span class="active" data-for="#container-listagem">Listar Blocos</span>
+                        <span>Adicionar Bloco</span>
+                        <span class="active">Listar Blocos</span>
                     </div>
                     <div id="tabs-content">
 
                         <div id="container-form">
                             <div class="form-generic">
-                                <form id="form-sobre-nos" class="form-generic-content" data-crud-form>
+                                <form id="form-sobre-nos" class="form-generic-content">
                                     <label for="titulo" class="label-generic">Título</label>
                                     <input id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
                                     <label for="texto" class="label-generic">Texto</label>
-                                    <textarea id="texto" name="texto" class="textarea-generic" data-sceditor></textarea>
+                                    <textarea id="texto" name="texto" class="textarea-generic"></textarea>
 
                                     <span class="label-generic">Imagem</span>
-                                    <div class="imagem-upload-wrapper" data-imagem-upload data-bind="foto">
+                                    <div class="imagem-upload-wrapper">
                                     <div>
                                         <img alt="">
                                     </div>
@@ -64,8 +50,8 @@
 
 
                                 <div class="controls">
-                                    <span class="cancel" data-form-cancel>Cancelar</span>
-                                    <div class="btn-generic" data-form-submit>
+                                    <span class="cancel">Cancelar</span>
+                                    <div class="btn-generic">
                                         <span>Enviar</span>
                                     </div>
                                 </div>
@@ -73,7 +59,7 @@
                         </div>
 
                         <div class="active" id="container-listagem">
-                            <div id="tabela-items" data-crud-list>
+                            <div id="tabela-items">
                                 <div class="linha">
                                     <div class="coluna image-large">Imagem</div>
                                     <div class="coluna middle-align medium">Título</div>
@@ -81,15 +67,15 @@
                                     <div class="coluna">Opções</div>
                                 </div>
                             </div>
-                            <div data-crud-template>
-                                <div class="linha" data-param-id="${id}">
+                            <div>
+                                <div class="linha">
                                     <div class="coluna image-large">
-                                        <img src="../${foto}" alt="${titulo}">
+
                                     </div>
-                                <div class="coluna middle-align medium"><span>${titulo}</span></div>
+                                <div class="coluna middle-align medium"><span></span></div>
                                 <div class="coluna descricao large">
                                     <div>
-                                        ${removeHtml(texto)}
+
                                     </div>
                                 </div>
                                 <div class="coluna">
