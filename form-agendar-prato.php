@@ -1,4 +1,4 @@
-<div data-f4f-reserve>
+<div>
     <div class="form-generic width-small margin-left-auto margin-right-auto margin-top-30px margin-bottom-30px display-none">
         <form class="form-generic-content" action="#" method="POST" name="frmagendar">
             <div style="width: 100%; height: auto; display: flex; justify-content: center">

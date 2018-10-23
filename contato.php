@@ -39,10 +39,10 @@
                 <input type="email" id="email" name="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
 
                 <label for="telefone" class="label-generic">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" class="input-generic" placeholder="Fixo" data-mask="(00) 0000-0000" pattern="\(\d{2}\)\s\d{4}-\d{4}">
+                <input type="tel" id="telefone" name="telefone" class="input-generic" placeholder="Fixo" >
 
                 <label for="celular" class="label-generic">Celular:</label>
-                <input type="text" id="celular" name="celular" class="input-generic" placeholder="(11) 98888-8888" required data-mask="(00) 00000-0000" pattern="\(\d{2}\)\s\d{5}-\d{4}">
+                <input type="text" id="celular" name="celular" class="input-generic" placeholder="(11) 98888-8888" required>
 
                 <label for="assunto" class="label-generic">Assunto:</label>
                 <input type="text" id="assunto" name="assunto" class="input-generic" placeholder="Sobre o que é esta mensagem?" required>
@@ -51,7 +51,7 @@
                 <textarea id="comentario" name="comentario" class="textarea-generic" required></textarea>
                 <input type="submit" class="display-none">
             </form>
-            <div class="btn-generic margin-bottom-30px"  data-f4f-form-submit="#form-contato">
+            <div class="btn-generic margin-bottom-30px">
                 <span>Enviar</span>
             </div>
         </div>

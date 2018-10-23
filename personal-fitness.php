@@ -31,7 +31,7 @@
 	        </div>
 	    </div>
 	    <div style="width: 100%; position: absolute; bottom: 60px;">
-	    	<div class="button animate fadeInUp" data-f4f-scroll-to="#page-title">
+	    	<div class="button animate fadeInUp">
 	    		<span>Ver Mais</span>
 	   	 	</div>
 	    </div>

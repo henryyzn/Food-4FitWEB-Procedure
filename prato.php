@@ -31,9 +31,9 @@
             </span>
         </div>
         <div id="product-view-block">
-            <figure id="product-view-image-container" data-f4f-image-gallery>
-                <img src="assets/images/dishs/img1.jpg" data-zoom-image="assets/images/dishs/img1.jpg" alt="Nome do Prato" id="product-view-image" data-f4f-main-image>
-                <div id="product-view-image-carrousel" data-f4f-image-list>
+            <figure id="product-view-image-container">
+                <img src="assets/images/dishs/img1.jpg" alt="Nome do Prato" id="product-view-image">
+                <div id="product-view-image-carrousel">
                     <div class="next-image" style="border-bottom-left-radius: 10px;">
                         <img src="assets/images/dishs/img1.jpg" alt="Mais Imagens">
                     </div>

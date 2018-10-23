@@ -29,10 +29,10 @@
         <div id="map-canvas" class="animate fadeInDown"></div>
         <div class="generic-block">
             <?php for($i = 1; $i < 4; $i++){ ?>
-                <div class="shop-row" data-f4f-shop-id="<?= $i ?>">
+                <div class="shop-row">
                     <h2 class="margin-left-30px padding-top-20px padding-bottom-10px">São Paulo</h2>
                     <h3 class="margin-left-30px padding-bottom-20px">R. Elton Silva, 905, JD. Salomão, Jandira - SP, 03485-923<div class="shop-details margin-left-15px"><img src="assets/images/icons/down-arrow.svg" alt="Ver detalhes"></div></h3>
-                    <span data-f4f-shop-view>Ver no mapa</span>
+                    <span>Ver no mapa</span>
                 </div>
             <?php } ?>
         </div>

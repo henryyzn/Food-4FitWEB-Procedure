@@ -40,7 +40,7 @@
 
                 <input type="submit" class="display-none">
             </form>
-            <div class="btn-generic margin-bottom-30px" data-f4f-form-submit="#form-contato">
+            <div class="btn-generic margin-bottom-30px">
                 <span>Enviar</span>
             </div>
         </div>

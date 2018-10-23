@@ -1,4 +1,4 @@
-<div data-f4f-cart-step="2" class="display-none" style="width: 100%;">
+<div class="display-none" style="width: 100%;">
     <?php require_once("carrinho-cadastrar-endereco.html"); ?>
     <section id="shopping-cart-address-block" class="padding-top-15px">
         <h3>ENDEREÇO DE ENTREGA</h3>
@@ -18,7 +18,7 @@
                     <input type="radio" name="endereco" id="input3" value="1">
                     <label for="input3" class="margin-left-5px">Av. Centuri, 938, João Bosques, Carapicuíba, SP</label>
                 </div>
-                <span class="save-data-button padding-left-30px padding-top-20px" data-f4f-slide-show="#form-cadastrar-endereco">Cadastrar um endereço</span>
+                <span class="save-data-button padding-left-30px padding-top-20px">Cadastrar um endereço</span>
             </div>
             <div class="shopping-cart-address-column">
                 <span class="shopping-cart-address-column-title margin-left-30px padding-top-60px margin-bottom-15px">Frete:</span>
@@ -31,7 +31,7 @@
         <div class="shopping-cart-row-next">
             <span class="padding-left-30px">Passo 1 de 2</span>
             <a href="#" class="margin-right-30px">Cancelar</a>
-            <div class="btn-generic margin-right-30px margin-top-30px margin-bottom-30px" data-f4f-cart-change-step="3">
+            <div class="btn-generic margin-right-30px margin-top-30px margin-bottom-30px">
                 <span>Próximo</span>
             </div>
         </div>

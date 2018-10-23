@@ -69,7 +69,7 @@
                         </div>
                         <div class="shopping-cart-column align-x" style="align-items: center;">
                             <div class="switch_box">
-                                <input type="checkbox" name="chkdish" class="switch-styled" data-f4f-chk-reserve>
+                                <input type="checkbox" name="chkdish" class="switch-styled">
                             </div>
                         </div>
                     </div>

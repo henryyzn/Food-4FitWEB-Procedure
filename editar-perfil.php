@@ -59,10 +59,10 @@
                         <label for="mulher" class="label-generic">Mulher</label>
                     </div>
                     <label for="telefone" class="label-generic">Telefone</label>
-		            <input id="telefone" type="text" class="input-generic" data-mask="(00) 0000-0000" pattern="\(\d{2}\)\s\d{4}-\d{4}">
+		            <input id="telefone" type="text" class="input-generic">
 		            <!-- ===================== -->
 		            <label for="celular" class="label-generic">Celular</label>
-		            <input id="celular" type="text" class="input-generic" data-mask="(00) 0000-0000" pattern="\(\d{2}\)\s\d{5}-\d{4}">
+		            <input id="celular" type="text" class="input-generic">
 		            <span class="aviso-contato margin-bottom-20px">Caso necessário o contato através de e-mail ou<br>
                     telefone/celular, usaremos o seu nome escolhido como vulgo.</span>
 		            <!-- ===================== -->

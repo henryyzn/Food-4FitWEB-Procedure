@@ -60,7 +60,7 @@
 		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic">
 
 		            <label for="cep" class="label-generic">CEP:</label>
-		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic"  data-mask="00000-000" pattern="\d{5}-\d{3}">
+		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" >
 
 		            <label for="cidade" class="label-generic">Cidade:</label>
 		            <select name="cidade" id="cidade" class="input-generic">

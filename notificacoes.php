@@ -24,9 +24,9 @@
 	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <h2 id="page-title">NOTIFICAÇÕES</h2>
-        <div class="generic-block" data-f4f-selection>
+        <div class="generic-block">
             <header class="notifications-header padding-top-10px padding-bottom-10px">
-                <input type="checkbox" name="markall" id="markall" class="margin-left-30px margin-right-5px" data-f4f-select-all>
+                <input type="checkbox" name="markall" id="markall" class="margin-left-30px margin-right-5px">
                 <label for="markall" class="label-markall">Marcar Todas</label>
 
                 <span class="margin-left-30px">Excluir</span>
@@ -36,7 +36,7 @@
                 for($i = 1; $i < 12; $i++){
             ?>
             <div class="notifications-line">
-                <input type="checkbox" name="check" class="margin-top-15px margin-bottom-15px margin-left-30px" data-f4f-select-one>
+                <input type="checkbox" name="check" class="margin-top-15px margin-bottom-15px margin-left-30px">
                 <div class="archive-img margin-left-15px"><img src="assets/images/icons/star.svg" alt="Guardar"></div>
                 <h2 class="margin-left-15px">Título</h2>
                 <p class="margin-left-25px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, tempora!</p>

@@ -4,7 +4,7 @@
     $ano = date("Y");
 ?>
 
-<div data-f4f-cart-step="3" class="display-none" style="width: 100%;">
+<div class="display-none" style="width: 100%;">
     <?php require_once("carrinho-cadastrar-cartao.php"); ?>
     <section id="shopping-cart-address-block" class="margin-top-15px">
         <h3>PAGAMENTO</h3>
@@ -24,7 +24,7 @@
                     <input type="radio" name="cartao" id="input3" value="1">
                     <label for="input3" class="margin-left-5px">VISA ****6002, João Silva</label>
                 </div>
-                <span class="save-data-button padding-left-30px padding-top-30px" data-f4f-slide-show="#form-cadastrar-cartao">Cadastrar um cartão</span>
+                <span class="save-data-button padding-left-30px padding-top-30px">Cadastrar um cartão</span>
             </div>
             <div class="shopping-cart-address-column">
                 <span class="shopping-cart-address-column-title margin-left-30px padding-top-60px margin-bottom-15px">Por segurança...</span>
@@ -33,7 +33,7 @@
                         <div class="form-row" style="width: 60%;">
                             <div style="width: 60%;">
                                 <label for="card-mes" class="label-generic">Mês de Expiração:</label>
-                                <select name="mesExpiracao" id="card-mes" class="input-generic" data-card-month>
+                                <select name="mesExpiracao" id="card-mes" class="input-generic">
                                     <?php for ($i = 0; $i < count($meses); $i++) { ?>
                                         <option value="<?= $i + 1 ?>" <?= $i == $mes - 1 ? "selected" : "" ?>><?= $meses[$i] ?></option>
                                     <?php } ?>
@@ -41,7 +41,7 @@
                             </div>
                             <div style="width: 40%;" class="margin-left-15px">
                                 <label for="card-ano" class="label-generic">Ano:</label>
-                                <select name="anoExpiracao" id="card-ano" class="input-generic" data-card-year>
+                                <select name="anoExpiracao" id="card-ano" class="input-generic">
                                     <option value="" disabled>Ano</option>
                                     <?php for ($i = $ano; $i < $ano + 15; $i++) { ?>
                                         <option value="<?= $i ?>" <?= $i == $ano ? "selected" : "" ?>><?= $i ?></option>
