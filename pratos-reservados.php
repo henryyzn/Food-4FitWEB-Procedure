@@ -45,7 +45,7 @@
                                 <span class="padding-right-15px">Reservar +</span><!-- PREÇO -->
                                 <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
                             </div>
-                            <div class="prato-reservado-delete" data-f4f-show-modal="#modal-confirm-remove">
+                            <div class="prato-reservado-delete">
                                 <img src="assets/images/icons/delete-white.svg" alt="Excluir Reserva">
                             </div>
                             <span class="prato-reservado-remaing">Dias Restantes: <b><?= $intervalo->days ?></b><br>Dt. Lmt. Reserva: <?= $data ?></span>

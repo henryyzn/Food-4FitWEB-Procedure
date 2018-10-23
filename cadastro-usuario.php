@@ -27,12 +27,12 @@
     <section class="main">
         <h1 id="page-title" class="margin-left-auto margin-right-auto animate fadeInUp">INFORMAÇÕES BÁSICAS</h1><!-- TÍTULO DA PÁGINA -->
         <div class="form-generic width-600px margin-left-auto margin-right-auto display-none">
-            <div class="form-stepper margin-top-20px margin-bottom-10px" data-f4f-form-stepper="1">
+            <div class="form-stepper margin-top-20px margin-bottom-10px">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <form id="form-cadastro-usuario" class="form-generic-content" data-f4f-form>
+            <form id="form-cadastro-usuario" class="form-generic-content">
                 <?php require_once("cadastro-usuario/step-1.html") ?>
                 <?php require_once("cadastro-usuario/step-2.html") ?>
                 <?php require_once("cadastro-usuario/step-3.html") ?>

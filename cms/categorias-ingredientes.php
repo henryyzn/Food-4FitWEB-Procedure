@@ -28,7 +28,7 @@
                                     <div class="coluna full padding-left-15px">Categorias de Ingredientes</div>
                                 </div>
                             </div>
-                            <div data-crud-template>
+                            <div>
                                 <div class="linha">
                                     <div class="coluna image-small">
                                         <img>
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form id="form-right-side" class="form-generic" data-crud-form>
+                        <form id="form-right-side" class="form-generic">
                             <div class="form-generic-content">
                                 <h2 class="form-title margin-left-20px margin-top-20px">Cadastrar uma Categoria</h2>
                                 <div>

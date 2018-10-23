@@ -22,13 +22,13 @@
                 <div id="page-content">
                     <div id="form-two-sides">
                         <div id="form-left-side" class="no-padding">
-                            <div id="tabela-items" data-crud-list>
+                            <div id="tabela-items">
                                 <div class="linha">
                                     <div class="coluna full padding-left-15px">Categorias de Prato</div>
                                 </div>
                             </div>
-                            <div data-crud-template>
-                                <div class="linha" data-param-id="${id}">
+                            <div>
+                                <div class="linha">
                                     <div class="coluna image-small">
                                         <img src="../${foto}" alt="${titulo}">
                                     </div>
@@ -41,10 +41,10 @@
                                 </div>
                             </div>
                         </div>
-                        <form id="form-right-side" class="form-generic" data-crud-form>
+                        <form id="form-right-side" class="form-generic">
                             <div class="form-generic-content">
                                 <h2 class="form-title margin-left-20px margin-top-20px">Cadastrar uma Categoria</h2>
-                                <div data-imagem-upload data-bind="foto">
+                                <div>
                                     <img>
                                     <label for="foto" class="file-label">Escolher Imagem</label>
                                     <input id="foto" name="uploadData" type="file" accept="image/*">
@@ -69,7 +69,7 @@
                                     </div>
                                     <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                                 </div>
-                                <div id="btn-save" data-form-submit>
+                                <div id="btn-save">
                                     <img src="../assets/images/cms/symbols/salvar.svg" alt="Salvar">
                                     <span>Salvar</span>
                                 </div>

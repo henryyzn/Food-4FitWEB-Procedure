@@ -35,7 +35,7 @@
                                 <td colspan="2"><span>OPÇÕES</span></td>
                             </tr>
                             <?php foreach($faleConosco as $fc){ ?>
-                            <tr class="contact-table-rrow" data-id="<?php echo($fc->getId())?>">
+                            <tr class="contact-table-rrow">
                                 <td colspan="2">
                                     <input type="checkbox">
                                     <span style="display: inline-block;"><?php echo($fc->getNome()) ?></span>

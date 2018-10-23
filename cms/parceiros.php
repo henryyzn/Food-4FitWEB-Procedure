@@ -58,7 +58,7 @@
                             <form action="#" class="form-generic-content width-500px">
                                 <h2 class="form-title">Cadastrar um Parceiro</h2>
 
-                                <div data-imagem-upload data-bind="foto">
+                                <div>
                                     <img>
                                     <label for="foto" class="file-label">Escolher Imagem</label>
                                     <input id="foto" name="uploadData" type="file" accept="image/*">

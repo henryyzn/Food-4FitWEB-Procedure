@@ -20,7 +20,7 @@
             <div id="main-content">
                 <?php require_once("./components/navbar.php")?>
                 <div id="page-content">
-                    <form id="form-content" class="display-none" data-crud-form>
+                    <form id="form-content" class="display-none">
                         <div id="form-two-sides">
                             <div id="form-left-side" class="padding-left-20px padding-right-20px">
                                 <div class="form-generic">
@@ -43,36 +43,33 @@
                                         </div>
                                         <div class="form-column">
                                             <label for="descricao" class="label-generic">Descrição do Prato:</label>
-                                            <textarea id="descricao" name="descricao" class="textarea-generic" required data-sceditor></textarea>
+                                            <textarea id="descricao" name="descricao" class="textarea-generic"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div id="form-right-side">
                                 <div class="padding-top-10px">
-                                    <div data-imagem-upload data-imagem-multi>
+                                    <div>
                                         <img>
-                                        <div class="image-upload active" data-target="foto1">
+                                        <div class="image-upload active">
                                             <label for="foto1" class="file-label">Escolher Imagem</label>
                                             <input id="foto1" name="uploadData.foto1" type="file" accept="image/*">
                                         </div>
-                                        <div class="image-upload" data-target="foto2">
+                                        <div class="image-upload">
                                             <label for="foto2" class="file-label">Escolher Imagem</label>
                                             <input id="foto2" name="uploadData.foto2" type="file" accept="image/*">
                                         </div>
-                                        <div class="image-upload" data-target="foto3">
+                                        <div class="image-upload">
                                             <label for="foto3" class="file-label">Escolher Imagem</label>
                                             <input id="foto3" name="uploadData.foto3" type="file" accept="image/*">
                                         </div>
-                                        <div class="image-upload" data-target="foto4">
+                                        <div class="image-upload">
                                             <label for="foto4" class="file-label">Escolher Imagem</label>
                                             <input id="foto4" name="uploadData.foto4" type="file" accept="image/*">
                                         </div>
                                         <div class="thumbnails">
-                                            <img data-bind="foto1" class="active">
-                                            <img data-bind="foto2">
-                                            <img data-bind="foto3">
-                                            <img data-bind="foto4">
+
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +84,7 @@
                                         </div>
                                         <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                                     </div>
-                                    <div id="btn-save" data-form-submit>
+                                    <div id="btn-save">
                                         <img src="../assets/images/cms/symbols/salvar.svg" alt="Salvar">
                                         <span>Salvar</span>
                                     </div>
@@ -103,7 +100,7 @@
                                     <img src="../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                     <span>Adicionar Prato</span>
                                 </a>
-                                <a href="#" data-list-reload>
+                                <a href="#">
                                     <img src="../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
                                     <span>Recarregar Listagem</span>
                                 </a>
@@ -129,7 +126,7 @@
                                         </div>
                                         <div class="state-row padding-top-15px">
                                             <div class="switch_box margin-right-10px">
-                                                <input type="checkbox" id="chkdish" name="chkdish" class="switch-styled" data-f4f-chk-reserve>
+                                                <input type="checkbox" id="chkdish" name="chkdish" class="switch-styled">
                                             </div>
                                             <label for="chkdish">Promoção</label>
                                         </div>

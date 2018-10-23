@@ -1,5 +1,3 @@
-<span data-page-controller="DicasSaudeController" data-page-title="Dicas de Saúde" data-menu-link="fit-session"></span>
-
 <div class="saude-wrapper">
     <div class="saude-content" id="dicas-lista">
         <div id="page-actions">
@@ -8,7 +6,7 @@
                 <span>Adicionar Publicação</span>
             </a>
         </div>
-        <div id="tabela-items" data-crud-list>
+        <div id="tabela-items">
             <div class="linha">
                 <div class="coluna large">Título</div>
                 <div class="coluna medium">Autor</div>
@@ -16,8 +14,8 @@
                 <div class="coluna">Opções</div>
             </div>
         </div>
-        <div data-crud-template>
-            <div class="linha height-100" data-param-id="${id}">
+        <div>
+            <div class="linha height-100">
                 <div class="coluna large">${titulo}</div>
                 <div class="coluna medium">${autor}</div>
                 <div class="coluna medium">${data}</div>
@@ -31,7 +29,7 @@
     </div>
     <div class="saude-content form-generic display-none" id="dicas-form">
         <h2 class="padding-top-30px padding-bottom-30px">DICAS DE SAÚDE - PUBLICAÇÕES</h2>
-        <form action="#" class="form-generic-content padding-left-15px padding-right-15px padding-bottom-15px padding-top-15px" data-crud-form>
+        <form action="#" class="form-generic-content padding-left-15px padding-right-15px padding-bottom-15px padding-top-15px">
             <div class="form-column">
                 <label for="titulo" class="label-generic">Título:</label>
                 <input type="text" name="titulo" id="titulo" class="input-generic">
@@ -42,11 +40,11 @@
             </div>
             <div class="form-column">
                 <label for="texto">Texto:</label>
-                <textarea name="texto" id="texto" class="textarea-generic height-800px" data-sceditor></textarea>
+                <textarea name="texto" id="texto" class="textarea-generic height-800px"></textarea>
             </div>
             <div class="form-row">
-                <span class="margin-right-20px" data-form-cancel>Cancelar</span>
-                <div class="btn-generic margin-right-30px" data-form-submit>
+                <span class="margin-right-20px">Cancelar</span>
+                <div class="btn-generic margin-right-30px">
                     <span>Salvar</span>
                 </div>
             </div>

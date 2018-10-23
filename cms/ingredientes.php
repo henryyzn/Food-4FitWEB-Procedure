@@ -21,7 +21,7 @@
             <div id="main-content">
                 <?php require_once("./components/navbar.php")?>
                 <div id="page-content">
-                    <form id="form-content" class="display-none" data-crud-form>
+                    <form id="form-content" class="display-none">
                         <div id="form-two-sides">
                             <div id="form-left-side" class="padding-left-20px padding-right-20px">
                                 <div class="form-generic">
@@ -34,7 +34,7 @@
                                             </div>
                                             <div class="form-column form-group-6">
                                                 <label for="preco" class="label-generic">Preço do Ingrediente:</label>
-                                                <input id="preco" name="preco" class="input-generic" required placeholder="Digite um preço para o ingrediente..." data-mask="#.##0,00" data-mask-reverse="true" data-money-format>
+                                                <input id="preco" name="preco" class="input-generic" required placeholder="Digite um preço para o ingrediente...">
                                             </div>
                                         </div>
 
@@ -60,7 +60,7 @@
                                         </div>
 
                                         <label for="descricao" class="label-generic">Descrição do Ingrediente:</label>
-                                        <textarea id="descricao" name="descricao" class="textarea-generic" data-sceditor></textarea>
+                                        <textarea id="descricao" name="descricao" class="textarea-generic"></textarea>
 
                                         <h3>Informações Nutricionais</h3>
                                         <p class="description width-500px">Complete a tabela nutricional para completar a descrição do ingrediente e possibilitar a produção dos pratos com ele</p>
@@ -68,41 +68,41 @@
                                         <div class="form-row">
                                             <div class="form-column form-group-4">
                                                 <label for="valorEnergetico" class="label-generic">Valor Energético:</label>
-                                                <input id="valorEnergetico" name="valorEnergetico" class="input-generic" required placeholder="kcal=kj (quilos por caloria)" data-mask="0#">
+                                                <input id="valorEnergetico" name="valorEnergetico" class="input-generic" required placeholder="kcal=kj (quilos por caloria)">
                                             </div>
                                             <div class="form-column form-group-4">
                                                 <label for="carboidratos" class="label-generic">Carboidratos:</label>
-                                                <input id="carboidratos" name="carboidratos" class="input-generic" required placeholder="g (gramas)" data-mask="0#">
+                                                <input id="carboidratos" name="carboidratos" class="input-generic" required placeholder="g (gramas)">
                                             </div>
                                             <div class="form-column form-group-4">
                                                 <label for="proteinas" class="label-generic">Proteínas:</label>
-                                                <input id="proteinas" name="proteinas" class="input-generic" required placeholder="g (gramas)" data-mask="0#">
+                                                <input id="proteinas" name="proteinas" class="input-generic" required placeholder="g (gramas)">
                                             </div>
                                         </div>
 
                                         <div class="form-row">
                                             <div class="form-column form-group-4">
                                                 <label for="gorduraTotal" class="label-generic">Gordura Total:</label>
-                                                <input id="gorduraTotal" name="gorduraTotal" class="input-generic" required placeholder="g (gramas)" data-mask="0#">
+                                                <input id="gorduraTotal" name="gorduraTotal" class="input-generic" required placeholder="g (gramas)">
                                             </div>
                                             <div class="form-column form-group-4">
                                                 <label for="gorduraSaturada" class="label-generic">Gordura Saturada:</label>
-                                                <input id="gorduraSaturada" name="gorduraSaturada" class="input-generic" required placeholder="g (gramas)" data-mask="0#">
+                                                <input id="gorduraSaturada" name="gorduraSaturada" class="input-generic" required placeholder="g (gramas)">
                                             </div>
                                             <div class="form-column form-group-4">
                                                 <label for="gorduraTrans" class="label-generic">Gordura Trans:</label>
-                                                <input id="gorduraTrans" name="gorduraTrans" class="input-generic" required placeholder="g (gramas)" data-mask="0#">
+                                                <input id="gorduraTrans" name="gorduraTrans" class="input-generic" required placeholder="g (gramas)">
                                             </div>
                                         </div>
 
                                         <div class="form-row">
                                             <div class="form-column form-group-4">
                                                 <label for="fibraAlimentar" class="label-generic">Fibra Alimentar:</label>
-                                                <input id="fibraAlimentar" name="fibraAlimentar" class="input-generic" required placeholder="g (gramas)" data-mask="0#">
+                                                <input id="fibraAlimentar" name="fibraAlimentar" class="input-generic" required placeholder="g (gramas)">
                                             </div>
                                             <div class="form-column form-group-4">
                                                 <label for="sodio" class="label-generic">Sódio:</label>
-                                                <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)" data-mask="0#">
+                                                <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)">
                                             </div>
                                             <div class="form-column form-group-4"></div>
                                         </div>
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div id="form-right-side">
-                                <div class="padding-top-10px" data-imagem-upload data-bind="foto">
+                                <div class="padding-top-10px">
                                     <img>
                                     <label for="foto" class="file-label">Escolher Imagem</label>
                                     <input id="foto" name="uploadData" type="file" accept="image/*">
@@ -123,7 +123,7 @@
                                         </div>
                                         <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                                     </div>
-                                    <div id="btn-save" data-form-submit>
+                                    <div id="btn-save">
                                         <img src="../assets/images/cms/symbols/salvar.svg" alt="Salvar">
                                         <span>Salvar</span>
                                     </div>
@@ -138,12 +138,12 @@
                                 <img src="../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Ingrediente</span>
                             </a>
-                            <a href="#" data-list-reload>
+                            <a href="#">
                                 <img src="../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
                                 <span>Recarregar Listagem</span>
                             </a>
                         </div>
-                        <div id="tabela-items" data-crud-list>
+                        <div id="tabela-items">
                             <div class="linha">
                                 <div class="coluna image-small">Imagem</div>
                                 <div class="coluna medium">Título</div>
@@ -153,8 +153,8 @@
                                 <div class="coluna">Opções</div>
                             </div>
                         </div>
-                        <div data-crud-template>
-                            <div class="linha" data-param-id="${id}">
+                        <div>
+                            <div class="linha">
                                 <div class="coluna image-small">
                                     <img src="../${foto}" alt="${titulo}">
                                 </div>

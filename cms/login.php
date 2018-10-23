@@ -18,7 +18,7 @@
 	    <script src="../assets/js/cms/main.js"></script>
 	    <script src="../assets/js/cms/login.controller.js"></script>
     </head>
-    <body class="main-login" data-controller="LoginController">
+    <body class="main-login">
         <article class="image-bg-login">
             <h2>FOOD<br>4FIT<span>COMIDA FITNESS</span></h2>
         </article>
