@@ -1,10 +1,3 @@
-<?php
-    require_once("../../controller/FuncionarioController.class.php");
-    if (FuncionarioController::getFuncionarioAtual()) {
-        header("location:home.php");
-        die();
-    }
-?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,6 +9,13 @@
         <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
 	    <link rel="stylesheet" href="../assets/css/font-style.css">
         <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
+        <link rel="stylesheet" href="../assets/css/bases.css">
+        <link rel="stylesheet" href="../assets/css/sizes.css">
+        <link rel="stylesheet" href="../assets/css/align.css">
+        <link rel="stylesheet" href="../assets/css/keyframes.css">
+        <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
+	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
+        <link rel="stylesheet" href="../assets/public/css/sceditor.theme.min.css">
     </head>
     <body>
         <a id="botao-voltar" href="login.php">Voltar</a>
