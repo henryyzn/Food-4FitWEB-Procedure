@@ -1,25 +1,55 @@
+<?php
+    if(isset($_GET['btn-salvar'])){
+        //$nome = $_GET['txtnome'];
+        require_once('../models/sobreClass.php');
+        require_once('../models/DAO/sobreDAO.php');
+
+        //Instanciando a classe
+        $classSobre = new Sobre();
+
+        //Alimentando a classe, mandando os atributos para URL
+        //-> ALIMENTA UM ATRIBUTO
+        $classSobre->titulo = $_GET['titulo'];
+        $classSobre->texto = "bla bla bla";
+
+        //Instanciando a classe
+        $sobreDAO = new sobreDAO();
+
+        //:: chamando um método
+        $sobreDAO::insert($classSobre);
+
+        /*
+        $sql = "insert ......."
+        mysql_query ($sql);
+        */
+    }
+
+?>
 <!DOCTYPE html><html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
-        <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
-	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
-        <link rel="stylesheet" href="../assets/public/css/sceditor.theme.min.css">
-	    <link rel="stylesheet" href="../assets/css/font-style.css">
-        <link rel="stylesheet" href="../assets/css/bases.css">
-        <link rel="stylesheet" href="../assets/css/sizes.css">
-        <link rel="stylesheet" href="../assets/css/align.css">
-        <link rel="stylesheet" href="../assets/css/keyframes.css">
+        <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
+        <!--
+        <link rel="stylesheet" href="../../assets/css/cms/stylesheet-cms.css">
+	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
+        <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
+	    <link rel="stylesheet" href="../../components/assets/css/font-style.css">
+        <link rel="stylesheet" href="../../assets/css/bases.css">
+        <link rel="stylesheet" href="../../assets/css/sizes.css">
+        <link rel="stylesheet" href="../../assets/css/align.css">
+        <link rel="stylesheet" href="../../backend/assets/css/keyframes.css">
+
+-->
     </head>
 
 
          <section id="main">
-            <?php require_once("./components/sidebar.php") ?>
+            <?php require_once("../components/sidebar.php") ?>
             <div id="main-content">
-            <?php require_once("components/navbar.php") ?>
+            <?php require_once("../components/navbar.php") ?>
                 <div id="page-content">
                     <div id="tabs">
                         <span>Adicionar Bloco</span>
@@ -29,7 +59,7 @@
 
                         <div id="container-form">
                             <div class="form-generic">
-                                <form id="form-sobre-nos" class="form-generic-content">
+                                <form id="form-sobre-nos" class="form-generic-content" method="get" action="sobre.php">
                                     <label for="titulo" class="label-generic">Título</label>
                                     <input id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
@@ -45,16 +75,17 @@
                                      <input id="imagem" name="uploadData" type="file" accept="image/*">
                                     </div>
 
-                                    <input type="submit" name="submit" class="display-none">
+                                    <input type="submit" value="Salvar" name="btn-salvar">
                                 </form>
 
-
+                                <!--
                                 <div class="controls">
                                     <span class="cancel">Cancelar</span>
                                     <div class="btn-generic">
                                         <span>Enviar</span>
                                     </div>
                                 </div>
+-->
                             </div>
                         </div>
 
@@ -89,6 +120,6 @@
                 </div>
             </div>
         </div>
-        <?php require_once("./components/modal.html") ?>
+        <?php require_once("../components/modal.html") ?>
     </section>
 </html>
