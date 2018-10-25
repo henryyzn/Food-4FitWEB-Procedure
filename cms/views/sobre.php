@@ -44,8 +44,6 @@
 
 -->
     </head>
-
-
          <section id="main">
             <?php require_once("../components/sidebar.php") ?>
             <div id="main-content">

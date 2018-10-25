@@ -1,3 +1,34 @@
+<?php
+
+    if(isset($_GET['btn-salvar'])){
+        require_once('../models/enderecoClass.php');
+        require_once('../models/DAO/enderecoDAO.php');
+
+        $classMeuEndereco = new Endereco();
+        $classMeuEndereco->logradouro = $_GET['logradouro'];
+        $classMeuEndereco->numero = $_GET['numero'];
+        $classMeuEndereco->bairro = $_GET['bairro'];
+        $classMeuEndereco->cep = $_GET['cep'];
+        $classMeuEndereco->complemento = $_GET['complemento'];
+
+        $enderecoDAO = new meuEnderecoDAO();
+        $enderecoDAO::insert($classMeuEndereco);
+
+
+    }
+
+
+//    require_once('../models/estadoClass.php');
+//    require_once('../models/DAO/estadoDAO.php');
+//
+//    $classEstado = new Estado();
+//
+//
+//    $estadoDAO = new estadoDAO
+//
+//    $estadoDAO::selectAll($classEstado);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -69,13 +100,14 @@
 
 		            <label for="estado" class="label-generic">Estado:</label>
 		            <select name="estado" id="estado" class="input-generic">
-		                <option selected>Selecione uma opção:</option>
+		                <option>Selecione uma opção:</option>
 		            </select>
 
 		            <div class="margin-top-30px margin-bottom-30px form-row">
                         <span class="margin-right-15px" onclick="javascript:history.back()">Voltar</span>
                         <div class="btn-generic" onclick="$('.generic-modal').css('display', 'flex');">
-                            <span>Salvar</span>
+                            <input type="submit" value="Salvar" name="btn-salvar">
+<!--                            <span>Salvar</span>-->
                         </div>
                     </div>
 		        </form>
