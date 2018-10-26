@@ -4,6 +4,9 @@
             //O construtor serve justamente para colocar funções repetidas
             //na classe ou algo especifico, nesse caso, ela sempre irá estar conectando com o banco PORÉM não quer dizer que eu estarei utilizando ela, somente quando eu estiver conectando diretamente das funções que criei ali em baixo
             require_once('dataBase.php');
+            //Reportando erros na tela
+            error_reporting(E_ALL);
+            ini_set('display_errors',1);
         }
 
         public function insert($classMeuEndereco){
@@ -31,6 +34,7 @@
                     header('location:index.php');
                 else
                     echo("Erro no script do Insert");
+
 
         }
 
