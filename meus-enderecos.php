@@ -1,8 +1,7 @@
 <?php
-
-    if(isset($_GET['btn-salvar'])){
-        require_once('../models/enderecoClass.php');
-        require_once('../models/DAO/enderecoDAO.php');
+       if(isset($_GET['btn-salvar'])){
+        require_once('cms/models/enderecoClass.php');
+        require_once('cms/models/DAO/enderecoDAO.php');
 
         $classMeuEndereco = new Endereco();
         $classMeuEndereco->logradouro = $_GET['logradouro'];
@@ -11,12 +10,11 @@
         $classMeuEndereco->cep = $_GET['cep'];
         $classMeuEndereco->complemento = $_GET['complemento'];
 
-        $enderecoDAO = new meuEnderecoDAO();
+        $enderecoDAO = new enderecoDAO();
+
         $enderecoDAO::insert($classMeuEndereco);
 
-
     }
-
 
 //    require_once('../models/estadoClass.php');
 //    require_once('../models/DAO/estadoDAO.php');
@@ -77,7 +75,7 @@
 		    </article>
 		    <section class="form-generic">
 		        <h2 class="form-title padding-top-20px">Cadastrar/Editar Endereço</h2>
-		        <form action="#" class="form-generic-content width-550px margin-left-auto margin-right-auto">
+		        <form action="meus-enderecos.php" class="form-generic-content width-550px margin-left-auto margin-right-auto" method="get">
 		            <label for="logradouro" class="label-generic">Logradouro:</label>
 		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic">
 
