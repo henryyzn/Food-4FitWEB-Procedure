@@ -12,7 +12,7 @@
 
         $enderecoDAO = new enderecoDAO();
 
-        $enderecoDAO::insert($classMeuEndereco);
+        $enderecoDAO->insert($classMeuEndereco);
 
     }
 
@@ -60,10 +60,20 @@
 		    <article>
 		        <h2 class="padding-top-30px padding-left-20px padding-bottom-15px">Endereços Salvos</h2>
 		        <?php
-                    for($i = 1; $i < 4; $i++){
+                    require_once("cms/models/DAO/enderecoDAO.php");
+
+                //INSTANCIA DA CLASSE
+                    $enderecoDAO = new enderecoDAO();
+
+                //Chamar o método
+                    $lista = $enderecoDAO->selectAll();
+
+
+                    //count -> comando que conta quantos itens tem o objeto
+                    for($i = 0; $i < count($lista); $i++){
                 ?>
 		        <div class="address-row">
-		            <span class="padding-top-15px padding-bottom-15px padding-left-20px">R. Elton Silva, 905, JD. Angular, Jandira - SP, 06634-000</span>
+		            <span class="padding-top-15px padding-bottom-15px padding-left-20px"> <?php echo($lista[$i]->logradouro)?> </span>
 		            <div id="address-opts">
 		                <img src="assets/images/icons/delete.svg" alt="Excluir Endereço" class="padding-right-5px">
 		                <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço">
