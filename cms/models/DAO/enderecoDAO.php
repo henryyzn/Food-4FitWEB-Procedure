@@ -44,8 +44,29 @@
 
         }
 
-        public function selectId(){
+        public function selectId($id){
+            $listEndereco = null;
+            $sql="select id, id_cidade, logradouro, numero, bairro,
+            cep, logradouro from tbl_endereco where id=".$id;
 
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
+
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+
+            $listUserEndereco[] = new Endereco();
+            $listUserEndereco->id = $rs['id'];
+            $listUserEndereco->logradouro = $rs['logradouro'];
+            $listUserEndereco->idCidade = $rs['id_cidade'];
+            $listUserEndereco->numero = $rs['numero'];
+            $listUserEndereco->bairro = $rs['bairro'];
+            $listUserEndereco->cep = $rs['cep'];
+            $listUserEndereco->complemento = $rs['complemento'];
+
+            }
+
+            return $listUserEndereco;
         }
 
         public function selectAll(){
@@ -80,20 +101,42 @@
             return $listEndereco;
         }
 
-        public function delete(){
-            $sql = "delete from tbl_endereco where id=".$identificador;
+        public function delete($id){
+            $sql = "delete from tbl_endereco where id=".$id;
 
             $conex = new mysql_db();
-            $PDO_conex = $cnex->conectar();
-
+            $PDO_conex = $conex->conectar();
+            echo ($sql);
             if($PDO_conex->query($sql))
-                header('location:index.php');
-//                echo ('Deletou');
-//            else
-//                echo ('Deu errado');
+//                header('location:index.php');
+                echo ($sql);
+            else
+                echo ('Erro no banco de dados!');
         }
 
-        public function update(){
+        public function update($classMeuEndereco, ){
+
+            $sql = "UPDATE tbl_endereco SET id_cidade =
+            '".$classMeuEndereco->idCidade."',
+            '".$classMeuEndereco->logardouro."',
+            '".$classMeuEndereco->numero."',
+            '".$classMeuEndereco->bairro."',
+            '".$classMeuEndereco->cep."',
+            '".$classMeuEndereco->numero."',
+            where id=".$classMeuEndereco->id;
+
+            echo($sql);
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+
+            if($PDO_conex->query($sql))
+//                header('locatino:index.php');
+                echo('Deu certo!');
+            else
+                echo('Deu errado!');
+
+            $conex->desconectar();
 
         }
     }

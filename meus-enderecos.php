@@ -1,14 +1,46 @@
 <?php
+
+    $logradouro = null;
+    $numero = null;
+    $bairro = null;
+    $cep = null;
+    $complemento = null;
+
+
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
 
         if($modo == 'excluir'){
+
             require_once('cms/models/enderecoClass.php');
             require_once('cms/models/DAO/enderecoDAO.php');
 
             $enderecoDAO = new enderecoDAO;
             $id = $_GET['id'];
-//            $lista = $enderecoDAO->selecAll();
+            $enderecoDAO->delete($id);
+
+        }else if($modo == 'editar'){
+            require_once('cms/models/enderecoClass.php');
+            require_once('cms/models/DAO/enderecoDAO.php');
+
+            $enderecoDAO = new enderecoDAO;
+            $id = $_GET['id'];
+
+            $listUserEndereco = $enderecoDAO->selectId($id);
+            //v -> verifica
+            //Resgatando do Banco de dados
+            //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
+            if(count($listUserEndereco)>0)
+            {
+
+                //FAZER IGUAL ESSA PRIMEIRA LINHA EM CASA
+                $id = $listUserEndereco[$i]->id;
+                $logradouro = $listUserEndereco['logradouro'];
+                $numero = $listUserEndereco['numero'];
+                $bairro = $listUserEndereco['bairro'];
+                $cep = $listUserEndereco['cep'];
+                $complemento = $listUserEndereco['complemento'];
+            }
         }
     }
 
@@ -91,11 +123,13 @@
 		            <span class="padding-top-15px padding-bottom-15px padding-left-20px"> <?php echo($lista[$i]->logradouro)?> </span>
 
 		            <div id="address-opts">
-                        <a href="meus-enderecos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>">
-		                <img src="assets/images/icons/delete.svg" alt="Excluir Endereço" class="padding-right-5px"></a>
+
+		                  <img src="assets/images/icons/delete.svg" alt="Excluir Endereço" class="padding-right-5px" onclick="javascript:location.href='meus-enderecos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
 
 
-<!--		                <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço">-->
+
+                            <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço" onclick="javascript:location.href='meus-enderecos.php?modo=editar$id=<?php echo($lista[$i]->id)?>'">
+
 
 		            </div>
 
@@ -108,19 +142,19 @@
 		        <h2 class="form-title padding-top-20px">Cadastrar/Editar Endereço</h2>
 		        <form action="meus-enderecos.php" class="form-generic-content width-550px margin-left-auto margin-right-auto" method="get">
 		            <label for="logradouro" class="label-generic">Logradouro:</label>
-		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic">
+		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($logradouro);?>">
 
 		            <label for="numero" class="label-generic">Número:</label>
-		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic">
+		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($numero);?>">
 
 		            <label for="bairro" class="label-generic">Bairro:</label>
-		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic">
+		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($bairro);?>">
 
 		            <label for="complemento" class="label-generic">Complemento:</label>
-		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic">
+		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic" value="<?php echo($complemento);?>">
 
 		            <label for="cep" class="label-generic">CEP:</label>
-		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" >
+		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($cep);?>">
 
 		            <label for="cidade" class="label-generic">Cidade:</label>
 		            <select name="cidade" id="cidade" class="input-generic">
