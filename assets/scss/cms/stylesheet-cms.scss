@@ -1355,3 +1355,40 @@ input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
 }
+
+.add-pub-wrapper{
+    @include bloco(100%, 100%, 100%);
+    @include display(flex, row, flex-start, flex-start);
+}
+.pub-add{
+    @include bloco(100%, 100%, 100vh);
+    box-sizing: border-box;
+    border: 30px solid transparent;
+}
+.pub-side{
+    @include bloco(100%, 400px, 100vh);
+    background-color: $mediumgrey;
+    box-sizing: border-box;
+    border: 20px solid transparent;
+
+    >div{
+        @include bloco($width: 100%, $height: auto);
+        background-color: $white;
+        box-sizing: border-box;
+        border: 12px solid transparent;
+        border-radius: 5px;
+        >h3{
+            @include texto(18px, $darkgrey, 'Roboto Bold');
+            padding-bottom: 20px;
+        }
+        >p{
+            @include texto(16px, $grey, 'Roboto Medium Italic');
+            display: inline;
+        }
+        >span{
+            @include texto(16px, $grey, 'Roboto Medium Italic');
+            display: inline;
+            float: right;
+        }
+    }
+}

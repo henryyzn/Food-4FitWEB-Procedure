@@ -4,51 +4,46 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
-        <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
-	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
-        <link rel="stylesheet" href="../assets/public/css/sceditor.theme.min.css">
-	    <link rel="stylesheet" href="../assets/css/font-style.css">
-        <link rel="stylesheet" href="../assets/css/bases.css">
-        <link rel="stylesheet" href="../assets/css/sizes.css">
-        <link rel="stylesheet" href="../assets/css/align.css">
-        <link rel="stylesheet" href="../assets/css/keyframes.css">
+        <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
+        <link rel="stylesheet" href="../../assets/css/cms/stylesheet-cms.css">
+	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
+        <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
+	    <link rel="stylesheet" href="../../assets/css/font-style.css">
+        <link rel="stylesheet" href="../../assets/css/bases.css">
+        <link rel="stylesheet" href="../../assets/css/sizes.css">
+        <link rel="stylesheet" href="../../assets/css/align.css">
+        <link rel="stylesheet" href="../../assets/css/keyframes.css">
     </head>
     <body>
         <section id="main">
-            <?php require_once("./components/sidebar.php") ?>
+            <?php require_once("../components/sidebar.php") ?>
             <div id="main-content">
-                <?php require_once("./components/navbar.php")?>
+                <?php require_once("../components/navbar.php")?>
                 <div id="page-content">
-
                     <div class="saude-wrapper">
                         <div class="saude-content" id="personal-lista">
                             <div id="page-actions">
-                                <a href="#" id="btn-adicionar-publicacao">
-                                    <img src="../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
+                                <a href="add-pub-personal-fitness.php" id="btn-adicionar-publicacao">
+                                    <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                     <span>Adicionar Publicação</span>
                                 </a>
                             </div>
-                            <div id="tabela-items">
-                                <div class="linha">
-                                    <div class="coluna large">Título</div>
-                                    <div class="coluna medium">Autor</div>
-                                    <div class="coluna medium">Dt. Pub</div>
-                                    <div class="coluna">Opções</div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="linha height-100">
-                                    <div class="coluna large">${titulo}</div>
-                                    <div class="coluna medium">${autor}</div>
-                                    <div class="coluna medium">${data}</div>
-                                    <div class="coluna">
-                                        <span class="toggle ${checkBoolean(ativo) ? 'desativar' : 'ativar'}"></span><hr>
-                                        <span class="editar"></span><hr>
-                                        <span class="excluir"></span>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="generic-table">
+                                <tr>
+                                    <td><span>Título</span></td>
+                                    <td><span>Autor</span></td>
+                                    <td><span>Dt. Pub</span></td>
+                                    <td colspan="3"><span>Opções</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="table-result">1</span></td>
+                                    <td><span class="table-result">2</span></td>
+                                    <td><span class="table-result">3</span></td>
+                                    <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
+                                    <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts"></td>
+                                    <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts"></td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="saude-content form-generic display-none" id="personal-form">
                             <h2 class="padding-top-30px padding-bottom-30px">PERSONAL FITNESS - PUBLICAÇÕES</h2>
@@ -78,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <?php require_once("./components/modal.html") ?>
+            <?php require_once("../components/modal.html") ?>
         </section>
     </body>
 </html>
