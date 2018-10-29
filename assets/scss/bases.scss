@@ -242,6 +242,37 @@
     }
 }
 
+/* TABELA GENÉRICA */
+.generic-table{
+    @include bloco(100%, 100%, auto);
+    border-collapse: collapse;
+}
+.generic-table tr:first-child{
+    background-color: $mediumgrey;
+    >td span{
+        @include texto(18px, $black, 'Roboto Bold');
+        padding: 12px;
+    }
+}
+.generic-table
+tr td:nth-child(4){
+    width: 70px;
+}
+.generic-table tr td:nth-child(5){
+    width: 70px;
+}
+.generic-table tr td:nth-child(6){
+    width: 70px;
+}
+.table-result{
+    @include texto(16px, $grey, 'Roboto Regular');
+    padding: 12px;
+}
+.table-generic-opts{
+    @include img-fit(30px, 30px);
+    margin: 10px;
+}
+
 /* MODAL GENERICO */
 .generic-modal{
 	//Fundo do modal genérico
