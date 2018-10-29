@@ -1,4 +1,17 @@
 <?php
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+
+        if($modo == 'excluir'){
+            require_once('cms/models/enderecoClass.php');
+            require_once('cms/models/DAO/enderecoDAO.php');
+
+            $enderecoDAO = new enderecoDAO;
+            $id = $_GET['id'];
+//            $lista = $enderecoDAO->selecAll();
+        }
+    }
+
        if(isset($_GET['btn-salvar'])){
         require_once('cms/models/enderecoClass.php');
         require_once('cms/models/DAO/enderecoDAO.php');
@@ -72,12 +85,20 @@
                     //count -> comando que conta quantos itens tem o objeto
                     for($i = 0; $i < count($lista); $i++){
                 ?>
+
 		        <div class="address-row">
+
 		            <span class="padding-top-15px padding-bottom-15px padding-left-20px"> <?php echo($lista[$i]->logradouro)?> </span>
+
 		            <div id="address-opts">
-		                <img src="assets/images/icons/delete.svg" alt="Excluir Endereço" class="padding-right-5px">
-		                <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço">
+                        <a href="meus-enderecos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>">
+		                <img src="assets/images/icons/delete.svg" alt="Excluir Endereço" class="padding-right-5px"></a>
+
+
+<!--		                <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço">-->
+
 		            </div>
+
 		        </div>
 		        <?php
                     }

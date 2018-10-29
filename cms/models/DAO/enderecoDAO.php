@@ -81,7 +81,16 @@
         }
 
         public function delete(){
+            $sql = "delete from tbl_endereco where id=".$identificador;
 
+            $conex = new mysql_db();
+            $PDO_conex = $cnex->conectar();
+
+            if($PDO_conex->query($sql))
+                header('location:index.php');
+//                echo ('Deletou');
+//            else
+//                echo ('Deu errado');
         }
 
         public function update(){
