@@ -35,7 +35,12 @@
             $conex->desconectar();
         }
 
-        public function selectId(){
+        public function selectId($id){
+            $sql="select * from tbl_desconto where id=".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
 
         }
 
