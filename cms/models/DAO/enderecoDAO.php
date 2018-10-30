@@ -35,7 +35,7 @@
 
             //Executa a query
             if($PDO_conex->query($sql))
-                //header('location:index.php');
+                header('location:index.php');
                 echo('Inseriu com sucesso');
             else
                 echo('erro no insert');
@@ -62,6 +62,15 @@
             $listUserEndereco->bairro = $rs['bairro'];
             $listUserEndereco->cep = $rs['cep'];
             $listUserEndereco->complemento = $rs['complemento'];
+
+                $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('select no Banco');
+            else
+                echo('Erro');
+
+            $conex->desconectar();
 
             return $listUserEndereco;
 
@@ -118,12 +127,11 @@
         public function update($classMeuEndereco){
 
             $sql = "UPDATE tbl_endereco SET id_cidade =
-            '".$classMeuEndereco->idCidade."',
-            '".$classMeuEndereco->logardouro."',
-            '".$classMeuEndereco->numero."',
-            '".$classMeuEndereco->bairro."',
-            '".$classMeuEndereco->cep."',
-            '".$classMeuEndereco->numero."',
+            ".$classMeuEndereco->idCidade.", logradouro =
+            '".$classMeuEndereco->logradouro."', numero =
+            '".$classMeuEndereco->numero."', bairro =
+            '".$classMeuEndereco->bairro."', cep =
+            '".$classMeuEndereco->cep."'
             where id=".$classMeuEndereco->id;
 
             echo($sql);
@@ -132,7 +140,7 @@
             $PDO_conex = $conex->conectar();
 
             if($PDO_conex->query($sql))
-//                header('locatino:index.php');
+                header('location:index.php');
                 echo('Deu certo!');
             else
                 echo('Deu errado!');

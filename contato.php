@@ -1,3 +1,23 @@
+<?php
+    if(isset($_GET['btn-salvar'])){
+        require_once('cms/models/contatoClass.php');
+        require_once('cms/models/DAO/contatoDAO.php');
+
+        $classContato = new Contato();
+        $classContato->nome = $_GET['nome'];
+        $classContato->sobrenome = $_GET['sobrenome'];
+        $classContato->email = $_GET['email'];
+        $classContato->telefone = $_GET['telefone'];
+        $classContato->celular = $_GET['celular'];
+        $classContato->assunto = $_GET['assunto'];
+        $classContato->observacao = $_GET['observacao'];
+
+
+        $contatoDAO = new contatoDAO();
+        $contatoDAO->insert($classContato);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -28,7 +48,7 @@
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
         <h2 id="page-title" class="margin-left-auto margin-right-auto">ENTRE EM CONTATO</h2>
         <div class="form-generic width-750px margin-left-auto margin-right-auto margin-top-30px">
-            <form class="form-generic-content" id="form-contato">
+            <form class="form-generic-content" id="form-contato" action="contato.php" method="get">
                 <label for="nome" class="label-generic">Nome:</label>
                 <input type="text" id="nome" name="nome" class="input-generic" placeholder="Digite o seu nome..." required>
 
@@ -52,7 +72,8 @@
                 <input type="submit" class="display-none">
             </form>
             <div class="btn-generic margin-bottom-30px">
-                <span>Enviar</span>
+                <input type="submit" value="Salvar" name="btn-salvar">
+<!--                <span>Salvar</span>-->
             </div>
         </div>
 	</section>

@@ -1,11 +1,14 @@
 <?php
 
+    session_start();
+
     $id = null;
     $logradouro = null;
     $numero = null;
     $bairro = null;
     $cep = null;
     $complemento = null;
+    $botao = "Salvar";
 
 
     if(isset($_GET['modo'])){
@@ -25,7 +28,9 @@
             require_once('cms/models/DAO/enderecoDAO.php');
 
             $enderecoDAO = new enderecoDAO;
+            session_start();
             $id = $_GET['id'];
+            $_SESSION['id'] = $id;
 
             $listUserEndereco = $enderecoDAO->selectId($id);
 
@@ -34,18 +39,21 @@
             if(count($listUserEndereco)>0)
             {
 
-                $id = $listUserEndereco[$i]->id;
-                $logradouro = $listUserEndereco[$i]->logradouro;
-                $numero = $listUserEndereco[$i];
-                $bairro = $listUserEndereco[$i];
-                $cep = $listUserEndereco[$i];
-                $complemento = $listUserEndereco[$i];
+                $id = $listUserEndereco->id;
+                $logradouro = $listUserEndereco->logradouro;
+                $numero = $listUserEndereco->numero;
+                $bairro = $listUserEndereco->bairro;
+                $cep = $listUserEndereco->cep;
+                $complemento = $listUserEndereco->complemento;
+
+                $botao = "Editar";
 
             }
         }
     }
 
        if(isset($_GET['btn-salvar'])){
+
         require_once('cms/models/enderecoClass.php');
         require_once('cms/models/DAO/enderecoDAO.php');
 
@@ -58,8 +66,13 @@
 
         $enderecoDAO = new enderecoDAO();
 
-        $enderecoDAO->insert($classMeuEndereco);
+           if($_GET['btn-salvar'] == "Salvar"){
+               $enderecoDAO->insert($classMeuEndereco);
+           }else{
+               $classMeuEndereco->id = $_SESSION['id'];
 
+               $enderecoDAO->update($classMeuEndereco);
+           }
     }
 
 //    require_once('../models/estadoClass.php');
@@ -129,7 +142,7 @@
 
 
 
-                            <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço" onclick="javascript:location.href='meus-enderecos.php?modo=editar$id=<?php echo($lista[$i]->id)?>'">
+                            <img src="assets/images/icons/edit-dark.svg" alt="Editar Endereço" onclick="javascript:location.href='meus-enderecos.php?modo=editar&id=<?php echo($lista[$i]->id)?>'">
 
 
 		            </div>
@@ -142,32 +155,21 @@
 		    <section class="form-generic">
 		        <h2 class="form-title padding-top-20px">Cadastrar/Editar Endereço</h2>
 		        <form action="meus-enderecos.php" class="form-generic-content width-550px margin-left-auto margin-right-auto" method="get">
-                <?php
-                     require_once("cms/models/DAO/enderecoDAO.php");
-
-
-                    $enderecoDAO = new enderecoDAO();
-
-
-                    $lista = $enderecoDAO->selectId($id);
-
-                    for($i = 0; $i < count($lista); $i++){
-                ?>
 
 		            <label for="logradouro" class="label-generic">Logradouro:</label>
-		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($lista[$i]->logradouro);?>">
+		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($logradouro);?>">
 
 		            <label for="numero" class="label-generic">Número:</label>
-		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($lista[$i]->numero);?>">
+		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($numero);?>">
 
 		            <label for="bairro" class="label-generic">Bairro:</label>
-		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($lista[$i]->bairro);?>">
+		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($bairro);?>">
 
 		            <label for="complemento" class="label-generic">Complemento:</label>
-		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic" value="<?php echo($lista[$i]->complemento);?>">
+		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic" value="<?php echo($complemento);?>">
 
 		            <label for="cep" class="label-generic">CEP:</label>
-		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($lista[$i]->cep);?>">
+		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($cep);?>">
 
 		            <label for="cidade" class="label-generic">Cidade:</label>
 		            <select name="cidade" id="cidade" class="input-generic">
@@ -182,13 +184,11 @@
 		            <div class="margin-top-30px margin-bottom-30px form-row">
                         <span class="margin-right-15px" onclick="javascript:history.back()">Voltar</span>
                         <div class="btn-generic" onclick="$('.generic-modal').css('display', 'flex');">
-                            <input type="submit" value="Salvar" name="btn-salvar">
+                            <input type="submit" value="<?php echo($botao)?>" name="btn-salvar">
 <!--                            <span>Salvar</span>-->
                         </div>
                     </div>
-                    <?php
-                        }
-                    ?>
+
 		        </form>
 		    </section>
 		</div>
