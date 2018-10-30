@@ -1,4 +1,5 @@
 <?php
+
     if(isset($_GET['btn-salvar'])){
         require_once('cms/models/contatoClass.php');
         require_once('cms/models/DAO/contatoDAO.php');
@@ -11,7 +12,6 @@
         $classContato->celular = $_GET['celular'];
         $classContato->assunto = $_GET['assunto'];
         $classContato->observacao = $_GET['observacao'];
-
 
         $contatoDAO = new contatoDAO();
         $contatoDAO->insert($classContato);
@@ -36,17 +36,21 @@
     <link rel="stylesheet" href="assets/css/sizes.css">
     <link rel="stylesheet" href="assets/css/keyframes.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
+<!--
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/jquery.mask.min.js"></script>
     <script src="assets/public/js/jquery.toast.min.js"></script>
+-->
+<!--
 	<script src="assets/js/scripts.js"></script>
 	<script src="assets/js/form.js"></script>
-    <script src="assets/js/fale-conosco.js"></script>
+-->
 </head>
 <body>
 	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
         <h2 id="page-title" class="margin-left-auto margin-right-auto">ENTRE EM CONTATO</h2>
+
         <div class="form-generic width-750px margin-left-auto margin-right-auto margin-top-30px">
             <form class="form-generic-content" id="form-contato" action="contato.php" method="get">
                 <label for="nome" class="label-generic">Nome:</label>
@@ -69,12 +73,13 @@
 
                 <label for="comentario" class="label-generic">O que deseja nos dizer?</label>
                 <textarea id="comentario" name="comentario" class="textarea-generic" required></textarea>
-                <input type="submit" class="display-none">
-            </form>
-            <div class="btn-generic margin-bottom-30px">
+
+                <div class="btn-generic margin-bottom-30px">
                 <input type="submit" value="Salvar" name="btn-salvar">
-<!--                <span>Salvar</span>-->
+                <span>Salvar</span>
             </div>
+            </form>
+
         </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->

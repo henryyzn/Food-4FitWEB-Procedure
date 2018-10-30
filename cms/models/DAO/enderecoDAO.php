@@ -35,10 +35,10 @@
 
             //Executa a query
             if($PDO_conex->query($sql))
-                header('location:index.php');
-                echo('Inseriu com sucesso');
+                header('location:meus-enderecos.php');
+//                echo('Inseriu com sucesso');
             else
-                echo('erro no insert');
+                echo('error');
 
             $conex->desconectar();
 
@@ -140,10 +140,10 @@
             $PDO_conex = $conex->conectar();
 
             if($PDO_conex->query($sql))
-                header('location:index.php');
-                echo('Deu certo!');
-            else
-                echo('Deu errado!');
+                header('location:meus-enderecos.php');
+//                echo('Deu certo!');
+//            else
+//                echo('Deu errado!');
 
             $conex->desconectar();
 

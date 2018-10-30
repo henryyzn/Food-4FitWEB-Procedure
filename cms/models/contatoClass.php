@@ -1,5 +1,5 @@
 <?php
-    class Contato
+    class Contato{
         public $id;
         public $nome;
         public $sobrenome;
@@ -12,5 +12,5 @@
         public function __construct(){
 
         }
-
+    }
 ?>
