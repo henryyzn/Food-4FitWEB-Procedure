@@ -45,9 +45,8 @@
         }
 
         public function selectId($id){
-            $listEndereco = null;
-            $sql="select id, id_cidade, logradouro, numero, bairro,
-            cep, logradouro from tbl_endereco where id=".$id;
+//            ''$listEndereco = null;
+            $sql="select * from tbl_endereco where id=".$id;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -55,7 +54,7 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-            $listUserEndereco[] = new Endereco();
+            $listUserEndereco = new Endereco();
             $listUserEndereco->id = $rs['id'];
             $listUserEndereco->logradouro = $rs['logradouro'];
             $listUserEndereco->idCidade = $rs['id_cidade'];
@@ -64,9 +63,11 @@
             $listUserEndereco->cep = $rs['cep'];
             $listUserEndereco->complemento = $rs['complemento'];
 
+            return $listUserEndereco;
+
             }
 
-            return $listUserEndereco;
+
         }
 
         public function selectAll(){
@@ -114,7 +115,7 @@
                 echo ('Erro no banco de dados!');
         }
 
-        public function update($classMeuEndereco, ){
+        public function update($classMeuEndereco){
 
             $sql = "UPDATE tbl_endereco SET id_cidade =
             '".$classMeuEndereco->idCidade."',

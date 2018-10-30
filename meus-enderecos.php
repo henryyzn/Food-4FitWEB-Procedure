@@ -1,5 +1,6 @@
 <?php
 
+    $id = null;
     $logradouro = null;
     $numero = null;
     $bairro = null;
@@ -27,19 +28,19 @@
             $id = $_GET['id'];
 
             $listUserEndereco = $enderecoDAO->selectId($id);
-            //v -> verifica
+
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
             if(count($listUserEndereco)>0)
             {
 
-                //FAZER IGUAL ESSA PRIMEIRA LINHA EM CASA
                 $id = $listUserEndereco[$i]->id;
-                $logradouro = $listUserEndereco['logradouro'];
-                $numero = $listUserEndereco['numero'];
-                $bairro = $listUserEndereco['bairro'];
-                $cep = $listUserEndereco['cep'];
-                $complemento = $listUserEndereco['complemento'];
+                $logradouro = $listUserEndereco[$i]->logradouro;
+                $numero = $listUserEndereco[$i];
+                $bairro = $listUserEndereco[$i];
+                $cep = $listUserEndereco[$i];
+                $complemento = $listUserEndereco[$i];
+
             }
         }
     }
@@ -141,20 +142,32 @@
 		    <section class="form-generic">
 		        <h2 class="form-title padding-top-20px">Cadastrar/Editar Endereço</h2>
 		        <form action="meus-enderecos.php" class="form-generic-content width-550px margin-left-auto margin-right-auto" method="get">
+                <?php
+                     require_once("cms/models/DAO/enderecoDAO.php");
+
+
+                    $enderecoDAO = new enderecoDAO();
+
+
+                    $lista = $enderecoDAO->selectId($id);
+
+                    for($i = 0; $i < count($lista); $i++){
+                ?>
+
 		            <label for="logradouro" class="label-generic">Logradouro:</label>
-		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($logradouro);?>">
+		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($lista[$i]->logradouro);?>">
 
 		            <label for="numero" class="label-generic">Número:</label>
-		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($numero);?>">
+		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($lista[$i]->numero);?>">
 
 		            <label for="bairro" class="label-generic">Bairro:</label>
-		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($bairro);?>">
+		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($lista[$i]->bairro);?>">
 
 		            <label for="complemento" class="label-generic">Complemento:</label>
-		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic" value="<?php echo($complemento);?>">
+		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic" value="<?php echo($lista[$i]->complemento);?>">
 
 		            <label for="cep" class="label-generic">CEP:</label>
-		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($cep);?>">
+		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($lista[$i]->cep);?>">
 
 		            <label for="cidade" class="label-generic">Cidade:</label>
 		            <select name="cidade" id="cidade" class="input-generic">
@@ -173,6 +186,9 @@
 <!--                            <span>Salvar</span>-->
                         </div>
                     </div>
+                    <?php
+                        }
+                    ?>
 		        </form>
 		    </section>
 		</div>
