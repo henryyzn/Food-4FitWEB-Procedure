@@ -1,27 +1,75 @@
 <?php
+
+    session_start();
+
+    $id = null;
+    $titulo = null;
+    $texto = null;
+    $foto = null;
+    $ativo = null;
+    $botao = "Salvar";
+
+
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+
+        if($modo == 'excluir'){
+
+            require_once('../models/sobreClass.php');
+            require_once('../models/DAO/sobreDAO.php');
+
+            $sobreDAO = new sobreDAO;
+            $id = $_GET['id'];
+            $sobreDAO->delete($id);
+
+        }else if($modo == 'editar'){
+//            require_once('cms/models/enderecoClass.php');
+//            require_once('cms/models/DAO/enderecoDAO.php');
+//
+//            $enderecoDAO = new enderecoDAO;
+//            session_start();
+//            $id = $_GET['id'];
+//            $_SESSION['id'] = $id;
+//
+//            $listUserEndereco = $enderecoDAO->selectId($id);
+//
+//            //Resgatando do Banco de dados
+//            //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
+//            if(count($listUserEndereco)>0)
+//            {
+//
+//                $id = $listUserEndereco->id;
+//                $logradouro = $listUserEndereco->logradouro;
+//                $numero = $listUserEndereco->numero;
+//                $bairro = $listUserEndereco->bairro;
+//                $cep = $listUserEndereco->cep;
+//                $complemento = $listUserEndereco->complemento;
+//
+//                $botao = "Editar";
+//
+//            }
+        }
+    }
     if(isset($_GET['btn-salvar'])){
-        //$nome = $_GET['txtnome'];
+
         require_once('../models/sobreClass.php');
         require_once('../models/DAO/sobreDAO.php');
 
-        //Instanciando a classe
-        $classSobre = new Sobre();
+        $classSobreNos = new Sobre();
+        $classSobreNos->titulo = $_GET['titulo'];
+        $classSobreNos->texto = $_GET['texto'];
+        $classSobreNos->foto = $_GET['uploadData'];
+        $classSobreNos->ativo = "1";
 
-        //Alimentando a classe, mandando os atributos para URL
-        //-> ALIMENTA UM ATRIBUTO
-        $classSobre->titulo = $_GET['titulo'];
-        $classSobre->texto = "bla bla bla";
-
-        //Instanciando a classe
         $sobreDAO = new sobreDAO();
 
-        //:: chamando um método
-        $sobreDAO::insert($classSobre);
+           if($_GET['btn-salvar'] == "Salvar"){
+               $sobreDAO->insert($classSobreNos);
+           }else{
+               $classSobreNos->id = $_SESSION['id'];
 
-        /*
-        $sql = "insert ......."
-        mysql_query ($sql);
-        */
+               $sobreDAO->update($classSobreNos);
+           }
     }
 
 ?>
@@ -32,17 +80,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
         <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
-        <!--
         <link rel="stylesheet" href="../../assets/css/cms/stylesheet-cms.css">
 	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
         <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
-	    <link rel="stylesheet" href="../../components/assets/css/font-style.css">
+	    <link rel="stylesheet" href="../../assets/css/font-style.css">
         <link rel="stylesheet" href="../../assets/css/bases.css">
         <link rel="stylesheet" href="../../assets/css/sizes.css">
         <link rel="stylesheet" href="../../assets/css/align.css">
-        <link rel="stylesheet" href="../../backend/assets/css/keyframes.css">
-
--->
+        <link rel="stylesheet" href="../../assets/css/keyframes.css">
+        <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+        <script src="../../assets/public/js/jquery.form.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#fotos').on('change', function(){
+                    $('#frmfoto').ajaxForm(function(){
+                        target:'#view'
+                    }).submit();
+                });
+            });
+        </script>
     </head>
          <section id="main">
             <?php require_once("../components/sidebar.php") ?>
@@ -54,70 +110,66 @@
                         <span class="active">Listar Blocos</span>
                     </div>
                     <div id="tabs-content">
-
                         <div id="container-form">
                             <div class="form-generic">
-                                <form id="form-sobre-nos" class="form-generic-content" method="get" action="sobre.php">
+                                <form action="upload.php" method="GET" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
+                                    <span class="label-generic">Imagem:</span>
+                                    <figure id="view" class="register_product_image"></figure>
+
+                                    <label for="fotos" class="label-generic fileimage">Selecione um arquivo...</label>
+                                    <input type="file" name="fileimage" id="fotos" style="display: none;">
+                                </form>
+                                <form id="form-sobre-nos" class="form-generic-content" name="frmcadastro" method="GET" action="sobre.php">
+                                    <input name="txtfoto" type="hidden">
+
                                     <label for="titulo" class="label-generic">Título</label>
-                                    <input id="titulo" name="titulo" class="input-generic" required maxlength="255">
+                                    <input type="text" id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
                                     <label for="texto" class="label-generic">Texto</label>
-                                    <textarea id="texto" name="texto" class="textarea-generic"></textarea>
+                                    <textarea id="texto" type="text" name="texto" class="textarea-generic"></textarea>
 
-                                    <span class="label-generic">Imagem</span>
-                                    <div class="imagem-upload-wrapper">
-                                    <div>
-                                        <img alt="">
-                                    </div>
-                                    <label for="imagem" class="label-generic">Selecione um arquivo...</label>
-                                     <input id="imagem" name="uploadData" type="file" accept="image/*">
-                                    </div>
+                                    <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
                                     <input type="submit" value="Salvar" name="btn-salvar">
                                 </form>
-
-                                <!--
-                                <div class="controls">
-                                    <span class="cancel">Cancelar</span>
-                                    <div class="btn-generic">
-                                        <span>Enviar</span>
-                                    </div>
-                                </div>
--->
                             </div>
                         </div>
-
                         <div class="active" id="container-listagem">
-                            <div id="tabela-items">
-                                <div class="linha">
-                                    <div class="coluna image-large">Imagem</div>
-                                    <div class="coluna middle-align medium">Título</div>
-                                    <div class="coluna descricao large">Descrição</div>
-                                    <div class="coluna">Opções</div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="linha">
-                                    <div class="coluna image-large">
+                            <table class="generic-table">
+                                <tr>
+                                    <td><span>Título</span></td>
+                                    <td><span>Autor</span></td>
+                                    <td><span>Dt. Pub</span></td>
+                                    <td colspan="3"><span>Opções</span></td>
+                                </tr>
+                                <?php
+                                    require_once("../models/DAO/sobreDAO.php");
 
-                                    </div>
-                                <div class="coluna middle-align medium"><span></span></div>
-                                <div class="coluna descricao large">
-                                    <div>
+                                    //INSTANCIA DA CLASSE
+                                    $sobreDAO = new sobreDAO();
 
-                                    </div>
-                                </div>
-                                <div class="coluna">
-                                    <span class="toggle ${checkBoolean(ativo) ? 'desativar' : 'ativar'}"></span><hr>
-                                    <span class="editar"></span><hr>
-                                    <span class="excluir"></span>
-                                </div>
-                            </div>
+                                    //Chamar o método
+                                    $lista = $sobreDAO->selectAll();
+
+                                    //count -> comando que conta quantos itens tem o objeto
+                                    for($i = 0; $i < count($lista); $i++){
+                                ?>
+                                <tr>
+                                    <td><img src="../<?php echo($lista[$i]->foto)?>" alt=""></td>
+                                    <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
+                                    <td><span class="table-result"><?php echo($lista[$i]->texto)?></span></td>
+                                    <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
+                                    <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts"></td>
+                                    <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+                                </tr>
+                                <?php
+                                    }
+                                ?>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <?php require_once("../components/modal.html") ?>
     </section>
 </html>

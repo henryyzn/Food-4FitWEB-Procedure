@@ -16,7 +16,7 @@ class mysql_db
 //		$this->server="10.107.144.250";
 		$this->user="root";
 //		$this->senha="bcd127";
-        $this->senha="";
+        $this->senha="bcd127";
         $this->dataBaseName="db_food4fit";
 
 	}

@@ -8,7 +8,7 @@
     <div class="separator"></div>
     <div id="perfil">
             <figure id="avatar">
-                <img src="../assets/images/" alt="">
+                <img src="" alt="">
             </figure>
         <div id="informacoes">
             <div id="informacoes-content">
