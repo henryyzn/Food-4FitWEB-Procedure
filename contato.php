@@ -72,7 +72,7 @@
                 <input type="text" id="assunto" name="assunto" class="input-generic" placeholder="Sobre o que é esta mensagem?" required>
 
                 <label for="comentario" class="label-generic">O que deseja nos dizer?</label>
-                <textarea id="comentario" name="comentario" class="textarea-generic" required></textarea>
+                <textarea id="comentario" name="observacao" class="textarea-generic" required></textarea>
 
                 <div class="btn-generic margin-bottom-30px">
                 <input type="submit" value="Salvar" name="btn-salvar">
