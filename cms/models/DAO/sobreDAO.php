@@ -16,7 +16,7 @@ class sobreDAO {
             'assets/images/sobre-nos/".$classSobreNos->foto."',
             '".$classSobreNos->ativo."');";
 
-            echo($sql);
+            //echo($sql);
 
             //Instancia a classe
             $conex = new mysql_db();
@@ -33,7 +33,36 @@ class sobreDAO {
             $conex->desconectar();
         }
 
-    public function selectId(){
+    public function selectId($id){
+        $sql="select * from tbl_sobre_empresa where id=".$id;
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+        $select = $PDO_conex->query($sql);
+
+        if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+
+        $listSobreNos = new Sobre();
+        $listSobreNos->id = $rs['id'];
+        $listSobreNos->titulo = $rs['titulo'];
+        $listSobreNos->texto = $rs['texto'];
+        $listSobreNos->foto = $rs['foto'];
+        $listSobreNos->ativo = $rs['ativo'];
+
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+        if($PDO_conex->query($sql))
+            echo('select no Banco');
+        else
+            echo('Erro');
+
+        $conex->desconectar();
+
+        return $listSobreNos;
+
+        }
+
 
     }
 
@@ -73,7 +102,24 @@ class sobreDAO {
             header('location:sobre.php');
     }
 
-    public function update(){
+    public function update($classSobreNos){
+
+        $sql = "UPDATE tbl_sobre_empresa SET
+        titulo = '".$classSobreNos->titulo."',
+        texto = '".$classSobreNos->texto."',
+        foto = 'assets/images/sobre-nos/".$classSobreNos->foto."',
+        ativo = '".$classSobreNos->ativo."'
+        where id=".$classSobreNos->id;
+
+        echo($sql);
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql))
+            header('location:sobre.php');
+
+        $conex->desconectar();
 
     }
 

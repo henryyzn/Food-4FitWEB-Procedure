@@ -23,31 +23,30 @@
             $sobreDAO->delete($id);
 
         }else if($modo == 'editar'){
-//            require_once('cms/models/enderecoClass.php');
-//            require_once('cms/models/DAO/enderecoDAO.php');
-//
-//            $enderecoDAO = new enderecoDAO;
-//            session_start();
-//            $id = $_GET['id'];
-//            $_SESSION['id'] = $id;
-//
-//            $listUserEndereco = $enderecoDAO->selectId($id);
-//
-//            //Resgatando do Banco de dados
-//            //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-//            if(count($listUserEndereco)>0)
-//            {
-//
-//                $id = $listUserEndereco->id;
-//                $logradouro = $listUserEndereco->logradouro;
-//                $numero = $listUserEndereco->numero;
-//                $bairro = $listUserEndereco->bairro;
-//                $cep = $listUserEndereco->cep;
-//                $complemento = $listUserEndereco->complemento;
-//
-//                $botao = "Editar";
-//
-//            }
+            require_once('../models/sobreClass.php');
+            require_once('../models/DAO/sobreDAO.php');
+
+            $sobreDAO = new sobreDAO;
+            session_start();
+            $id = $_GET['id'];
+            $_SESSION['id'] = $id;
+
+            $listSobreNos = $sobreDAO->selectId($id);
+
+            //Resgatando do Banco de dados
+            //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
+            if(count($listSobreNos)>0)
+            {
+
+                $id = $listSobreNos->id;
+                $titulo = $listSobreNos->titulo;
+                $texto = $listSobreNos->texto;
+                $foto = $listSobreNos->foto;
+                $ativo = $listSobreNos->ativo;
+
+                $botao = "Editar";
+
+            }
         }
     }
     if(isset($_GET['btn-salvar'])){
@@ -58,16 +57,15 @@
         $classSobreNos = new Sobre();
         $classSobreNos->titulo = $_GET['titulo'];
         $classSobreNos->texto = $_GET['texto'];
-        $classSobreNos->foto = $_GET['uploadData'];
+        $classSobreNos->foto = $_GET['txtfoto'];
         $classSobreNos->ativo = "1";
 
         $sobreDAO = new sobreDAO();
 
            if($_GET['btn-salvar'] == "Salvar"){
                $sobreDAO->insert($classSobreNos);
-           }else{
+           }elseif($_GET['btn-salvar'] == "Editar"){
                $classSobreNos->id = $_SESSION['id'];
-
                $sobreDAO->update($classSobreNos);
            }
     }
@@ -93,7 +91,8 @@
         <script>
             $(document).ready(function(){
                 $('#fotos').on('change', function(){
-                    $('#frmfoto').ajaxForm(function(){
+
+                    $('#frmfoto').ajaxForm({
                         target:'#view'
                     }).submit();
                 });
@@ -112,25 +111,27 @@
                     <div id="tabs-content">
                         <div id="container-form">
                             <div class="form-generic">
-                                <form action="upload.php" method="GET" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
+                                <form action="upload.php" method="POST" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
                                     <span class="label-generic">Imagem:</span>
-                                    <figure id="view" class="register_product_image"></figure>
+                                    <div id="view" class="register_product_image" style="width: 300px; height: 300px; background: #9CC283;">
+                                        <img src='../../<?php echo($foto);?>' alt="">
+                                    </div>
 
                                     <label for="fotos" class="label-generic fileimage">Selecione um arquivo...</label>
                                     <input type="file" name="fileimage" id="fotos" style="display: none;">
                                 </form>
                                 <form id="form-sobre-nos" class="form-generic-content" name="frmcadastro" method="GET" action="sobre.php">
-                                    <input name="txtfoto" type="hidden">
+                                    <input name="txtfoto" type="hidden" value="<?php echo($foto)?>">
 
                                     <label for="titulo" class="label-generic">Título</label>
-                                    <input type="text" id="titulo" name="titulo" class="input-generic" required maxlength="255">
+                                    <input type="text" id="titulo" name="titulo" value="<?php echo($titulo);?>" class="input-generic" required maxlength="255">
 
                                     <label for="texto" class="label-generic">Texto</label>
-                                    <textarea id="texto" type="text" name="texto" class="textarea-generic"></textarea>
+                                    <textarea id="texto" type="text" name="texto" class="textarea-generic"><?php echo($texto);?></textarea>
 
                                     <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
-                                    <input type="submit" value="Salvar" name="btn-salvar">
+                                    <input type="submit" value="<?php echo($botao)?>" name="btn-salvar">
                                 </form>
                             </div>
                         </div>
@@ -155,11 +156,11 @@
                                     for($i = 0; $i < count($lista); $i++){
                                 ?>
                                 <tr>
-                                    <td><img src="../<?php echo($lista[$i]->foto)?>" alt=""></td>
+                                    <td><img src="../../<?php echo($lista[$i]->foto)?>" alt=""></td>
                                     <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                                     <td><span class="table-result"><?php echo($lista[$i]->texto)?></span></td>
                                     <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
-                                    <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts"></td>
+                                    <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
                                     <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                                 </tr>
                                 <?php
