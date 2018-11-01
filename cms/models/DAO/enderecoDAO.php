@@ -5,6 +5,8 @@
             //na classe ou algo especifico, nesse caso, ela sempre irá estar conectando com o banco PORÉM não quer dizer que eu estarei utilizando ela, somente quando eu estiver conectando diretamente das funções que criei ali em baixo
             require_once('dataBase.php');
             require_once('cms/models/enderecoClass.php');
+            require_once('cms/models/cidadeClass.php');
+            require_once('cms/models/estadoClass.php');
             //Reportando erros na tela
             error_reporting(E_ALL);
             ini_set('display_errors',1);
@@ -18,7 +20,7 @@
             bairro,
             cep,
             complemento) values (
-            1,
+            '".$classMeuEndereco->idCidade."',
             '".$classMeuEndereco->logradouro."',
             '".$classMeuEndereco->numero."',
             '".$classMeuEndereco->bairro."',

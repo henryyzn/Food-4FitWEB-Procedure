@@ -5,7 +5,7 @@ if(isset($_GET['modo'])){
         require_once('../../cms/models/contatoClass.php');
         require_once("../../cms/models/DAO/contatoDAO.php");
 
-        $contatoDAO = new contatoDAO;
+        $contatoDAO = new contatoDAO();
         $id = $_GET['id'];
         $contatoDAO->delete($id);
         }

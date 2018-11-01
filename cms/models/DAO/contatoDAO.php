@@ -1,9 +1,19 @@
 <?php
     class contatoDAO{
-        public function __construct(){
+
+        //Criei uma variavel chamada $requestFront
+        //da qual por padrão (que eu optei) começa com false
+        //ele será útil para fazer a chamada/requisição
+        //das páginas que são iguais, PORTANTO
+        //acabam sendo em caminhos diferentes
+        public function __construct($requestFront = false){
             require_once('database.php');
-            require_once('../../cms/models/contatoClass.php');
-//            require_once('../cms/models/contatoClass.php');
+
+            if($requestFront==true)
+                require_once('cms/models/contatoClass.php');
+            else
+                require_once('../models/contatoClass.php');
+
             error_reporting(E_ALL);
             ini_set('display_errors',1);
 
