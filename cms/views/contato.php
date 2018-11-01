@@ -36,15 +36,12 @@
     <link rel="stylesheet" href="assets/css/sizes.css">
     <link rel="stylesheet" href="assets/css/keyframes.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
-<!--
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/jquery.mask.min.js"></script>
     <script src="assets/public/js/jquery.toast.min.js"></script>
--->
-<!--
 	<script src="assets/js/scripts.js"></script>
 	<script src="assets/js/form.js"></script>
--->
+
 </head>
 <body>
 	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->

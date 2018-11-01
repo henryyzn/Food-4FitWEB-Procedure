@@ -1,9 +1,12 @@
-<div data-f4f-form-step="3">
+<?php
+
+?>
+<div>
     <label for="senha" class="label-generic margin-top-30px">Senha:</label>
-    <input type="password" name="senha" id="senha" class="input-generic" required data-f4f-form-password>
+    <input type="password" name="senha" id="senha" class="input-generic">
 
     <label for="confsenha" class="label-generic margin-top-30px">Confirme a Senha:</label>
-    <input type="password" name="confsenha" id="confsenha" class="input-generic" required data-f4f-form-password-confirm>
+    <input type="password" name="confsenha" id="confsenha" class="input-generic">
 
     <label for="perguntasecreta" class="label-generic margin-top-30px">Pergunta Secreta:</label>
     <select name="perguntasecreta" id="perguntasecreta" class="input-generic margin-top-30px" required>
@@ -16,12 +19,12 @@
     <label for="respostasecreta" class="label-generic margin-top-30px">Resposta:</label>
     <input type="text" name="respostasecreta" id="respostasecreta" class="input-generic margin-bottom-60px" required>
 
-    <div class="captcha-container margin-top-30px g-recaptcha" data-sitekey="6Leom3EUAAAAAJ3WGJHK7W12HYu55tyVMY7kQjSJ"></div>
+    <div class="captcha-container margin-top-30px g-recaptcha"></div>
 
     <div class="margin-top-30px margin-bottom-30px form-row">
-        <span class="margin-right-15px" data-f4f-form-change-step="2">Voltar</span>
-        <div class="btn-generic" data-f4f-form-submit>
+        <span class="margin-right-15px">Cancelar</span>
+        <button type="submit" value="Finalizar" class="btn-generic">
             <span>Finalizar</span>
-        </div>
+        </button>
     </div>
 </div>

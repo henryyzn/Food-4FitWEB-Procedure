@@ -26,7 +26,7 @@
 	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <h1 id="page-title" class="margin-left-auto margin-right-auto animate fadeInUp">INFORMAÇÕES BÁSICAS</h1><!-- TÍTULO DA PÁGINA -->
-        <div class="form-generic width-600px margin-left-auto margin-right-auto display-none">
+        <div class="form-generic width-600px margin-left-auto margin-right-auto">
             <div class="form-stepper margin-top-20px margin-bottom-10px">
                 <span></span>
                 <span></span>

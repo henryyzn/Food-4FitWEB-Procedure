@@ -38,7 +38,8 @@
             );";
 
             $conex = new mysql_db();
-            echo($sql);
+            //Teste
+            //echo($sql);
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
                 header('location:contato.php');

@@ -1,9 +1,9 @@
-<div data-f4f-form-step="2">
-    <label for="dtnasc" class="label-generic margin-top-30px" data-f4f-if="$this.pessoa == 'F'">Data de Nascimento:</label>
-    <label for="dtnasc" class="label-generic margin-top-30px" data-f4f-if="$this.pessoa == 'J'">Data de Abertura:</label>
+<div>
+    <label for="dtnasc" class="label-generic margin-top-30px">Data de Nascimento:</label>
+    <label for="dtnasc" class="label-generic margin-top-30px">Data de Abertura:</label>
     <input type="text" name="dtnasc" id="dtnasc" class="input-generic" placeholder="Ex: 01/01/1990" required data-mask="00/00/0000">
 
-    <div data-f4f-if="$this.pessoa == 'F'">
+    <div>
         <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
         <div id="sexo" style="display: flex;">
             <input type="radio" name="sexo" id="homem" value="H" required>
@@ -24,9 +24,6 @@
     </span>
 
     <div class="margin-top-30px margin-bottom-30px form-row">
-        <span class="margin-right-15px" data-f4f-form-change-step="1">Voltar</span>
-        <div class="btn-generic" data-f4f-form-change-step="3" data-f4f-form-step-validate>
-            <span>Próximo</span>
-        </div>
+
     </div>
 </div>
