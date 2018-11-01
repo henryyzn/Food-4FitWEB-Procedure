@@ -110,6 +110,39 @@
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
+    <script>
+
+        $(document).ready(function(){
+
+            alert("ok");
+
+            $("#estado").change(function(){
+
+                alert("aaaa");
+
+                 var idEstado = $('#estado option:selected').val();
+
+                 $.getJSON("cms/models/DAO/cidadeDAO.php",{ id : idEstado },function(resultado){
+
+                    var conteudo = $("#cidade"),
+                         novoConteudo,
+                         cont = 0;
+
+                         while( cont < resultado.lenght){
+
+                            novoConteudo = "<option value='"+ resultado[cont].id +"'>" + resultado[cont].cidade + "</option>";
+
+                             conteudo.append(novoConteudo);
+
+                             cont++;
+
+                    }
+
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>
 	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
@@ -173,12 +206,31 @@
 
 		            <label for="cidade" class="label-generic">Cidade:</label>
 		            <select name="cidade" id="cidade" class="input-generic">
+
 		                <option selected>Selecione uma opção:</option>
+
 		            </select>
 
 		            <label for="estado" class="label-generic">Estado:</label>
-		            <select name="estado" id="estado" class="input-generic">
-		                <option>Selecione uma opção:</option>
+		            <select name="estado" id="estado" class="input-generic"><option>Selecione uma opção:</option>
+                        <?php
+
+                        require_once("cms/models/DAO/estadoDAO.php");
+
+
+                        $estadoDAO = new estadoDAO();
+
+
+                        $lista = $estadoDAO->selectAll();
+
+
+                            for($i = 0; $i < count($lista); $i++){
+                        ?>
+		                <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->sigla)?></option>
+
+                        <?php
+                            }
+                        ?>
 		            </select>
 
 		            <div class="margin-top-30px margin-bottom-30px form-row">
