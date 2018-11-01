@@ -1,41 +1,123 @@
-<!DOCTYPE html><html lang="pt-br">
+<?php
+
+    session_start();
+
+    $id = null;
+    $logradouro = null;
+    $numero = null;
+    $bairro = null;
+    $cep = null;
+    $estado = null;
+    $cidade = null;
+    $latitude = null;
+    $longitude = null;
+    $botao = "Salvar";
+
+
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+
+        if($modo == 'excluir'){
+
+            require_once('../models/lojasClass.php');
+            require_once('../models/DAO/lojasDAO.php');
+
+            $lojasDAO = new lojasDAO;
+            $id = $_GET['id'];
+            $lojasDAO->delete($id);
+
+        }else if($modo == 'editar'){
+            require_once('../models/lojasClass.php');
+            require_once('../models/DAO/lojasDAO.php');
+
+            $lojasDAO = new lojasDAO;
+            session_start();
+            $id = $_GET['id'];
+            $_SESSION['id'] = $id;
+
+            $listLojas = $lojasDAO->selectId($id);
+
+            //Resgatando do Banco de dados
+            //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
+            if(count($listLojas)>0)
+            {
+
+                $id = $listLojas->id;
+                $idendereco = $listLojas->idendereco;
+                $latitude = $listLojas->latitude;
+                $longitude = $listLojas->longitude;
+                $funcionamento = $listLojas->funcionamento;
+                $telefone = $listLojas->telefone;
+                $ativo = $listLojas->ativo;
+
+                $botao = "Editar";
+
+            }
+        }
+    }
+    if(isset($_GET['btn-salvar'])){
+
+        require_once('../models/lojasClass.php');
+        require_once('../models/DAO/lojasDAO.php');
+
+        $classLojas = new Lojas();
+        $classLojas->idendereco = $_GET['id_endereco'];
+        $classLojas->latitude = $_GET['latitude'];
+        $classLojas->longitude = $_GET['longitude'];
+        $classLojas->telefone = $_GET['telefone'];
+        $classLojas->funcionamento = $_GET['funcionamento'];
+        $classLojas->ativo = "1";
+
+        $lojasDAO = new lojasDAO();
+
+           if($_GET['btn-salvar'] == "Salvar"){
+               $lojasDAO->insert($classLojas);
+           }elseif($_GET['btn-salvar'] == "Editar"){
+               $classLojas->id = $_SESSION['id'];
+               $lojasDAO->update($classLojas);
+           }
+    }
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
-        <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
-	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
-        <link rel="stylesheet" href="../assets/public/css/sceditor.theme.min.css">
-	    <link rel="stylesheet" href="../assets/css/font-style.css">
-        <link rel="stylesheet" href="../assets/css/bases.css">
-        <link rel="stylesheet" href="../assets/css/sizes.css">
-        <link rel="stylesheet" href="../assets/css/align.css">
-        <link rel="stylesheet" href="../assets/css/keyframes.css">
+        <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
+        <link rel="stylesheet" href="../../assets/css/cms/stylesheet-cms.css">
+	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
+        <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
+	    <link rel="stylesheet" href="../../assets/css/font-style.css">
+        <link rel="stylesheet" href="../../assets/css/bases.css">
+        <link rel="stylesheet" href="../../assets/css/sizes.css">
+        <link rel="stylesheet" href="../../assets/css/align.css">
+        <link rel="stylesheet" href="../../assets/css/keyframes.css">
     </head>
 
     <body>
         <section id="main">
-            <?php require_once("./components/sidebar.php") ?>
+            <?php require_once("../components/sidebar.php") ?>
             <div id="main-content">
                 <header class="animate fast fadeInDown">
                     <span id="titulo-pagina"></span>
                     <div>
                         <input type="search" placeholder="Pesquise por algo">
-                        <img src="../assets/images/cms/icons/pesquisa.svg" alt="Pesquisar">
+                        <img src="../../assets/images/cms/icons/pesquisa.svg" alt="Pesquisar">
                     </div>
                     <div>
                         <span id="ultimas-interacoes">Últimas Interações</span>
                         <div id="notificacoes">
-                            <img src="../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
+                            <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
                             <span>12</span>
                         </div>
-                        <img class="btn-logout" src="../assets/images/cms/icons/sair-navbar.svg" alt="Sair">
+                        <img class="btn-logout" src="../../assets/images/cms/icons/sair-navbar.svg" alt="Sair">
                     </div>
                 </header>
                 <div id="page-content">
-                     <form action="#" class="form-generic-content" id="form-loja">
+                     <form action="lojas.php" class="form-generic-content" id="form-loja" style="padding: 30px; box-sizing: border-box; border: 20px solid transparent;">
                         <h2 class="form-title">Cadastrar um Local Físico</h2>
                         <label for="logradouro" class="label-generic">Logradouro:</label>
                         <input type="text" name="logradouro" id="logradouro" class="input-generic" placeholder="Ex: R. Ateus">
@@ -74,15 +156,13 @@
                         <label for="funcionamento" class="label-generic">Horário de Funcionamento:</label>
                         <textarea name="funcionamento" id="funcionamento" class="textarea-generic"></textarea>
                         <div class="form-row">
-                            <button type="submit" class="btn-generic margin-right-20px">
-                                <span>Salvar</span>
-                            </button>
+                            <input type="submit" value="<?php echo($botao)?>" name="btn-salvar">
                             <span class="btn-cancelar">Cancelar</span>
                         </div>
                     </form>
                 </div>
             </div>
-            <?php require_once("./components/modal.html") ?>
+            <?php require_once("../components/modal.html") ?>
         </section>
     </body>
 </html>

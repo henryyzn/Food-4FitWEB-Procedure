@@ -20,7 +20,7 @@
     </div>
     <div class="separator"></div>
     <nav>
-        <a href="#">
+        <a href="index.php">
             <span class="image"><img src="../../assets/images/cms/icons/pagina-inicial.svg" alt="Dashboard"></span>
             <span class="label">Dashboard</span>
         </a>
