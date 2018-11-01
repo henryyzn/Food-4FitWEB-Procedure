@@ -4,9 +4,17 @@
 class lojasDAO {
 
     //minha classe construtor
-    public function __construct(){
-        require_once('dataBase.php');
-        require_once('../models/lojasClass.php');
+    public function __construct($requestFront = false){
+        require_once('database.php');
+
+        if($requestFront==true)
+            require_once('cms/models/lojasClass.php');
+        else
+            require_once('../models/lojasClass.php');
+
+        error_reporting(E_ALL);
+        ini_set('display_errors',1);
+
     }
 
     public function insert($classLojas){
