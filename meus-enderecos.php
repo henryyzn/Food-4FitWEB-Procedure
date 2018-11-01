@@ -112,31 +112,50 @@
 	<script src="assets/js/scripts.js"></script>
     <script>
 
+        //Função em jquery para sicronizar com estado e cidade no site
         $(document).ready(function(){
 
-            alert("ok");
-
+            //Pegando o ID do estado do HTML, criando uma função
+            //em CHANGE ->
             $("#estado").change(function(){
 
-                alert("aaaa");
-
+                //Crio uma variavel, pego o id do estado em HTML
+                //Dentro dele, jogo meu option
+                //. -> onjeto
+                // val() ->
                  var idEstado = $('#estado option:selected').val();
 
+                //$. ->
+                //getJSON -> pego a array que criei em JSON
+                //Passo como parametro o caminho de onde quero pegar
+                //pego o id do Estado igual no Banco sql
+                //Crio uma função e uma avriavel chamada RESULTADO
                  $.getJSON("cms/models/DAO/cidadeDAO.php",{ id : idEstado },function(resultado){
 
-                    var conteudo = $("#cidade"),
-                         novoConteudo,
-                         cont = 0;
+                    //Crio uma variavel chamada novoConteudo e outra cont começando do 0
+                    var novoConteudo;
+                    var cont = 0;
 
-                         while( cont < resultado.lenght){
+                    //Pego o id da cidade em HTML e aqui
+                     //Estopu fazendo com que sempre limpe toda vez que eu pegar
+                     //um novo item/dado do mysql
+                    $("#cidade").html("");
 
-                            novoConteudo = "<option value='"+ resultado[cont].id +"'>" + resultado[cont].cidade + "</option>";
+                     //Este while faz o cont do PHP < resultado (variavel que eu criei)
+                     //.length -> dizendo quantos elementos de uma array eu tenho, preenchendo minha variavel resultado
+                     while( cont < resultado.length){
 
-                             conteudo.append(novoConteudo);
+                        //jogo na minha variavel novoConteudo,
+                        //meu HTML, contatenando com o ID e cidade
+                        //onde em [cont], conto quantos itens tem na minha variavel resultado
+                        novoConteudo = "<option value='"+ resultado[cont].id +"'>" + resultado[cont].cidade + "</option>";
 
-                             cont++;
+                        //Pego minha id da cidade do HTML
+                         //append ->Colocando diretamente dentro do HTML
+                         $("#cidade").append(novoConteudo);
 
-                    }
+                         cont++;
+                     }
 
                 });
             });
@@ -204,14 +223,7 @@
 		            <label for="cep" class="label-generic">CEP:</label>
 		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($cep);?>">
 
-		            <label for="cidade" class="label-generic">Cidade:</label>
-		            <select name="cidade" id="cidade" class="input-generic">
-
-		                <option selected>Selecione uma opção:</option>
-
-		            </select>
-
-		            <label for="estado" class="label-generic">Estado:</label>
+                    <label for="estado" class="label-generic">Estado:</label>
 		            <select name="estado" id="estado" class="input-generic"><option>Selecione uma opção:</option>
                         <?php
 
@@ -232,6 +244,16 @@
                             }
                         ?>
 		            </select>
+
+
+		            <label for="cidade" class="label-generic">Cidade:</label>
+		            <select name="cidade" id="cidade" class="input-generic">
+
+		                <option selected>Selecione uma opção:</option>
+
+		            </select>
+
+
 
 		            <div class="margin-top-30px margin-bottom-30px form-row">
                         <span class="margin-right-15px" onclick="javascript:history.back()">Voltar</span>

@@ -14,31 +14,30 @@
             $PDO_conex = $conex->conectar();
             $select = $PDO_conex->query($sql);
 
+            //array Cidades -> lista
             $arrayCidade = array();
             $cont = 0;
 
             while($rs=$select->fetch(PDO::FETCH_ASSOC))
             {
-                //Cria um objeto array da classe Contato
-                //$listCidade = new Endereco();
-                //$listCidade->id = $rs['id'];
-                //$listCidade->id_cidade = $rs['id_estado'];
-                //$listCidade->cidade = $rs['cidade'];
-
-                $arrayCidade = array("id" => $rs['id'],
+                //Chamo a array que criei
+                //[] -> preencho a array, dando a posbilidade de jogar itens dentro dela
+                //A array sempre vai pegando uma cidade e jogando dentro, de um a um
+                //Dando um returno de uma lista
+                $arrayCidade[] = array("id" => $rs['id'],
                 "id_estado" => $rs['id_estado'],
                 "cidade" => $rs['cidade']);
 
-                $cont++;
             }
-
+            //Echo na array com json_encode porque estou transformando minha array em json.
             echo ( json_encode ($arrayCidade));
 
         }
 
     }
 
-
+    //Aqui esntou passando em if como parametro
+    //o ID do meu estado para pegar todas as cidades relacionadas
     if(isset($_GET['id'])){
 
         $id = $_GET['id'];
