@@ -7,7 +7,6 @@
         <div>
             <label for="themeSwitch"><input type="checkbox" id="themeSwitch" class="switch-styled" name="theme" value="1"></label>
             <div id="notificacoes">
-                <label for="themeSwitch"><input type="checkbox" id="themeSwitch" class="switch-styled" name="theme" value="1">Dark Mode</label>
                 <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
                 <span>12</span>
             </div>
@@ -19,25 +18,19 @@
         var data = localStorage.getItem("theme");
         if (data !== null) {
             var check = $("input[name='theme']").attr("checked", "checked");
-            document.getElementById("themeStyle").href="assets/css/style-dark.css";
-            document.getElementById("themeBases").href="assets/css/bases-dark.css";
-            document.getElementById("themeNavbar").href="assets/css/navbar-dark.css";
-            document.getElementById("themeFooter").href="assets/css/footer-dark.css";
+            document.getElementById("themeStyle").href="../../assets/css/stylesheet-cms-dark.css";
+            document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
         }
     });
     $("input[name='theme']").click(function() {
         if ($(this).is(":checked")) {
             localStorage.setItem("theme", $(this).val());
-            document.getElementById("themeStyle").href="assets/css/style-dark.css";
-            document.getElementById("themeBases").href="assets/css/bases-dark.css";
-            document.getElementById("themeNavbar").href="assets/css/navbar-dark.css";
-            document.getElementById("themeFooter").href="assets/css/footer-dark.css";
+            document.getElementById("themeStyle").href="../../assets/css/stylesheet-cms-dark.css";
+            document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
         } else {
             localStorage.removeItem("theme");
-            document.getElementById("themeStyle").href="assets/css/style-light.css";
-            document.getElementById("themeBases").href="assets/css/bases-light.css";
-            document.getElementById("themeNavbar").href="assets/css/navbar-light.css";
-            document.getElementById("themeFooter").href="assets/css/footer-light.css";
+            document.getElementById("themeStyle").href="../../assets/css/stylesheet-cms-dark.css";
+            document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
         }
     });
 </script>
