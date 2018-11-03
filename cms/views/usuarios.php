@@ -1,5 +1,17 @@
 <?php
+    require_once('../../cms/models/cadastro-usuarioClass.php');
+    require_once("../../cms/models/DAO/cadastro-usuarioDAO.php");
 
+    if(isset($_GET['modo'])){
+    $modo = $_GET['modo'];
+    if($modo == 'excluir'){
+
+
+        $contatoDAO = new contatoDAO();
+        $id = $_GET['id'];
+        $contatoDAO->delete($id);
+        }
+    }
 
 ?>
 <!DOCTYPE html>
@@ -44,11 +56,19 @@
                             </tr>
                             <?php
 
+                                require_once("../../cms/models/DAO/cadastro-usuarioDAO.php");
+
+                                $cadUsuarioDAO = new cadUsuarioDAO();
+
+                                $lista = $cadUsuarioDAO->selectAll();
+
+                                for($i = 0; $i < count($lista); $i++){
+
 
 
                             ?>
                             <tr>
-                                <td><span class="table-result"></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
                                 <td><span class="table-result"></span></td>
                                 <td><span class="table-result"></span></td>
                                 <td><span class="table-result"></span></td>
@@ -57,8 +77,11 @@
                                 <td><span class="table-result"></span></td>
 
 
-                                <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='fale-conosco.php?modo=excluir&id='"></td>
+                                <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='fale-conosco.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
+                            <?php
+                                }
+                            ?>
 
                         </table>
                     </div>
