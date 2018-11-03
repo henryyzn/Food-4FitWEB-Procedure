@@ -1,8 +1,8 @@
 <?php
-    class Cidade{
+    class Pergunta{
+
         public $id;
-        public $id_estado;
-        public $cidade;
+        public $pergunta;
 
         public function __construct(){
 

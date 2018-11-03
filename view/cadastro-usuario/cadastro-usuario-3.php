@@ -1,6 +1,11 @@
 <?php
 
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+</head>
 <div>
     <label for="senha" class="label-generic margin-top-30px">Senha:</label>
     <input type="password" name="senha" id="senha" class="input-generic">
@@ -9,11 +14,23 @@
     <input type="password" name="confsenha" id="confsenha" class="input-generic">
 
     <label for="perguntasecreta" class="label-generic margin-top-30px">Pergunta Secreta:</label>
-    <select name="perguntasecreta" id="perguntasecreta" class="input-generic margin-top-30px" required>
-        <option disabled selected value="">Selecione uma opção</option>
-        <option value="1">Qual o nome do seu primeiro animal de estimação?</option>
-        <option value="2">Qual a data de nascimento da sua mãe?</option>
-        <option value="3">Qual o nome do seu primeiro amor?</option>
+    <select name="perguntasecreta" id="perguntasecreta" class="input-generic margin-top-30px">
+        <option>Selecione uma opção:</option>
+
+        <?php
+            require_once("./cms/models/DAO/pergunta-secretaDAO.php");
+
+            $perguntaDAO = new perguntaDAO();
+            $lista = $perguntaDAO->selectAll();
+            for($i = 0; $i < count($lista); $i++){
+
+
+        ?>
+        <option value="<?php echo ($lista[$i]->id)?>"><?php echo($lista[$i]->pergunta)?></option>
+        <?php
+            }
+        ?>
+
     </select>
 
     <label for="respostasecreta" class="label-generic margin-top-30px">Resposta:</label>
