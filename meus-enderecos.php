@@ -75,15 +75,6 @@
            }
     }
 
-//    require_once('../models/estadoClass.php');
-//    require_once('../models/DAO/estadoDAO.php');
-//
-//    $classEstado = new Estado();
-//
-//
-//    $estadoDAO = new estadoDAO
-//
-//    $estadoDAO::selectAll($classEstado);
 ?>
 
 <!DOCTYPE html>

@@ -46,14 +46,11 @@
                  '".$classCadUser->respSecreta."'
             );";
 
-
-
-
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                //header('location:cadastro-usuario.php');
-                echo($sql);
+                header('location:cadastro-usuario.php');
+//                echo($sql);
             $conex->desconectar();
         }
     }
