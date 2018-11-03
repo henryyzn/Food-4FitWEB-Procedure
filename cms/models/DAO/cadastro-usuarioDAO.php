@@ -5,6 +5,11 @@
         }
 
         public function insert($classCadUser){
+
+
+            $data = explode("/", $classCadUser->dataNasc);
+            $dataNasc = $data[2]."-".$data[0]."-".$data[1];
+
             $sql = "insert into tbl_usuario(
                  id_pergunta_secreta,
                  tipo_pessoa,
@@ -21,15 +26,9 @@
                  telefone,
                  celular,
                  senha,
-                 resp_secreta,
-                 avatar,
-                 rede_social,
-                 token,
-                 ativo,
-                 email_confirma,
-                 insc_estadual,
-                 altura,
-                 peso) values (
+                 resp_secreta
+                 ) values (
+                 '".$classCadUser->idPerguntaSecreta."',
                  '".$classCadUser->tipoPessoa."',
                  '".$classCadUser->nome."',
                  '".$classCadUser->sobrenome."',
@@ -37,29 +36,24 @@
                  '".$classCadUser->razao_social."',
                  '".$classCadUser->email."',
                  '".$classCadUser->rg."',
+                 '".$classCadUser->cpf."',
                  '".$classCadUser->cnpj."',
-                 '".$classCadUser->dataNasc."',
+                 '".$dataNasc."',
                  '".$classCadUser->genero."',
                  '".$classCadUser->telefone."',
                  '".$classCadUser->celular."',
                  '".$classCadUser->senha."',
-                 '".$classCadUser->respSecreta."',
-                 '".$classCadUser->avatar."',
-                 '".$classCadUser->redeSocial."',
-                 '".$classCadUser->token."',
-                 '".$classCadUser->ativo."',
-                 '".$classCadUser->emailConfirma."',
-                 '".$classCadUser->inscEstadual."',
-                 '".$classCadUser->altura."',
-                 '".$classCadUser->peso."',
+                 '".$classCadUser->respSecreta."'
             );";
 
+
+
+
             $conex = new mysql_db();
-            //Teste
-            //echo($sql);
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                header('location:cadastro-usuario.php');
+                //header('location:cadastro-usuario.php');
+                echo($sql);
             $conex->desconectar();
         }
     }
