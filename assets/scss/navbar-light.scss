@@ -262,9 +262,11 @@
 	list-style-type: none;
 }
 #flex{
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-end;
+    label{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
 }
 .sidebar-right-list li a{
 	/*Links das listas dos menus laterais*/

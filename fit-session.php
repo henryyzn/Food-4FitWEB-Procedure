@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#9CC283">
+    <meta name="msapplication-navbutton-color" content="#9CC283">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#9CC283">
 	<title>Fit Session - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
 	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">

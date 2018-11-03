@@ -121,7 +121,7 @@
                                     <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                                 </div>
                                 <div id="btn-save">
-                                    <img src="../assets/images/cms/symbols/salvar.svg" alt="Salvar">
+                                    <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
                                     <span>Salvar</span>
                                 </div>
                             </div>

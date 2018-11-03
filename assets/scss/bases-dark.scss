@@ -1,17 +1,6 @@
 @import 'mixins.scss';
 @import 'colors.scss';
 
-::-webkit-scrollbar{
-	/*Estilização da scrollbar*/
-	width: 7px;
-	background: transparent;
-}
-::-webkit-scrollbar-thumb{
-	/*Estilização da scrollbar*/
-	border-radius: 50px;
-	background-color: $olivine;
-}
-
 .jq-toast-single {
 	/*Estilo do toast*/
     @include display(flex, column, center, center);
@@ -368,7 +357,7 @@ tr td:nth-child(4){
 	  	width: 100%;
 	  	border-radius: 5px;
 	  	display: block;
-	  	background-color: $darkgreymedium;
+	  	background-color: $darkgreyinput;
 	  	border: none;
 	  	outline: none;
 	  	height: 40px;
@@ -393,7 +382,7 @@ tr td:nth-child(4){
 		width: 100%;
 	  	resize: none;
 	  	height: 150px;
-	  	background-color: $darkgreymedium;
+	  	background-color: $darkgreyinput;
 	  	border-radius: 5px;
 	  	border: none;
 	  	outline: none;
@@ -408,7 +397,7 @@ tr td:nth-child(4){
 		width: 100%;
 		height: auto;
 		min-height: 230px;
-		background-color: $darkgreymedium;
+		background-color: $darkgreyinput;
 	  	border-radius: 5px;
 	  	border: none;
 	  	outline: none;

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-logo-4fit-simple);
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+        stroke: #959595;
+      }
+
+      .cls-2 {
+        stroke-width: 30px;
+      }
+
+      .cls-3 {
+        stroke-width: 20px;
+        font-size: 360px;
+        font-family: Roboto-Black, Roboto;
+        font-weight: 800;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+    </style>
+    <clipPath id="clip-logo-4fit-simple">
+      <rect width="600" height="600"/>
+    </clipPath>
+  </defs>
+  <g id="logo-4fit-simple" class="cls-1">
+    <g id="Ellipse_1" data-name="Ellipse 1" class="cls-2">
+      <circle class="cls-4" cx="300" cy="300" r="300"/>
+      <circle class="cls-5" cx="300" cy="300" r="285"/>
+    </g>
+    <text id="_4F" data-name="4F" class="cls-3" transform="translate(93 431)"><tspan x="0" y="0">4F</tspan></text>
+  </g>
+</svg>

@@ -1,17 +1,6 @@
 @import 'mixins.scss';
 @import 'colors.scss';
 
-::-webkit-scrollbar{
-	/*Estilização da scrollbar*/
-	width: 7px;
-	background: transparent;
-}
-::-webkit-scrollbar-thumb{
-	/*Estilização da scrollbar*/
-	border-radius: 50px;
-	background-color: $olivine;
-}
-
 .jq-toast-single {
 	/*Estilo do toast*/
     @include display(flex, column, center, center);

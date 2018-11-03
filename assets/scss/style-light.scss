@@ -448,7 +448,7 @@ a{
 	    max-height: 280px;
 	    position: relative;
 		>img{
-			@include img-fit(1200px, 280px);
+			@include img-fit(100%, 280px);
 		}
 	}
 	.fit-session-row-overlay{
