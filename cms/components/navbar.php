@@ -5,7 +5,7 @@
             <img src="../../assets/images/cms/icons/pesquisa.svg" alt="Pesquisar">
         </div>
         <div>
-            <span id="ultimas-interacoes">Últimas Interações</span>
+            <label for="themeSwitch"><input type="checkbox" id="themeSwitch" class="switch-styled" name="theme" value="1"></label>
             <div id="notificacoes">
                 <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
                 <span>12</span>

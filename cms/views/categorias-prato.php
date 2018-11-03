@@ -4,21 +4,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
-        <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
-	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
-        <link rel="stylesheet" href="../assets/public/css/sceditor.theme.min.css">
-	    <link rel="stylesheet" href="../assets/css/font-style.css">
-        <link rel="stylesheet" href="../assets/css/bases.css">
-        <link rel="stylesheet" href="../assets/css/sizes.css">
-        <link rel="stylesheet" href="../assets/css/align.css">
-        <link rel="stylesheet" href="../assets/css/keyframes.css">
+        <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
+        <link rel="stylesheet" id="themeStyle" href="../../assets/css/cms/stylesheet-cms.css">
+        <link rel="stylesheet" id="themeBases" href="../../assets/css/bases-light.css">
+	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
+        <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
+	    <link rel="stylesheet" href="../../assets/css/font-style.css">
+        <link rel="stylesheet" href="../../assets/css/sizes.css">
+        <link rel="stylesheet" href="../../assets/css/align.css">
+        <link rel="stylesheet" href="../../assets/css/keyframes.css">
+        <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+        <script src="../../assets/js/scripts.js"></script>
+        <script src="../../assets/js/js.cookie.js"></script>
     </head>
     <body>
         <section id="main">
-            <?php require_once("./components/sidebar.php") ?>
+            <?php require_once("../components/sidebar.php") ?>
             <div id="main-content">
-                <?php require_once("./components/navbar.php")?>
+                <?php require_once("../components/navbar.php")?>
                 <div id="page-content">
                     <div id="form-two-sides">
                         <div id="form-left-side" class="no-padding">
@@ -57,7 +60,6 @@
                                     <label for="titulo" class="label-generic">Categoria Pai</label>
                                     <select id="parent" name="parent" class="input-generic">
                                         <option value="" selected>Nenhuma categoria</option>
-                                        <?= $categorias ?>
                                     </select>
                                 </div>
                             </div>
@@ -70,7 +72,7 @@
                                     <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                                 </div>
                                 <div id="btn-save">
-                                    <img src="../assets/images/cms/symbols/salvar.svg" alt="Salvar">
+                                    <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
                                     <span>Salvar</span>
                                 </div>
                             </div>
@@ -79,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <?php require_once("./components/modal.html") ?>
         </section>
+        <script src="../../assets/js/theme.js"></script>
     </body>
 </html>

@@ -5,15 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
-        <link rel="stylesheet" href="../../assets/css/cms/stylesheet-cms.css">
+        <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
+        <link rel="stylesheet" id="themeStyle" href="../../assets/css/cms/stylesheet-cms.css">
+        <link rel="stylesheet" id="themeBases" href="../../assets/css/bases-light.css">
 	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
         <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
 	    <link rel="stylesheet" href="../../assets/css/font-style.css">
-        <link rel="stylesheet" href="../../assets/css/bases.css">
         <link rel="stylesheet" href="../../assets/css/sizes.css">
         <link rel="stylesheet" href="../../assets/css/align.css">
         <link rel="stylesheet" href="../../assets/css/keyframes.css">
+        <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+        <script src="../../assets/js/scripts.js"></script>
+        <script src="../../assets/js/js.cookie.js"></script>
     </head>
     <body>
         <section id="main">
@@ -42,7 +45,7 @@
                             <h2 class="title padding-top-20px padding-bottom-10px">Últimas Interações</h2>
                             <div class="interact-card">
                                 <figure class="margin-top-20px margin-left-20px margin-bottom-20px margin-right-20px">
-                                    <img src="../assets/images/icons/person.jpg" alt="">
+                                    <!--img src="../assets/images/icons/person.jpg" alt=""-->
                                 </figure>
                                 <div>
                                     <h2>Nome do Usuário:</h2>
@@ -60,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <?php require_once("../components/modal.html") ?>
         </section>
+        <script src="../../assets/js/theme.js"></script>
     </body>
 </html>

@@ -8,12 +8,12 @@
     <div class="separator"></div>
     <div id="perfil">
             <figure id="avatar">
-                <img src="" alt="">
+                <img src="../../assets/images/cms/backgrounds/person.jpg" alt="Nome do Usuário">
             </figure>
         <div id="informacoes">
             <div id="informacoes-content">
-                <span id="nome"></span>
-                <span id="email"></span>
+                <span id="nome">Helena August</span>
+                <span id="email">helena.august1@gmail.com</span>
                 <a href="#" id="dropdown"></a>
             </div>
         </div>
@@ -64,6 +64,10 @@
             <span class="image"><img src="../../assets/images/cms/icons/parceiros.svg" alt="Parceiros"></span>
             <span class="label">Parceiros</span>
         </a>
+        <a href="usuarios.php">
+            <span class="image"><img src="../../assets/images/cms/icons/usuarios.svg" alt="Usuários"></span>
+            <span class="label">Usuários</span>
+        </a>
     </nav>
     <div class="separator"></div>
     <nav>
@@ -71,7 +75,7 @@
             <span class="image"><img src="../../assets/images/cms/icons/meu-perfil.svg" alt="Meu perfil"></span>
             <span class="label">Meu perfil</span>
         </a>
-        <a href="#">
+        <a href="fale-conosco.php">
             <span class="image"><img src="../../assets/images/cms/icons/fale-conosco.svg" alt="Fale Conosco"></span>
             <span class="label">Fale Conosco<span class="badge">12</span></span>
         </a>
@@ -98,3 +102,11 @@
     </nav>
     <div id="tooltip"></div>
 </div>
+<script>
+$(document).ready(function(){
+    $("#sidebar-collapse").click(function(event) {
+        event.preventDefault();
+        $("#sidebar").toggleClass("collapse");
+    });
+});
+</script>
