@@ -13,10 +13,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#9CC283">
 	<title>Pratos Reservados - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
-	<link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/bases.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
+    <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
+    <link rel="stylesheet" id="themeNavbar" href="assets/css/navbar-light.css">
+    <link rel="stylesheet" id="themeFooter" href="assets/css/footer-light.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/font-style.css">
     <link rel="stylesheet" href="assets/css/align.css">

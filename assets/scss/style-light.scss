@@ -12,8 +12,56 @@ body{
 	padding: 0;
 	font-family: "Roboto Regular";
 }
-
 //Gerais
+
+.main{
+	/*Container-mãe do block do site*/
+	@include bloco(100%, 1200px, auto);
+	@include display(flex, column);
+	background-color: $lightgrey;
+    margin: 124px auto 0px auto;
+	z-index: 1;
+}
+/* TÍTULO DA PÁGINA */
+#page-title{
+	/*Título da página*/
+	display: block;
+	font-size: 18px;
+	letter-spacing: -0.2px;
+	font-family: "Roboto Bold";
+	color: #000;
+	padding: 30px;
+	text-align: center;
+    margin: 0 auto;
+	padding-bottom: 0px;
+	animation: fadeIn 1.5s linear;
+	&:after{
+		/*Barra separada do título da página*/
+		content: "";
+		display: block;
+		width: 30px;
+		height: 3px;
+		margin: auto;
+		border-radius: 30px;
+		background-color: #000;
+		margin-top: 8px;
+		animation: fadeIn 1s linear;
+	}
+}
+#page-subtitle{
+    width: 90%;
+    max-width: 460px;
+    height: auto;
+    text-align: center;
+    color: #7F7F7F;
+    font-family: "Roboto Regular";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 auto;
+    margin-top: 5px;
+    animation: fadeIn 1s linear;
+}
 
 //Cadastro de usuário
 #txtpergunta{
@@ -361,7 +409,6 @@ a{
 //Casos de Sucesso
 .success-case-card{
 	@include bloco(100%, 800px, auto);
-    background-color: #E8E8E8;
     box-sizing: border-box;
     position: relative;
 	>span{
@@ -551,7 +598,6 @@ a{
 	/*Container-mãe da sessão de casos de sucesso*/
 	@include display(flex, column, center, center);
 	width: 100%;
-	background: linear-gradient(#FCFCFC, #F9F9F9);
 	#success-cases-content{
 		/*Container-filho da sessão de casos de sucesso*/
 		@include bloco(80%, 800px, auto);
@@ -1848,6 +1894,62 @@ a{
 	    display: block;
 	}
 }
+//Publicação
+.publication-header{
+	width: 100%;
+	max-width: 1200px;
+	height: auto;
+	min-height: 300px;
+	border-radius: 0px 0px 10px 10px;
+	position: relative;
+}
+.publication-header>figure{
+	width: 100%;
+	max-width: 1200px;
+	height: auto;
+	min-height: 300px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.publication-header>figure>img{
+	@include img-fit(1200px, 300px);
+}
+.publication-header>h2{
+	font-size: 25px;
+	color: #FFF;
+	font-family: 'Roboto Bold';
+	line-height: 29px;
+	text-align: left;
+}
+.publication-header>h2::after{
+	content: "";
+	display: block;
+	margin: 10px 0px 10px 0px;
+	background-color: #FFF;
+	border-radius: 50px;
+	width: 50px;
+	height: 3px;
+}
+.publication-header>span{
+	font-size: 18px;
+	color: #FFF;
+	font-family: 'Roboto Light';
+	line-height: 21px;
+	text-align: left;
+	display: block;
+}
+.publication-text-block>p{
+	padding-left: 30px;
+	padding-bottom: 15px;
+	font-size: 16px;
+	color: #282828;
+	font-family: 'Roboto Regular';
+	line-height: 25px;
+	text-align: justify;
+}
 
 //Saude
 .health-tricks-block{
@@ -2464,6 +2566,12 @@ a{
 		width: 80%;
 		margin: 0 auto;
 	}
+}
+.bordo-title{
+	display: block; font-size: 18px; font-family: 'Roboto Bold'; color: $black;
+}
+.bordo-sep{
+	background-color: $mediumgrey; height: 3px; border-radius: 10px; margin: 0 auto;
 }
 .react-input{
 	/*visibility: hidden;*/

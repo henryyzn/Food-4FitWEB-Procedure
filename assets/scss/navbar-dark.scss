@@ -6,7 +6,7 @@
 	//Container-mãe da barra de navegação
 	@include bloco($width: 100%, $height: auto);
 	@include position(fixed, $top: 0, $left: 0, $right: 0px);
-	background-color: $lightgrey;
+	background-color: $darkgrey;
 	@include shadow($alpha: 0.05);
 	z-index: 89999;
 }
@@ -137,7 +137,7 @@
 	width: 100%;
 	max-width: 350px;
 	height: 100vh;
-	background: #FCFCFC;
+	background: $darkgrey;
 	box-shadow: 0px -4px 32px 16px rgba(0,0,0,0.18);
 	display: none;
 	position: fixed;
@@ -182,7 +182,7 @@
 	/*Separador interno dos menus laterais*/
 	width: 85%;
 	height: 2px;
-	background: #ddd;
+	background: $darkgreymedium;
 	margin: 20px auto;
 }
 .sidebar-left-list{
@@ -195,7 +195,7 @@
 	/*Links das listas dos menus laterais*/
 	display: block;
 	text-decoration: none;
-	color: #000;
+	color: $white;
 	font-family: "Roboto Medium";
 	padding: 5px;
     padding-bottom: 10px;
@@ -216,7 +216,7 @@
 	width: 100%;
 	max-width: 350px;
 	height: 100vh;
-	background: #FCFCFC;
+	background: $darkgrey;
 	box-shadow: 0px -4px 32px 16px rgba(0,0,0,0.18);
 	display: none;
 	position: fixed;
@@ -261,11 +261,28 @@
 	padding-top: 0px;
 	list-style-type: none;
 }
+#flex{
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+}
 .sidebar-right-list li a{
 	/*Links das listas dos menus laterais*/
     display: block;
 	text-decoration: none;
-	color: #000;
+	color: $white;
+	font-family: "Roboto Medium";
+	padding: 5px;
+    padding-bottom: 10px;
+    transition: 50ms ease-in-out;
+	text-align: right;
+	position: relative;
+}
+.sidebar-right-list li label{
+	/*Links das listas dos menus laterais*/
+	display: block;
+	text-decoration: none;
+	color: $white;
 	font-family: "Roboto Medium";
 	padding: 5px;
     padding-bottom: 10px;
