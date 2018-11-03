@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Título da Publicação - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
-	<link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/bases.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
+    <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
+    <link rel="stylesheet" id="themeNavbar" href="assets/css/navbar-light.css">
+    <link rel="stylesheet" id="themeFooter" href="assets/css/footer-light.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/font-style.css">
     <link rel="stylesheet" href="assets/css/align.css">
@@ -18,62 +18,6 @@
     <link rel="stylesheet" href="assets/css/mobile.css">
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
-	<style>
-        .publication-header{
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-            min-height: 300px;
-            border-radius: 0px 0px 10px 10px;
-            background: linear-gradient(to right, #9CC283, #EDBF85);
-        }
-        .publication-header>figure{
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-            min-height: 300px;
-        }
-        .publication-header>figure>img{
-            width: 1200px;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            cursor: pointer;
-        }
-        .publication-header>h2{
-            font-size: 25px;
-            color: #FFF;
-            font-family: 'Roboto Bold';
-            line-height: 29px;
-            text-align: left;
-        }
-        .publication-header>h2::after{
-            content: "";
-            display: block;
-            margin: 10px 0px 10px 0px;
-            background-color: #FFF;
-            border-radius: 50px;
-            width: 50px;
-            height: 3px;
-        }
-        .publication-header>span{
-            font-size: 18px;
-            color: #FFF;
-            font-family: 'Roboto Light';
-            line-height: 21px;
-            text-align: left;
-            display: block;
-        }
-        .publication-text-block>p{
-            padding-left: 30px;
-            padding-bottom: 15px;
-            font-size: 16px;
-            color: #282828;
-            font-family: 'Roboto Regular';
-            line-height: 25px;
-            text-align: justify;
-        }
-    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->

@@ -1,0 +1,302 @@
+@import 'colors.scss';
+@import 'mixins.scss';
+
+//Navbar
+#navbar-flat{
+	//Container-mãe da barra de navegação
+	@include bloco($width: 100%, $height: auto);
+	@include position(fixed, $top: 0, $left: 0, $right: 0px);
+	background-color: $lightgrey;
+	@include shadow($alpha: 0.05);
+	z-index: 89999;
+}
+#navbar-flat-content{
+	//Container-filho da barra de navegação
+	@include bloco($width: 100%, $maxwidth: 1200px);
+	position: relative;
+	margin: auto;
+}
+#navbar-flat-logo{
+    //Nome da loja
+    @include titulo(
+        28px,
+        $olivine,
+        'Roboto Black',
+        34px,
+        center
+    );
+    animation: color-glow 8s infinite;
+    width: 140px;
+    padding: 12px;
+    margin: 0 auto;
+}
+#navbar-flat-menu{
+    //Botão do menu hamburguer
+    width: 40px;
+    height: 40px;
+    @include position(absolute, 10px, false, false, 10px);
+    overflow: hidden;
+    >img{
+        @include img-fit(40px, 40px);
+    }
+}
+#navbar-flat-buycart{
+    //Botão do carrinho
+    width: 30px;
+    height: 30px;
+    @include position(absolute, 17px, 65px, false, false);
+    overflow: hidden;
+    >a>img{
+        @include img-fit(30px, 30px);
+    }
+}
+#buycart-bubble{
+    //Balão de itens no carrinho
+    width: 22px;
+    height: 22px;
+    @include position(absolute, 5px, 55px, false, false);
+    @include display(flex, column, center, center);
+    border-radius: 50%;
+    background-color: $sunsetorange;
+    cursor: pointer;
+    >span{
+        @include texto(10px, $white);
+    }
+}
+#navbar-flat-login{
+    //Botão de Usuário
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @include position(absolute, 10px, 10px, false, false);
+    overflow: hidden;
+    >img{
+        //imagem botão usuário
+        @include img-fit(40px, 40px);
+    }
+}
+#user-bubble{
+    //Balão que informa notificações no botão Usuário
+    width: 22px;
+    height: 22px;
+    @include position(absolute, 5px, 5px, false, false);
+    @include display(flex, column, center, center);
+    border-radius: 50%;
+    background-color: $sunsetorange;
+    cursor: pointer;
+    >span{
+        @include texto(10px, $white);
+    }
+}
+#navbar-flat-search{
+	//Container-mãe da barra de pesquisa
+    @include bloco(95%, 520px, auto);
+    margin: 0px auto 20px auto;
+    position: relative;
+}
+#navbar-flat-search{
+    //Container-mãe da barra de pesquisa
+    @include bloco(95%, 520px, auto);
+    margin: 0px auto 20px auto;
+    position: relative;
+    >form
+        #navbar-flat-search-button{
+            //Botão de Pesquisa
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            @include position(absolute, $top: 10px, $right: 10px, $bottom: null, $left: null);
+            >img{
+                @include img-fit(24px, 24px);
+            }
+        }
+}
+#navbar-flat-search>form>input{
+	/*Barra de pesquisa*/
+	width: 100%;
+	height: 40px;
+	border-radius: 50px;
+	text-indent: 15px;
+	background-color: transparent;
+	border: 3px solid #9CC283;
+	outline: none;
+	font-family: "Roboto Regular";
+}
+#navbar-flat-search>form>input::placeholder{
+	font-family: "Roboto Italic";
+	font-size: 16px;
+	color: #C8C8C8;
+}
+
+/*
+	MENU LATERAL ESQUERDO
+	Menu expansivo reservado para funcionalidades referentes ao conteúdo do site.
+*/
+#sidebar-left{
+	/*Container do menu lateral*/
+	width: 100%;
+	max-width: 350px;
+	height: 100vh;
+	background: #FCFCFC;
+	box-shadow: 0px -4px 32px 16px rgba(0,0,0,0.18);
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	overflow-y: scroll;
+	z-index: 99999;
+}
+#sidebar-left-close{
+	/*Botão para fechar o menu lateral*/
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	transition: 200ms ease-in-out;
+}
+#sidebar-left-close>img{
+	/*Imagem do "X" do botão*/
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	cursor: pointer;
+}
+#sidebar-left-close:hover{
+	/*Ação ao mover o mouse no botão fechar*/
+	transform: scale(1.02);
+}
+#sidebar-left h2{
+	/*Nome da loja no topo do menu*/
+	font-family: "Roboto Black";
+	font-weight: lighter;
+	font-size: 28px;
+	color: #9CC283;
+	text-align: center;
+	margin: 0 auto;
+	padding-top: 20px;
+	padding-bottom: 0px;
+}
+.sidebar-separator{
+	/*Separador interno dos menus laterais*/
+	width: 85%;
+	height: 2px;
+	background: #ddd;
+	margin: 20px auto;
+}
+.sidebar-left-list{
+	/*Lista com UL para os menus laterais*/
+	margin: 0 auto;
+	padding-top: 0px;
+	list-style-type: none;
+}
+.sidebar-left-list li a{
+	/*Links das listas dos menus laterais*/
+	display: block;
+	text-decoration: none;
+	color: #000;
+	font-family: "Roboto Medium";
+	padding: 5px;
+    padding-bottom: 10px;
+    transition: 50ms ease-in-out;
+}
+.sidebar-left-list>li>a:hover{
+    color: #9CC283;
+    padding-left: 7px;
+}
+/*==========================================*/
+
+/*
+	MENU LATERAL DIREITO
+	Menu expansivo reservado para funcionalidades referentes ao usuário logado.
+*/
+#sidebar-right{
+	/*Container do menu lateral*/
+	width: 100%;
+	max-width: 350px;
+	height: 100vh;
+	background: #FCFCFC;
+	box-shadow: 0px -4px 32px 16px rgba(0,0,0,0.18);
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+}
+#sidebar-right-close{
+	/*Botão para fechar o menu lateral*/
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	transition: 200ms ease-in-out;
+}
+#sidebar-right-close>img{
+	/*Imagem do "X" do botão*/
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	cursor: pointer;
+}
+#sidebar-right-close:hover{
+	/*Ação ao mover o mouse no botão fechar*/
+	transform: scale(1.02);
+}
+#sidebar-right h2{
+	/*Nome da loja no topo do menu*/
+	font-family: "Roboto Black";
+	font-size: 28px;
+	color: #9CC283;
+	text-align: center;
+	margin: 0 auto;
+	padding-top: 20px;
+	padding-bottom: 0px;
+}
+.sidebar-right-list{
+	/*Lista com UL para os menus laterais*/
+	margin: 0 auto;
+	padding-top: 0px;
+	list-style-type: none;
+}
+#flex{
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+}
+.sidebar-right-list li a{
+	/*Links das listas dos menus laterais*/
+    display: block;
+	text-decoration: none;
+	color: #000;
+	font-family: "Roboto Medium";
+	padding: 5px;
+    padding-bottom: 10px;
+    transition: 50ms ease-in-out;
+	text-align: right;
+	position: relative;
+}
+.sidebar-right-list li label{
+	/*Links das listas dos menus laterais*/
+    display: block;
+	text-decoration: none;
+	color: #000;
+	font-family: "Roboto Medium";
+	padding: 5px;
+    padding-bottom: 10px;
+    transition: 50ms ease-in-out;
+	text-align: right;
+	position: relative;
+}
+.sidebar-right-list li a span{
+	/*Número para informar a quantidade de itens dentro de um link*/
+	position: absolute;
+	left: 30px;
+	color: #5F5F5F;
+}
+.sidebar-right-list>li>a:hover{
+    color: #9CC283;
+    padding-right: 7px;
+}

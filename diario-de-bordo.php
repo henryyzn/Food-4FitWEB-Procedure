@@ -9,10 +9,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#9CC283">
 	<title>Diário de Bordo - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
-	<link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/bases.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
+    <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
+    <link rel="stylesheet" id="themeNavbar" href="assets/css/navbar-light.css">
+    <link rel="stylesheet" id="themeFooter" href="assets/css/footer-light.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/font-style.css">
     <link rel="stylesheet" href="assets/css/align.css">
@@ -30,7 +30,7 @@
                 <h2 class="padding-top-60px">DIÁRIO<br>DE<br>BORDO</h2>
                 <p class="padding-bottom-20px">Fale para a gente como você evoluiu<br>com os serviços da Food 4Fit!</p>
             </header>
-            <div style="background-color: #E8E8E8; height: 3px; border-radius: 10px; margin: 0 auto;" class="width-550px"></div>
+            <div class="bordo-sep width-550px"></div>
             <div class="form-generic width-550px margin-right-auto margin-left-auto margin-top-20px">
                 <form action="#" class="form-generic-content">
                     <h2 class="form-title">Nos envie um depoimento!</h2>
@@ -41,7 +41,7 @@
                     <label for="texto" class="label-generic">Depoimento:</label>
                     <textarea name="texto" id="texto" class="textarea-generic"></textarea>
 
-                    <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-5px">Progresso:</span>
+                    <span class="bordo-title" class="margin-top-30px margin-bottom-5px">Progresso:</span>
                     <div style="display: flex; justify-content: space-between;" class="margin-bottom-30px">
                         <input type="radio" name="progresso" id="p1" class="react-input">
                         <label for="p1" class="react-label">
