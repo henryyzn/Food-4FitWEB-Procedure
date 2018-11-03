@@ -217,6 +217,9 @@ a{
 		}
 	}
 }
+.cart-descript{
+    display: block; font-size: 16px; font-family: 'Roboto Medium'; color: #282828; text-align: center;
+}
 #shopping-cart-select-block{
     width: 100%;
     height: auto;
@@ -780,11 +783,11 @@ a{
 	z-index: 1;
 	.title-login{
 		@include texto(58px, $white, 'Roboto Bold', 72px, left);
-	    @include position(absolute, 15px, false, false, 15px);
+	    @include position(absolute, 40px, false, false, 40px);
 	}
 	.subtitle-login{
 		@include texto(21px, $darkgrey, 'Roboto Medium');
-	    @include position(absolute, 170px, false, false, 15px);
+	    @include position(absolute, 190px, false, false, 40px);
 	}
 }
 .login-form-separator{

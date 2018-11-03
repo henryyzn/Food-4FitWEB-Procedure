@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Nome do Prato - Food 4fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
-	<link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/bases.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
+    <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
+    <link rel="stylesheet" id="themeNavbar" href="assets/css/navbar-light.css">
+    <link rel="stylesheet" id="themeFooter" href="assets/css/footer-light.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/font-style.css">
     <link rel="stylesheet" href="assets/css/align.css">
@@ -80,7 +80,7 @@
         </div>
         <section id="product-view-info-block" class="margin-top-60px margin-bottom-30px">
             <div class="product-view-info-column">
-                <h2 class="margin-left-30px margin-bottom-15px" style="font-family: 'Roboto Medium'; font-size: 21px;">Ingredientes</h2>
+                <h2 class="product-view-info-column-title margin-left-30px margin-bottom-15px">Ingredientes</h2>
                 <ul class="product-view-info-column-list margin-left-30px">
                     <li>Item 1</li>
                     <li>Item 2</li>
@@ -93,7 +93,7 @@
             </div>
             <div class="product-view-info-column">
                 <h2 class="product-view-info-column-title margin-left-30px margin-bottom-15px">Categoria:</h2>
-                <span class="margin-left-30px">Nome da Categoria</span>
+                <span class="margin-left-30px weight">Nome da Categoria</span>
 
                 <h2 class="product-view-info-column-title margin-top-30px margin-left-30px margin-bottom-15px">Peso/Líquido:</h2>
                 <span class="weight margin-left-30px">0,00 mg/kg</span>

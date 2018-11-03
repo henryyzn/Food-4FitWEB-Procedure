@@ -90,7 +90,7 @@
 		        <div class="healthy-tricks-intro details animate fadeInRight">
 		            <h3>Dicas de Saúde</h3>
 		            <p class="padding-bottom-30px">Confira dicas essenciais para manter a boa forma sem complicações, como se cuidar com refeições equilibradas e muito mais!</p>
-		            <div class="btn-generic">
+		            <div class="btn-generic" onclick="javascript:location.href='dicas-de-saude.php'">
 		                <span>Continuar Lendo</span>
 		            </div>
 		        </div>

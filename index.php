@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="btn-generic margin-right-auto margin-left-auto margin-bottom-30px animate fadeInUp"><!-- BOTÃO PARA VER TODOS OS PRATOS -->
+            <div class="btn-generic margin-right-auto margin-left-auto margin-bottom-30px animate fadeInUp" onclick="javascript:location.href='todos-os-pratos.php'"><!-- BOTÃO PARA VER TODOS OS PRATOS -->
                 <span>Ver Todos</span>
             </div>
         </article>

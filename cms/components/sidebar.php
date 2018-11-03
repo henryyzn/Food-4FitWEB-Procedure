@@ -8,11 +8,11 @@
     <div class="separator"></div>
     <div id="perfil">
             <figure id="avatar">
-                <img src="../../assets/images/cms/backgrounds/person.jpg" alt="Nome do Usuário">
+                <img src="../../assets/images/cms/backgrounds/person.jpg" alt="Nome do Usuário" onclick="javascript:location.href='perfil.php'">
             </figure>
         <div id="informacoes">
             <div id="informacoes-content">
-                <span id="nome">Helena August</span>
+                <span id="nome" onclick="javascript:location.href='perfil.php'">Helena August</span>
                 <span id="email">helena.august1@gmail.com</span>
                 <a href="#" id="dropdown"></a>
             </div>

@@ -46,18 +46,12 @@
                                             <label for="unidadeMedida" class="label-generic">Unidade de Medida:</label>
                                             <select id="unidadeMedida" name="unidadeMedida.id" class="input-generic" required>
                                                 <option disabled selected value="">Selecione uma opção</option>
-                                                <?php foreach ($unidadesMedida as $unidade) { ?>
-                                                    <option value="<?= $unidade->getId() ?>">
-                                                        <?= $unidade->getUnidadeMedida() ?> (<?= $unidade->getSigla() ?>)
-                                                    </option>
-                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-column form-group-6">
                                             <label for="categoria" class="label-generic">Categoria:</label>
                                             <select id="categoria" name="categoria.id" class="input-generic" required>
                                                 <option disabled selected value="">Selecione uma opção</option>
-                                                <?= $categorias ?>
                                             </select>
                                         </div>
                                     </div>
@@ -156,30 +150,7 @@
                             <div class="coluna">Opções</div>
                         </div>
                     </div>
-                    <div>
-                        <div class="linha">
-                            <div class="coluna image-small">
-                                <img src="../${foto}" alt="${titulo}">
-                            </div>
-                            <div class="coluna middle-align medium"><span></span></div>
-                            <div class="coluna middle-align medium"><span></span></div>
-                            <div class="coluna descricao large">
-                                <div>
-
-                                </div>
-                            </div>
-                            <div class="coluna middle-align medium">
-                                <span>R$ $</span>
-                            </div>
-                            <div class="coluna">
-                                <span class="toggle ${checkBoolean(ativo) ? 'desativar' : 'ativar'}"></span><hr>
-                                <span class="editar"></span><hr>
-                                <span class="excluir"></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </section>

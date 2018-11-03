@@ -119,13 +119,15 @@
 	text-indent: 15px;
 	background-color: transparent;
 	border: 3px solid #9CC283;
+    color: $white;
 	outline: none;
 	font-family: "Roboto Regular";
 }
 #navbar-flat-search>form>input::placeholder{
 	font-family: "Roboto Italic";
 	font-size: 16px;
-	color: #C8C8C8;
+	color: $white;
+    background-color: $darkgrey;
 }
 
 /*
