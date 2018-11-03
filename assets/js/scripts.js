@@ -202,18 +202,3 @@ $(window).on("load", function () {
         recaptcha.prop("required", true).prop("disabled", true);
     }
 });
-
-function checkTheme(checkbox){
-    if (checkbox.checked)
-    {
-        document.getElementById("themeStyle").href="assets/css/style-dark.css";
-        document.getElementById("themeBases").href="assets/css/bases-dark.css";
-        document.getElementById("themeNavbar").href="assets/css/navbar-dark.css"; 
-        document.getElementById("themeFooter").href="assets/css/footer-dark.css";
-    }else{
-        document.getElementById("themeStyle").href="assets/css/style-light.css"; 
-        document.getElementById("themeBases").href="assets/css/bases-light.css";
-        document.getElementById("themeNavbar").href="assets/css/navbar-light.css";
-        document.getElementById("themeFooter").href="assets/css/footer-light.css";
-    }
-}
