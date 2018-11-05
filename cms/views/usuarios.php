@@ -1,15 +1,20 @@
 <?php
+
+    //Estou dando require_once nesta página
+    //pois se não for feito isso
+    //não irá achar os métodos da Class
     require_once('../../cms/models/cadastro-usuarioClass.php');
-    require_once("../../cms/models/DAO/cadastro-usuarioDAO.php");
 
     if(isset($_GET['modo'])){
     $modo = $_GET['modo'];
     if($modo == 'excluir'){
 
+    require_once('../../cms/models/cadastro-usuarioClass.php');
+    require_once("../../cms/models/DAO/cadastro-usuarioDAO.php");
 
-        $contatoDAO = new contatoDAO();
+        $cadUsuarioDAO = new cadUsuarioDAO();
         $id = $_GET['id'];
-        $contatoDAO->delete($id);
+        $cadUsuarioDAO->delete($id);
         }
     }
 
@@ -77,7 +82,7 @@
                                 <td><span class="table-result"></span></td>
 
 
-                                <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='fale-conosco.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+                                <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
                             <?php
                                 }

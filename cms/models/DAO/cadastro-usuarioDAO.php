@@ -52,12 +52,13 @@
                  '".$classCadUser->inscEstadual."'
             );";
 
-             echo($sql);
+            //Teste sql
+//             echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-//                header('location:cadastro-usuario.php');
+                header('location:cadastro-usuario.php');
 
             $conex->desconectar();
         }
@@ -112,7 +113,7 @@
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                header('location:usuario.php');
+                header('location:usuarios.php');
 
         }
     }
