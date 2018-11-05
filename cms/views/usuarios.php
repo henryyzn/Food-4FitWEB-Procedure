@@ -38,6 +38,35 @@
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
     <script src="../../assets/js/js.cookie.js"></script>
+    <script src="../../assets/js/jquery.js"></script>
+
+    <script>
+
+//        function Listar(){
+//        $.ajax({
+//            type: "GET",
+//            url: "dados.php",
+//            success: function(dados){
+//                $('#consulta').html(dados);
+//            }
+//        });
+//
+//        function modal(idItem)
+//        {
+//
+//           $.ajax({
+//               type: "POST",
+//               url: "modal.php",
+//               data: {id:idItem},
+//               success: function(dados){
+//                   $('.modal').html(dados);
+//               }
+//           });
+//        }
+//    }
+
+    </script>
+
 </head>
 <body>
     <section id="main">
