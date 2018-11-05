@@ -57,7 +57,7 @@
                                 <td><span>Teste</span></td>
                                 <td><span>Teste</span></td>
 
-                                <td colspan="4"><span>Opções</span></td>
+                                <td colspan="2"><span>Opções</span></td>
                             </tr>
                             <?php
 
@@ -78,10 +78,7 @@
                                 <td><span class="table-result"></span></td>
                                 <td><span class="table-result"></span></td>
                                 <td><span class="table-result"></span></td>
-                                <td><span class="table-result"></span></td>
-                                <td><span class="table-result"></span></td>
-
-
+                                <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=visualizar&id=<?php echo($lista[$i]->id)?>'"></td>
                                 <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
                             <?php
