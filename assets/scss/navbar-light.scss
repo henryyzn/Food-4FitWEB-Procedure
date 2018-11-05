@@ -147,6 +147,9 @@
 	overflow-y: scroll;
 	z-index: 99999;
 }
+#sidebar-left::-webkit-scrollbar {
+    display: none;
+}
 #sidebar-left-close{
 	/*Botão para fechar o menu lateral*/
 	width: 30px;
@@ -224,6 +227,9 @@
 	right: 0;
 	bottom: 0;
 	z-index: 99999;
+}
+#sidebar-right::-webkit-scrollbar {
+    display: none;
 }
 #sidebar-right-close{
 	/*Botão para fechar o menu lateral*/

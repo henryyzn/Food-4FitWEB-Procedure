@@ -1141,7 +1141,7 @@ a{
 	    }
 
         >a {
-            @include texto(null, #F2F2F2, "Roboto Bold Italic");
+            @include texto(16px, #F2F2F2, "Roboto Medium Italic");
             display: initial;
             &:after {
                 content: ">";
@@ -1167,7 +1167,7 @@ a{
     &.product-view {
         padding: 20px 20px 0 20px;
         >span>a {
-            color: $black;
+            color: $grey;
         }
     }
 }

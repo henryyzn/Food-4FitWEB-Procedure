@@ -42,7 +42,7 @@
 		</header>
 		<div class="generic-grid animate fadeInUp">
 		    <?php
-                for($i=0; $i<9; $i++){
+                for($i=0; $i<120; $i++){
             ?>
 			<div class="generic-card" onclick="javascript:location.href='prato.php'">
 				<img src="assets/images/backgrounds/img.jpg" alt="Teste" class="generic-card-img">
@@ -60,19 +60,33 @@
                 }
             ?>
 		</div>
-		<div class="margin-right-auto margin-left-auto margin-bottom-30px">
-		  	<div class="pagination">
-			    <a href="#">&laquo;</a>
-			    <a href="#" class="active">1</a>
-			    <a href="#">2</a>
-			    <a href="#">3</a>
-			    <a href="#">4</a>
-			    <a href="#">5</a>
-			    <a href="#">6</a>
-			    <a href="#">&raquo;</a>
-		  	</div>
+		<div class="margin-right-auto margin-left-auto margin-bottom-30px btn-generic" id="see-more">
+            <span>Ver Mais</span>
 		</div>
 	</div>
 	<?php require_once("components/footer.html"); ?>
+	<script>
+        (function($) {
+            //Setamos o valor inicial
+            var count = 9;
+            var i = null;
+
+            //escondemos todos os elementos maior que o valor inicial
+            $(".generic-card").slice(count).hide();
+
+            $('#see-more').click(function() {
+
+                //Somamos a quantidade nova a ser exibida
+                count += 9;
+
+                //Rodamos o loop no valor total
+                for (i = 0; i < count; i++) {
+                    //Mostramos o item
+                    $('.generic-card').eq(i).show();
+                }
+            });
+
+        }(jQuery));
+    </script>
 </body>
 </html>
