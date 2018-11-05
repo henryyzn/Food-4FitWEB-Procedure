@@ -16,6 +16,7 @@
         public $telefone;
         public $celular;
         public $senha;
+        public $senhaConfirma;
         public $respSecreta;
         public $avatar;
         public $redeSocial;
@@ -25,9 +26,9 @@
         public $inscEstadual;
         public $altura;
         public $peso;
-        public function __construct(){
 
-        }
+
+        public function __construct(){}
 
     }
 ?>

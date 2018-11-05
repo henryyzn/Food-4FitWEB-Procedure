@@ -1,5 +1,6 @@
 <?php
     $tipoPessoa = null;
+    $genero = null;
 
     if(isset($_GET['btn-finalizar'])){
         require_once('cms/models/cadastro-usuarioClass.php');
@@ -23,13 +24,14 @@
         $classCadUser->telefone = $_GET['telefone'];
         $classCadUser->celular = $_GET['celular'];
         $classCadUser->senha = $_GET['senha'];
+        $classCadUser->senhaConfirma = $_GET['confsenha'];
         $classCadUser->respSecreta = $_GET['respostasecreta'];
 //        $classCadUser->avatar = $_GET['avatar'];
 //        $classCadUser->redeSocial = $_GET['rede_social'];
 //        $classCadUser->token = $_GET['token'];
 //        $classCadUser->ativo = $_GET['ativo'];
-//        $classCadUser->emailConfirma = $_GET['email_confirma'];
-//        $classCadUser->inscEstadual = $_GET['inscricaoEstadual'];
+        $classCadUser->emailConfirma = $_GET['emailConfirma'];
+        $classCadUser->inscEstadual = $_GET['inscricaoEstadual'];
 //        $classCadUser->altura = $_GET['altura'];
 //        $classCadUser->peso = $_GET['peso'];
 
@@ -58,10 +60,12 @@
     <link rel="stylesheet" href="assets/css/sizes.css">
     <link rel="stylesheet" href="assets/css/keyframes.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
+<!--
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/jquery-ui.min.js"></script>
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script src="https://www.google.com/recaptcha/api.js"></script>
+-->
 </head>
 <body>
 	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
@@ -117,6 +121,9 @@
     <label for="email" class="label-generic margin-top-30px">E-Mail:</label>
     <input type="email" name="email" id="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
 
+    <label for="email" class="label-generic margin-top-30px">Confirma E-Mail:</label>
+    <input type="email" name="emailConfirma" id="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
+
     <div>
         <label for="rg" class="label-generic margin-top-30px">RG:</label>
         <input type="text" name="rg" id="rg" class="input-generic" placeholder="Ex: 12.345.678-9">
@@ -146,11 +153,24 @@
         <input type="text" name="dtnasc" id="dtnasc" class="input-generic" placeholder="Ex: 01/01/1990">
 
     <div>
+
+        <?php
+
+            if($genero == "H"){
+                $checkH = 'checked';
+                $checkM = null;
+            }else{
+                $checkH = null;
+                $checkM = 'checked';
+            }
+        ?>
+
+
         <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
         <div id="sexo" style="display: flex;">
-            <input type="radio" name="sexo" id="homem" value="H">
+            <input type="radio" name="sexo" id="homem" value="H" <?php echo($checkH); ?> >
             <label for="homem" class="label-generic">Homem</label>
-            <input type="radio" name="sexo" id="mulher" value="M" required class="margin-left-15px">
+            <input type="radio" name="sexo" id="mulher" value="M" <?php echo ($checkM); ?> required class="margin-left-15px">
             <label for="mulher" class="label-generic">Mulher</label>
         </div>
     </div>

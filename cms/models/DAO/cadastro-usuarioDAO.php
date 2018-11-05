@@ -26,7 +26,10 @@
                  telefone,
                  celular,
                  senha,
-                 resp_secreta
+                 senha_confirma,
+                 resp_secreta,
+                 email_confirma,
+                 insc_estadual
                  ) values (
                  '".$classCadUser->idPerguntaSecreta."',
                  '".$classCadUser->tipoPessoa."',
@@ -43,14 +46,19 @@
                  '".$classCadUser->telefone."',
                  '".$classCadUser->celular."',
                  '".$classCadUser->senha."',
-                 '".$classCadUser->respSecreta."'
+                 '".$classCadUser->senhaConfirma."',
+                 '".$classCadUser->respSecreta."',
+                 '".$classCadUser->emailConfirma."',
+                 '".$classCadUser->inscEstadual."'
             );";
+
+             echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                header('location:cadastro-usuario.php');
-//                echo($sql);
+//                header('location:cadastro-usuario.php');
+
             $conex->desconectar();
         }
 
@@ -88,7 +96,7 @@
 //                $listUsuario[$cont]->token = $rs['token'];
                 $listUsuario[$cont]->ativo = $rs['ativo'];
                 $listUsuario[$cont]->emailConfirma = $rs['email_confirma'];
-//                $listUsuario[$cont]->inscEstadual = $rs['insc_estadual'];
+                $listUsuario[$cont]->inscEstadual = $rs['insc_estadual'];
 //                $listUsuario[$cont]->altura = $rs['altura'];
 //                $listUsuario[$cont]->peso = $rs['peso'];
 
