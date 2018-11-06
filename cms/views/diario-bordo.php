@@ -33,14 +33,23 @@
                             <td><span>DATA ENVIO</span></td>
                             <td colspan="2"><span>OPÇÕES</span></td>
                         </tr>
+                        <?php
+                            require_once("../models/DAO/diario-bordoDAO.php");
+
+                            $diarioBordoDAO = new diarioBordoDAO();
+
+                            $lista = $diarioBordoDAO->selectAll();
+
+                            for($i = 0; $i < count($lista); $i++){
+                        ?>
                         <tr class="contact-table-rrow">
                             <td colspan="2">
                                 <input type="checkbox">
                                 <span style="display: inline-block;">Nome do Usuário</span>
                             </td>
                             <td><span>endereco@provedor.com</span></td>
-                            <td><span>Assunto do Contato</span></td>
-                            <td><span>01/01/2018</span></td>
+                            <td><span><?php echo($lista[$i]->titulo)?></span></td>
+                            <td><span><?php echo($lista[$i]->data)?></span></td>
                             <td>
                                 <div class="coluna">
                                     <img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="margin-right-10px">
@@ -48,6 +57,9 @@
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                            }
+                        ?>
                     </table>
                     <aside class="menu-lateral-diario form-generic">
                         <div>

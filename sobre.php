@@ -23,6 +23,15 @@
     <section class="main">
         <h1 id="page-title" class="margin-left-auto margin-right-auto animate fadeInUp">SOBRE A FOOD 4FIT</h1><!-- TÍTULO DA PÁGINA -->
         <article id="about-us-block" class="margin-top-15px"><!-- BLOCO GERAL DA PÁGINA -->
+            <?php
+                require_once("cms/models/DAO/sobreDAO.php");
+
+                $sobreDAO = new sobreDAO();
+
+                $lista = $personalFitnessDAO->selectAll();
+
+                for($i = 0; $i < count($lista); $i++){
+            ?>
             <div class="about-us-content animate fadeInUp margin-bottom-30px"><!-- CONTEÚDO SESSÃO 'SOBRE NÓS' -->
                 <div class="text-about-us margin-top-30px"><!-- TEXTO DA SESSÃO -->
                     <h2 class="about-us-title padding-left-60px padding-bottom-15px">Sobre Nós</h2><!-- TÍTULO DA SESSÃO -->
