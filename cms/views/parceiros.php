@@ -21,6 +21,26 @@
 </head>
 <body>
     <section id="main">
+        <?php
+
+            require_once('../models/DAO/parceirosDAO.php');
+            require_once('../models/parceirosClass.php');
+
+            if(isset($_POST['btnSalvar'])){
+                $parceirosClass = new Parceiros();
+                $pareceirosDAO = new parecirosDAO();
+
+                $parceirosClass->titulo = $_POST['titulo'];
+                $parceirosClass->descricao = $_POST['descricao'];
+                $parceirosClass->foto = $_POST['foto'];
+                $parceirosClass->link = $_POST['link'];
+                $parceirosClass->ativo = ['ativo'];
+
+                $descontoDAO->insert($parceirosClass);
+
+            }
+
+        ?>
         <?php require_once("../components/sidebar.php") ?>
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
@@ -87,10 +107,10 @@
                             <textarea name="descricao" id="descricao" class="textarea-generic"></textarea>
 
                             <div class="form-row">
-                                <span>Cancelar</span>
-                                <div class="btn-generic margin-left-20px">
+                                <button type="submit" name="btnSalvar" value="Salvar" class="btn-generic margin-right-20px">
                                     <span>Salvar</span>
-                                </div>
+                                </button>
+                                <span class="btn-cancelar">Cancelar</span>
                             </div>
                         </form>
                     </section>
