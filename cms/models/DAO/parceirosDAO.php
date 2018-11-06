@@ -17,7 +17,7 @@
             '".$classParceiros->descricao."',
             '".$classParceiros->foto."',
             '".$classParceiros->link."',
-            '".classParceiros->ativo."'
+            '".$classParceiros->ativo."'
             );";
 
             $conex = new mysql_db();

@@ -24,7 +24,7 @@
         <?php
 
             require_once('../models/DAO/parceirosDAO.php');
-            require_once('../models/parceiosClass.php');
+            require_once('../models/parceirosClass.php');
 
             if(isset($_POST['btnSalvar'])){
                 $parceirosClass = new Parceiros();
