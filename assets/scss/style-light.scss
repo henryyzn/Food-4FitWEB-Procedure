@@ -635,6 +635,10 @@ a{
 }
 
 //Publicaçõe Gerais
+.border-30px{
+    box-sizing: border-box;
+    border: 30px solid transparent;
+}
 .geral-pubs-block{
 	@include bloco(100%, 780px, auto);
 	background: $lightgrey;

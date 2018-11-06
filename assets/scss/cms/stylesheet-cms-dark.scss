@@ -962,7 +962,7 @@ img.btn-logout:hover {
 
     .card-dash{
         height: auto;
-        background-color: $darkgreymedium;
+        background-color: $darkgrey;
         border-radius: 5px;
         box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
         .title{
@@ -1368,13 +1368,17 @@ input:-webkit-autofill {
     background-color: $mediumgrey;
     box-sizing: border-box;
     border: 20px solid transparent;
-
+    >h2{
+        @include texto(25px, $white, 'Roboto Bold', 32px, left);
+        padding-bottom: 15px;
+    }
     >div{
         @include bloco($width: 100%, $height: auto);
         background-color: $white;
         box-sizing: border-box;
         border: 12px solid transparent;
         border-radius: 5px;
+        margin-bottom: 20px;
         >h3{
             @include texto(18px, $darkgrey, 'Roboto Bold');
             padding-bottom: 20px;

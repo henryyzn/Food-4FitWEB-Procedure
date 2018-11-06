@@ -26,10 +26,9 @@ class dicasSaudeDAO {
 
             //Executa a query
             if($PDO_conex->query($sql))
-                //header('location:index.php');
-                echo('Inseriu com sucesso');
+                header('location:dicas-saude.php');
             else
-                echo('erro no insert');
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
             $conex->desconectar();
         }
@@ -54,9 +53,9 @@ class dicasSaudeDAO {
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
         if($PDO_conex->query($sql))
-            echo('select no Banco');
+            echo('');
         else
-            echo('Erro');
+            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
         $conex->desconectar();
 

@@ -100,7 +100,7 @@
             <div id="page-content">
                 <div class="add-pub-wrapper">
                     <div class="form-generic pub-add">
-                        <h2 class="form-title">Adicionar Publicação - Dicas Fitness</h2>
+                        <h2 class="form-title">Adicionar Publicação - Vantagens da Comida Fitness</h2>
                         <form action="add-pub-vantagem-comida-fitness.php" method="GET" name="frmcadastro" class="form-generic-content">
                             <input type="hidden" name="id_funcionario" value="1">
                             <input type="hidden" name="ativo" value="1">

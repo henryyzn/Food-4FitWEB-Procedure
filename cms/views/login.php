@@ -5,18 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
-	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
-	    <link rel="stylesheet" href="../assets/css/font-style.css">
-       <link rel="stylesheet" href="../assets/css/align.css">
-       <link rel="stylesheet" href="../assets/css/sizes.css">
-       <link rel="stylesheet" href="../assets/css/keyframes.css">
-        <link rel="stylesheet" href="../assets/css/cms/stylesheet-cms.css">
-	    <script src="../assets/public/js/jquery-3.3.1.min.js"></script>
-	    <script src="../assets/public/js/jquery.toast.min.js"></script>
-	    <script src="../assets/js/util.js"></script>
-	    <script src="../assets/js/cms/main.js"></script>
-	    <script src="../assets/js/cms/login.controller.js"></script>
+        <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
+        <link rel="stylesheet" href="../../assets/css/cms/stylesheet-cms.css">
+	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
+	    <link rel="stylesheet" href="../../assets/css/font-style.css">
+        <link rel="stylesheet" href="../../assets/css/align.css">
+        <link rel="stylesheet" href="../../assets/css/sizes.css">
+        <link rel="stylesheet" href="../../assets/css/keyframes.css">
+	    <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+	    <script src="../../assets/public/js/jquery.toast.min.js"></script>
+	    <script src="../../assets/js/util.js"></script>
+	    <script src="../../assets/js/cms/main.js"></script>
+	    <script src="../../assets/js/cms/login.controller.js"></script>
     </head>
     <body class="main-login">
         <article class="image-bg-login">

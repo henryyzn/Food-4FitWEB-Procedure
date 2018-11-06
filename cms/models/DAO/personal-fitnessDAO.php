@@ -26,10 +26,9 @@ class personalFitnessDAO {
 
             //Executa a query
             if($PDO_conex->query($sql))
-                //header('location:index.php');
-                echo('Inseriu com sucesso');
+                header('location:personal-fitness.php');
             else
-                echo('erro no insert');
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
             $conex->desconectar();
         }
@@ -56,7 +55,7 @@ class personalFitnessDAO {
         if($PDO_conex->query($sql))
             echo('');
         else
-            echo('Erro');
+            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
         $conex->desconectar();
 

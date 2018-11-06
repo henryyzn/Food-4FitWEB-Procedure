@@ -44,7 +44,7 @@
 		    <?php
                 for($i=0; $i<120; $i++){
             ?>
-			<div class="generic-card" onclick="javascript:location.href='prato.php'">
+			<div class="generic-card animate fadeIn" onclick="javascript:location.href='prato.php'">
 				<img src="assets/images/backgrounds/img.jpg" alt="Teste" class="generic-card-img">
 				<div class="generic-card-overlay">
 					<span class="card-dish-name margin-bottom-15px">Frango Grelhado</span>

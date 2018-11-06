@@ -6,7 +6,7 @@ class vantagemComidaFitnessDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('../models/vantagem-comida-fitnessClass.php');
+        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/vantagem-comida-fitnessClass.php');
     }
 
     public function insert($classVantagemComidaFitness){
@@ -26,10 +26,9 @@ class vantagemComidaFitnessDAO {
 
             //Executa a query
             if($PDO_conex->query($sql))
-                //header('location:index.php');
-                echo('Inseriu com sucesso');
+                header('location:vantagem-comida-fitness.php');
             else
-                echo('erro no insert');
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
             $conex->desconectar();
         }
@@ -54,9 +53,9 @@ class vantagemComidaFitnessDAO {
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
         if($PDO_conex->query($sql))
-            echo('select no Banco');
+            echo('');
         else
-            echo('Erro');
+            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
         $conex->desconectar();
 

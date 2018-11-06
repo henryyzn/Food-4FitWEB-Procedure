@@ -483,6 +483,14 @@ tr td:nth-child(4){
 	    box-sizing: border-box;
 	    padding: 10px;
     }
+    >a{
+    	/*Texto do botão genérico*/
+    	@include texto(16px, $white, 'Roboto Bold', 18px, center);
+        text-decoration: none;
+	    margin: 0 auto;
+	    box-sizing: border-box;
+	    padding: 10px;
+    }
     &:hover{
 	    /*Ação ao mover o mouse no botão genérico*/
 	    transform: scale(1.02);
