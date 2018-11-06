@@ -679,12 +679,6 @@ a{
     overflow: hidden;
     box-shadow: $shadow;
 }
-.publication-header{
-    @include bloco($width: 100%, $height: auto);
-    @include display(flex, row, flex-start, center);
-    box-sizing: border-box;
-    border: 20px solid transparent;
-}
 .profile-image-pub{
     @include img-fit(60px, 60px);
     border-radius: 50px;
@@ -727,6 +721,14 @@ a{
             margin: 10px auto 30px auto;
             cursor: pointer;
         }
+    }
+}
+.publication-text-block{
+    >p{
+        @include texto(16px, $lightgrey, 'Roboto Regular', 26px, left);
+        padding-left: 50px;
+        padding-bottom: 30px;
+        width: 85%;
     }
 }
 .publication-comments{
@@ -1912,57 +1914,30 @@ a{
 }
 //Publicação
 .publication-header{
-	width: 100%;
-	max-width: 1200px;
-	height: auto;
-	min-height: 300px;
-	border-radius: 0px 0px 10px 10px;
-}
-.publication-header>figure{
-	width: 100%;
-	max-width: 1200px;
-	height: auto;
-	min-height: 300px;
-}
-.publication-header>figure>img{
-	width: 1200px;
-	height: 300px;
-	object-fit: cover;
-	display: block;
-	cursor: pointer;
-}
-.publication-header>h2{
-	font-size: 25px;
-	color: $black;
-	font-family: 'Roboto Bold';
-	line-height: 29px;
-	text-align: left;
-}
-.publication-header>h2::after{
-	content: "";
-	display: block;
-	margin: 10px 0px 10px 0px;
-	background-color: $black;
-	border-radius: 50px;
-	width: 50px;
-	height: 3px;
-}
-.publication-header>span{
-	font-size: 18px;
-	color: $black;
-	font-family: 'Roboto Light';
-	line-height: 21px;
-	text-align: left;
-	display: block;
-}
-.publication-text-block>p{
-	padding-left: 30px;
-	padding-bottom: 15px;
-	font-size: 16px;
-	color: $grey;
-	font-family: 'Roboto Regular';
-	line-height: 25px;
-	text-align: justify;
+	@include bloco(100%, 1200px, auto);
+    >figure{
+        @include bloco(100%, 1200px, auto);
+        margin: 0;
+        padding: 0;
+        >img{
+            @include img-fit(1200px, 300px);
+        }
+    }
+    >h2{
+        @include texto(26px, $white, 'Roboto Bold', 32px, left);
+        &:after{
+            content: "";
+            display: block;
+            margin: 10px 0px 10px 0px;
+            background-color: $white;
+            border-radius: 50px;
+            width: 50px;
+            height: 3px;
+        }
+    }
+    >span{
+        @include texto(18px, $grey, 'Roboto Light', 21px, left);
+    }
 }
 
 //Saude

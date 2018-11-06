@@ -7,22 +7,22 @@
 	<meta name="referrer" content="no-referrer">
 	<title>Não Encontrado - Food 4fit</title>
     <link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
-	<link rel="stylesheet" id="themeStyle" href="../assets/css/style-light.css">
-    <link rel="stylesheet" id="themeStyle" href="../assets/css/bases-light.css">
-    <link rel="stylesheet" id="themeStyle" href="../assets/css/navbar-light.css">
-    <link rel="stylesheet" id="themeStyle" href="../assets/css/footer-light.css">
-    <link rel="stylesheet" href="../assets/css/colors.css">
-    <link rel="stylesheet" href="../assets/css/font-style.css">
-    <link rel="stylesheet" href="../assets/css/align.css">
-    <link rel="stylesheet" href="../assets/css/sizes.css">
-    <link rel="stylesheet" href="../assets/css/keyframes.css">
-    <link rel="stylesheet" href="../assets/css/mobile.css">
-	<script src="../assets/public/js/jquery-3.3.1.min.js"></script>
-	<script src="../assets/js/scripts.js"></script>
+	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
+    <link rel="stylesheet" id="themeStyle" href="assets/css/bases-light.css">
+    <link rel="stylesheet" id="themeStyle" href="assets/css/navbar-light.css">
+    <link rel="stylesheet" id="themeStyle" href="assets/css/footer-light.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/font-style.css">
+    <link rel="stylesheet" href="assets/css/align.css">
+    <link rel="stylesheet" href="assets/css/sizes.css">
+    <link rel="stylesheet" href="assets/css/keyframes.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
 	<video autoplay muted loop id="pb-video">
-        <source src="../assets/images/videos/fit.mp4" type="video/mp4">
+        <source src="assets/images/videos/fit.mp4" type="video/mp4">
         O seu navegador não suporta vídeos HTML5.
     </video>
     <div class="error-content">

@@ -39,48 +39,24 @@
     <section class="main" style="margin: 0 auto;"><!-- CONTAINER-MÃE DO SITE -->
     	<h2 id="page-title">PUBLICAÇÕES</h2>
         <div class="personal-fitness-pubs-block width-medium margin-top-15px">
-        	<div class="pub-row">
-        		<h2 class="padding-top-15px padding-left-15px">Título da Publicação</h2>
-        		<p class="padding-bottom-15px padding-left-15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ducimus, exercitationem odit?</p>
-        		<a href="#" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
-        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> 01/01/2018</span>
-        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> André Sanchez</span>
+            <?php
+                require_once("cms/models/DAO/personal-fitnessDAO.php");
+
+                $personalFitnessDAO = new personalFitnessDAO();
+
+                $lista = $personalFitnessDAO->selectAll();
+
+                for($i = 0; $i < count($lista); $i++){
+            ?>
+        	<div class="pub-row margin-bottom-20px">
+        		<h2 class="padding-top-15px padding-left-15px"><?php echo($lista[$i]->titulo)?></h2>
+        		<a href="publicacao-personal-fitness.php?publication&id=<?php echo($lista[$i]->id)?>" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
+        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> <?php echo($lista[$i]->data)?></span>
+        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> <?php echo($lista[$i]->id_funcionario)?></span>
         	</div>
-        	<div class="pub-row margin-top-30px">
-        		<h2 class="padding-top-15px padding-left-15px">Título da Publicação</h2>
-        		<p class="padding-bottom-15px padding-left-15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ducimus, exercitationem odit?</p>
-        		<a href="#" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
-        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> 01/01/2018</span>
-        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> André Sanchez</span>
-        	</div>
-        	<div class="pub-row margin-top-30px">
-        		<h2 class="padding-top-15px padding-left-15px">Título da Publicação</h2>
-        		<p class="padding-bottom-15px padding-left-15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ducimus, exercitationem odit?</p>
-        		<a href="#" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
-        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> 01/01/2018</span>
-        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> André Sanchez</span>
-        	</div>
-        	<div class="pub-row margin-top-30px">
-        		<h2 class="padding-top-15px padding-left-15px">Título da Publicação</h2>
-        		<p class="padding-bottom-15px padding-left-15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ducimus, exercitationem odit?</p>
-        		<a href="#" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
-        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> 01/01/2018</span>
-        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> André Sanchez</span>
-        	</div>
-        	<div class="pub-row margin-top-30px">
-        		<h2 class="padding-top-15px padding-left-15px">Título da Publicação</h2>
-        		<p class="padding-bottom-15px padding-left-15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ducimus, exercitationem odit?</p>
-        		<a href="#" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
-        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> 01/01/2018</span>
-        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> André Sanchez</span>
-        	</div>
-        	<div class="pub-row margin-top-30px">
-        		<h2 class="padding-top-15px padding-left-15px">Título da Publicação</h2>
-        		<p class="padding-bottom-15px padding-left-15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates ducimus, exercitationem odit?</p>
-        		<a href="#" class="margin-left-15px margin-bottom-15px">Ler Mais</a>
-        		<span class="padding-left-15px padding-bottom-5px"><b>Postado:</b> 01/01/2018</span>
-        		<span class="padding-left-15px padding-bottom-15px"><b>Autor:</b> André Sanchez</span>
-        	</div>
+        	<?php
+                }
+            ?>
         </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
