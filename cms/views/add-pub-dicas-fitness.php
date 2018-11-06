@@ -14,34 +14,34 @@
 
         if($modo == 'excluir'){
 
-            require_once('../models/personal-fitnessClass.php');
-            require_once('../models/DAO/personal-fitnessDAO.php');
+            require_once('../models/dicas-fitnessClass.php');
+            require_once('../models/DAO/dicas-fitnessDAO.php');
 
-            $personalFitnessDAO = new personalFitnessDAO;
+            $dicasFitnessDAO = new dicasFitnessDAO;
             $id = $_GET['id'];
-            $personalFitnessDAO->delete($id);
+            $dicasFitnessDAO->delete($id);
 
         }else if($modo == 'editar'){
-            require_once('../models/personal-fitnessClass.php');
-            require_once('../models/DAO/personal-fitnessDAO.php');
+            require_once('../models/dicas-fitnessClass.php');
+            require_once('../models/DAO/dicas-fitnessDAO.php');
 
-            $personalFitnessDAO = new personalFitnessDAO;
+            $dicasFitnessDAO = new dicasFitnessDAO;
             $id = $_GET['id'];
             $_SESSION['id'] = $id;
 
-            $listPersonalFitness = $personalFitnessDAO->selectId($id);
+            $listDicasFitness = $dicasFitnessDAO->selectId($id);
 
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-            if(count($listPersonalFitness)>0)
+            if(count($listDicasFitness)>0)
             {
 
-                $id = $listPersonalFitness->id;
-                $id_funcionario = $listPersonalFitness->id_funcionario;
-                $titulo = $listPersonalFitness->titulo;
-                $texto = $listPersonalFitness->texto;
-                $data = $listPersonalFitness->data;
-                $ativo = $listPersonalFitness->ativo;
+                $id = $listDicasFitness->id;
+                $id_funcionario = $listDicasFitness->id_funcionario;
+                $titulo = $listDicasFitness->titulo;
+                $texto = $listDicasFitness->texto;
+                $data = $listDicasFitness->data;
+                $ativo = $listDicasFitness->ativo;
 
                 $botao = "Editar";
 
@@ -50,25 +50,25 @@
     }
     if(isset($_GET['btn-salvar'])){
 
-        require_once('../models/personal-fitnessClass.php');
-        require_once('../models/DAO/personal-fitnessDAO.php');
+        require_once('../models/dicas-fitnessClass.php');
+        require_once('../models/DAO/dicas-fitnessDAO.php');
 
         date_default_timezone_set("America/Sao_Paulo");
 
-        $classPersonalFitness = new PersonalFitness();
-        $classPersonalFitness->id_funcionario = $_GET['id_funcionario'];
-        $classPersonalFitness->titulo = $_GET['titulo'];
-        $classPersonalFitness->texto = $_GET['texto'];
-        $classPersonalFitness->data = date('y/m/d');
-        $classPersonalFitness->ativo = "1";
+        $classDicasFitness = new DicasFitness();
+        $classDicasFitness->id_funcionario = $_GET['id_funcionario'];
+        $classDicasFitness->titulo = $_GET['titulo'];
+        $classDicasFitness->texto = $_GET['texto'];
+        $classDicasFitness->data = date('y/m/d');
+        $classDicasFitness->ativo = "1";
 
-        $personalFitnessDAO = new personalFitnessDAO();
+        $dicasFitnessDAO = new dicasFitnessDAO();
 
        if($_GET['btn-salvar'] == "Salvar"){
-           $personalFitnessDAO->insert($classPersonalFitness);
+           $dicasFitnessDAO->insert($classDicasFitness);
        }elseif($_GET['btn-salvar'] == "Editar"){
-           $classPersonalFitness->id = $_SESSION['id'];
-           $personalFitnessDAO->update($classPersonalFitness);
+           $classDicasFitness->id = $_SESSION['id'];
+           $dicasFitnessDAO->update($classDicasFitness);
        }
     }
 
@@ -100,8 +100,8 @@
             <div id="page-content">
                 <div class="add-pub-wrapper">
                     <div class="form-generic pub-add">
-                        <h2 class="form-title">Adicionar Publicação - Personal Fitness</h2>
-                        <form action="add-pub-personal-fitness.php" method="GET" name="frmcadastro" class="form-generic-content">
+                        <h2 class="form-title">Adicionar Publicação - Dicas Fitness</h2>
+                        <form action="add-pub-dicas-fitness.php" method="GET" name="frmcadastro" class="form-generic-content">
                             <input type="hidden" name="id_funcionario" value="1">
                             <input type="hidden" name="ativo" value="1">
 
@@ -122,11 +122,11 @@
                     <aside class="pub-side">
                         <h2>Ultimas Adicionadas</h2>
                         <?php
-                            require_once("../../cms/models/DAO/personal-fitnessDAO.php");
+                            require_once("../../cms/models/DAO/dicas-fitnessDAO.php");
 
-                            $personalFitnessDAO = new personalFitnessDAO();
+                            $dicasFitnessDAO = new dicasFitnessDAO();
 
-                            $lista = $personalFitnessDAO->selectAll();
+                            $lista = $dicasFitnessDAO->selectAll();
 
                             for($i = 0; $i < count($lista); $i++){
                         ?>

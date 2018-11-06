@@ -14,34 +14,34 @@
 
         if($modo == 'excluir'){
 
-            require_once('../models/personal-fitnessClass.php');
-            require_once('../models/DAO/personal-fitnessDAO.php');
+            require_once('../models/vantagem-comida-fitnessClass.php');
+            require_once('../models/DAO/vantagem-comida-fitnessDAO.php');
 
-            $personalFitnessDAO = new personalFitnessDAO;
+            $vantagemComidaFitnessDAO = new vantagemComidaFitnessDAO;
             $id = $_GET['id'];
-            $personalFitnessDAO->delete($id);
+            $vantagemComidaFitnessDAO->delete($id);
 
         }else if($modo == 'editar'){
-            require_once('../models/personal-fitnessClass.php');
-            require_once('../models/DAO/personal-fitnessDAO.php');
+            require_once('../models/vantagem-comida-fitnessClass.php');
+            require_once('../models/DAO/vantagem-comida-fitnessDAO.php');
 
-            $personalFitnessDAO = new personalFitnessDAO;
+            $vantagemComidaFitnessDAO = new vantagemComidaFitnessDAO;
             $id = $_GET['id'];
             $_SESSION['id'] = $id;
 
-            $listPersonalFitness = $personalFitnessDAO->selectId($id);
+            $listVantagemComidaFitness = $vantagemComidaFitnessDAO->selectId($id);
 
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-            if(count($listPersonalFitness)>0)
+            if(count($listVantagemComidaFitness)>0)
             {
 
-                $id = $listPersonalFitness->id;
-                $id_funcionario = $listPersonalFitness->id_funcionario;
-                $titulo = $listPersonalFitness->titulo;
-                $texto = $listPersonalFitness->texto;
-                $data = $listPersonalFitness->data;
-                $ativo = $listPersonalFitness->ativo;
+                $id = $listVantagemComidaFitness->id;
+                $id_funcionario = $listVantagemComidaFitness->id_funcionario;
+                $titulo = $listVantagemComidaFitness->titulo;
+                $texto = $listVantagemComidaFitness->texto;
+                $data = $listVantagemComidaFitness->data;
+                $ativo = $listVantagemComidaFitness->ativo;
 
                 $botao = "Editar";
 
@@ -50,25 +50,25 @@
     }
     if(isset($_GET['btn-salvar'])){
 
-        require_once('../models/personal-fitnessClass.php');
-        require_once('../models/DAO/personal-fitnessDAO.php');
+        require_once('../models/vantagem-comida-fitnessClass.php');
+        require_once('../models/DAO/vantagem-comida-fitnessDAO.php');
 
         date_default_timezone_set("America/Sao_Paulo");
 
-        $classPersonalFitness = new PersonalFitness();
-        $classPersonalFitness->id_funcionario = $_GET['id_funcionario'];
-        $classPersonalFitness->titulo = $_GET['titulo'];
-        $classPersonalFitness->texto = $_GET['texto'];
-        $classPersonalFitness->data = date('y/m/d');
-        $classPersonalFitness->ativo = "1";
+        $classVantagemComidaFitness = new VantagemComidaFitness();
+        $classVantagemComidaFitness->id_funcionario = $_GET['id_funcionario'];
+        $classVantagemComidaFitness->titulo = $_GET['titulo'];
+        $classVantagemComidaFitness->texto = $_GET['texto'];
+        $classVantagemComidaFitness->data = date('y/m/d');
+        $classVantagemComidaFitness->ativo = "1";
 
-        $personalFitnessDAO = new personalFitnessDAO();
+        $vantagemComidaFitnessDAO = new vantagemComidaFitnessDAO();
 
        if($_GET['btn-salvar'] == "Salvar"){
-           $personalFitnessDAO->insert($classPersonalFitness);
+           $vantagemComidaFitnessDAO->insert($classVantagemComidaFitness);
        }elseif($_GET['btn-salvar'] == "Editar"){
-           $classPersonalFitness->id = $_SESSION['id'];
-           $personalFitnessDAO->update($classPersonalFitness);
+           $classVantagemComidaFitness->id = $_SESSION['id'];
+           $vantagemComidaFitnessDAO->update($classVantagemComidaFitness);
        }
     }
 
@@ -100,8 +100,8 @@
             <div id="page-content">
                 <div class="add-pub-wrapper">
                     <div class="form-generic pub-add">
-                        <h2 class="form-title">Adicionar Publicação - Personal Fitness</h2>
-                        <form action="add-pub-personal-fitness.php" method="GET" name="frmcadastro" class="form-generic-content">
+                        <h2 class="form-title">Adicionar Publicação - Dicas Fitness</h2>
+                        <form action="add-pub-vantagem-comida-fitness.php" method="GET" name="frmcadastro" class="form-generic-content">
                             <input type="hidden" name="id_funcionario" value="1">
                             <input type="hidden" name="ativo" value="1">
 
@@ -122,11 +122,11 @@
                     <aside class="pub-side">
                         <h2>Ultimas Adicionadas</h2>
                         <?php
-                            require_once("../../cms/models/DAO/personal-fitnessDAO.php");
+                            require_once("../../cms/models/DAO/vantagem-comida-fitnessDAO.php");
 
-                            $personalFitnessDAO = new personalFitnessDAO();
+                            $vantagemComidaFitnessDAO = new vantagemComidaFitnessDAO();
 
-                            $lista = $personalFitnessDAO->selectAll();
+                            $lista = $vantagemComidaFitnessDAO->selectAll();
 
                             for($i = 0; $i < count($lista); $i++){
                         ?>
