@@ -1,3 +1,24 @@
+<?php
+
+    $botao = "Salvar";
+
+    if(isset($_GET['btn-salvar'])){
+        require_once('../models/categorias-pratoClass.php');
+        require_once('../models/DAO/categorias-pratoDAO.php');
+
+        $classCatPrato = new categoriaPrato();
+        $classCatPrato->titulo = $_GET['titulo'];
+        $classCatPrato->foto = $_GET['txtfoto'];
+
+        $cadPratoDAO = new cadPratoDAO();
+
+           if($_GET['btn-salvar'] == "Salvar"){
+               $cadPratoDAO->insert($classCatPrato);
+
+        }
+    }
+?>
+
 <!DOCTYPE html><html lang="pt-br">
     <head>
         <meta charset="utf-8">
@@ -16,6 +37,9 @@
         <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
         <script src="../../assets/js/scripts.js"></script>
         <script src="../../assets/js/js.cookie.js"></script>
+        <script src="../../assets/js/jquery.form.js"></script>
+
+
     </head>
     <body>
         <section id="main">
@@ -33,9 +57,9 @@
                             <div>
                                 <div class="linha">
                                     <div class="coluna image-small">
-                                        <img src="../${foto}" alt="${titulo}">
+
                                     </div>
-                                    <div class="coluna middle-left-align"><span>${titulo}</span></div>
+                                    <div class="coluna middle-left-align"><span></span></div>
                                     <div class="coluna">
                                         <span class="toggle ${checkBoolean(ativo) ? 'desativar' : 'ativar'}"></span><hr>
                                         <span class="editar"></span><hr>
@@ -44,13 +68,38 @@
                                 </div>
                             </div>
                         </div>
-                        <form id="form-right-side" class="form-generic">
+
+                        <script>
+                        $(document).ready(function(){
+
+                            $('#foto').on('change', function(){
+
+                                $('#frmfoto').ajaxForm({
+                                    target:'#visualizar'
+                               }).submit();
+
+                            });
+                        });
+                    </script>
+
+                        <form action="upload/upload-categoria-prato.php" method="post" name="frmfoto" id="frmfoto" enctype="multipart/form-data">
+
+                             <label for="foto" class="file-label">Escolher Imagem</label>
+                                    <input id="foto" name="fileimage" type="file" accept="image/*">
+
+                        </form>
+
+                        <div id="visualizar" style="width:300px; height:300px;border:solid;margin-left:-200px; ">
+
+                        </div>
+
+                        <form id="form-right-side" class="form-generic" action="categorias-prato.php" method="post" name="frmcadastro">
                             <div class="form-generic-content">
                                 <h2 class="form-title margin-left-20px margin-top-20px">Cadastrar uma Categoria</h2>
                                 <div>
                                     <img>
-                                    <label for="foto" class="file-label">Escolher Imagem</label>
-                                    <input id="foto" name="uploadData" type="file" accept="image/*">
+
+                                    <input type="text" name="txtfoto">
                                 </div>
                                 <div class="margin-right-20px margin-left-20px margin-top-30px">
                                     <label for="titulo" class="label-generic">Nome</label>
@@ -73,7 +122,7 @@
                                 </div>
                                 <div id="btn-save">
                                     <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
-                                    <span>Salvar</span>
+                                    <input type="submit" value="<?php echo($botao)?>" name="btn-salvar">
                                 </div>
                             </div>
                             <input type="submit" class="display-none">

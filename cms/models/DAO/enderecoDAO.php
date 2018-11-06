@@ -47,7 +47,6 @@
         }
 
         public function selectId($id){
-//            ''$listEndereco = null;
             $sql="select * from tbl_endereco where id=".$id;
 
             $conex = new mysql_db();
