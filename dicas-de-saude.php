@@ -24,75 +24,25 @@
         <h2 id="page-title">DICAS DE SAÚDE</h2>
         <p id="page-subtitle">Acompanhe dicas sobre saúde e bem estar que nossos colaboradores desenvolvem especialmente para os nossos clientes!</p>
         <article class="health-tricks-block">
-            <div class="health-tricks-card animate fadeInUp">
-                <h2 class="padding-top-30px">Dica #05</h2>
-                <p class="padding-top-15px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b>João Guedes</b></span>
-                <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto">
-                    <span>Ver Mais</span>
-                </div>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-            </div>
+           <?php
+                require_once("cms/models/DAO/dicas-saudeDAO.php");
 
-            <div class="health-tricks-card animate fadeInUp">
-                <h2 class="padding-top-30px">Dica #05</h2>
-                <p class="padding-top-15px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b>João Guedes</b></span>
-                <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto">
-                    <span>Ver Mais</span>
-                </div>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-            </div>
+                $dicasSaudeDAO = new dicasSaudeDAO();
 
-            <div class="health-tricks-card animate fadeInUp">
-                <h2 class="padding-top-30px">Dica #05</h2>
-                <p class="padding-top-15px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b>João Guedes</b></span>
-                <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto">
-                    <span>Ver Mais</span>
-                </div>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-            </div>
+                $lista = $dicasSaudeDAO->selectAll();
 
+                for($i = 0; $i < count($lista); $i++){
+            ?>
             <div class="health-tricks-card animate fadeInUp">
-                <h2 class="padding-top-30px">Dica #05</h2>
-                <p class="padding-top-15px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b>João Guedes</b></span>
-                <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto">
+                <h2 class="padding-top-30px"><?php echo($lista[$i]->titulo)?></h2>
+                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b><?php echo($lista[$i]->id_funcionario)?></b></span>
+                <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto" onclick="javascript:location.href='publicacao-dicas-saude.php?publication&id=<?php echo($lista[$i]->id)?>'">
                     <span>Ver Mais</span>
                 </div>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
             </div>
-
-            <div class="health-tricks-card animate fadeInUp">
-                <h2 class="padding-top-30px">Dica #05</h2>
-                <p class="padding-top-15px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b>João Guedes</b></span>
-                <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto">
-                    <span>Ver Mais</span>
-                </div>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-            </div>
+            <?php
+                }
+            ?>
         </article>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->

@@ -6,7 +6,7 @@ class dicasSaudeDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('../models/dicas-saudeClass.php');
+        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/dicas-saudeClass.php');
     }
 
     public function insert($classDicasSaude){

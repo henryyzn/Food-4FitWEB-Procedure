@@ -54,7 +54,7 @@ class personalFitnessDAO {
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
         if($PDO_conex->query($sql))
-            echo('select no Banco');
+            echo('');
         else
             echo('Erro');
 

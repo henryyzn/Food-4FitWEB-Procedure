@@ -2,13 +2,21 @@
     if(isset($_GET['publication'])){
         $id = $_GET['id'];
 
-        require_once("cms/models/DAO/personal-fitnessDAO.php");
+        require_once('cms/models/personal-fitnessClass.php');
+        require_once('cms/models/DAO/personal-fitnessDAO.php');
 
-        $personalFitnessDAO = new personalFitnessDAO();
+        $personalFitnessDAO = new personalFitnessDAO;
+        $listPersonalFitness = $personalFitnessDAO->selectId($id);
 
-        $lista = $personalFitnessDAO->selectAll($id);
-
-        for($i = 0; $i < count($lista); $i++){
+        //Resgatando do Banco de dados
+        //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
+        if(@count($listPersonalFitness)>0)
+        {
+            $id = $listPersonalFitness->id;
+            $id_funcionario = $listPersonalFitness->id_funcionario;
+            $titulo = $listPersonalFitness->titulo;
+            $texto = $listPersonalFitness->texto;
+            $data = $listPersonalFitness->data;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,7 +24,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php echo($lista[$i]->titulo)?> - Food 4Fit</title>
+	<title><?php echo($titulo)?> - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
 	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
     <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
@@ -37,9 +45,9 @@
             <figure>
                 <img src="assets/images/backgrounds/fitsession/img1.jpg" alt="Título da Publicação">
             </figure>
-            <h2 class="padding-left-50px padding-top-60px"><?php echo($lista[$i]->titulo)?></h2>
-            <span class="padding-left-50px padding-bottom-10px">Autor: <b><?php echo($lista[$i]->id_funcionario)?></b></span>
-            <span class="padding-left-50px padding-bottom-30px">Data da Postagem: <b><?php echo($lista[$i]->data)?></b></span>
+            <h2 class="padding-left-50px padding-top-60px"><?php echo($titulo)?></h2>
+            <span class="padding-left-50px padding-bottom-10px">Autor: <b><?php echo($id_funcionario)?></b></span>
+            <span class="padding-left-50px padding-bottom-30px">Data da Postagem: <b><?php echo($data)?></b></span>
         </header>
         <div class="publication-text-block">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus ornare erat ac faucibus. Quisque fringilla, leo et faucibus lacinia, ante ante placerat dolor, ut pharetra tortor enim quis nisi. Fusce tortor dolor, fringilla nec finibus at, tempor ut elit. Praesent dapibus, orci pellentesque ullamcorper placerat, nunc libero congue magna, vitae vestibulum lectus arcu quis ex. Maecenas ac tellus dui. Suspendisse ullamcorper tristique quam at suscipit. Cras et vulputate lacus. Quisque aliquam rhoncus rutrum.</p>
@@ -52,6 +60,8 @@
 </body>
 </html>
 <?php
+        }else{
+            header('location:404.php');
         }
     }
 ?>

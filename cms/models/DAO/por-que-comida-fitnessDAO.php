@@ -6,7 +6,7 @@ class porQueComidaFitnessDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('../models/por-que-comida-fitnessClass.php');
+        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/por-que-comida-fitnessClass.php');
     }
 
     public function insert($classPqComidaFitness){

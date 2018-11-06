@@ -1421,30 +1421,34 @@ a{
         }
     }
 }
-
-//Por que e vantagens da comida fitness
-.fit-title{
-	@include texto(21px, $black, 'Roboto Bold');
-}
-.fit-text{
-	@include texto(16px, $darkgrey, 'Roboto Regular', 24px);
-    width: 85%;
-    >a{
-    	color: $olivine;
-    	text-decoration: none;
-    	font-style: italic;
-    }
-}
-.fit-image{
-	@include bloco($width: 100%, $height: auto);
-    max-height: 310px;
+//Por que comida fitness
+.why-comida-fitness-pub-wrapper{
+    @include bloco(100%, 1200px, auto);
     box-sizing: border-box;
-    border: 30px solid #FCFCFC;
-    overflow: hidden;
-	>img{
-		@include img-fit(100%, 100%);
-	    border-radius: 10px;
-	}
+    border: 20px solid transparent;
+}
+.why-comida-pub{
+    @include bloco(100%, 100%, auto);
+    border-radius: 5px;
+    background-color: $white;
+    box-sizing: border-box;
+    border: 20px solid transparent;
+    transition: 200ms ease-in-out;
+    >h2{
+        @include texto(23px, $black, 'Roboto Bold', 26px, left);
+        padding-bottom: 15px;
+        transition: 200ms ease-in-out;
+    }
+    >span{
+        @include texto(16px, $grey, 'Roboto Medium Italic', 24px, left);
+    }
+    &:hover{
+        background-color: $olivine;
+        cursor: pointer;
+        >h2{
+            color: $white;
+        }
+    }
 }
 
 //Prato
