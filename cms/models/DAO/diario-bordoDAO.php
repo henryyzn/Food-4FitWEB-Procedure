@@ -25,10 +25,12 @@ class diarioBordoDAO {
         $PDO_conex = $conex->conectar();
 
         //Executa a query
-        if($PDO_conex->query($sql))
-            header('location:diario-bordo.php');
-        else
+        if($PDO_conex->query($sql)){
+            echo("<script>alert('Depoimento enviado com sucesso.')</script>");
+            header('location:diario-de-bordo.php');
+        }else{
             echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+        }
 
         $conex->desconectar();
     }
@@ -42,7 +44,7 @@ class diarioBordoDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listDiarioBordo = new DicasFitness();
+        $listDiarioBordo = new DiarioBordo();
         $listDiarioBordo->id = $rs['id'];
         $listDiarioBordo->id_usuario = $rs['id_usuario'];
         $listDiarioBordo->titulo = $rs['titulo'];

@@ -15,16 +15,12 @@ $(document).ready(function () {
         $("#sidebar-right").fadeOut("fast");
     });
 
-    $(".close-modal").click(function () {
-        $('.generic-modal').css('display', 'none');
-    });
-
     $("#show").click(function () {
         $('.dish-form').css('display', 'block');
         $('.dish-form').addClass("animate fadeInUp");
     });
 
-    $("#abrir").click(function () {
+    $("#open").click(function () {
         $(".form-generic").slideToggle(200);
     });
 
@@ -171,15 +167,6 @@ $(document).ready(function () {
 
     $("[data-f4f-trigger-search]").on("click", function () {
         $("#form-search").find(":submit").click();
-    });
-
-    $("[data-f4f-close-modal]").on("click", function () {
-        $(this).closest(".generic-modal").removeClass("display-flex");
-    });
-
-    $("[data-f4f-show-modal]").on("click", function () {
-        var element = $(this).data("f4f-show-modal");
-        $(element).addClass("display-flex");
     });
 
     $("[data-f4f-image-gallery]").each(function () {

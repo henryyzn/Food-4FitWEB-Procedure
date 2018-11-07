@@ -69,7 +69,7 @@
                 <form action="diario-de-bordo.php" method="GET" name="frmdiariobordo" class="form-generic-content">
                     <h2 class="form-title">Nos envie um depoimento!</h2>
                     <p class="form-subtitle">O diário de bordo nos serve como pesquisa de campo para entender a situação de todos os nossos clientes e achar casos de sucesso para incentivar quem também está entrando no mundo fitness. Caso queira, mande-nos um depoimento sobre a sua dieta aqui em baixo!</p>
-                    <input type="hidden" name="id_usuario" value="1">
+                    <input type="hidden" name="id_usuario" value="2">
 
                     <label for="titulo" class="label-generic">Título:</label>
                     <input name="titulo" id="titulo" class="input-generic">
