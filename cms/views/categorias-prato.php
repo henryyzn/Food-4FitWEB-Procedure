@@ -79,7 +79,6 @@
                             </div>
                         </div>
 
-<!--
                         <form action="upload/upload-categoria-prato.php" method="post" name="frmfoto" id="frmfoto" enctype="multipart/form-data">
 
                              <label for="foto" class="file-label">Escolher Imagem</label>
@@ -90,7 +89,6 @@
                         <div id="visualizar" style="width:300px; height:300px;border:solid;margin-left:-200px; ">
 
                         </div>
--->
 
                         <form  action="categorias-prato.php" method="post" name="frmcadastro" id="form-right-side" class="form-generic">
                             <div class="form-generic-content">

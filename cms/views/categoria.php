@@ -1,3 +1,24 @@
+<?php
+    $botao = "Salvar";
+
+    if(isset($_GET['btn-salvar'])){
+        require_once('../models/categoriaClass.php');
+        require_once('../models/DAO/categoriaDAO.php');
+
+        $classCategoria = new categoria();
+        $classCategoria->idCategoriaP = $_GET['id_categoria_parent'];
+        $classCategoria->titulo = $_GET['titulo'];
+        $classCategoria->foto = $_GET['foto'];
+        $classCategoria->ativo = $_GET['ativo'];
+
+        $categoriaDAO = new categoriaDAO();
+            if($_GET['btn-salvar'] == "Salvar"){
+                $classCategoria->insert($classCategoria);
+            }
+
+    }
+?>
+
 <!DOCTYPE html><html lang="pt-br">
     <head>
         <meta charset="utf-8">
@@ -16,6 +37,17 @@
         <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
         <script src="../../assets/public/js/jquery.form.js"></script>
 
+        <script>
+            $(document).ready(function(){
+                 $('#foto').on('change', function(){
+                     $('#frmfoto').ajaxForm({
+                            target:'#visualizar'
+                                }).submit();
+
+                        });
+                    });
+        </script>
+
     </head>
         <body>
          <section id="main">
@@ -27,34 +59,35 @@
                     <div id="tabs-content">
                         <div id="container-form">
                             <div class="form-generic">
-                                <form action="upload.php" method="POST" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
+                                <form action="upload/upload-categoria.php" method="post" name="frmfoto" id="frmfoto" enctype="multipart/form-data">
+
+                                    <label for="foto" class="file-label">Escolher Imagem</label>
+                                    <input id="foto" name="fileimage" type="file" accept="image/*">
+
+
+
                                     <span class="label-generic">Imagem:</span>
-                                    <div id="view" class="register_product_image" style="width: 300px; height: 300px; background: #9CC283;">
+                                    <div id="visualizar" class="register_product_image" style="width: 300px; height: 300px; background: #9CC283;">
 
                                     </div>
 
-                                    <label for="fotos" class="label-generic fileimage">Selecione um arquivo...</label>
-                                    <input type="file" name="fileimage" id="fotos" style="display: none;">
+
+
                                 </form>
-                                <form id="form-sobre-nos" class="form-generic-content" name="frmcadastro" method="GET" action="sobre.php">
-                                    <input name="txtfoto" type="hidden">
+                                <form id="form-categoria" class="form-generic-content" name="frmcategoria" method="GET" action="categoria.php">
+
 
                                     <label for="titulo" class="label-generic">Título</label>
                                     <input type="text" id="titulo" name="titulo"  required maxlength="255">
 
-                                    <label for="texto" class="label-generic">Cetgoria</label>
+                                    <label for="texto" class="label-generic">Cetegoria</label>
                                     <input type="text" id="titulo" name="titulo"  required maxlength="255">
 
                                     <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
-                                    <div class="select-block">
-                                    <div class="switch_box">
-                                        <input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1">
-                                    </div>
-                                    <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
-                                </div>
 
-                                    <input type="submit"  name="btn-salvar">
+
+                                    <input type="submit"  name="btn-salvar" value="<?php echo($botao)?>">
                                 </form>
                             </div>
                         </div>
@@ -67,14 +100,25 @@
                                     <td colspan="3"><span>Opções</span></td>
                                 </tr>
 
+
+
                                 <tr>
                                     <td><img alt=""></td>
                                     <td><span class="table-result"></span></td>
-                                    <td><span class="table-result"></span></td>
+
+                                    <td><span class="table-result"></span><div class="select-block">
+                                        <div class="switch_box">
+                                            <input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1">
+                                        </div>
+                                        <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
+                                    </div></td>
+
                                     <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
                                     <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=editar&id='"></td>
                                     <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=excluir&id='"></td>
                                 </tr>
+
+
 
                             </table>
                         </div>
