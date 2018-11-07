@@ -2,7 +2,7 @@
     class categoriaDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('cms/models/categoriaClass.php');
+            require_once('../models/categoriaClass.php');
 
 
         }
