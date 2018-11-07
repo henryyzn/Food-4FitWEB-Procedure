@@ -1,7 +1,28 @@
 <?php
+    if(isset($_GET['btn-salvar'])){
+
+        require_once('../models/comentario-postClass.php');
+        require_once('../models/DAO/comentario-postDAO.php');
+
+        date_default_timezone_set("America/Sao_Paulo");
+
+        $classComentario = new ComentarioPost();
+        $classComentario->id_dica_fitness = $_GET['id_dica_fitness'];
+        $classComentario->id_usuario = "1";
+        $classComentario->assunto = $_GET['assunto'];
+        $classComentario->texto = $_GET['texto'];
+        $classComentario->data = date('y/m/d');
+        $classComentario->ativo = "1";
+
+        $comentarioPostDAO = new comentarioPostDAO();
+
+        if($_GET['btn-salvar'] == "Salvar"){
+           $comentarioPostDAO->insert($classComentario);
+        }
+    }
     if(isset($_GET['publication'])){
         $id = $_GET['id'];
-
+        $_SESSION['id_dica_fitness'] = $id;
         require_once('cms/models/dicas-fitnessClass.php');
         require_once('cms/models/DAO/dicas-fitnessDAO.php');
 
@@ -56,6 +77,21 @@
             <p>In ut enim ullamcorper orci dapibus ornare bibendum et urna. Duis turpis arcu, ornare laoreet sapien eget, convallis fermentum urna. Morbi ipsum urna, tristique vitae arcu id, semper imperdiet sapien. Pellentesque iaculis arcu in tincidunt interdum. Curabitur a massa quis augue tristique mattis vel vel orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec varius velit eget quam ultricies consectetur. Aliquam vehicula metus non dolor feugiat commodo. Morbi auctor dui massa, nec vulputate nisi porta ut. Curabitur velit nunc, accumsan ac mattis non, iaculis at arcu. Donec elementum mattis leo, ut consectetur felis pulvinar vel. Sed eros orci, cursus nec dui eu, ullamcorper pharetra augue. Sed scelerisque mi vitae leo posuere blandit.</p>
             <p>Sed faucibus, eros non mattis scelerisque, ante erat semper arcu, at hendrerit purus felis quis mauris. Vivamus vitae tempus orci. Mauris suscipit aliquet semper. Suspendisse tincidunt ex libero, sed congue tellus iaculis in. Nulla id magna tortor. Fusce faucibus, arcu suscipit convallis auctor, sem nibh suscipit augue, quis ullamcorper ante neque tempus orci. Integer vitae efficitur est. Integer in eros nunc. Aenean at libero felis. Vivamus hendrerit vel justo quis varius. Nulla facilisi. Cras ultrices, eros vitae sollicitudin hendrerit, nisl odio facilisis tortor, eu dictum massa nulla ut ex. Nunc quis ipsum sagittis, maximus diam in, mattis felis. Donec eu tortor sem. Duis posuere libero et scelerisque fermentum. Sed sed nibh commodo, porttitor lorem vel, volutpat ipsum.</p>
         </div>
+        <form action="publicacao-dicas-fitness.php?id_dica_fitness=<?php echo($_SESSION['id_dica_fitness'])?>" method="GET" name="frmcomentario" class="form-generic-content width-100 border-30px">
+            <h2 class="form-title">Faça um comentário:</h2>
+
+            <label for="assunto" class="label-generic">Assunto:</label>
+            <input class="input-generic" type="text" name="assunto" id="assunto">
+
+            <label for="texto" class="label-generic">Comente Algo:</label>
+            <textarea class="textarea-generic" type="text" name="texto" id="texto"></textarea>
+            <div class="form-row">
+                <span>Cancelar</span>
+                <button type="submit" name="btn-salvar" value="Salvar" class="btn-generic">
+                    <span>Enviar</span>
+                </button>
+            </div>
+        </form>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 </body>
