@@ -25,10 +25,12 @@ class diarioBordoDAO {
         $PDO_conex = $conex->conectar();
 
         //Executa a query
-        if($PDO_conex->query($sql))
-            header('location:diario-bordo.php');
-        else
+        if($PDO_conex->query($sql)){
+            echo("<script>alert('Depoimento enviado com sucesso.')</script>");
+            header('location:diario-de-bordo.php');
+        }else{
             echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+        }
 
         $conex->desconectar();
     }
@@ -42,7 +44,7 @@ class diarioBordoDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listDiarioBordo = new DicasFitness();
+        $listDiarioBordo = new DiarioBordo();
         $listDiarioBordo->id = $rs['id'];
         $listDiarioBordo->id_usuario = $rs['id_usuario'];
         $listDiarioBordo->titulo = $rs['titulo'];
@@ -62,6 +64,37 @@ class diarioBordoDAO {
         return $listDiarioBordo;
 
         }
+    }
+
+    public function selectDouble(){
+        $listDiarioBordo = null;
+
+        $sql='SELECT d.id AS id, d.id_usuario as id_usuario, d.titulo as titulo, d.texto as texto, d.progresso as progresso, d.data as data, CONCAT(u.nome, " ", u.sobrenome) AS nome, u.email as email, u.avatar as avatar FROM tbl_diario_bordo AS d INNER JOIN tbl_usuario AS u ORDER BY d.id DESC';
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $cont=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listDiarioBordo[] = new DiarioBordo();
+            $listDiarioBordo[$cont]->id = $rs['id'];
+            $listDiarioBordo[$cont]->id_usuario = $rs['id_usuario'];
+            $listDiarioBordo[$cont]->titulo = $rs['titulo'];
+            $listDiarioBordo[$cont]->texto = $rs['texto'];
+            $listDiarioBordo[$cont]->progresso = $rs['progresso'];
+            $listDiarioBordo[$cont]->data = $rs['data'];
+            $listDiarioBordo[$cont]->nome = $rs['nome'];
+            $listDiarioBordo[$cont]->email = $rs['email'];
+            $listDiarioBordo[$cont]->avatar = $rs['avatar'];
+            $cont+=1;
+        }
+        return $listDiarioBordo;
     }
 
     public function selectAll(){

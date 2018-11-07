@@ -6,7 +6,7 @@
         public $titulo;
         public $descricao;
         public $foto;
-        public $link;
+        public $link1;
         public $ativo;
 
 

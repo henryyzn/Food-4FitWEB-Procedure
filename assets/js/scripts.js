@@ -15,16 +15,12 @@ $(document).ready(function () {
         $("#sidebar-right").fadeOut("fast");
     });
 
-    $(".close-modal").click(function () {
-        $('.generic-modal').css('display', 'none');
-    });
-
     $("#show").click(function () {
         $('.dish-form').css('display', 'block');
         $('.dish-form').addClass("animate fadeInUp");
     });
 
-    $("#abrir").click(function () {
+    $("#open").click(function () {
         $(".form-generic").slideToggle(200);
     });
 
@@ -173,15 +169,6 @@ $(document).ready(function () {
         $("#form-search").find(":submit").click();
     });
 
-    $("[data-f4f-close-modal]").on("click", function () {
-        $(this).closest(".generic-modal").removeClass("display-flex");
-    });
-
-    $("[data-f4f-show-modal]").on("click", function () {
-        var element = $(this).data("f4f-show-modal");
-        $(element).addClass("display-flex");
-    });
-
     $("[data-f4f-image-gallery]").each(function () {
         var mainImage = $(this).find("[data-f4f-main-image]");
         $("[data-f4f-image-list]>div").click(function () {
@@ -202,3 +189,21 @@ $(window).on("load", function () {
         recaptcha.prop("required", true).prop("disabled", true);
     }
 });
+
+function abrir(id){
+    var modal = $('.close-modal');
+    $('.generic-modal').css('display', 'flex');
+    $.ajax({
+        url: "modal/modal-diario-bordo.php",
+        type: "POST",
+        data: {modo: 'modal', id:id},
+        dataType: "html"
+        }).done(function(dados){
+            $('.generic-modal-wrapper').html(dados);
+        }).fail(function(dados){
+            alert("Erro ao abrir.");
+        });
+}
+function fechar(){
+    $('.generic-modal').css('display', 'none');
+}

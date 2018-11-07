@@ -21,26 +21,7 @@
 </head>
 <body>
     <section id="main">
-        <?php
 
-            require_once('../models/DAO/parceirosDAO.php');
-            require_once('../models/parceirosClass.php');
-
-            if(isset($_POST['btnSalvar'])){
-                $parceirosClass = new Parceiros();
-                $pareceirosDAO = new parecirosDAO();
-
-                $parceirosClass->titulo = $_POST['titulo'];
-                $parceirosClass->descricao = $_POST['descricao'];
-                $parceirosClass->foto = $_POST['foto'];
-                $parceirosClass->link = $_POST['link'];
-                $parceirosClass->ativo = ['ativo'];
-
-                $descontoDAO->insert($parceirosClass);
-
-            }
-
-        ?>
         <?php require_once("../components/sidebar.php") ?>
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
