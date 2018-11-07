@@ -1,8 +1,9 @@
 <?php
-    class cadPratoDAO{
+    class catPratoDAO{
         public function __construct(){
             require_once('database.php');
             require_once('../models/categorias-pratoClass.php');
+            require_once('../models/categorias-ingredientesClass.php');
         }
 
         public function insert($classCatPrato){
@@ -13,8 +14,8 @@
                     ativo
                     ) values (
                     '".$classCatPrato->idCadIngrediente."',
-                    'assets/images/categorias/".$classCatPrato->titulo."',
-                    '".$classCatPrato->foto."',
+                    'assets/images/categorias/".$classCatPrato->foto."',
+                    '".$classCatPrato->titulo."',
                     '".$classCatPrato->ativo."',
             )";
 
@@ -94,7 +95,7 @@
             $sql = "UPDATE tbl_categoria SET
             id_categoria_parent = ".$classCatPrato->idCadIngrediente.",
             titulo = '".$classCatPrato->titulo."',
-            foto = 'assets/images/sobre-nos/".$classCatPrato->foto."',
+            foto = 'assets/images/categorias".$classCatPrato->foto."',
             ativo = ".$classCatPrato->ativo.",
             where id=".$classCatPrato->id;
 

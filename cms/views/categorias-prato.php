@@ -39,6 +39,16 @@
         <script src="../../assets/js/js.cookie.js"></script>
         <script src="../../assets/js/jquery.form.js"></script>
 
+        <script>
+             $(document).ready(function(){
+                 $('#foto').on('change', function(){
+                     $('#frmfoto').ajaxForm({
+                            target:'#visualizar'
+                                }).submit();
+
+                            });
+                        });
+        </script>
 
     </head>
     <body>
@@ -69,19 +79,7 @@
                             </div>
                         </div>
 
-                        <script>
-                        $(document).ready(function(){
-
-                            $('#foto').on('change', function(){
-
-                                $('#frmfoto').ajaxForm({
-                                    target:'#visualizar'
-                               }).submit();
-
-                            });
-                        });
-                    </script>
-
+<!--
                         <form action="upload/upload-categoria-prato.php" method="post" name="frmfoto" id="frmfoto" enctype="multipart/form-data">
 
                              <label for="foto" class="file-label">Escolher Imagem</label>
@@ -92,15 +90,19 @@
                         <div id="visualizar" style="width:300px; height:300px;border:solid;margin-left:-200px; ">
 
                         </div>
+-->
 
-                        <form id="form-right-side" class="form-generic" action="categorias-prato.php" method="post" name="frmcadastro">
+                        <form  action="categorias-prato.php" method="post" name="frmcadastro" id="form-right-side" class="form-generic">
                             <div class="form-generic-content">
                                 <h2 class="form-title margin-left-20px margin-top-20px">Cadastrar uma Categoria</h2>
-                                <div>
-                                    <img>
 
-                                    <input type="text" name="txtfoto">
-                                </div>
+                            <div>
+                                <img>
+                                <label for="foto" class="file-label">Escolher Imagem</label>
+                                <input type="text" name="txtfoto">
+
+                            </div>
+
                                 <div class="margin-right-20px margin-left-20px margin-top-30px">
                                     <label for="titulo" class="label-generic">Nome</label>
                                     <input id="titulo" name="titulo" class="input-generic" required placeholder="Ex: Saladas">
@@ -120,10 +122,12 @@
                                     </div>
                                     <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                                 </div>
-                                <div id="btn-save">
-                                    <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
-                                    <input type="submit" value="<?php echo($botao)?>" name="btn-salvar">
-                                </div>
+                               <div id="btn-save">
+                                <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
+                                <span>Salvar</span>
+
+<!--                                <input type="submit" value="<?php echo($botao)?>" name="btn-salvar">-->
+                            </div>
                             </div>
                             <input type="submit" class="display-none">
                         </form>
