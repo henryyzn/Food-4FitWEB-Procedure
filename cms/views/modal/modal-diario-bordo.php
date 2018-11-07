@@ -20,8 +20,8 @@
             $progresso = $listDiarioBordo->progresso;
             $data = $listDiarioBordo->data;
 ?>
-<h2 class="margin-top-60px"><?php echo($titulo)?></h2>
-<p><?php echo($texto)?></p>
+<h2 class="margin-top-60px margin-bottom-20px"><?php echo($titulo)?></h2>
+<p class="padding-bottom-60px"><?php echo($texto)?></p>
 <!--
 <div class="generic-modal-row margin-top-30px margin-bottom-60px">
     <div class="btn-generic-modal cancel box-shadow margin-left-auto margin-right-15px">

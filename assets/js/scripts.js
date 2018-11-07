@@ -189,3 +189,21 @@ $(window).on("load", function () {
         recaptcha.prop("required", true).prop("disabled", true);
     }
 });
+
+function abrir(id){
+    var modal = $('.close-modal');
+    $('.generic-modal').css('display', 'flex');
+    $.ajax({
+        url: "modal/modal-diario-bordo.php",
+        type: "POST",
+        data: {modo: 'modal', id:id},
+        dataType: "html"
+        }).done(function(dados){
+            $('.generic-modal-wrapper').html(dados);
+        }).fail(function(dados){
+            alert("Erro ao abrir.");
+        });
+}
+function fechar(){
+    $('.generic-modal').css('display', 'none');
+}

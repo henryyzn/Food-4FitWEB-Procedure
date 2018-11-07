@@ -43,25 +43,6 @@
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
     <script src="../../assets/js/js.cookie.js"></script>
-    <script>
-        function abrir(id){
-            var modal = $('.close-modal');
-			$('.generic-modal').css('display', 'flex');
-            $.ajax({
-                url: "modal/modal-diario-bordo.php",
-                type: "POST",
-                data: {modo: 'modal', id:id},
-                dataType: "html"
-                }).done(function(dados){
-                    $('.generic-modal-wrapper').html(dados);
-                }).fail(function(dados){
-                    alert("Erro ao abrir.");
-                });
-        }
-        function fechar(){
-            $('.generic-modal').css('display', 'none');
-        }
-    </script>
 </head>
 <body>
 <section id="main">
@@ -72,9 +53,10 @@
             <div class="diario-border-wrapper">
                 <table class="table-diario">
                     <tr id="contact-table-trow">
-                        <td colspan="2"><span>NOME</span></td>
+                        <td><span>NOME</span></td>
                         <td><span>E-MAIL</span></td>
                         <td><span>ASSUNTO</span></td>
+                        <td><span>PROGRESSO</span></td>
                         <td><span>DATA ENVIO</span></td>
                         <td colspan="2"><span>OPÇÕES</span></td>
                     </tr>
@@ -83,17 +65,15 @@
 
                         $diarioBordoDAO = new diarioBordoDAO();
 
-                        $lista = $diarioBordoDAO->selectAll();
+                        $lista = $diarioBordoDAO->selectDouble();
 
                         for($i = 0; $i < count($lista); $i++){
                     ?>
                     <tr class="contact-table-rrow">
-                        <td colspan="2">
-                            <input type="checkbox">
-                            <span style="display: inline-block;">Nome do Usuário</span>
-                        </td>
-                        <td><span>endereco@provedor.com</span></td>
+                        <td><span><?php echo($lista[$i]->nome)?></span></td>
+                        <td><span><?php echo($lista[$i]->email)?></span></td>
                         <td><span><?php echo($lista[$i]->titulo)?></span></td>
+                        <td><span><?php echo($lista[$i]->progresso)?></span></td>
                         <td><span><?php echo($lista[$i]->data)?></span></td>
                         <td>
                             <div class="coluna">
@@ -143,7 +123,7 @@
         </div>
     </div>
 </section>
-<div class="generic-modal" id="abrir">
+<div class="generic-modal animate fadeIn" id="abrir">
     <article class="generic-modal-wrapper">
 
     </article>
