@@ -6,14 +6,14 @@
         require_once('../models/DAO/categoriaDAO.php');
 
         $classCategoria = new categoria();
-        $classCategoria->idCategoriaP = $_GET['id_categoria_parent'];
+//        $classCategoria->idCategoriaP = $_GET['id_categoria_parent'];
         $classCategoria->titulo = $_GET['titulo'];
         $classCategoria->foto = $_GET['foto'];
         $classCategoria->ativo = $_GET['ativo'];
 
         $categoriaDAO = new categoriaDAO();
             if($_GET['btn-salvar'] == "Salvar"){
-                $classCategoria->insert($classCategoria);
+                $categoriaDAO->insert($classCategoria);
             }
 
     }
@@ -75,7 +75,7 @@
 
                                 </form>
                                 <form id="form-categoria" class="form-generic-content" name="frmcategoria" method="GET" action="categoria.php">
-
+                                    <input name="foto" type="hidden" value="">
 
                                     <label for="titulo" class="label-generic">Título</label>
                                     <input type="text" id="titulo" name="titulo"  required maxlength="255">
