@@ -1,19 +1,19 @@
 $(function() {
-    var data = localStorage.getItem("theme");
+    var data = localStorage.getItem("CMStheme");
     if (data !== null) {
-        var check = $("input[name='theme']").attr("checked", "checked");
-        document.getElementById("themeStyle").href="../../assets/css/cms/stylesheet-cms-dark.css";
-        document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
+        var check = $("input[name='CMStheme']").attr("checked", "checked");
+        document.getElementById("CMSthemeStyle").href="../../assets/css/cms/stylesheet-cms-dark.css";
+        document.getElementById("CMSthemeBases").href="../../assets/css/bases-dark.css";
     }
 });
-$("input[name='theme']").click(function() {
+$("input[name='CMStheme']").click(function() {
     if ($(this).is(":checked")) {
-        localStorage.setItem("theme", $(this).val());
-        document.getElementById("themeStyle").href="../../assets/css/cms/stylesheet-cms-dark.css";
-        document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
+        localStorage.setItem("CMStheme", $(this).val());
+        document.getElementById("CMSthemeStyle").href="../../assets/css/cms/stylesheet-cms-dark.css";
+        document.getElementById("CMSthemeBases").href="../../assets/css/bases-dark.css";
     } else {
-        localStorage.removeItem("theme");
-        document.getElementById("themeStyle").href="../../assets/css/cms/stylesheet-cms.css";
-        document.getElementById("themeBases").href="../../assets/css/bases-light.css";
+        localStorage.removeItem("CMStheme");
+        document.getElementById("CMSthemeStyle").href="../../assets/css/cms/stylesheet-cms.css";
+        document.getElementById("CMSthemeBases").href="../../assets/css/bases-light.css";
     }
 });

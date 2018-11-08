@@ -87,13 +87,17 @@
     <script>
         $(document).ready(function(){
             $('#fotos').on('change', function(){
-
                 $('#frmfoto').ajaxForm({
                     target:'#view'
                 }).submit();
             });
         });
     </script>
+    <style>
+        .image-view{
+            width: 300px; height: auto; display: block;
+        }
+    </style>
 </head>
 <body>
      <section id="main">
@@ -133,12 +137,12 @@
                     </div>
                     <aside class="slider-add-aside">
                         <div class="form-generic border-30px">
-                            <form action="upload/upload-slider.php" method="POST" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
+                            <form action="upload/upload-slider.php" method="POST" name="frmfoto" enctype="multipart/form-data" class="form-generic-content" id="frmfoto">
                                 <label class="label-generic">Imagem:</label>
-                                <div id="view" class="register_product_image margin-right-auto margin-left-auto" style="width: 300px; height: 300px; background: #9CC283;">
-                                    <img src='../../<?php echo($foto);?>' alt="Imagem a ser cadastrada">
+                                <div id="view" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
                                 </div>
-                                <label for="fotos" class="label-generic fileimage">Selecione um arquivo...</label>
+                                <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
                                 <input type="file" name="fileimage" id="fotos" style="display: none;">
                             </form>
                             <form id="form-sobre-nos" class="form-generic-content" name="frmcadastro" method="GET" action="slider.php">

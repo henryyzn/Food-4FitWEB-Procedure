@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Food 4fit - CMS</title>
         <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
-        <link rel="stylesheet" id="themeStyle" href="../../assets/css/cms/stylesheet-cms.css">
-        <link rel="stylesheet" id="themeBases" href="../../assets/css/bases-light.css">
+        <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
+        <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
 	    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
         <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
 	    <link rel="stylesheet" href="../../assets/css/font-style.css">
