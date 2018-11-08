@@ -1,4 +1,9 @@
 <?php
+
+    session_start();
+
+    $id = null;
+    $titulo = null;
     $foto = null;
     $botao = "Salvar";
 
@@ -12,6 +17,29 @@
             $categoriaDAO = new categoriaDAO();
             $id = $_GET['id'];
             $categoriaDAO->delete($id);
+
+        }else if($modo == 'editar'){
+            require_once('../models/categoriaClass.php');
+            require_once('../models/DAO/categoriaDAO.php');
+
+            $categoriaDAO = new categoriaDAO();
+//            session_start();
+            $id = $_GET['id'];
+            $_SESSION['id'] = $id;
+
+            //Cad = Cadastro
+            $listCadCategoria = $categoriaDAO->selectId($id);
+
+            if($listCadCategoria != null)
+            {
+                $id = $listCadCategoria->id;
+                $titulo = $listCadCategoria->titulo;
+                $foto = $listCadCategoria->foto;
+                $ativo = $listCadCategoria->ativo;
+
+                $botao = "Editar";
+            }
+
         }
 
     }
@@ -29,6 +57,9 @@
         $categoriaDAO = new categoriaDAO();
             if($_GET['btn-salvar'] == "Salvar"){
                 $categoriaDAO->insert($classCategoria);
+            }else{
+                $classCategoria->id = $_SESSION['id'];
+                $categoriaDAO->update($classCategoria);
             }
 
     }
@@ -83,7 +114,7 @@
 
                                     <span class="label-generic">Imagem:</span>
                                     <div id="visualizar" class="register_product_image" style="width: 300px; height: 300px; background: #9CC283;">
-
+                                        <img src='../<?php echo($foto);?>'>
                                     </div>
 
 
@@ -93,7 +124,7 @@
                                     <input name="foto" type="hidden" value="">
 
                                     <label for="titulo" class="label-generic">Título Categoria Pai</label>
-                                    <input type="text" id="titulo" name="titulo"  required maxlength="255">
+                                    <input type="text" value="<?= @$titulo ?>" id="titulo" name="titulo"  required maxlength="255">
 
                                     <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
@@ -133,7 +164,7 @@
 
 
 
-                                    <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=editar&id='"></td>
+                                    <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id=<?= $lista[$i]->id ?>'"></td>
                                     <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
 
                                 </tr>

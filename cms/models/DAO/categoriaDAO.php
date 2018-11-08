@@ -33,6 +33,36 @@
 
         }
 
+        public function selectId($id){
+
+            $sql = "select * from tbl_categoria where id=".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
+
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+
+
+                $listCadCategoria = new categoria();
+                $listCadCategoria->id = $rs['id'];
+                $listCadCategoria->titulo = $rs['titulo'];
+                $listCadCategoria->foto = $rs['foto'];
+                $listCadCategoria->ativo = $rs['ativo'];
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            ($PDO_conex->query($sql));
+
+
+            $conex->desconectar();
+
+            return $listCadCategoria;
+
+            }
+
+        }
+
         public function selectAll(){
             $listCategoria = null;
             $sql = "select * from tbl_categoria order by id desc";
@@ -73,9 +103,9 @@
 
         public function update($classCategoria){
             $sql = "UPDATE tbl_categoria SET
-            id_categoria_parent = ".$classCategoria->idCategoriaP.",
+
             titulo = '".$classCategoria->titulo."',
-            foto = 'assets/images/categorias".$classCategoria->foto."',
+            foto = 'assets/images/categorias/".$classCategoria->foto."',
             ativo = ".$classCategoria->ativo."
             where id=".$classCategoria->id;
 
