@@ -1,3 +1,26 @@
+<?php
+    if(isset($_POST['btn-salvar'])){
+
+        require_once('cms/models/comentario-geralClass.php');
+        require_once('cms/models/DAO/comentario-geralDAO.php');
+
+        date_default_timezone_set("America/Sao_Paulo");
+
+        $classComentarioGeral = new ComentarioGeral();
+        $classComentarioGeral->id_usuario = "2";
+        $classComentarioGeral->assunto = $_POST['assunto'];
+        $classComentarioGeral->texto = $_POST['texto'];
+        $classComentarioGeral->data = date('y/m/d');
+        $classComentarioGeral->ativo = "1";
+        $classComentarioGeral->ativo = $_GET['foto'];
+
+        $comentarioGeralDAO = new comentarioGeralDAO();
+
+        if($_POST['btn-salvar'] == "Salvar"){
+           $comentarioGeralDAO->insert($classComentarioGeral);
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,11 +47,11 @@
         <h2 id="page-title">PUBLICAÇÕES GERAIS</h2>
         <p id="page-subtitle">Veja publicações de quem utiliza nosso serviço<br>e interaja com a comunidade!</p>
         <div class="geral-pubs-wrapper">
-            <div class="btn-add-pub margin-bottom-30px" id="abrir">
+            <div class="btn-add-pub margin-bottom-30px" id="open">
                 <span>CRIAR PUBLICAÇÃO</span>
             </div>
             <div class="form-generic hide margin-bottom-20px">
-                <form action="#" class="form-generic-content" style="display: flex; justify-content: space-between;">
+                <form action="comentarios-gerais.php" class="form-generic-content" style="display: flex; justify-content: space-between;">
                     <div class="pub-create-column one">
                         <label for="titulo" class="label-generic">Título da Publicação:</label>
                         <input type="text" name="titulo" id="titulo" class="input-generic">
