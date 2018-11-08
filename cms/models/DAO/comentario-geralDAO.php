@@ -11,11 +11,11 @@ class comentarioGeralDAO {
 
     public function insert($classComentarioGeral){
         $sql = "insert into tbl_comentario_geral(id_usuario, assunto, texto, data, ativo, foto) values (
-        '".$classComentario->id_usuario."',
-        '".$classComentario->assunto."',
-        '".$classComentario->texto."',
-        '".$classComentario->data."',
-        '".$classComentario->ativo."',
+        '".$classComentarioGeral->id_usuario."',
+        '".$classComentarioGeral->assunto."',
+        '".$classComentarioGeral->texto."',
+        '".$classComentarioGeral->data."',
+        '".$classComentarioGeral->ativo."',
         'assets/images/comentario-geral/".$classComentarioGeral->foto."');";
 
         //echo($sql);
@@ -65,7 +65,6 @@ class comentarioGeralDAO {
 
         }
     }
-
     public function selectAll($id){
         $listComentarios = null;
 
@@ -95,6 +94,37 @@ class comentarioGeralDAO {
             $cont+=1;
         }
         return $listComentarios;
+    }
+    public function selectUserInfo(){
+        $listComentariosGerais = null;
+
+        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id;";
+        //echo($sql);
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $cont=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listComentariosGerais[] = new ComentarioGeral();
+            $listComentariosGerais[$cont]->nome = $rs['nome'];
+            $listComentariosGerais[$cont]->email = $rs['email'];
+            $listComentariosGerais[$cont]->id_usuario = $rs['id_usuario'];
+            $listComentariosGerais[$cont]->id_comentario = $rs['id_comentario'];
+            $listComentariosGerais[$cont]->assunto = $rs['assunto'];
+            $listComentariosGerais[$cont]->texto = $rs['texto'];
+            $listComentariosGerais[$cont]->ativo = $rs['ativo'];
+            $listComentariosGerais[$cont]->foto = $rs['foto'];
+            $listComentariosGerais[$cont]->data = $rs['data'];
+
+            $cont+=1;
+        }
+        return $listComentariosGerais;
     }
 
     public function delete($id){
