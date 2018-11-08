@@ -188,6 +188,13 @@
 .generic-table{
     @include bloco(100%, 100%, auto);
     border-collapse: collapse;
+    >tr{
+        transition: 500ms ease-in-out;
+    }
+    tr:hover {
+        background-color: $darkgrey;
+        cursor: pointer;
+    }
 }
 .generic-table tr:first-child{
     background-color: $mediumgrey;
