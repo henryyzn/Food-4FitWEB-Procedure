@@ -9,12 +9,12 @@
 
         public function insert($classCategoria){
             $sql = "insert intl tbl_categoria(
-            id_categoria_parent,
+
             titulo,
             foto,
             ativo
             ) values (
-            '".$classCategoria->idCategoriaP."',
+
             'assets/images/categorias/".$classCategoria->titulo."',
             '".$classCategoria->foto."',
             '".$classCategoria->ativo."',

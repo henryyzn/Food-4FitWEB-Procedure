@@ -1,6 +1,6 @@
 <?php
 	if(isset($_POST)){
-		$nomearquivo = $_FILES['fileimage']['name'];
+		$nomearquivo = $_FILES['foto']['name'];
 		$tamanhoarquivo = round(($_FILES['fileimage']['size']/1024));
 		$extensao = strrchr($nomearquivo, '.');
 		$nome_foto = pathinfo($nomearquivo, PATHINFO_FILENAME);
@@ -10,7 +10,7 @@
 		$extensoes_permitidas = array('.png', '.jpg', '.jpeg', '.gif', '.svg');
 		if(in_array($extensao, $extensoes_permitidas)){ //in_array(, o que quer buscar)
 			if($tamanhoarquivo <= 5120){
-				$arquivo_tmp = $_FILES['fileimage']['tmp_name'];
+				$arquivo_tmp = $_FILES['foto']['tmp_name'];
 				if(move_uploaded_file($arquivo_tmp, $caminho_imagem)){
                     $caminho_imagem = $upload_dir_img .$nomearquivo;
 
