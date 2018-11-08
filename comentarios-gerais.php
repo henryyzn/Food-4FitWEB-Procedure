@@ -103,20 +103,26 @@
                 </form>
             </div>
             <?php
-                for($i = 1; $i < 8; $i++){
+                require_once("cms/models/DAO/comentario-geralDAO.php");
+
+                $comentarioGeralDAO = new comentarioGeralDAO();
+
+                $lista = $comentarioGeralDAO->selectAccept();
+
+                for($i = 0; $i < count($lista); $i++){
             ?>
             <div class="publication margin-bottom-30px">
                 <header class="publication-header">
                     <img src="assets/images/icons/person.jpg" alt="" class="profile-image-pub">
                     <section class="profile-name-date-pub">
-                        <h2>Nome do Autor</h2>
-                        <h3>Em: 01/01/2018</h3>
+                        <h2><?php echo($lista[$i]->nome)?></h2>
+                        <h3>Em: <?php echo($lista[$i]->data)?></h3>
                     </section>
                 </header>
                 <figure class="publication-image">
-                    <img src="assets/images/backgrounds/cereal.jpg" alt="Imagem da Publicação">
+                    <img src="<?php echo($lista[$i]->foto)?>" alt="Imagem da Publicação">
                     <div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <p><?php echo($lista[$i]->texto)?></p>
                         <span id="comentario">12 comentários</span>
                     </div>
                 </figure>

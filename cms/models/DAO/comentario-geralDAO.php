@@ -95,10 +95,10 @@ class comentarioGeralDAO {
         }
         return $listComentarios;
     }
-    public function selectUserInfo(){
+    public function selectUnaccept(){
         $listComentariosGerais = null;
 
-        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id;";
+        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id AND c.ativo = '0';";
         //echo($sql);
         //Instancia a classe
         $conex = new mysql_db();
@@ -126,7 +126,37 @@ class comentarioGeralDAO {
         }
         return $listComentariosGerais;
     }
+    public function selectAccept(){
+        $listComentariosGerais = null;
 
+        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id AND c.ativo = '1';";
+        //echo($sql);
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $cont=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listComentariosGerais[] = new ComentarioGeral();
+            $listComentariosGerais[$cont]->nome = $rs['nome'];
+            $listComentariosGerais[$cont]->email = $rs['email'];
+            $listComentariosGerais[$cont]->id_usuario = $rs['id_usuario'];
+            $listComentariosGerais[$cont]->id_comentario = $rs['id_comentario'];
+            $listComentariosGerais[$cont]->assunto = $rs['assunto'];
+            $listComentariosGerais[$cont]->texto = $rs['texto'];
+            $listComentariosGerais[$cont]->ativo = $rs['ativo'];
+            $listComentariosGerais[$cont]->foto = $rs['foto'];
+            $listComentariosGerais[$cont]->data = $rs['data'];
+
+            $cont+=1;
+        }
+        return $listComentariosGerais;
+    }
     public function delete($id){
         $sql = "delete from tbl_comentario_post where id=".$id;
 
@@ -134,7 +164,31 @@ class comentarioGeralDAO {
         $PDO_conex = $conex->conectar();
 
         if($PDO_conex->query($sql))
-            header('location:comentarios.php');
+            header('location:comentarios-gerais.php');
+        else
+            echo("<script>alert('Erro ao deletar este item.')</script>");
+    }
+    public function active($id){
+        $sql = "UPDATE tbl_comentario_geral SET ativo = '1' where id =".$id;
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql))
+            header('location:comentarios-gerais.php');
+        else
+            echo("<script>alert('Erro ao ativar este item.')</script>");
+    }
+    public function desactive($id){
+        $sql = "UPDATE tbl_comentario_geral SET ativo = '0' where id =".$id;
+        //echo($sql);
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql))
+            header('location:comentarios-gerais.php');
+        else
+            echo("<script>alert('Erro ao desativar este item.')</script>");
     }
 }
 ?>

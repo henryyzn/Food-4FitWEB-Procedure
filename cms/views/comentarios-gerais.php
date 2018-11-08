@@ -2,12 +2,26 @@
 if(isset($_GET['modo'])){
     $modo = $_GET['modo'];
     if($modo == 'excluir'){
-        require_once('../../cms/models/contatoClass.php');
-        require_once("../../cms/models/DAO/contatoDAO.php");
+        require_once('../../cms/models/comentario-geralClass.php');
+        require_once("../../cms/models/DAO/comentario-geralDAO.php");
 
-        $contatoDAO = new contatoDAO();
+        $comentarioGeralDAO = new comentarioGeralDAO();
         $id = $_GET['id'];
-        $contatoDAO->delete($id);
+        $comentarioGeralDAO->delete($id);
+    }elseif($modo == 'desativar'){
+        require_once('../../cms/models/comentario-geralClass.php');
+        require_once("../../cms/models/DAO/comentario-geralDAO.php");
+
+        $comentarioGeralDAO = new comentarioGeralDAO();
+        $id = $_GET['id'];
+        $comentarioGeralDAO->desactive($id);
+    }elseif($modo == 'ativar'){
+        require_once('../../cms/models/comentario-geralClass.php');
+        require_once("../../cms/models/DAO/comentario-geralDAO.php");
+
+        $comentarioGeralDAO = new comentarioGeralDAO();
+        $id = $_GET['id'];
+        $comentarioGeralDAO->active($id);
     }
 }
 ?>
@@ -20,7 +34,7 @@ if(isset($_GET['modo'])){
     <title>Food 4fit - CMS</title>
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
-    <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases.css">
+    <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
     <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
     <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
     <link rel="stylesheet" href="../../assets/css/font-style.css">
@@ -37,7 +51,7 @@ if(isset($_GET['modo'])){
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
             <div id="page-content">
-                <div>
+                <div style="width: 100%; height: auto; display: flex;">
                     <table class="generic-table">
                         <tr>
                             <td><span>Nome:</span></td>
@@ -51,7 +65,7 @@ if(isset($_GET['modo'])){
 
                             $comentarioGeralDAO = new comentarioGeralDAO();
 
-                            $lista = $comentarioGeralDAO->selectUserInfo();
+                            $lista = $comentarioGeralDAO->selectUnaccept();
 
                             for($i = 0; $i < count($lista); $i++){
                         ?>
@@ -60,15 +74,42 @@ if(isset($_GET['modo'])){
                             <td><span class="table-result"><?php echo($lista[$i]->email)?></span></td>
                             <td><span class="table-result"><?php echo($lista[$i]->data)?></span></td>
                             <td><span class="table-result"><?php echo($lista[$i]->assunto)?></td>
-                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='fale-conosco.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
-                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='fale-conosco.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='comentarios-gerais.php?modo=ativar&id=<?php echo($lista[$i]->id_comentario)?>'"></td>
+                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='comentarios-gerais.php?modo=excluir&id=<?php echo($lista[$i]->id_comentario)?>'"></td>
                         </tr>
                         <?php
                             }
                         ?>
                     </table>
-                    <table>
+                    <div style="width: 3px; background-color: #E8E8E8;"></div>
+                    <table class="generic-table">
+                        <tr>
+                            <td><span>Nome:</span></td>
+                            <td><span>E-Mail:</span></td>
+                            <td><span>Data:</span></td>
+                            <td><span>Assunto:</span></td>
+                            <td colspan="2"><span>Opções:</span></td>
+                        </tr>
+                        <?php
+                            require_once("../../cms/models/DAO/comentario-geralDAO.php");
 
+                            $comentarioGeralDAO = new comentarioGeralDAO();
+
+                            $lista = $comentarioGeralDAO->selectAccept();
+
+                            for($i = 0; $i < count($lista); $i++){
+                        ?>
+                        <tr>
+                            <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
+                            <td><span class="table-result"><?php echo($lista[$i]->email)?></span></td>
+                            <td><span class="table-result"><?php echo($lista[$i]->data)?></span></td>
+                            <td><span class="table-result"><?php echo($lista[$i]->assunto)?></td>
+                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='comentarios-gerais.php?modo=desativar&id=<?php echo($lista[$i]->id_comentario)?>'"></td>
+                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='comentarios-gerais.php?modo=excluir&id=<?php echo($lista[$i]->id_comentario)?>'"></td>
+                        </tr>
+                        <?php
+                            }
+                        ?>
                     </table>
                 </div>
             </div>
