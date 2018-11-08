@@ -83,12 +83,12 @@
             <span class="image"><img src="../../assets/images/cms/icons/sobre-empresa.svg" alt="Sobre a Empresa"></span>
             <span class="label">Sobre a Empresa</span>
         </a>
-        <a href="#">
-            <span class="image"><img src="../../assets/images/cms/icons/outras-funcoes.svg" alt="Outras Funções"></span>
-            <span class="label">Outras Funções</span>
+        <a href="slider.php">
+            <span class="image"><img src="../../assets/images/cms/icons/slider.svg" alt="Slider"></span>
+            <span class="label">Slider</span>
         </a>
         <a href="lojas.php">
-            <span class="image"><img src="../../assets/images/cms/icons/diario-de-bordo.svg" alt="Diário de Bordo"></span>
+            <span class="image"><img src="../../assets/images/cms/icons/lojas.svg" alt="Nossas Lojas"></span>
             <span class="label">Nossas Lojas</span>
         </a>
         <a href="#">

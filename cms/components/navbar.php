@@ -5,7 +5,7 @@
             <img src="../../assets/images/cms/icons/pesquisa.svg" alt="Pesquisar">
         </div>
         <div>
-            <label for="themeSwitch"><input type="checkbox" id="themeSwitch" class="switch-styled" name="theme" value="1"></label>
+            <label for="themeSwitch"><input type="checkbox" id="themeSwitch" class="switch-styled" name="CMStheme" value="1"></label>
             <div id="notificacoes" class="padding-left-15px">
                 <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
                 <span>12</span>
@@ -15,20 +15,20 @@
 </header>
 <script>
     $(function() {
-        var data = localStorage.getItem("theme");
+        var data = localStorage.getItem("CMStheme");
         if (data !== null) {
-            var check = $("input[name='theme']").attr("checked", "checked");
+            var check = $("input[name='CMStheme']").attr("checked", "checked");
             document.getElementById("themeStyle").href="../../assets/css/cms/stylesheet-cms-dark.css";
             document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
         }
     });
-    $("input[name='theme']").click(function() {
+    $("input[name='CMStheme']").click(function() {
         if ($(this).is(":checked")) {
-            localStorage.setItem("theme", $(this).val());
+            localStorage.setItem("CMStheme", $(this).val());
             document.getElementById("themeStyle").href="../../assets/css/cms/stylesheet-cms-dark.css";
             document.getElementById("themeBases").href="../../assets/css/bases-dark.css";
         } else {
-            localStorage.removeItem("theme");
+            localStorage.removeItem("CMStheme");
             document.getElementById("themeStyle").href="../../assets/css/cms/stylesheet-cms.css";
             document.getElementById("themeBases").href="../../assets/css/bases-light.css";
         }

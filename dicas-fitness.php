@@ -1,3 +1,26 @@
+<?php
+    if(isset($_POST['btn-salvar'])){
+
+        require_once('cms/models/comentario-postClass.php');
+        require_once('cms/models/DAO/comentario-postDAO.php');
+
+        date_default_timezone_set("America/Sao_Paulo");
+
+        $classComentario = new ComentarioPost();
+        $classComentario->id_dica_fitness = $_POST['id_dica_fitness'];
+        $classComentario->id_usuario = "2";
+        $classComentario->assunto = $_POST['assunto'];
+        $classComentario->texto = $_POST['texto'];
+        $classComentario->data = date('y/m/d');
+        $classComentario->ativo = "1";
+
+        $comentarioPostDAO = new comentarioPostDAO();
+
+        if($_POST['btn-salvar'] == "Salvar"){
+           $comentarioPostDAO->insert($classComentario);
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

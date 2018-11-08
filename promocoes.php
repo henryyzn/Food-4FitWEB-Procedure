@@ -26,21 +26,24 @@
         <header class="slider-1200-250 margin-top-30px">
             <div class="slider_content"><!--CONTAINER DO SLIDER-->
                 <ul id="slider">
+                    <?php
+                        require_once("cms/models/DAO/sliderDAO.php");
+
+                        //INSTANCIA DA CLASSE
+                        $sliderDAO = new sliderDAO();
+                        $ativo = null;
+                        //Chamar o método
+                        $lista = $sliderDAO->selectAll();
+
+                        //count -> comando que conta quantos itens tem o objeto
+                        for($i = 0; $i < count($lista); $i++){
+                    ?>
                     <li>
-                        <img src="assets/images/backgrounds/fit5.jpeg" alt="Título">
+                        <img src="<?php echo($lista[$i]->imagem)?>" alt="Imagem do Slider">
                     </li>
-                    <li>
-                        <img src="assets/images/backgrounds/fit.jpeg" alt="Título">
-                    </li>
-                    <li>
-                        <img src="assets/images/backgrounds/fit4.jpeg" alt="Título">
-                    </li>
-                    <li>
-                        <img src="assets/images/backgrounds/fit2.jpeg" alt="Título">
-                    </li>
-                    <li>
-                        <img src="assets/images/backgrounds/fit3.jpeg" alt="Título">
-                    </li>
+                    <?php
+                        }
+                    ?>
                 </ul>
             </div>
         </header>

@@ -699,3 +699,78 @@ input[type="checkbox"].switch-styled:checked:after{
 .display-flex {
     display: flex!important;
 }
+
+//Sessão de comentários de posts
+.comments-post-wrapper{
+    height: auto;
+    >h2{
+        font-size: 21px;
+        color: $black;
+        font-family: 'Roboto Bold';
+        line-height: 26px;
+        text-align: center;
+    }
+}
+.comments-post-row{
+    width: 100%;
+    height: auto;
+    background-color: $mediumgrey;
+    border-radius: 5px;
+}
+.comments-post-row-infos{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    >figure{
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        padding: 0;
+        overflow: hidden;
+        >img{
+            @include img-fit(48px, 48px);
+        }
+    }
+    >h3{
+        font-size: 18px;
+        color: $black;
+        font-family: 'Roboto Bold';
+        line-height: 24px;
+        text-align: left;
+        >span{
+            font-size: 14px;
+            color: $grey;
+            font-family: 'Roboto Medium Italic';
+            line-height: 22px;
+            text-align: left;
+        }
+    }
+}
+.comments-post-row-content{
+    width: 100%;
+    height: auto;
+    >h4{
+        font-size: 21px;
+        color: $black;
+        font-family: 'Roboto Bold';
+        line-height: 26px;
+        text-align: left;
+    }
+    >p{
+        font-size: 16px;
+        color: $darkgrey;
+        font-family: 'Roboto Regular';
+        line-height: 21px;
+        text-align: left;
+        width: 85%;
+    }
+    >span{
+        font-size: 14px;
+        color: $grey;
+        font-family: 'Roboto Medium Italic';
+        line-height: 22px;
+        text-align: left;
+        display: block;
+    }
+}

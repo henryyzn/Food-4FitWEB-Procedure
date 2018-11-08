@@ -10,29 +10,29 @@ class comentarioPostDAO {
     }
 
     public function insert($classComentario){
-            $sql = "insert into tbl_comentario_post(id_dica_fitness, id_usuario, assunto, texto, data, ativo) values (
-            '".$classComentario->id_dica_fitness."',
-            '".$classComentario->id_usuario."',
-            '".$classComentario->assunto."',
-            '".$classComentario->texto."',
-            '".$classComentario->data."',
-            '".$classComentario->ativo."');";
+        $sql = "insert into tbl_comentario_post(id_dica_fitness, id_usuario, assunto, texto, data, ativo) values (
+        '".$classComentario->id_dica_fitness."',
+        '".$classComentario->id_usuario."',
+        '".$classComentario->assunto."',
+        '".$classComentario->texto."',
+        '".$classComentario->data."',
+        '".$classComentario->ativo."');";
 
-            echo($sql);
+        //echo($sql);
 
-            //Instancia a classe
-            //$conex = new mysql_db();
-            //Abre a Conexao
-            //$PDO_conex = $conex->conectar();
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
 
-            //Executa a query
-            //if($PDO_conex->query($sql))
-                //header('location:index.php');
-            //else
-                //echo('erro no insert');
+        //Executa a query
+        if($PDO_conex->query($sql))
+            header('location:index.php');
+        else
+            echo('erro no insert');
 
-            //$conex->desconectar();
-        }
+        $conex->desconectar();
+    }
 
     public function selectId($id){
         $sql="select * from tbl_comentario_post where id=".$id;
@@ -66,10 +66,11 @@ class comentarioPostDAO {
         }
     }
 
-    public function selectAll(){
+    public function selectAll($id){
         $listComentarios = null;
-        $sql="select * from tbl_comentario_post order by id desc";
 
+        $sql="SELECT c.id as id, c.id_dica_fitness as id_dica_fitness, c.id_usuario as id_usuario_comentario, c.assunto as assunto, c.texto as texto, c.data as data, CONCAT(u.nome, ' ', u.sobrenome) as nome, u.email as email, u.id as id_usuario FROM tbl_comentario_post AS c INNER JOIN tbl_usuario AS u WHERE c.id_dica_fitness = '".$id."' ORDER BY c.id DESC";
+        //echo($sql);
         //Instancia a classe
         $conex = new mysql_db();
         //Abre a Conexao
@@ -84,11 +85,13 @@ class comentarioPostDAO {
             $listComentarios[] = new ComentarioPost();
             $listComentarios[$cont]->id = $rs['id'];
             $listComentarios[$cont]->id_dica_fitness = $rs['id_dica_fitness'];
-            $listComentarios[$cont]->id_usuario = $rs['id_usuario'];
+            $listComentarios[$cont]->id_usuario_comentario = $rs['id_usuario_comentario'];
             $listComentarios[$cont]->assunto = $rs['assunto'];
             $listComentarios[$cont]->texto = $rs['texto'];
             $listComentarios[$cont]->data = $rs['data'];
-            $listComentarios[$cont]->ativo = $rs['ativo'];
+            $listComentarios[$cont]->nome = $rs['nome'];
+            $listComentarios[$cont]->email = $rs['email'];
+            $listComentarios[$cont]->id_usuario = $rs['id_usuario'];
             $cont+=1;
         }
         return $listComentarios;

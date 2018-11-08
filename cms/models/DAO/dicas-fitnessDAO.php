@@ -63,6 +63,41 @@ class dicasFitnessDAO {
 
         }
 
+    }
+
+    public function selectDoubleId($id){
+
+        $sql="SELECT df.id as id, df.id_funcionario as id_funcionario, df.titulo as titulo, df.texto as texto, df.ativo as ativo, df.data as data, CONCAT(f.nome, ' ', f.sobrenome) AS nome, f.email as email, f.id as id_usuario FROM tbl_dica_fitness as df INNER JOIN tbl_funcionario AS f WHERE df.id =".$id;
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+        $select = $PDO_conex->query($sql);
+
+        if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+
+        $listDicasFitness = new DicasFitness();
+        $listDicasFitness->id = $rs['id'];
+        $listDicasFitness->id_funcionario = $rs['id_funcionario'];
+        $listDicasFitness->titulo = $rs['titulo'];
+        $listDicasFitness->texto = $rs['texto'];
+        $listDicasFitness->data = $rs['data'];
+        $listDicasFitness->ativo = $rs['ativo'];
+        $listDicasFitness->nome = $rs['nome'];
+        $listDicasFitness->email = $rs['email'];
+        $listDicasFitness->id_usuario = $rs['id_usuario'];
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+        if($PDO_conex->query($sql))
+            echo('');
+        else
+            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+
+        $conex->desconectar();
+
+        return $listDicasFitness;
+
+        }
 
     }
 

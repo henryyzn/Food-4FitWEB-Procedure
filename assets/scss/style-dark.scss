@@ -1924,7 +1924,7 @@ a{
         margin: 0;
         padding: 0;
         >img{
-            @include img-fit(1200px, 300px);
+            @include img-fit(100%, 300px);
         }
     }
     >h2{

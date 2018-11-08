@@ -1,5 +1,5 @@
 <?php
-    class Slider{
+    class ComentarioPost{
         public $id;
         public $id_dica_fitness;
         public $id_usuario;

@@ -45,7 +45,7 @@
             <figure>
                 <img src="assets/images/backgrounds/fitsession/img1.jpg" alt="Título da Publicação">
             </figure>
-            <h2 class="padding-left-50px padding-top-60px"><?php echo($titulo)?></h2>
+            <h2 class="padding-left-50px padding-top-30px"><?php echo($titulo)?></h2>
             <span class="padding-left-50px padding-bottom-10px">Autor: <b><?php echo($id_funcionario)?></b></span>
             <span class="padding-left-50px padding-bottom-30px">Data da Postagem: <b><?php echo($data)?></b></span>
         </header>
