@@ -1,6 +1,17 @@
 <?php
-    if(isset($_POST['btn-salvar'])){
 
+    session_start();
+
+    $id = null;
+    $id_usuario = null;
+    $assunto = null;
+    $texto = null;
+    $foto = null;
+    $ativo = null;
+    $botao = "Salvar";
+
+    if(isset($_GET['btn-salvar'])){
+        //echo("<script>alert('1');</script>");
         require_once('cms/models/comentario-geralClass.php');
         require_once('cms/models/DAO/comentario-geralDAO.php');
 
@@ -8,15 +19,15 @@
 
         $classComentarioGeral = new ComentarioGeral();
         $classComentarioGeral->id_usuario = "2";
-        $classComentarioGeral->assunto = $_POST['assunto'];
-        $classComentarioGeral->texto = $_POST['texto'];
+        $classComentarioGeral->assunto = $_GET['assunto'];
+        $classComentarioGeral->texto = $_GET['texto'];
         $classComentarioGeral->data = date('y/m/d');
-        $classComentarioGeral->ativo = "1";
-        $classComentarioGeral->ativo = $_GET['foto'];
+        $classComentarioGeral->ativo = "0";
+        $classComentarioGeral->foto = $_GET['txtfoto'];
 
         $comentarioGeralDAO = new comentarioGeralDAO();
 
-        if($_POST['btn-salvar'] == "Salvar"){
+        if($_GET['btn-salvar'] == "Salvar"){
            $comentarioGeralDAO->insert($classComentarioGeral);
         }
     }
@@ -39,7 +50,22 @@
     <link rel="stylesheet" href="assets/css/keyframes.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/public/js/jquery.form.js"></script>
 	<script src="assets/js/scripts.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#fotos').on('change', function(){
+                $('#frmfoto').ajaxForm({
+                    target:'#view'
+                }).submit();
+            });
+        });
+    </script>
+    <style>
+        .image-view{
+            width: 300px; height: auto; display: block;
+        }
+    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
@@ -51,25 +77,30 @@
                 <span>CRIAR PUBLICAÇÃO</span>
             </div>
             <div class="form-generic hide margin-bottom-20px">
-                <form action="comentarios-gerais.php" class="form-generic-content" style="display: flex; justify-content: space-between;">
-                    <div class="pub-create-column one">
-                        <label for="titulo" class="label-generic">Título da Publicação:</label>
-                        <input type="text" name="titulo" id="titulo" class="input-generic">
-
-                        <label for="texto" class="label-generic">Diga algo interessante!</label>
-                        <textarea name="texto" id="texto" class="textarea-generic"></textarea>
+                <form action="upload-comentario.php" method="POST" name="frmfoto" enctype="multipart/form-data" class="form-generic-content" id="frmfoto">
+                    <label class="label-generic">Imagem:</label>
+                    <div id="view" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                        <img src='assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
                     </div>
-                    <div class="pub-create-column two">
-                        <label for="imagem" class="label-generic">Que tal uma imagem?</label>
-                        <input type="file" name="imagem" id="imagem" class="file-generic">
+                    <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
+                    <input type="file" name="fileimage" id="fotos" style="display: none;">
+                </form>
+                <form id="form-sobre-nos" class="form-generic-content padding-top-30px" name="frmcadastro" method="GET" action="comentarios-gerais.php">
+                    <input name="txtfoto" type="hidden" value="<?php echo($foto)?>">
+
+                    <label for="assunto" class="label-generic">Assunto:</label>
+                    <input type="text" id="assunto" name="assunto" class="input-generic">
+
+                    <label for="texto" class="label-generic">Comentário:</label>
+                    <textarea type="text" name="texto" id="texto" class="textarea-generic"></textarea>
+
+                    <div class="form-row">
+                        <span>Cancelar</span>
+                        <button type="submit" value="Salvar" name="btn-salvar" class="margin-left-20px btn-generic">
+                            <span>Salvar</span>
+                        </button>
                     </div>
                 </form>
-                <div class="margin-top-10px margin-bottom-30px form-row">
-                    <span class="margin-right-15px" id="fechar">Cancelar</span>
-                    <div class="btn-generic">
-                        <span>Finalizar</span>
-                    </div>
-                </div>
             </div>
             <?php
                 for($i = 1; $i < 8; $i++){

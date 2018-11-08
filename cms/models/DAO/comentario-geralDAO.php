@@ -11,11 +11,11 @@ class comentarioGeralDAO {
 
     public function insert($classComentarioGeral){
         $sql = "insert into tbl_comentario_geral(id_usuario, assunto, texto, data, ativo, foto) values (
-        '".$classComentario->id_usuario."',
-        '".$classComentario->assunto."',
-        '".$classComentario->texto."',
-        '".$classComentario->data."',
-        '".$classComentario->ativo."',
+        '".$classComentarioGeral->id_usuario."',
+        '".$classComentarioGeral->assunto."',
+        '".$classComentarioGeral->texto."',
+        '".$classComentarioGeral->data."',
+        '".$classComentarioGeral->ativo."',
         'assets/images/comentario-geral/".$classComentarioGeral->foto."');";
 
         //echo($sql);
