@@ -1,5 +1,20 @@
 <?php
+    $foto = null;
     $botao = "Salvar";
+
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+
+        if($modo == 'excluir'){
+            require_once('../models/categoriaClass.php');
+            require_once('../models/DAO/categoriaDAO.php');
+
+            $categoriaDAO = new categoriaDAO();
+            $id = $_GET['id'];
+            $categoriaDAO->delete($id);
+        }
+
+    }
 
     if(isset($_GET['btn-salvar'])){
         require_once('../models/categoriaClass.php');
@@ -77,10 +92,7 @@
                                 <form id="form-categoria" class="form-generic-content" name="frmcategoria" method="GET" action="categoria.php">
                                     <input name="foto" type="hidden" value="">
 
-                                    <label for="titulo" class="label-generic">Título</label>
-                                    <input type="text" id="titulo" name="titulo"  required maxlength="255">
-
-                                    <label for="texto" class="label-generic">Cetegoria</label>
+                                    <label for="titulo" class="label-generic">Título Categoria Pai</label>
                                     <input type="text" id="titulo" name="titulo"  required maxlength="255">
 
                                     <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
@@ -91,6 +103,8 @@
                                 </form>
                             </div>
                         </div>
+
+
                         <div class="active" id="container-listagem">
                             <table class="generic-table">
                                 <tr>
@@ -100,28 +114,37 @@
                                     <td colspan="3"><span>Opções</span></td>
                                 </tr>
 
+                                    <?php
+                                        require_once('../models/DAO/categoriaDAO.php');
+
+                                        $categoriaDAO = new categoriaDAO();
+                                        $lista = $categoriaDAO->selectAll();
+
+                                        for($i = 0; $i < count($lista); $i++){
+
+                                    ?>
 
 
                                 <tr>
-                                    <td><img alt=""></td>
-                                    <td><span class="table-result"></span></td>
+                                    <td><?php echo($lista[$i]->titulo)?></td>
+                                    <td><img src='../../<?php echo($lista[$i]->foto)?>'></td>
+                                    <td><input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1"></td>
+<!--                                    <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>-->
 
-                                    <td><span class="table-result"></span><div class="select-block">
-                                        <div class="switch_box">
-                                            <input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1">
-                                        </div>
-                                        <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
-                                    </div></td>
 
-                                    <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
+
                                     <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=editar&id='"></td>
-                                    <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=excluir&id='"></td>
+                                    <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+
                                 </tr>
-
-
-
+                                     <?php
+                                }
+                            ?>
                             </table>
+
                         </div>
+
+
                     </div>
                 </div>
             </div>

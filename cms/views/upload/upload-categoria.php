@@ -15,7 +15,7 @@
                     $caminho_imagem = $upload_dir_img .$nomearquivo;
 
 					echo("<img src='".$caminho_imagem."'>");
-					echo("<script>frmcategoria.txtfoto.value='$nomearquivo';</script>");
+					echo("<script>frmcategoria.foto.value='$nomearquivo';</script>");
 				}
 			}else{
 				$erro="o arquivo selecionado é excede o limite máximo de 5MB";

@@ -8,16 +8,15 @@
         }
 
         public function insert($classCategoria){
-            $sql = "insert intl tbl_categoria(
+            $sql = "insert into tbl_categoria(
 
             titulo,
             foto,
             ativo
             ) values (
-
-            'assets/images/categorias/".$classCategoria->titulo."',
-            '".$classCategoria->foto."',
-            '".$classCategoria->ativo."',
+            '".$classCategoria->titulo."',
+            'assets/images/categorias/".$classCategoria->foto."',
+            '".$classCategoria->ativo."'
             );";
 
             echo($sql);
@@ -25,7 +24,7 @@
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                header('location:categoriaDAO.php');
+                header('location:categoria.php');
 //                echo('Inseriu com sucesso');
             else
                 echo('error');
@@ -44,14 +43,14 @@
             $select = $PDO_conex->query($sql);
 
             $cont=0;
-            while($rs=$select->fetch(PDO::FETCH_ASSOC))
-            {
-                $listCategoria[] = new Categoria();
+            while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+                $listCategoria[] = new categoria();
                 $listCategoria[$cont]->id= $rs['id'];
-                $listCategoria[$cont]->idCategoriaP = $rs['id_categoria_parent'];
+//                $listCategoria[$cont]->idCategoriaP = $rs['id_categoria_parent'];
                 $listCategoria[$cont]->titulo = $rs['titulo'];
                 $listCategoria[$cont]->foto = $rs['foto'];
                 $listCategoria[$cont]->ativo = $rs['ativo'];
+                $cont++;
             }
 
             return $listCategoria;
@@ -60,9 +59,11 @@
         public function delete($id){
             $sql = "delete from tbl_categoria where id=".$id;
 
+//            echo ($sql);
+
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
-            echo ($sql);
+
             if($PDO_conex->query($sql))
                 header('location:categoria.php');
 //                echo ($sql);
