@@ -98,7 +98,7 @@ class comentarioGeralDAO {
     public function selectUnaccept(){
         $listComentariosGerais = null;
 
-        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id AND c.ativo = '0';";
+        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id AND c.ativo = '0' ORDER BY c.id DESC;";
         //echo($sql);
         //Instancia a classe
         $conex = new mysql_db();
@@ -129,7 +129,7 @@ class comentarioGeralDAO {
     public function selectAccept(){
         $listComentariosGerais = null;
 
-        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id AND c.ativo = '1';";
+        $sql="SELECT c.id AS id_comentario, c.id_usuario AS id_comentario_usuario, c.assunto AS assunto, c.texto AS texto, c.foto AS foto, c.data AS data, CONCAT(u.nome, ' ', u.sobrenome) AS nome, u.email AS email, u.id AS id_usuario, c.ativo AS ativo FROM tbl_comentario_geral AS c INNER JOIN tbl_usuario AS u WHERE c.id_usuario = u.id AND c.ativo = '1' ORDER BY c.id DESC;";
         //echo($sql);
         //Instancia a classe
         $conex = new mysql_db();

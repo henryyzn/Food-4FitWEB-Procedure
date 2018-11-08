@@ -676,6 +676,15 @@ a{
 		cursor: pointer;
 	}
 }
+.publication-cabecalho{
+    @include bloco(100%, 100%, auto);
+    display: flex;
+    margin: 20px auto 20px auto;
+    >img{
+        @include img-fit(48px, 48px);
+        margin-left: 20px;
+    }
+}
 .publication{
 	@include bloco(100%, 100%, auto);
     background: $darkgreymedium;
@@ -692,10 +701,10 @@ a{
     @include bloco($width: 100%, $height: auto);
     @include display(flex, column, center, flex-start);
     >h2{
-        @include texto(21px, $white, 'Roboto Bold', 24px);
+        @include texto(21px, $white, 'Roboto Bold', 32px);
     }
     >h3{
-        @include texto(18px, $grey, 'Roboto Italic', 24px);
+        @include texto(16px, $grey, 'Roboto Italic', 24px);
     }
 }
 .publication-image{

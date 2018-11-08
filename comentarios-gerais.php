@@ -112,7 +112,7 @@
                 for($i = 0; $i < count($lista); $i++){
             ?>
             <div class="publication margin-bottom-30px">
-                <header class="publication-header">
+                <header class="publication-cabecalho">
                     <img src="assets/images/icons/person.jpg" alt="" class="profile-image-pub">
                     <section class="profile-name-date-pub">
                         <h2><?php echo($lista[$i]->nome)?></h2>
