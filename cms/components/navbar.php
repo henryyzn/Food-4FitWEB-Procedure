@@ -10,6 +10,6 @@
                 <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
                 <span>12</span>
             </div>
-            <img class="btn-logout" src="../../assets/images/cms/icons/sair-navbar.svg" alt="Sair">
+            <img class="btn-logout" src="../../assets/images/cms/icons/sair-navbar.svg" alt="Sair" onclick="location.href='modulo.php?logout';">
         </div>
 </header>

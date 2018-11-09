@@ -122,39 +122,10 @@
                 <figure class="publication-image">
                     <img src="<?php echo($lista[$i]->foto)?>" alt="Imagem da Publicação">
                     <div>
+                        <h2><?php echo($lista[$i]->assunto)?></h2>
                         <p><?php echo($lista[$i]->texto)?></p>
-                        <span id="comentario">12 comentários</span>
                     </div>
                 </figure>
-                <div class="publication-comments hide">
-                    <div class="comment-row">
-                        <figure>
-                            <img src="assets/images/icons/person.jpg" alt="Nome do Perfil">
-                            <span>Nome do Usuário</span>
-                        </figure>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy!</p>
-                    </div>
-
-                    <div class="comment-row">
-                        <figure>
-                            <img src="assets/images/icons/person.jpg" alt="Nome do Perfil">
-                            <span>Nome do Usuário</span>
-                        </figure>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy!</p>
-                    </div>
-
-                    <div class="comment-row">
-                        <figure>
-                            <img src="assets/images/icons/person.jpg" alt="Nome do Perfil">
-                            <span>Nome do Usuário</span>
-                        </figure>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy!</p>
-                    </div>
-
-                    <div class="btn-generic margin-bottom-15px margin-right-auto margin-left-auto">
-                        <span>Carregar Mais</span>
-                    </div>
-                </div>
             </div>
             <?php
                 }

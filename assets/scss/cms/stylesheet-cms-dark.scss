@@ -61,7 +61,7 @@ body {
             @include bloco($width: 300px, $height: 300px);
             >img{
                 @include img-fit(300px, 300px);
-                background-image: url("../../images/logo/logo.svg");
+                background-image: url("../../images/logo/logo-4fit.svg");
                 background-size: cover;
                 -webkit-animation: pulse 3s infinite ease-in-out;
                 -o-animation: pulse 3s infinite ease-in-out;

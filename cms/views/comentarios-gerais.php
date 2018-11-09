@@ -67,7 +67,7 @@ if(isset($_GET['modo'])){
 
                             $lista = $comentarioGeralDAO->selectUnaccept();
 
-                            for($i = 0; $i < count($lista); $i++){
+                            for($i = 0; $i < @count($lista); $i++){
                         ?>
                         <tr>
                             <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
@@ -97,7 +97,7 @@ if(isset($_GET['modo'])){
 
                             $lista = $comentarioGeralDAO->selectAccept();
 
-                            for($i = 0; $i < count($lista); $i++){
+                            for($i = 0; $i < @count($lista); $i++){
                         ?>
                         <tr>
                             <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
