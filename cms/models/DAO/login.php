@@ -2,7 +2,7 @@
     class loginDAO{
         public function __construct(){
              require_once('dataBase.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cadastro-usuarioClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
 
         }
 
@@ -20,7 +20,7 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-                $listLogin = new Login();
+                $listLogin = new usuario();
                 $listLogin->id = $rs['id'];
                 $listLogin->nome = $rs['nome'];
                 $listLogin->sobrenome = $rs['sobrenome'];
