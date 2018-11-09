@@ -1,18 +1,17 @@
 <?php
     class loginDAO{
         public function __construct(){
-             require_once('dataBase.php');
+            require_once('dataBase.php');
             require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
-
         }
 
         public function checkLogin($matricula, $senha){
 
             $passwd = md5($senha);
 
-            $sql="SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, ativo, matricula, avatar FROM tbl_funcionario WHERE matricula = '".$matricula."' AND senha = '".$passwd."' AND ativo = '1';";
+            $sql = "SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, ativo, matricula, avatar FROM tbl_funcionario WHERE matricula = '".$matricula."' AND senha = '".$passwd."' AND ativo = '1';";
 
-            //echo($sql);
+            echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();

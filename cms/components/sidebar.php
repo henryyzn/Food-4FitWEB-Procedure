@@ -12,12 +12,12 @@
     <div class="separator"></div>
     <div id="perfil">
             <figure id="avatar">
-                <img src="<?php echo($_COOKIE['avatar_funcionario'])?>" alt="Nome do Usuário" onclick="javascript:location.href='perfil.php'">
+                <img src="../../<?php echo($_SESSION['avatar_funcionario'])?>" alt="Nome do Usuário" onclick="javascript:location.href='perfil.php'">
             </figure>
         <div id="informacoes">
             <div id="informacoes-content">
-                <span id="nome" onclick="javascript:location.href='perfil.php'"><?php echo $_COOKIE['nome_funcionario'] ?></span>
-                <span id="email"><?php echo $_COOKIE['email_funcionario'] ?></span>
+                <span id="nome" onclick="javascript:location.href='perfil.php'"><?php echo $_SESSION['nome_funcionario'] ?></span>
+                <span id="email"><?php echo $_SESSION['email_funcionario'] ?></span>
                 <a href="#" id="dropdown"></a>
             </div>
         </div>
