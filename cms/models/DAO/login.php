@@ -2,7 +2,7 @@
     class loginDAO{
         public function __construct(){
              require_once('dataBase.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/loginClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cadastro-usuarioClass.php');
 
         }
 

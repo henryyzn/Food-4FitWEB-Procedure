@@ -1,10 +1,15 @@
+<?php
+    session_start();
+    require_once('modulo.php');
+    validateLog();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Nome do Usuário - Food 4Fit</title>
+	<title><?php echo $_SESSION['nome_usuario'] ?> - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
 	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
     <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
@@ -34,20 +39,24 @@
 					<img src="assets/images/icons/edit.svg" alt="Editar Informações de Perfil">
 				</div>
             </div>
-			<h2 class="profile-name animate fadeInDown margin-bottom-5px">João Guedez Ferraz</h2>
-			<span class="profile-email animate fadeInDown margin-bottom-30px">endereco@provedor.com</span>
+			<h2 class="profile-name animate fadeInDown margin-bottom-5px"><?php echo $_SESSION['nome_usuario'] ?></h2>
+			<span class="profile-email animate fadeInDown margin-bottom-30px"><?php echo $_SESSION['email_usuario'] ?></span>
 		</header>
 		<section class="profile-section-block">
 			<div class="profile-section-column">
 				<h3 class="padding-bottom-15px">Informações de Perfil</h3>
 				<ul class="profile-info-list padding-top-5px padding-bottom-30px">
-					<li>Data de Nascimento: <span>11/08/2000</span></li>
-					<li>CPF/CNPJ: <span>17745-111</span></li>
-					<li>RG: <span>12.355.734-0</span></li>
-					<li>Sexo: <span>Masculino</span></li>
-					<li>Telefone 1: <span>(11) 8743-3487</span></li>
-					<li>Telefone 2: <span>N/A</span></li>
-					<li>Celular: <span>(11) 98743-3487</span></li>
+					<li>Data de Nascimento: <span><?php echo $_SESSION['dtNasc_usuario'] ?></span></li>
+					<li>CPF/CNPJ: <span><?php echo $_SESSION['cpf_usuario'] ?></span></li>
+					<li>RG: <span><?php echo $_SESSION['rg_usuario'] ?></span></li>
+					<li>Sexo: <span><?php
+                                        if($_SESSION['genero_usuario'] == 'H')
+                                            echo "Homem";
+                                        else
+                                            echo "Mulher";
+                                    ?></span></li>
+					<li>Telefone: <span><?php echo $_SESSION['telefone_usuario'] ?></span></li>
+					<li>Celular: <span><?php echo $_SESSION['celular_usuario'] ?></span></li>
 				</ul>
 				<a href="meus-enderecos.php" class="padding-bottom-5px">Meus Endereços de Entrega</a>
 				<a href="meus-cartoes.php" class="padding-top-5px">Meus Cartões Salvos</a>
