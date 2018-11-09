@@ -1,17 +1,14 @@
 <?php
     function validateLog(){
-        if(!isset($_COOKIE['matricula'])) {
+        if(!isset($_SESSION['matricula_funcionario'])) {
             session_unset();
             header("location:login.php");
-        }else{
-            session_start();
         }
     }
     if(isset($_GET['logout'])){
         // Remove Todas As Sessões
         session_unset();
-        $_SESSION['id_funcionario'] = null;
-        setcookie('matricula', null);
+        $_SESSION['matricula_funcionario'] = null;
         header('location:login.php');
 	}
 ?>

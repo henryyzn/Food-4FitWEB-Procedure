@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once("modulo.php");
+    validateLog();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>

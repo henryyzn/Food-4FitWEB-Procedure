@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require_once("../models/DAO/dataBase.php");
     require_once("../models/DAO/login.php");
 
@@ -17,10 +19,10 @@
         //Resgatando do Banco de dados
         //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
         if(@count($listLogin)>0){
-            setcookie('matricula', $listLogin->matricula);
-            setcookie('nome_funcionario', $listLogin->nome_completo);
-            setcookie('email_funcionario', $listLogin->email);
-            setcookie('avatar_funcionario', $listLogin->avatar);
+            $_SESSION['matricula_funcionario'] = $listLogin->matricula;
+            $_SESSION['nome_funcionario'] = $listLogin->nome_completo;
+            $_SESSION['email_funcionario'] = $listLogin->email_funcionario;
+            $_SESSION['avatar_funcionario'] = $listLogin->avatar_funcionario;
             header('location:index.php');
         }
     }

@@ -12,7 +12,7 @@
     <div class="separator"></div>
     <div id="perfil">
             <figure id="avatar">
-                <img src="../../<?php echo $_COOKIE['avatar_funcionario'] ?>" alt="Nome do Usuário" onclick="javascript:location.href='perfil.php'">
+                <img src="<?php echo($_COOKIE['avatar_funcionario'])?>" alt="Nome do Usuário" onclick="javascript:location.href='perfil.php'">
             </figure>
         <div id="informacoes">
             <div id="informacoes-content">
