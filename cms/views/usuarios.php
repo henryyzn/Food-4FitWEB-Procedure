@@ -3,6 +3,8 @@
     //Estou dando require_once nesta página
     //pois se não for feito isso
     //não irá achar os métodos da Class
+    session_start();
+
     require_once('../../cms/models/cadastro-usuarioClass.php');
 
     if(isset($_GET['modo'])){

@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     $botao = "Salvar";
 
     if(isset($_GET['btn-salvar'])){

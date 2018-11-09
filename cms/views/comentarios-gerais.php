@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_GET['modo'])){
     $modo = $_GET['modo'];
     if($modo == 'excluir'){
