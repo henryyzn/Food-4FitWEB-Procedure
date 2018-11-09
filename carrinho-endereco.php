@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once('modulo.php');
+    validateLog();
+?>
 <div class="display-none" style="width: 100%;">
     <?php require_once("carrinho-cadastrar-endereco.html"); ?>
     <section id="shopping-cart-address-block" class="padding-top-15px">

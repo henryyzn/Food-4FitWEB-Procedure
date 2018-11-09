@@ -1,6 +1,10 @@
 <?php
 
     if(isset($_GET['btn-salvar'])){
+        session_start();
+        require_once('modulo.php');
+        validateLog();
+
         require_once('cms/models/contatoClass.php');
         require_once('cms/models/DAO/contatoDAO.php');
 

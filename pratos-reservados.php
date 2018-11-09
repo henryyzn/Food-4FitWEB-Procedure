@@ -1,7 +1,9 @@
 <?php
+    session_start();
+    require_once('modulo.php');
+    validateLog();
     $dataAtual = new DateTime();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    require_once('modulo.php');
+    validateLog();
 
     $id_usuario = null;
     $titulo = null;
