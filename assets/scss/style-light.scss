@@ -1161,10 +1161,6 @@ a{
 //Perfil
 .profile-header-block{
 	@include bloco($width: 100%, $height: auto);
-    background-image: url('../images/backgrounds/cover.jpg');
-    background-size: cover;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 	.profile-header-overlay{
 		@include bloco($width: 100%, $height: auto);
 		@include display(flex, row, center, center);
@@ -1172,14 +1168,16 @@ a{
 			width: 60px;
 			height: 60px;
 			border-radius: 50%;
-			>img{
-				@include img-fit(60px, 60px);
-				transition: 800ms ease-in-out;
-				&:hover{
-					transform: scale(1.05);
-					cursor: pointer;
-				}
-			}
+            cursor: pointer;
+            path{
+                fill: $olivine;
+            }
+            circle{
+                fill: $olivine;
+            }
+            >img{
+                @include img-fit(100%, 100%);
+            }
 		}
 		.profile-header-image{
 			@include bloco($width: 250px, $height: 250px);
@@ -1191,7 +1189,7 @@ a{
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
-			border: 5px solid $white;
+			border: 5px solid $olivine;
 			>img{
 				@include img-fit(250px, 250px);
 				min-width: 250px;
@@ -1204,10 +1202,10 @@ a{
 		}
 	}
 	.profile-name{
-		@include texto(28px, $white, 'Roboto Regular', 31px, center);
+		@include texto(28px, $black, 'Roboto Regular', 31px, center);
 	}
 	.profile-email{
-		@include texto(21px, #FAFAFA, 'Roboto Light', 23px, center);
+		@include texto(21px, $grey, 'Roboto Light', 23px, center);
 	}
 }
 .profile-section-block{

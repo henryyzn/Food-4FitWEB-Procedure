@@ -13,6 +13,7 @@
     $_SESSION['genero_usuario'] = null;
     $_SESSION['telefone_usuario'] = null;
     $_SESSION['celular_usuario'] = null;
+    $_SESSION['avatar_usuario'] = null;
 
     if(isset($_GET['btn-login'])){
 
@@ -32,6 +33,7 @@
             $_SESSION['genero_usuario'] = $listUsuario->genero;
             $_SESSION['telefone_usuario'] = $listUsuario->telefone;
             $_SESSION['celular_usuario'] = $listUsuario->celular;
+            $_SESSION['avatar_usuario'] = $listUsuario->avatar;
             header('location:meu-perfil.php');
         }
     }

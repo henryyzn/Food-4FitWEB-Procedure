@@ -10,7 +10,7 @@
 
             $passwd = md5($senha);
 
-            $sql="SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, data_nascimento, cpf, rg, genero, telefone, celular FROM tbl_usuario WHERE email = '".$login."' AND senha = '".$senha."';";
+            $sql="SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, data_nascimento, cpf, rg, genero, telefone, celular, avatar FROM tbl_usuario WHERE email = '".$login."' AND senha = '".$senha."';";
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -30,6 +30,7 @@
                 $listUsuario->genero = $rs['genero'];
                 $listUsuario->telefone = $rs['telefone'];
                 $listUsuario->celular = $rs['celular'];
+                $listUsuario->avatar = $rs['avatar'];
 
                 $conex = new mysql_db();
                 $PDO_conex = $conex->conectar();

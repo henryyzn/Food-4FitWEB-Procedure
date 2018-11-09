@@ -1172,10 +1172,6 @@ a{
 //Perfil
 .profile-header-block{
 	@include bloco($width: 100%, $height: auto);
-    background-image: url('../images/backgrounds/cover.jpg');
-    background-size: cover;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 	.profile-header-overlay{
 		@include bloco($width: 100%, $height: auto);
 		@include display(flex, row, center, center);
@@ -1183,14 +1179,16 @@ a{
 			width: 60px;
 			height: 60px;
 			border-radius: 50%;
-			>img{
-				@include img-fit(60px, 60px);
-				transition: 800ms ease-in-out;
-				&:hover{
-					transform: scale(1.05);
-					cursor: pointer;
-				}
-			}
+            cursor: pointer;
+            path{
+                fill: $white;
+            }
+            circle{
+                fill: $white;
+            }
+            >img{
+                @include img-fit(100%, 100%);
+            }
 		}
 		.profile-header-image{
 			@include bloco($width: 250px, $height: 250px);
