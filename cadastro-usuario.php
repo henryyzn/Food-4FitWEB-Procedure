@@ -156,21 +156,21 @@
 
         <?php
 
-            if($genero == "H"){
-                $checkH = 'checked';
-                $checkM = null;
-            }else{
-                $checkH = null;
+            if($genero == "M"){
                 $checkM = 'checked';
+                $checkF = null;
+            }else{
+                $checkM = null;
+                $checkF = 'checked';
             }
         ?>
 
 
         <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
         <div id="sexo" style="display: flex;">
-            <input type="radio" name="sexo" id="homem" value="H" <?php echo($checkH); ?> >
+            <input type="radio" name="sexo" id="homem" value="M" <?php echo($checkM); ?> >
             <label for="homem" class="label-generic">Homem</label>
-            <input type="radio" name="sexo" id="mulher" value="M" <?php echo ($checkM); ?> required class="margin-left-15px">
+            <input type="radio" name="sexo" id="mulher" value="F" <?php echo ($checkF); ?> required class="margin-left-15px">
             <label for="mulher" class="label-generic">Mulher</label>
         </div>
     </div>
