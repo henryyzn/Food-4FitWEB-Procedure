@@ -27,24 +27,24 @@ class ingredientesDAO {
             'assets/archives/ingredientes/".$classIngredientes->foto."',
             '".$classIngredientes->ativo."');";
 
-            echo($sql);
+            //echo($sql);
 
             //Instancia a classe
-            //$conex = new mysql_db();
+            $conex = new mysql_db();
             //Abre a Conexao
-            //$PDO_conex = $conex->conectar();
+            $PDO_conex = $conex->conectar();
 
             //Executa a query
-            //if($PDO_conex->query($sql))
-                //header('location:ingredientes.php');
-            //else
-                //echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            if($PDO_conex->query($sql))
+                header('location:ingredientes.php');
+            else
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
-            //$conex->desconectar();
+            $conex->desconectar();
         }
 
     public function selectId($id){
-        $sql="select * from tbl_dica_fitness where id=".$id;
+        $sql="SELECT * FROM tbl_ingrediente WHERE id=".$id;
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
@@ -52,13 +52,23 @@ class ingredientesDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listDicasFitness = new DicasFitness();
-        $listDicasFitness->id = $rs['id'];
-        $listDicasFitness->id_funcionario = $rs['id_funcionario'];
-        $listDicasFitness->titulo = $rs['titulo'];
-        $listDicasFitness->texto = $rs['texto'];
-        $listDicasFitness->data = $rs['data'];
-        $listDicasFitness->ativo = $rs['ativo'];
+        $listIngredientes = new Ingredientes();
+        $listIngredientes->id = $rs['id'];
+        $listIngredientes->id_categoria_ingrediente = $rs['id_categoria_ingrediente'];
+        $listIngredientes->id_unidade_medida = $rs['id_unidade_medida'];
+        $listIngredientes->titulo = $rs['titulo'];
+        $listIngredientes->descricao = $rs['descricao'];
+        $listIngredientes->preco = $rs['preco'];
+        $listIngredientes->valor_energ = $rs['valor_energ'];
+        $listIngredientes->carboidratos = $rs['carboidratos'];
+        $listIngredientes->proteinas = $rs['proteinas'];
+        $listIngredientes->gordura_total = $rs['gordura_total'];
+        $listIngredientes->gordura_saturada = $rs['gordura_saturada'];
+        $listIngredientes->gordura_trans = $rs['gordura_trans'];
+        $listIngredientes->fibra_alimentar = $rs['fibra_alimentar'];
+        $listIngredientes->sodio = $rs['sodio'];
+        $listIngredientes->foto = $rs['foto'];
+        $listIngredientes->ativo = $rs['ativo'];
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
@@ -69,7 +79,7 @@ class ingredientesDAO {
 
         $conex->desconectar();
 
-        return $listDicasFitness;
+        return $listIngredientes;
 
         }
 
@@ -125,23 +135,35 @@ class ingredientesDAO {
 
     public function update($classDicasFitness){
 
-        $sql = "UPDATE tbl_dica_fitness SET
-        id_funcionario = '".$classDicasFitness->id_funcionario."',
-        titulo = '".$classDicasFitness->titulo."',
-        texto = '".$classDicasFitness->texto."',
-        data = '".$classDicasFitness->data."',
-        ativo = '".$classDicasFitness->ativo."'
+        $sql = "UPDATE tbl_ingrediente SET
+        id_categoria_ingrediente = '".$classDicasFitness->id_funcionario."',
+        id_unidade_medida = '".$classDicasFitness->titulo."',
+        titulo = '".$classDicasFitness->texto."',
+        descricao = '".$classDicasFitness->descricao."',
+        preco = '".$classDicasFitness->preco."',
+        valor_energ = '".$classDicasFitness->valor_energ."',
+        carboidratos = '".$classDicasFitness->carboidratos."',
+        proteinas = '".$classDicasFitness->proteinas."',
+        gordura_total = '".$classDicasFitness->gordura_total."',
+        gordura_saturada = '".$classDicasFitness->gordura_saturada."',
+        gordura_trans = '".$classDicasFitness->gordura_trans."',
+        fibra_alimentar = '".$classDicasFitness->fibra_alimentar."',
+        sodio = '".$classDicasFitness->sodio."',
+        foto = '".$classDicasFitness->foto."',
+        ativo = '".$classDicasFitness->ativo."',
         where id=".$classDicasFitness->id;
 
         echo($sql);
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
+        //$conex = new mysql_db();
+       // $PDO_conex = $conex->conectar();
 
-        if($PDO_conex->query($sql))
-            header('location:dicas-fitness.php');
+        //if($PDO_conex->query($sql))
+            //header('location:dicas-fitness.php');
+        //else
+            //echo("<script>alert('Erro ao editar informações.')</script>");
 
-        $conex->desconectar();
+        //$conex->desconectar();
 
     }
 

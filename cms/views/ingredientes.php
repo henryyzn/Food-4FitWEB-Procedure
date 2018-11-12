@@ -32,6 +32,8 @@
             $ingredientesDAO->delete($id);
 
         }else if($modo == 'editar'){
+
+            //echo("<script>console.log('valido')</script>");
             require_once('../models/ingredientesClass.php');
             require_once('../models/DAO/ingredientesDAO.php');
 
@@ -43,22 +45,22 @@
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
             if(count($listIngredientes)>0){
-                $id = $listSobreNos->id;
-                $id_categoria_ingrediente = $listSobreNos->id_categoria_ingrediente;
-                $id_unidade_medida = $listSobreNos->id_unidade_medida;
-                $titulo = $listSobreNos->titulo;
-                $descricao = $listSobreNos->descricao;
-                $preco = $listSobreNos->preco;
-                $valor_energ = $listSobreNos->valor_energ;
-                $carboidratos = $listSobreNos->carboidratos;
-                $proteinas = $listSobreNos->proteinas;
-                $gordura_total = $listSobreNos->gordura_total;
-                $gordura_saturada = $listSobreNos->gordura_saturada;
-                $gordura_trans = $listSobreNos->gordura_trans;
-                $fibra_alimentar = $listSobreNos->fibra_alimentar;
-                $sodio = $listSobreNos->sodio;
-                $foto = $listSobreNos->foto;
-                $ativo = $listSobreNos->ativo;
+                $id = $listIngredientes->id;
+                $id_categoria_ingrediente = $listIngredientes->id_categoria_ingrediente;
+                $id_unidade_medida = $listIngredientes->id_unidade_medida;
+                $titulo = $listIngredientes->titulo;
+                $descricao = $listIngredientes->descricao;
+                $preco = $listIngredientes->preco;
+                $valor_energ = $listIngredientes->valor_energ;
+                $carboidratos = $listIngredientes->carboidratos;
+                $proteinas = $listIngredientes->proteinas;
+                $gordura_total = $listIngredientes->gordura_total;
+                $gordura_saturada = $listIngredientes->gordura_saturada;
+                $gordura_trans = $listIngredientes->gordura_trans;
+                $fibra_alimentar = $listIngredientes->fibra_alimentar;
+                $sodio = $listIngredientes->sodio;
+                $foto = $listIngredientes->foto;
+                $ativo = $listIngredientes->ativo;
 
                 $botao = "Editar";
             }
@@ -128,7 +130,6 @@
             $('#gordura_trans').mask("#0000.00", {reverse: true});
             $('#fibra_alimentar').mask("#0000.00", {reverse: true});
             $('#sodio').mask("#0000.00", {reverse: true});
-            $('#preco').mask("#000.000.000.000,00", {reverse: true});
 
             $('#fotos').on('change', function(){
                 $('#frmfoto').ajaxForm({
@@ -199,13 +200,13 @@
                             <input name="txtfoto" type="hidden" value="<?php echo($foto)?>">
 
                             <label for="titulo" class="label-generic">Nome do Ingrediente:</label>
-                            <input id="titulo" name="titulo" class="input-generic" required placeholder="Digite um nome para o ingrediente...">
+                            <input id="titulo" name="titulo" class="input-generic" required placeholder="Digite um nome para o ingrediente..." value="<?php echo($titulo)?>">
 
                             <label for="descricao" class="label-generic">Descrição do Ingrediente:</label>
-                            <textarea id="descricao" name="descricao" class="textarea-generic"></textarea>
+                            <textarea id="descricao" name="descricao" class="textarea-generic">value="<?php echo($descricao)?>"</textarea>
 
                             <label for="preco" class="label-generic">Preço do Ingrediente:</label>
-                            <input id="preco" name="preco" class="input-generic" required placeholder="Digite um preço para o ingrediente...">
+                            <input id="preco" name="preco" class="input-generic" required placeholder="Digite um preço para o ingrediente..." value="<?php echo($preco)?>">
 
                             <label for="categoria" class="label-generic">Categoria:</label>
                             <select id="id_categoria_ingrediente" name="id_categoria_ingrediente" class="input-generic" required>
@@ -214,35 +215,48 @@
 
                             <label for="unidadeMedida" class="label-generic">Unidade de Medida:</label>
                             <select id="id_unidade_medida" name="id_unidade_medida" class="input-generic" required>
-                                <option selected>1</option>
+                                <option selected>Selecione uma opção:</option>
+                                <?php
+                                    require_once("../models/DAO/unidade-medidaDAO.php");
+
+                                    $unidadeMedidaDAO = new unidadeMedidaDAO();
+
+                                    $lista = $unidadeMedidaDAO->selectAll();
+
+                                    for($i = 0; $i < count($lista); $i++){
+                                ?>
+                                <option value="<?php echo($lista[$i]->id)?>"><strong>(<?php echo($lista[$i]->sigla)?>)</strong> <?php echo($lista[$i]->unid_medida)?></option>
+                                <?php
+                                    }
+                                ?>
                             </select>
 
                             <h3 class="form-title">Informações Nutricionais</h3>
                             <p class="description margin-bottom-30px">Complete a tabela nutricional para completar a descrição do ingrediente e possibilitar a produção dos pratos com ele</p>
 
                             <label for="valor_energ" class="label-generic">Valor Energético:</label>
-                            <input id="valor_energ" name="valor_energ" class="input-generic" required placeholder="kcal=kj (quilos por caloria)">
+                            <input id="valor_energ" name="valor_energ" class="input-generic" required placeholder="kcal=kj (quilos por caloria)" value="<?php echo($valor_energ)?>">
 
                             <label for="carboidratos" class="label-generic">Carboidratos:</label>
-                            <input id="carboidratos" name="carboidratos" class="input-generic" required placeholder="g (gramas)">
+                            <input id="carboidratos" name="carboidratos" class="input-generic" required placeholder="g (gramas)" value="<?php echo($carboidratos)?>">
 
                             <label for="proteinas" class="label-generic">Proteínas:</label>
-                            <input id="proteinas" name="proteinas" class="input-generic" required placeholder="g (gramas)">
+                            <input id="proteinas" name="proteinas" class="input-generic" required placeholder="g (gramas)" value="<?php echo($proteinas)?>">
 
                             <label for="gordura_total" class="label-generic">Gordura Total:</label>
-                            <input id="gordura_total" name="gordura_total" class="input-generic" required placeholder="g (gramas)">
+                            <input id="gordura_total" name="gordura_total" class="input-generic" required placeholder="g (gramas)" value="<?php echo($gordura_total)?>">
 
                             <label for="gordura_saturada" class="label-generic">Gordura Saturada:</label>
-                            <input id="gordura_saturada" name="gordura_saturada" class="input-generic" required placeholder="g (gramas)">
+                            <input id="gordura_saturada" name="gordura_saturada" class="input-generic" required placeholder="g (gramas)" value="<?php echo($gordura_saturada)?>">
 
                             <label for="gordura_trans" class="label-generic">Gordura Trans:</label>
-                            <input id="gordura_trans" name="gordura_trans" class="input-generic" required placeholder="g (gramas)">
+                            <input id="gordura_trans" name="gordura_trans" class="input-generic" required placeholder="g (gramas)" value="<?php echo($gordura_trans)?>">
 
                             <label for="fibra_alimentar" class="label-generic">Fibra Alimentar:</label>
-                            <input id="fibra_alimentar" name="fibra_alimentar" class="input-generic" required placeholder="g (gramas)">
+                            <input id="fibra_alimentar" name="fibra_alimentar" class="input-generic" required placeholder="g (gramas)" value="<?php echo($fibra_alimentar)?>">
 
                             <label for="sodio" class="label-generic">Sódio:</label>
-                            <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)">
+                            <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)" value="<?php echo($sodio)?>">
                             <span class="status margin-bottom-10px">Status Inicial do Ingrediente:</span>
                             <div class="select-block">
                                 <div class="switch_box">
