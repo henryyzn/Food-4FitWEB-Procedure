@@ -23,14 +23,15 @@
         $classCadUser->genero = $_GET['sexo'];
         $classCadUser->telefone = $_GET['telefone'];
         $classCadUser->celular = $_GET['celular'];
-        $classCadUser->senha = $_GET['senha'];
-        $classCadUser->senhaConfirma = $_GET['confsenha'];
+        $passwd = md5($_GET['senha']);
+        $classCadUser->senha = $passwd;
+
         $classCadUser->respSecreta = $_GET['respostasecreta'];
 //        $classCadUser->avatar = $_GET['avatar'];
 //        $classCadUser->redeSocial = $_GET['rede_social'];
 //        $classCadUser->token = $_GET['token'];
 //        $classCadUser->ativo = $_GET['ativo'];
-        $classCadUser->emailConfirma = $_GET['emailConfirma'];
+
         $classCadUser->inscEstadual = $_GET['inscricaoEstadual'];
 //        $classCadUser->altura = $_GET['altura'];
 //        $classCadUser->peso = $_GET['peso'];

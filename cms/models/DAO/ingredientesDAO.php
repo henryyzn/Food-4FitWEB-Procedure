@@ -24,7 +24,7 @@ class ingredientesDAO {
             '".$classIngredientes->gordura_trans."',
             '".$classIngredientes->fibra_alimentar."',
             '".$classIngredientes->sodio."',
-            '".$classIngredientes->foto."',
+            'assets/archives/ingredientes/".$classIngredientes->foto."',
             '".$classIngredientes->ativo."');";
 
             echo($sql);
