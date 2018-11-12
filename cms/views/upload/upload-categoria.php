@@ -14,7 +14,7 @@
 				if(move_uploaded_file($arquivo_tmp, $caminho_imagem)){
                     $caminho_imagem = $upload_dir_img .$nomearquivo;
 
-					echo("<img src='".$caminho_imagem."'>");
+					echo("<img src='".$caminho_imagem."' class='image-view'>");
 					echo("<script>frmcategoria.foto.value='$nomearquivo';</script>");
 				}
 			}else{
