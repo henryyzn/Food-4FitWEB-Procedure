@@ -24,7 +24,7 @@
             $_SESSION['nome_funcionario'] = $listLogin->nome_completo;
             $_SESSION['email_funcionario'] = $listLogin->email;
             $_SESSION['avatar_funcionario'] = $listLogin->avatar;
-            //var_dump($_SESSION['matricula_funcionario']);
+
             header('location:index.php');
         }
     }

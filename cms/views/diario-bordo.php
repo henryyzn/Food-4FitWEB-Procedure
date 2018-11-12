@@ -53,12 +53,12 @@
             <div class="diario-border-wrapper">
                 <table class="table-diario">
                     <tr id="contact-table-trow">
-                        <td><span>NOME</span></td>
-                        <td><span>E-MAIL</span></td>
-                        <td><span>ASSUNTO</span></td>
-                        <td><span>PROGRESSO</span></td>
-                        <td><span>DATA ENVIO</span></td>
-                        <td colspan="2"><span>OPÇÕES</span></td>
+                        <td><span>Nome:</span></td>
+                        <td><span>E-Mail:</span></td>
+                        <td><span>Assunto:</span></td>
+                        <td><span>Progresso:</span></td>
+                        <td><span>Data Envio:</span></td>
+                        <td colspan="2"><span>Opções:</span></td>
                     </tr>
                     <?php
                         require_once("../models/DAO/diario-bordoDAO.php");

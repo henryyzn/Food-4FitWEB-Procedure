@@ -1,8 +1,4 @@
 <?php
-    session_start();
-    require_once('modulo.php');
-    validateLog();
-
     $meses = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
     $mes = date("n");
     $ano = date("Y");
