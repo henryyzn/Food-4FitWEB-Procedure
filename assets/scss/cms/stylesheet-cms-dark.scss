@@ -761,108 +761,26 @@ img.btn-logout:hover {
     flex-grow: 1;
     flex-shrink: 0;
 }
-
-#form-left-side {
-    flex: 1 0 0;
-    .no-padding {
-        padding: 0;
-    }
-}
 #form-right-side {
-    @include bloco(100%, 450px);
+    @include bloco(100%, 450px, 100vh);
     background-color: $darkgrey;
-    @include display(flex, column, space-between, null);
-    box-sizing: border-box;
-    div:last-of-type {
-        .preco-prato {
-            @include display(flex, column, center, center);
-            @include bloco($width: 100%, $height: 80px);
-            >span {
-                @include texto($size: 30px, $family: "Roboto Light", $align: center);
-            }
-        }
-    }
+    overflow: auto;
 }
-[data-crud-controller] {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+#form-right-side::-webkit-scrollbar {
+    display: none;
 }
 .description {
     font-family: "Roboto Italic";
+    color: $white;
 }
-
-#form-right-side [data-imagem-upload]>img {
-    width: 400px;
-    height: 400px;
-    display: block;
-    margin: 0px 20px 20px 20px;
-}
-
-#form-right-side [data-imagem-upload] {
-    .image-upload {
-        display: none;
-        &.active {
-            display: block;
-        }
-    }
-}
-
-#form-right-side [data-imagem-upload] .thumbnails {
-    @include display(flex, row, space-around, center);
-    margin-top: 20px;
-    img {
-        @include img-fit(85px, 85px);
-        &.active {
-            border: solid $olivine 2px;
-            box-sizing: border-box;
-        }
-    }
-}
-
-#form-right-side{
-    input[type="file"] {
-	    display: none;
-    }
-    .file-label {
-        width: 400px;
-        height: 50px;
-        background-color: $olivine;
-        @include display(flex, row, center, center);
-        font-size: 16px;
-        text-transform: uppercase;
-        color: $white;
-        font-family: 'Roboto Bold';
-        border-radius: 5px;
-        margin: 10px 20px;
-        cursor: pointer;
-    }
-    .status {
-        display: block;
-        font-family: "Roboto Regular";
-        font-size: 18px;
-        margin: 0 20px;
-        color: $grey;
-    }
-    .select-block {
-        display: flex;
-        align-items: center;
-        margin: 0 20px;
-        >label {
-            display: block;
-            font-family: "Roboto Medium";
-            font-size: 15px;
-            color: $grey;
-        }
-    }
-}
-
 #btn-save {
-    background-color: #6a6a6a;
-    @include bloco($width: 450px, $height: 50px);
+    background-color: $olivine;
+    @include bloco($width: 450px, $height: 70px);
     margin-top: 10px;
     @include display(flex, row, center, center);
     cursor: pointer;
+    border: none;
+    outline: none;
     >img {
         width: 30px;
         height: 30px;

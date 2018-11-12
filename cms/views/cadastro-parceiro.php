@@ -7,7 +7,7 @@
         <title>Food 4fit - CMS</title>
         <link rel="icon" type="image/png" href="../assets/images/icons/favicon.png" />
         <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
-        <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases.css">
+        <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
 	    <link rel="stylesheet" href="../assets/public/css/jquery.toast.min.css">
         <link rel="stylesheet" href="../assets/public/css/sceditor.theme.min.css">
 	    <link rel="stylesheet" href="../assets/css/font-style.css">
@@ -31,11 +31,15 @@
                     $parceirosClass = new Parceiros();
                     $parceirosDAO = new parceirosDAO();
 
-                    //$parceriosClass->id_usuario = $_POST['id_usuario']
+
+
+
+                    $parceirosClass->nome1 = $_POST['nome1'];
                     $parceirosClass->titulo = $_POST['titulo'];
                     $parceirosClass->descricao = $_POST['descricao'];
                     //$parceirosClass->foto = $_POST['foto'];
                     $parceirosClass->link1 = $_POST['link'];
+                    $parceirosClass->ativo = $_POST['ativo'];
 
                     $parceirosDAO->insert($parceirosClass);
 
@@ -70,20 +74,26 @@
 
 
                             ?>
-                            <span id="id_usuario" class="subtitle padding-left-20px padding-bottom-20px"><?php echo($id_usuario)?></span>
+                            <input id="nome1" name="nome" class="input-generic" required placeholder="Ex.:João da Silva">
 
                         </div>
                         <div class="form-column">
                             <label for="titulo" class="label-generic">Link do site:</label>
-                            <input id="link1" name="link" class="input-generic" required placeholder="Ex.:João da Silva">
+                            <input id="link1" name="link" class="input-generic" required placeholder="www.addij.com">
                         </div>
                         <div class="form-column">
                             <label for="titulo" class="label-generic">Titulo do contato:</label>
-                            <input id="titulo" name="titulo" class="input-generic" required placeholder="Ex.:João da Silva">
+                            <input id="titulo" name="titulo" class="input-generic" required placeholder="Sabaribas">
                         </div>
                         <div class="form-column">
                             <label for="titulo" class="label-generic">Descrição:</label>
                             <textarea id="descricao" name="descricao" class="textarea-generic" required></textarea>
+                        </div>
+                        <div class="form-column">
+                            <label for="titulo" class="label-generic">Status inicial da promoção:</label>
+                            <div class="switch_box margin-bottom-15px">
+                                <input type="checkbox" name="ativo" value="1" class="switch-styled">
+                            </div>
                         </div>
                         <div class="form-row">
                             <span class="btn-cancelar">Cancelar</span>
