@@ -6,7 +6,7 @@ class sobreDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('../models/sobreClass.php');
+        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/sobreClass.php');
     }
 
     public function insert($classSobreNos){
@@ -25,8 +25,7 @@ class sobreDAO {
 
             //Executa a query
             if($PDO_conex->query($sql))
-                //header('location:index.php');
-                echo('Inseriu com sucesso');
+                header('location:sobre.php');
             else
                 echo('erro no insert');
 

@@ -26,9 +26,7 @@
                  telefone,
                  celular,
                  senha,
-                 senha_confirma,
                  resp_secreta,
-                 email_confirma,
                  insc_estadual
                  ) values (
                  '".$classCadUser->idPerguntaSecreta."',
@@ -46,9 +44,7 @@
                  '".$classCadUser->telefone."',
                  '".$classCadUser->celular."',
                  '".$classCadUser->senha."',
-                 '".$classCadUser->senhaConfirma."',
                  '".$classCadUser->respSecreta."',
-                 '".$classCadUser->emailConfirma."',
                  '".$classCadUser->inscEstadual."'
             );";
 
@@ -96,10 +92,7 @@
                 $listUsuario[$cont]->redeSocial = $rs['rede_social'];
 //                $listUsuario[$cont]->token = $rs['token'];
                 $listUsuario[$cont]->ativo = $rs['ativo'];
-                $listUsuario[$cont]->emailConfirma = $rs['email_confirma'];
                 $listUsuario[$cont]->inscEstadual = $rs['insc_estadual'];
-//                $listUsuario[$cont]->altura = $rs['altura'];
-//                $listUsuario[$cont]->peso = $rs['peso'];
 
                 $cont+=1;
             }

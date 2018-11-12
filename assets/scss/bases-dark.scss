@@ -217,6 +217,11 @@ tr td:nth-child(4){
     @include texto(16px, $grey, 'Roboto Regular');
     padding: 12px;
 }
+.table-image-result{
+    max-width: 300px;
+    height: auto;
+    display: block;
+}
 .table-generic-opts{
     @include img-fit(30px, 30px);
     margin: 10px;

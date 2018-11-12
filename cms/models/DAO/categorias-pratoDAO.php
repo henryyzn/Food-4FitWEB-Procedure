@@ -70,15 +70,15 @@
             while($rs=$select->fetch(PDO::FETCH_ASSOC))
             {
                 $listCategP[] = new categoriaPrato();
-                $listCatP[$cont]->id = $rs['id'];
-                $listCatP[$cont]->idCadIngrediente = $rs['id_categoria_parent'];
-                $listCatP[$cont]->titulo = $rs['titulo'];
-                $listCatP[$cont]->foto = $rs['foto'];
-                $listCatP[$cont]->ativo = $rs['ativo'];
+                $listCategP[$cont]->id = $rs['id'];
+                $listCategP[$cont]->idCadIngrediente = $rs['id_categoria_parent'];
+                $listCategP[$cont]->titulo = $rs['titulo'];
+                $listCategP[$cont]->foto = $rs['foto'];
+                $listCategP[$cont]->ativo = $rs['ativo'];
 
                 $cont+=1;
             }
-            return $listCatP;
+            return $listCategP;
         }
 
         public function delete($id){

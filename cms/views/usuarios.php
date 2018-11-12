@@ -82,12 +82,11 @@
                     <div class="saude-content" id="personal-lista">
                         <table class="generic-table">
                             <tr>
-                                <td><span>Nome</span></td>
-                                <td><span>Sobrenome</span></td>
-                                <td><span>E-mail</span></td>
-                                <td><span>Teste</span></td>
-                                <td><span>Teste</span></td>
-
+                                <td><span>Nome:</span></td>
+                                <td><span>Sobrenome:</span></td>
+                                <td><span>E-mail:</span></td>
+                                <td><span>Dt. Nasc.:</span></td>
+                                <td><span>Telefone:</span></td>
                                 <td colspan="2"><span>Opções</span></td>
                             </tr>
                             <?php
@@ -99,16 +98,13 @@
                                 $lista = $cadUsuarioDAO->selectAll();
 
                                 for($i = 0; $i < count($lista); $i++){
-
-
-
                             ?>
                             <tr>
                                 <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
-                                <td><span class="table-result"></span></td>
-                                <td><span class="table-result"></span></td>
-                                <td><span class="table-result"></span></td>
-                                <td><span class="table-result"></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->sobrenome)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->email)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->dataNasc)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->telefone)?></span></td>
                                 <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=visualizar&id=<?php echo($lista[$i]->id)?>'"></td>
                                 <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
