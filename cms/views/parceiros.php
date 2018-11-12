@@ -1,5 +1,30 @@
 <?php
     session_start();
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+        if($modo == 'excluir'){
+            require_once('../../cms/models/parceirosClass.php');
+            require_once('../../cms/models/DAO/parceirosDAO.php');
+
+            $parceirosDAO = new parceirosDAO();
+            $id = $_GET['id'];
+            $parceirosDAO->delete($id);
+        }else if($modo == 'desativar'){
+            require_once('../../cms/models/parceirosClass.php');
+            require_once('../../cms/models/DAO/parceirosDAO.php');
+
+            $parceirosDAO = new parceirosDAO();
+            $id = $_GET['id'];
+            $parceirosDAO->desactive($id);
+        }else if($modo == 'ativar'){
+            require_once('../../cms/models/parceirosClass.php');
+            require_once('../../cms/models/DAO/parceirosDAO.php');
+
+            $parceirosDAO = new parceirosDAO();
+            $id = $_GET['id'];
+            $parceirosDAO->active($id);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

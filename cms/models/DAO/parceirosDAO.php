@@ -36,7 +36,41 @@
             $conex->desconectar();
         }
 
-        public function selectAll(){
+        public function selectId($id){
+            $sql="select * from tbl_parceiro_fitness where id=".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
+
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+
+                $listParceiro = new Parceiros();
+                $listParceiro[] = new Parceiros();
+                $listParceiro[$cont]->id = $rs['id'];
+                $listParceiro[$cont]->id_usuario = $rs['id_usuario'];
+                $listParceiro[$cont]-> titulo = rs['titulo'];
+                $listParceiro[$cont]-> descricao = rs['descricao'];
+                $listParceiro[$cont]-> foto = rs['foto'];
+                $listParceiro[$cont]-> link1 = rs['link'];
+                $listParceiro[$cont]-> ativo = rs['ativo'];
+
+                $conex = new mysql_db();
+                $PDO_conex = $conex->conectar();
+                if($PDO_conex->query($sql))
+                    echo('select no banco');
+                else
+                    echo('erro');
+
+                $conex-> desconectar();
+
+                return $listComentarios;
+
+            }
+        }
+
+
+        public function selectAll($id){
             $listParceiro = null;
             $sql = "select * from tbl_parceiro_fitness order by id desc";
 
@@ -69,6 +103,27 @@
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
                 header('location:parceiros.php');
+        }
+
+        public function active($id){
+            $sql = "UPDATE tbl_parceiro_fitness SET ativo = '1' where id=".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                header('location:parceiros.php');
+
+        }
+
+        public function desactive($id){
+            $sql = "UPDATE tbl_parceiro_fitness SET ativo = '0' where id =".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+
+            if($PDO_conex->query($sql))
+                header('location:parceiros.php');
+
         }
     }
 ?>
