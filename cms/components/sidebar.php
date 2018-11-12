@@ -40,6 +40,12 @@
             <span class="image"><img src="../../assets/images/cms/icons/ingredientes.svg" alt="Ingredientes"></span>
             <span class="label">Ingredientes</span>
         </a>
+
+        <a href="categoria.php">
+            <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias"></span>
+            <span class="label">Categorias</span>
+        </a>
+
         <a href="categorias-prato.php">
             <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias de Pratos"></span>
             <span class="label">Categorias de Pratos</span>
