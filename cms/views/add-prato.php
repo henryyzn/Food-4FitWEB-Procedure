@@ -20,6 +20,25 @@
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
     <script src="../../assets/js/js.cookie.js"></script>
+
+    <style>
+        .categoria-block{
+            width: 100%;
+            height: auto;
+            display: flex;
+        }
+        .categoria-form-right{
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: #FCFCFC;
+            overflow: auto;
+        }
+        .image-view{
+            max-width: 300px; height: auto; display: block;
+        }
+    </style>
+
 </head>
 <body>
     <section id="main">
@@ -27,9 +46,57 @@
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
             <div id="page-content">
+
+               <div class="categoria-block">
+                    <table class="generic-table">
+                        <tr>
+                            <td><span>Título</span></td>
+                            <td><span>foto</span></td>
+                            <td><span>Ativo</span></td>
+                            <td colspan="3"><span>Opções</span></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td><img src=''></td>
+                            <td><input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1"></td>
+
+                            <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id='"></td>
+                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=excluir&id='"></td>
+                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
+                        </tr>
+
+                    </table>
+                      <div class="categoria-form-right">
+                        <div class="form-generic border-30px">
+                            <form action="upload/upload-categoria.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
+                                <label class="label-generic">Imagem:</label>
+                                <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                                </div>
+                                <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
+                                <input type="file" name="fileimage" id="foto" style="display: none;">
+                            </form>
+                            <form id="form-categoria" class="form-generic-content margin-top-30px" name="frmcategoria" method="GET" action="categoria.php">
+                                <input name="foto" type="hidden" value="">
+
+                                <label for="titulo" class="label-generic">Categoria</label>
+                                <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
+
+                                <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
+
+                                <div class="form-row">
+                                    <span>Cancelar</span>
+                                    <button type="submit" class="btn-generic margin-left-20px" name="btn-salvar" value="<?php echo($botao)?>">
+                                        <span>Salvar</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <form id="form-content">
-
-
                 </form>
             </div>
         </div>
