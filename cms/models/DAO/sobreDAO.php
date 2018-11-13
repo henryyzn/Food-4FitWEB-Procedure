@@ -111,13 +111,13 @@ class sobreDAO {
 
         echo($sql);
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
-
-        if($PDO_conex->query($sql))
-            header('location:sobre.php');
-
-        $conex->desconectar();
+//        $conex = new mysql_db();
+//        $PDO_conex = $conex->conectar();
+//
+//        if($PDO_conex->query($sql))
+//            header('location:sobre.php');
+//
+//        $conex->desconectar();
 
     }
 
