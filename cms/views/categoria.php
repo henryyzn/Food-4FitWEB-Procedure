@@ -107,6 +107,11 @@
         .image-view{
             max-width: 300px; height: auto; display: block;
         }
+
+
+        .elementPhoto{
+            max-width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -134,7 +139,7 @@
                         ?>
                         <tr>
                             <td><?php echo($lista[$i]->titulo)?></td>
-                            <td><img src='../../<?php echo($lista[$i]->foto)?>'></td>
+                            <td><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
                             <td><input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1"></td>
 <!--                                    <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>-->
                             <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id=<?= $lista[$i]->id ?>'"></td>
@@ -149,13 +154,13 @@
                             <form action="upload/upload-categoria.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
                                 <label class="label-generic">Imagem:</label>
                                 <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
-                                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                                    <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
                                 </div>
                                 <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
                                 <input type="file" name="fileimage" id="foto" style="display: none;">
                             </form>
                             <form id="form-categoria" class="form-generic-content margin-top-30px" name="frmcategoria" method="GET" action="categoria.php">
-                                <input name="foto" type="hidden" value="">
+                                <input name="foto" type="hidden" value="<?php echo($foto)?>">
 
                                 <label for="titulo" class="label-generic">Título Categoria Pai</label>
                                 <input type="text" value="<?= @$titulo ?>" id="titulo" name="titulo" class="input-generic" required maxlength="255">
