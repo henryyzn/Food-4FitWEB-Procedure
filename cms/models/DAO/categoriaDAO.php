@@ -19,7 +19,7 @@
             '".$classCategoria->ativo."'
             );";
 
-            echo($sql);
+            //echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -36,7 +36,7 @@
         public function selectId($id){
 
             $sql = "select * from tbl_categoria where id=".$id;
-
+            //echo $sql;
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             $select = $PDO_conex->query($sql);
@@ -50,6 +50,7 @@
                 $listCadCategoria->foto = $rs['foto'];
                 $listCadCategoria->ativo = $rs['ativo'];
 
+                //var_dump($listCadCategoria->id);
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             ($PDO_conex->query($sql));
@@ -65,8 +66,8 @@
 
         public function selectAll(){
             $listCategoria = null;
-            $sql = "select * from tbl_categoria order by id desc";
-
+            $sql = "select id, id_categoria_parent, titulo, foto, ativo from tbl_categoria order by id desc";
+            //echo $sql;
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
 
@@ -75,12 +76,13 @@
             $cont=0;
             while($rs=$select->fetch(PDO::FETCH_ASSOC)){
                 $listCategoria[] = new categoria();
-                $listCategoria[$cont]->id= $rs['id'];
+                $listCategoria[$cont]->id = $rs['id'];
+                $id = $listCategoria[$cont]->id;
 //                $listCategoria[$cont]->idCategoriaP = $rs['id_categoria_parent'];
                 $listCategoria[$cont]->titulo = $rs['titulo'];
                 $listCategoria[$cont]->foto = $rs['foto'];
                 $listCategoria[$cont]->ativo = $rs['ativo'];
-                $cont++;
+                $cont+=1;
             }
 
             return $listCategoria;
@@ -107,9 +109,9 @@
             titulo = '".$classCategoria->titulo."',
             foto = 'assets/images/categorias/".$classCategoria->foto."',
             ativo = ".$classCategoria->ativo."
-            where id=".$classCategoria->id;
+            where id = ".$classCategoria->id;
 
-            echo($sql);
+            //echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -117,8 +119,8 @@
             if($PDO_conex->query($sql))
                 header('location:categoria.php');
 //                echo('Deu certo!');
-//            else
-//                echo('Deu errado!');
+            else
+                echo('<script>alert("Deu errado!")</script>');
 
             $conex->desconectar();
         }

@@ -28,13 +28,12 @@
 
             $sobreDAO = new sobreDAO;
             $id = $_GET['id'];
-            $_SESSION['id'] = $id;
 
             $listSobreNos = $sobreDAO->selectId($id);
 
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-            if(count($listSobreNos)>0)
+            if(@count($listSobreNos)>0)
             {
 
                 $id = $listSobreNos->id;
@@ -64,7 +63,7 @@
            if($_GET['btn-salvar'] == "Salvar"){
                $sobreDAO->insert($classSobreNos);
            }elseif($_GET['btn-salvar'] == "Editar"){
-               $classSobreNos->id = $_SESSION['id'];
+               $classSobreNos->id = $_GET['id'];
                $sobreDAO->update($classSobreNos);
            }
     }

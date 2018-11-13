@@ -14,7 +14,9 @@
 				if(move_uploaded_file($arquivo_tmp, $caminho_imagem)){
                     $caminho_imagem = $upload_dir_img .$nomearquivo;
 
-					echo("<img src='".$caminho_imagem."' class='image-view'>");
+                    //class='elementPhoto' pois esta pegando a class do HTML na página
+                    //para estilizar/fixar o tamanho da foto
+					echo("<img src='".$caminho_imagem."' class='elementPhoto'>");
 					echo("<script>frmcategoria.foto.value='$nomearquivo';</script>");
 				}
 			}else{

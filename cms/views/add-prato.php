@@ -64,6 +64,7 @@
                             <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id='"></td>
                             <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=excluir&id='"></td>
                             <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
+                            <td><img src="../../assets/images/cms/symbols/visualizar-white.svg" alt="" class="table-generic-opts"></td>
                         </tr>
 
                     </table>
@@ -79,6 +80,15 @@
                             </form>
                             <form id="form-categoria" class="form-generic-content margin-top-30px" name="frmcategoria" method="GET" action="categoria.php">
                                 <input name="foto" type="hidden" value="">
+
+                                <label for="titulo" class="label-generic">Titulo</label>
+                                <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
+
+                                <label for="titulo" class="label-generic">Descricao</label>
+                                <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
+
+                                <label for="titulo" class="label-generic">Resumo</label>
+                                <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
                                 <label for="titulo" class="label-generic">Categoria</label>
                                 <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
