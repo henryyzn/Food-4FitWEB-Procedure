@@ -24,7 +24,7 @@ if(isset($_GET['modo'])){
     <title>Food 4fit - CMS</title>
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
-    <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases.css">
+    <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
     <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
     <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
     <link rel="stylesheet" href="../../assets/css/font-style.css">
@@ -48,7 +48,6 @@ if(isset($_GET['modo'])){
                         <table class="generic-table">
                             <tr>
                                 <td><span>Nome</span></td>
-                                <td><span>Sobrenome</span></td>
                                 <td><span>E-mail</span></td>
                                 <td><span>Telefone</span></td>
                                 <td><span>Celular</span></td>
@@ -63,13 +62,11 @@ if(isset($_GET['modo'])){
 
                                 $lista = $contatoDAO->selectAll();
 
-                            for($i = 0; $i < count($lista); $i++){
-
+                                for($i = 0; $i < count($lista); $i++){
 
                             ?>
                             <tr>
                                 <td><span class="table-result"></span><?php echo($lista[$i]->nome)?></td>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->sobrenome)?></td>
                                 <td><span class="table-result"></span><?php echo($lista[$i]->email)?></td>
                                 <td><span class="table-result"></span><?php echo($lista[$i]->telefone)?></td>
                                 <td><span class="table-result"></span><?php echo($lista[$i]->celular)?></td>

@@ -49,7 +49,7 @@
 
         public function selectAll(){
             $listContato = null;
-            $sql = "select * from tbl_fale_conosco order by id desc";
+            $sql = "select id, CONCAT(nome, ' ', sobrenome) AS nome, email, telefone, celular, assunto, observacao from tbl_fale_conosco order by id desc";
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -61,7 +61,6 @@
                 $listContato[] = new Contato();
                 $listContato[$cont]->id = $rs['id'];
                 $listContato[$cont]->nome = $rs['nome'];
-                $listContato[$cont]->sobrenome = $rs['sobrenome'];
                 $listContato[$cont]->email = $rs['email'];
                 $listContato[$cont]->telefone = $rs['telefone'];
                 $listContato[$cont]->celular= $rs['celular'];

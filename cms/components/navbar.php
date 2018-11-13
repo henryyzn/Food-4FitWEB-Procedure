@@ -5,7 +5,7 @@
             <img src="../../assets/images/cms/icons/pesquisa.svg" alt="Pesquisar">
         </div>
         <div>
-            <label for="CMSthemeSwitch"><input type="checkbox" id="CMSthemeSwitch" class="switch-styled" name="CMStheme" value="1"></label>
+            <?php require_once("input.html")?>
             <div id="notificacoes" class="padding-left-15px">
                 <img src="../../assets/images/cms/icons/notificacoes.svg" alt="Notificações">
                 <span>12</span>
