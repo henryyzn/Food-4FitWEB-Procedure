@@ -28,6 +28,11 @@
                 $listLogin->ativo = $rs['ativo'];
                 $listLogin->matricula = $rs['matricula'];
                 $listLogin->avatar = $rs['avatar'];
+                $listLogin->dataEfetv = $rs['dataEfetv'];
+                $listLogin->dataNasc = $rs['dataNasc'];
+                $listLogin->genero = $rs['genero'];
+                $listLogin->rg = $rs['rg'];
+                $listLogin->cpf = $rs['cpf'];
 
                 $conex = new mysql_db();
                 $PDO_conex = $conex->conectar();
