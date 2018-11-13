@@ -34,12 +34,12 @@
 
 
 
-                    $parceirosClass->nome1 = $_POST['nome1'];
-                    $parceirosClass->titulo = $_POST['titulo'];
+                    $parceirosClass->nome = $_POST['nome'];
+                    //$parceirosClass->titulo = $_POST['titulo'];
                     $parceirosClass->descricao = $_POST['descricao'];
-                    //$parceirosClass->foto = $_POST['foto'];
-                    $parceirosClass->link1 = $_POST['link'];
-                    $parceirosClass->ativo = $_POST['ativo'];
+                    $parceirosClass->foto = $_POST['foto'];
+                    //$parceirosClass->link1 = $_POST['link'];
+                    //$parceirosClass->ativo = $_POST['ativo'];
 
                     $parceirosDAO->insert($parceirosClass);
 
@@ -50,59 +50,34 @@
                 <div class="form-generic">
                     <div class="form-generic-content">
                         <h2 class="form-title">Cadastrar um parceiro</h2>
-
-                        <div class="form-column">
-                            <label for="titulo" class="label-generic">Nome do Usuário:</label>
-
-                            <?php
-
-                                //$sql = "select * from tbl_usuario where = 1";
-                            //$resultado = mysql_query($sql);
-
-                            //$id = ['id'];
-
-                            //$cont=0
-
-                            /*while($rsFoto = mysql_fetch_array($resultado))
-                            {
-                                $nome = $rsNome['nome'];
-
-                                if($cont%2==0)
-                                    $cor="aqua";
-                                else
-                                    $cor="aquamarine";*/
-
-
-                            ?>
-                            <input id="nome1" name="nome" class="input-generic" required placeholder="Ex.:João da Silva">
-
+                        <div>
+                            <img>
+                            <label for="foto" class="file-label">Escolher Imagem</label>
+                            <input id="foto" name="uploadData" type="file" accept="image/*">
                         </div>
-                        <div class="form-column">
-                            <label for="titulo" class="label-generic">Link do site:</label>
-                            <input id="link1" name="link" class="input-generic" required placeholder="www.addij.com">
-                        </div>
-                        <div class="form-column">
-                            <label for="titulo" class="label-generic">Titulo do contato:</label>
-                            <input id="titulo" name="titulo" class="input-generic" required placeholder="Sabaribas">
-                        </div>
-                        <div class="form-column">
-                            <label for="titulo" class="label-generic">Descrição:</label>
-                            <textarea id="descricao" name="descricao" class="textarea-generic" required></textarea>
-                        </div>
-                        <div class="form-column">
-                            <label for="titulo" class="label-generic">Status inicial da promoção:</label>
-                            <div class="switch_box margin-bottom-15px">
-                                <input type="checkbox" name="ativo" value="1" class="switch-styled">
-                            </div>
-                        </div>
+                        <span class="label-fix">Nome do Usuário:</span>
+                            <p class="label-fix-result">João sei lá das quantas</p>
+
+                            <span class="label-fix">Link para o site:</span>
+                            <a href="" class="label-fix-link">www.linkdoparceiro.com</a>
+
+                            <span class="label-fix">Título do Contato:</span>
+                            <p class="label-fix-result">Algum Título</p>
+
+                            <span class="label-fix">Descrição:</span>
+                            <p class="label-fix-result">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <label for="nome" class="label-generic">Nome do Parceiro:</label>
+                        <input type="text" name="nome" id="nome" class="input-generic">
+
+                        <label for="descricao" class="label-generic">Descrição do Parceiro:</label>
+                        <textarea name="descricao" id="descricao" class="textarea-generic"></textarea>
+
                         <div class="form-row">
-                            <span class="btn-cancelar">Cancelar</span>
                             <button type="submit" name="btnSalvar" value="Salvar" class="btn-generic margin-right-20px">
                                 <span>Salvar</span>
                             </button>
+                            <span class="btn-cancelar">Cancelar</span>
                         </div>
-
-
                     </div>
                 </div>
             </form>

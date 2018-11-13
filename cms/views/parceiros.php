@@ -70,6 +70,7 @@
                             <td><span class="cms-table-title">LINK</span></td>
                             <td colspan="3"><span class="cms-table-title">OPÇÕES</span></td>
                         </tr>
+
                         <tr>
                             <td><span class="cms-table-result">Nome do Parceiro</span></td>
                             <td><span class="cms-table-result">Título do Contato</span></td>
@@ -87,7 +88,26 @@
                         </tr>
                     </table>
                     <section class="aside-register-menu form-generic">
-                        <form action="#" class="form-generic-content width-500px">
+                        <?php
+
+                            if(isset($_POST['btnSalvar'])){
+
+                                require_once('../models/DAO/parceirosDAO.php');
+                                require_once('../models/parecirosClass.php');
+                                //require_once('../models/DAO/cadastr')
+
+                                $parceirosClass = new Parceiros();
+                                $parceirosDAO = new parceirosDAO();
+
+
+                                $parceirosClass->nome = $_POST['nome'];
+                                $parceirosClass->descricao = $_POST['descricao'];
+
+                                $parceirosDAO->insert($parceirosClass);
+                            }
+
+                        ?>
+                        <form action="#" class="form-generic-content width-500px" method="post">
                             <h2 class="form-title">Cadastrar um Parceiro</h2>
 
                             <div>
