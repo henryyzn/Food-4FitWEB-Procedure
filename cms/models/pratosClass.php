@@ -1,7 +1,7 @@
 <?php
     class Prato{
         public $id;
-        public $idCategoria;
+        public $id_categoria;
         public $titulo;
         public $descricao;
         public $resumo;

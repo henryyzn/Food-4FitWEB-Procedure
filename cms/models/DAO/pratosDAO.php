@@ -2,9 +2,9 @@
     class pratosDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('cms/models/pratosClass.php');
-            require_once('cms/models/categoriaClass.php');
-            require_once('cms/models/cadastro-usuarioClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/pratosClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categoriaClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cadastro-usuarioClass.php');
         }
 
         public function insert ($classPrato){
@@ -15,24 +15,24 @@
                     resumo,
                     ativo,
                     id_usuario) values (
-                    '".$classPrato->idCategoria."',
+                    '".$classPrato->id_categoria."',
                     '".$classPrato->titulo."',
                     '".$classPrato->descricao."',
                     '".$classPrato->resumo."',
                     '".$classPrato->ativo."',
             );";
+            //idCategoria NÃO esta vindo, verificar
+            echo($sql);
 
-            //echo($sql);
-
-            $conex = new mysql_db();
-            $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql))
-                header('location:add-prato.php');
-//                echo('Inseriu com sucesso');
-            else
-                echo('error');
-
-            $conex->desconectar();
+//            $conex = new mysql_db();
+//            $PDO_conex = $conex->conectar();
+//            if($PDO_conex->query($sql))
+//                header('location:add-prato.php');
+////                echo('Inseriu com sucesso');
+//            else
+//                echo('error');
+//
+//            $conex->desconectar();
 
         }
 

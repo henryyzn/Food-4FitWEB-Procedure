@@ -3,7 +3,7 @@
 
         public $id;
         public $idPrato;
-        public $foto
+        public $foto;
 
         public function __construct(){}
     }
