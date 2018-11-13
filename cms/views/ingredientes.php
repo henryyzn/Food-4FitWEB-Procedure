@@ -173,13 +173,9 @@
                             <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                             <td><span class="table-result"><?php echo($lista[$i]->preco)?></span></td>
                             <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>
-                            <td>
-                                <div class="coluna">
-                                    <img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="view margin-right-10px" onclick="">
-                                    <img src="../../assets/images/cms/symbols/editar.svg" alt="" onclick="javascript:location.href='ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'">
-                                    <img src="../../assets/images/cms/symbols/excluir.svg" alt="" onclick="javascript:location.href='ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
-                                </div>
-                            </td>
+                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=<?php echo($active)?>&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                         </tr>
                         <?php
                             }

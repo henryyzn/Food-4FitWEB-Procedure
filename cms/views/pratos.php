@@ -102,11 +102,15 @@
                 <div id="list-content">
                     <div class="pratos-wrapper">
                          <div id="page-actions">
-                            <a href="add-prato.php" id="btn-adicionar-prato">
+                            <a href="add-prato.php">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Prato</span>
                             </a>
-                            <a href="#">
+                            <a href="add-promocao.php">
+                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
+                                <span>Adicionar Promoção</span>
+                            </a>
+                            <a href="pratos.php">
                                 <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
                                 <span>Recarregar Listagem</span>
                             </a>

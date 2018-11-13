@@ -270,27 +270,19 @@
 	list-style-type: none;
 }
 #flex{
-    label{
+    display: flex;
+    justify-content: flex-end;
+    .label{
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        color: $white;
+        font-family: 'Roboto Medium';
+        padding: 5px;
     }
 }
 .sidebar-right-list li a{
 	/*Links das listas dos menus laterais*/
     display: block;
-	text-decoration: none;
-	color: $white;
-	font-family: "Roboto Medium";
-	padding: 5px;
-    padding-bottom: 10px;
-    transition: 50ms ease-in-out;
-	text-align: right;
-	position: relative;
-}
-.sidebar-right-list li label{
-	/*Links das listas dos menus laterais*/
-	display: block;
 	text-decoration: none;
 	color: $white;
 	font-family: "Roboto Medium";
