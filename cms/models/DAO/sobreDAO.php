@@ -33,7 +33,7 @@ class sobreDAO {
         }
 
     public function selectId($id){
-        $sql="select * from tbl_sobre_empresa where id=".$id;
+        $sql="SELECT * FROM tbl_sobre_empresa WHERE id = ".$id;
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
@@ -41,24 +41,23 @@ class sobreDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listSobreNos = new Sobre();
-        $listSobreNos->id = $rs['id'];
-        $listSobreNos->titulo = $rs['titulo'];
-        $listSobreNos->texto = $rs['texto'];
-        $listSobreNos->foto = $rs['foto'];
-        $listSobreNos->ativo = $rs['ativo'];
+            $listSobreNos = new Sobre();
+            $listSobreNos->id = $rs['id'];
+            $listSobreNos->titulo = $rs['titulo'];
+            $listSobreNos->texto = $rs['texto'];
+            $listSobreNos->foto = $rs['foto'];
+            $listSobreNos->ativo = $rs['ativo'];
 
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('');
+            else
+                echo('Erro');
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
-        if($PDO_conex->query($sql))
-            echo('select no Banco');
-        else
-            echo('Erro');
+            $conex->desconectar();
 
-        $conex->desconectar();
-
-        return $listSobreNos;
+            return $listSobreNos;
 
         }
 

@@ -27,7 +27,6 @@
             require_once('../models/DAO/sobreDAO.php');
 
             $sobreDAO = new sobreDAO;
-            session_start();
             $id = $_GET['id'];
             $_SESSION['id'] = $id;
 
@@ -139,7 +138,7 @@
 
                             $lista = $sobreDAO->selectAll();
 
-                            for($i = 0; $i < count($lista); $i++){
+                            for($i = 0; $i < @count($lista); $i++){
                         ?>
                         <tr>
                             <td><img src="../../<?php echo($lista[$i]->foto)?>" alt="" class="table-image-result"></td>
@@ -158,7 +157,7 @@
                             <form action="upload/upload.php" method="POST" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
                                 <label class="label-generic">Imagem:</label>
                                 <div id="view" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
-                                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                                    <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
                                 </div>
                                 <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
                                 <input type="file" name="fileimage" id="fotos" style="display: none;">

@@ -12,9 +12,11 @@ class mysql_db
     private $dataBaseName;
 
 	public function __construct(){
-        $this->server="localhost";
+        $this->server="10.107.134.13";
+        //$this->server="localhost";
 		$this->user="root";
 		$this->senha="bcd127";
+        //$this->senha="";
         $this->dataBaseName="db_food4fit";
 
 	}
