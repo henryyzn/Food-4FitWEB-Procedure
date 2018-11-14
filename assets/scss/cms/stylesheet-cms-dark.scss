@@ -765,6 +765,21 @@ img.btn-logout:hover {
     flex-grow: 1;
     flex-shrink: 0;
 }
+.sobre-block{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.sobre-form-right{
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: $darkgrey;
+    overflow: auto;
+}
+.image-view{
+    max-width: 300px; height: auto; display: block;
+}
 #form-right-side {
     @include bloco(100%, 450px, 100vh);
     background-color: $darkgrey;

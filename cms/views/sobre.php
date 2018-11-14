@@ -98,23 +98,6 @@
         });
 
     </script>
-    <style>
-        .sobre-block{
-            width: 100%;
-            height: auto;
-            display: flex;
-        }
-        .sobre-form-right{
-            width: 100%;
-            max-width: 400px;
-            height: 100vh;
-            background-color: #FCFCFC;
-            overflow: auto;
-        }
-        .image-view{
-            max-width: 300px; height: auto; display: block;
-        }
-    </style>
 </head>
 <body>
      <section id="main">
@@ -153,10 +136,10 @@
                     </table>
                     <div class="sobre-form-right">
                         <div class="form-generic border-30px">
-                            <form action="upload/upload.php" method="POST" name="frmfoto" enctype="multipart/form-data" id="frmfoto">
+                            <form action="upload/upload.php" method="POST" name="frmfoto" class="form-generic-content" enctype="multipart/form-data" id="frmfoto">
                                 <label class="label-generic">Imagem:</label>
                                 <div id="view" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
-                                    <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
+                                    <img src='../../assets/images/logo/logo-4fit.svg' alt="Imagem a ser cadastrada" class="image-view">
                                 </div>
                                 <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
                                 <input type="file" name="fileimage" id="fotos" style="display: none;">
