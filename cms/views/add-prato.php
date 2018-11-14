@@ -14,11 +14,11 @@
         require_once('../models/DAO/categoriaDAO.php');
 
         $classPrato = new Prato();
-        $classPrato->id_categoria = $_GET['id_categoria'];
+        $classPrato->idCategoria = $_GET['idCategoria'];
         $classPrato->titulo = $_GET['titulo'];
         $classPrato->descricao = $_GET['descricao'];
         $classPrato->resumo = $_GET['resumo'];
-        $classPrato->confi_public = '0';
+        $classPrato->confiPublic = '0';
         $classPrato->ativo = '1';
         //$classPrato->id_usuario = 'null';
 
@@ -112,7 +112,7 @@
 
                         ?>
                         <tr>
-                            <td></td>
+                            <td><?php echo($lista[$i]->titulo)?></td>
                             <td><img src=''></td>
                             <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id='">
                             </td>
@@ -149,8 +149,8 @@
                                 <label for="resumo" class="label-generic">Resumo</label>
                                 <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
 
-                                <label for="id_categoria" class="label-generic">Categoria</label>
-                                <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
+                                <label for="idCategoria" class="label-generic">Categoria</label>
+                                <select type="text"  id="id_categoria" name="idCategoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
 
                                 <?php
                                     require_once('../models/DAO/categoriaDAO.php');

@@ -87,7 +87,7 @@
 
                             $lista = $catPratoDAO->selectAll();
 
-                            for($i = 0; $i < count($lista); $i++){
+                            for($i = 0; $i < @count($lista); $i++){
                         ?>
                         <tr>
                             <td><span class="table-result"><?php echo($lista[$i]->id)?></span></td>

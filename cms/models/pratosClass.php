@@ -1,11 +1,12 @@
 <?php
     class Prato{
         public $id;
-        public $id_categoria;
+        public $idCategoria;
         public $titulo;
         public $descricao;
         public $resumo;
         public $ativo;
+        public $confiPublic;
         public $idUsuario;
 
         public function __construct(){

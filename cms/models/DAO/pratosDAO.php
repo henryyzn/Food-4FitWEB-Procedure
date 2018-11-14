@@ -9,13 +9,15 @@
 
         public function insert($classPrato){
             $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario) values (
-                    '".$classPrato->id_categoria."',
+                    '".$classPrato->idCategoria."',
                     '".$classPrato->titulo."',
                     '".$classPrato->descricao."',
                     '".$classPrato->resumo."',
-                    '".$classPrato->confi_public."',
+                    '".$classPrato->confiPublic."',
                     '".$classPrato->ativo."',
-                    '".$classPrato->id_usuario."');";
+                    1
+
+                    );";
 
             //echo($sql);
 
@@ -24,7 +26,7 @@
             if($PDO_conex->query($sql))
                 header('location:pratos.php');
             else
-                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                echo($sql);
 
             $conex->desconectar();
 
