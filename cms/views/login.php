@@ -11,6 +11,7 @@
         $matricula = $_POST['matricula'];
         $senha = $_POST['senha'];
 
+        $_SESSION['id_funcionario'] = null;
         $_SESSION['nome_funcionario'] = null;
         $_SESSION['email_funcionario'] = null;
         $_SESSION['matricula_funcionario'] = null;
@@ -26,6 +27,7 @@
 
         //Resgatando do Banco de dados
         if(@count($listLogin)>0){
+            $_SESSION['id_funcionario'] = $listLogin->id;
             $_SESSION['matricula_funcionario'] = $listLogin->matricula;
             $_SESSION['nome_funcionario'] = $listLogin->nome_completo;
             $_SESSION['email_funcionario'] = $listLogin->email;

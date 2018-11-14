@@ -14,12 +14,13 @@
         require_once('../models/DAO/categoriaDAO.php');
 
         $classPrato = new Prato();
-        $classPrato->idCategoria = $_GET['id_categoria'];
+        $classPrato->id_categoria = $_GET['id_categoria'];
         $classPrato->titulo = $_GET['titulo'];
         $classPrato->descricao = $_GET['descricao'];
         $classPrato->resumo = $_GET['resumo'];
-        $classPrato->ativo = $_GET['ativo'];
-//        $classPrato->idUsuario = $_GET['id_usuario'];
+        $classPrato->confi_public = '0';
+        $classPrato->ativo = '1';
+        //$classPrato->id_usuario = 'null';
 
         $pratosDAO = new pratosDAO();
         if($_GET['btn-salvar'] == "Salvar"){
@@ -142,14 +143,14 @@
                                 <label for="titulo" class="label-generic">Titulo</label>
                                 <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
-                                <label for="titulo" class="label-generic">Descricao</label>
-                                <input type="text"  id="titulo" name="descricao" class="input-generic" required maxlength="255">
+                                <label for="descricao" class="label-generic">Descricao</label>
+                                <textarea type="text"  id="descricao" name="descricao" class="textarea-generic" required maxlength="255"></textarea>
 
-                                <label for="titulo" class="label-generic">Resumo</label>
-                                <input type="text"  id="titulo" name="resumo" class="input-generic" required maxlength="255">
+                                <label for="resumo" class="label-generic">Resumo</label>
+                                <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
 
-                                <label for="titulo" class="label-generic">Categoria</label>
-                                <select type="text"  id="idCategoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
+                                <label for="id_categoria" class="label-generic">Categoria</label>
+                                <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
 
                                 <?php
                                     require_once('../models/DAO/categoriaDAO.php');
@@ -161,13 +162,12 @@
 
 
                                 ?>
-                                  <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
+                                    <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
                                 <?php
                                     }
                                 ?>
 
                                 </select>
-                                <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
                                 <div class="form-row">
                                     <span>Cancelar</span>

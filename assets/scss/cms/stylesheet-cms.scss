@@ -860,13 +860,7 @@ img.btn-logout:hover {
 
     .two { grid-area: two; }
 
-    .three {
-        grid-area: three;
-        box-sizing: border-box;
-        border-left: 20px solid transparent;
-        border-right: 20px solid transparent;
-        padding-bottom: 20px;
-    }
+    .three { grid-area: three; }
 
     .four { grid-area: four; }
 
@@ -877,6 +871,7 @@ img.btn-logout:hover {
         background-color: $lightgrey;
         border-radius: 5px;
         box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+        transition: 200ms ease-in-out;
         .title{
             @include texto(18px, $black, 'Roboto Bold');
             margin: 0;
@@ -888,15 +883,23 @@ img.btn-logout:hover {
             @include texto(16px, $darkgrey, 'Roboto Regular', 23px, left);
             width: 90%;
         }
+        &:hover{
+            background: linear-gradient(45deg, $olivine, $gold);
+            cursor: pointer;
+            .title{
+                color: $white;
+            }
+        }
     }
 }
 .interact-card{
-    @include bloco($width: 100%, $height: auto);
+    @include bloco($width: auto, $height: auto);
     border-radius: 3px;
     background: $mediumgrey;
     box-sizing: border-box;
     position: relative;
     @include display(flex, row, flex-start, center);
+    margin: 0 20px 20px 20px;
     >figure{
         @include bloco($width: 50px, $height: 50px);
         min-width: 50px;

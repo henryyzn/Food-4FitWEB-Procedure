@@ -47,10 +47,19 @@
                             <span class="subtitle padding-left-20px">Produto de Nome X</span>
                         </div>
                         <div class="three card-dash">
-                            <h2 class="title padding-top-20px padding-bottom-10px">Últimas Interações</h2>
+                            <h2 class="title padding-top-20px padding-bottom-10px padding-left-20px">Últimos Pratos Adicionados</h2>
+                            <?php
+                                require_once("../models/DAO/pratosDAO.php");
+
+                                $pratosDAO = new pratosDAO();
+
+                                $lista = $pratosDAO->selectAll();
+
+                                for($i = 0; $i < @count($lista); $i++){
+                            ?>
                             <div class="interact-card">
                                 <figure class="margin-top-20px margin-left-20px margin-bottom-20px margin-right-20px">
-                                    <!--img src="../assets/images/icons/person.jpg" alt=""-->
+                                    <img src="../../<?php echo($lista[$i]->foto)?>" alt="">
                                 </figure>
                                 <div>
                                     <h2>Nome do Usuário:</h2>
@@ -58,6 +67,9 @@
                                 </div>
                                 <span>Horário</span>
                             </div>
+                            <?php
+                                }
+                            ?>
                         </div>
                         <div class="four card-dash">
                             <p>a</p>

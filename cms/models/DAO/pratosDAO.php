@@ -7,32 +7,26 @@
             require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cadastro-usuarioClass.php');
         }
 
-        public function insert ($classPrato){
-            $sql = "insert into tbl_prato(
-                    id_categoria,
-                    titulo,
-                    descricao,
-                    resumo,
-                    ativo,
-                    id_usuario) values (
+        public function insert($classPrato){
+            $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario) values (
                     '".$classPrato->id_categoria."',
                     '".$classPrato->titulo."',
                     '".$classPrato->descricao."',
                     '".$classPrato->resumo."',
+                    '".$classPrato->confi_public."',
                     '".$classPrato->ativo."',
-            );";
-            //idCategoria NÃO esta vindo, verificar
-            echo($sql);
+                    '".$classPrato->id_usuario."');";
 
-//            $conex = new mysql_db();
-//            $PDO_conex = $conex->conectar();
-//            if($PDO_conex->query($sql))
-//                header('location:add-prato.php');
-////                echo('Inseriu com sucesso');
-//            else
-//                echo('error');
-//
-//            $conex->desconectar();
+            //echo($sql);
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                header('location:pratos.php');
+            else
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+
+            $conex->desconectar();
 
         }
 
@@ -70,7 +64,7 @@
 
         public function selectAll(){
             $listSelecPrato = null;
-            $sql = "select * from tbl_prato order by id desc";
+            $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, prato.titulo AS tiulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato ORDER BY prato.id DESC";
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -87,6 +81,9 @@
                 $listSelecPrato[$cont]->resumo = $rs['resumo'];
                 $listSelecPrato[$cont]->ativo = $rs['ativo'];
                 $listSelecPrato[$cont]->idUsuario = $rs['id_usuario'];
+                $listSelecPrato[$cont]->id_foto_prato = $rs['id_foto_prato'];
+                $listSelecPrato[$cont]->id_prato = $rs['id_prato'];
+                $listSelecPrato[$cont]->foto = $rs['foto'];
 
                 $cont+=1;
             }
