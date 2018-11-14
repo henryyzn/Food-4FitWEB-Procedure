@@ -88,7 +88,7 @@
                             <div style="width: 100%; height: 3px; background: #282828;"></div>
                         </div>
                     </div>
-                    <aside class="fit-session-aside">
+                    <aside class="explanation-aside">
                         <h2 class="padding-top-30px padding-left-20px padding-bottom-15px">Fit Session</h2>
                         <p class="padding-left-20px padding-bottom-10px">O Fit Session é um portal de comunicação com tema fitness para os usuários do Food 4Fit.<br>É uma área descontraída, informativa e voltada para o público que deseja buscar conhecimento e entretenimento com base no que a equipe responsável pelo site produz.</p>
                         <p class="padding-left-20px">Esta é uma sessão que permite ao funcionário logado a administração de todos os subtemas do Fit Session, listadas ao lado deste informativo.</p>

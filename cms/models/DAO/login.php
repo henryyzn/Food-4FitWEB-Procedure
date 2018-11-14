@@ -2,7 +2,7 @@
     class loginDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/funcionarioClass.php');
         }
 
         public function checkLogin($matricula, $senha){
@@ -11,7 +11,7 @@
 
             $sql = "SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, ativo, matricula, avatar, data_efetivacao, genero, RG, CPF, data_nasc, salario FROM tbl_funcionario WHERE matricula = '".$matricula."' AND senha = '".$passwd."' AND ativo = '1';";
 
-            //echo($sql);
+            echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -19,7 +19,7 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-                $listLogin = new usuario();
+                $listLogin = new funcionario();
                 $listLogin->id = $rs['id'];
                 $listLogin->nome = $rs['nome'];
                 $listLogin->sobrenome = $rs['sobrenome'];
@@ -28,8 +28,8 @@
                 $listLogin->ativo = $rs['ativo'];
                 $listLogin->matricula = $rs['matricula'];
                 $listLogin->avatar = $rs['avatar'];
-                $listLogin->dataEfetv = date('d/m/Y', strtotime($rs['data_efetivacao']));
-                $listLogin->dataNasc = date('d/m/Y', strtotime($rs['data_nasc']));
+                $listLogin->data_efetivacao = date('d/m/Y', strtotime($rs['data_efetivacao']));
+                $listLogin->data_nasc = date('d/m/Y', strtotime($rs['data_nasc']));
                 $listLogin->genero = $rs['genero'];
                 $listLogin->salario = $rs['salario'];
                 $listLogin->rg = $rs['RG'];

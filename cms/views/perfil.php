@@ -40,13 +40,13 @@
                         <span class="lbl-result" id="matricula"><?php echo($_SESSION['matricula_funcionario'])?></span>
 
                         <label for="dtefetivacao" class="lbl-ext">Data Efetiv.:</label>
-                        <span class="lbl-result" id="dtefetivacao"><?php echo($_SESSION['dataEfetv_funcionario'])?></span>
+                        <span class="lbl-result" id="dtefetivacao"><?php echo($_SESSION['data_efetivacao_funcionario'])?></span>
 
                         <label for="genero" class="lbl-ext">Gênero:</label>
                         <span class="lbl-result" id="genero"><?php echo($_SESSION['genero_funcionario'])?></span>
 
                         <label for="dtnascimento" class="lbl-ext">Data Nasc.:</label>
-                        <span class="lbl-result" id="dtnascimento"><?php echo($_SESSION['dataNasc_funcionario'])?></span>
+                        <span class="lbl-result" id="dtnascimento"><?php echo($_SESSION['data_nascimento_funcionario'])?></span>
 
                         <label for="rg" class="lbl-ext">RG:</label>
                         <span class="lbl-result" id="rg"><?php echo($_SESSION['rg_funcionario'])?></span>
