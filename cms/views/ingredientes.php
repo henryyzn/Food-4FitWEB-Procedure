@@ -199,7 +199,7 @@
                             <input id="titulo" name="titulo" class="input-generic" required placeholder="Digite um nome para o ingrediente..." value="<?php echo($titulo)?>">
 
                             <label for="descricao" class="label-generic">Descrição do Ingrediente:</label>
-                            <textarea id="descricao" name="descricao" class="textarea-generic">value="<?php echo($descricao)?>"</textarea>
+                            <textarea id="descricao" name="descricao" class="textarea-generic"><?php echo($descricao)?></textarea>
 
                             <label for="preco" class="label-generic">Preço do Ingrediente:</label>
                             <input id="preco" name="preco" class="input-generic" required placeholder="Digite um preço para o ingrediente..." value="<?php echo($preco)?>">
