@@ -29,7 +29,7 @@
                 $listLogin->matricula = $rs['matricula'];
                 $listLogin->avatar = $rs['avatar'];
                 $listLogin->dataEfetv = $rs['dataEfetv'];
-                $listLogin->dataNasc = $rs['dataNasc'];
+                $listLogin->dataNasc = date('d/m/Y', strtotime($rs['dataNasc']));
                 $listLogin->genero = $rs['genero'];
                 $listLogin->rg = $rs['rg'];
                 $listLogin->cpf = $rs['cpf'];

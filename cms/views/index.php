@@ -31,22 +31,6 @@
                 <div id="page-content">
                     <div class="dash-wrapper">
                         <div class="one card-dash">
-                            <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Bem Vindo!</h2>
-                            <span class="subtitle padding-left-20px padding-bottom-20px">O serviço de administração pensado para facilitar a sua vida.</span>
-                            <p class="padding-left-20px padding-bottom-20px">
-                                Este CMS tem como objetivo controlar o conteúdo do website da empresa Food 4Fit.
-                                <br>
-                                Caso ache necessário, veja o guia de ajuda de interface disponível logo abaixo para aprender sobre o serviço.
-                            </p>
-                            <div class="btn-generic margin-left-20px margin-bottom-20px">
-                                <span>Ler Mais</span>
-                            </div>
-                        </div>
-                        <div class="two card-dash">
-                            <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Mais Comprado Este Mês</h2>
-                            <span class="subtitle padding-left-20px">Produto de Nome X</span>
-                        </div>
-                        <div class="three card-dash">
                             <h2 class="title padding-top-20px padding-bottom-10px padding-left-20px">Últimos Comentários Adicionados</h2>
                             <?php
                                 require_once("../models/DAO/comentario-geralDAO.php");
@@ -70,6 +54,31 @@
                             <?php
                                 }
                             ?>
+                        </div>
+                        <div class="two card-dash">
+                            <img src="../../assets/images/backgrounds/profile-head.jpeg" alt="" class="index-profile-card">
+                            <div class="holder">
+                                <figure class="index-profile-image">
+                                    <img src="../../<?php echo($_SESSION['avatar_funcionario'])?>" alt="">
+                                </figure>
+                            </div>
+                            <div class="index-profile-infos">
+                                <h2 class="margin-top-80px"><?php echo($_SESSION['nome_funcionario'])?></h2>
+                                <span id="email"><?php echo($_SESSION['email_funcionario'])?></span>
+                                <span id="matricula" class="margin-bottom-20px">Matrícula: <?php echo($_SESSION['matricula_funcionario'])?></span>
+                            </div>
+                        </div>
+                        <div class="three card-dash">
+                            <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Bem Vindo!</h2>
+                            <span class="subtitle padding-left-20px padding-bottom-20px">O serviço de administração pensado para facilitar a sua vida.</span>
+                            <p class="padding-left-20px padding-bottom-20px">
+                                Este CMS tem como objetivo controlar o conteúdo do website da empresa Food 4Fit.
+                                <br>
+                                Caso ache necessário, veja o guia de ajuda de interface disponível logo abaixo para aprender sobre o serviço.
+                            </p>
+                            <div class="btn-generic margin-left-20px margin-bottom-20px">
+                                <span>Ler Mais</span>
+                            </div>
                         </div>
                         <div class="four card-dash" onclick="javascript:location.href='diario-bordo.php'">
                             <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Resumo do Diário de Bordo</h2>
@@ -164,7 +173,8 @@
                             ?>
                         </div>
                         <div class="five card-dash">
-                            <p>a</p>
+                            <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Mais Comprado Este Mês</h2>
+                            <span class="subtitle padding-left-20px">Produto de Nome X</span>
                         </div>
                     </div>
                 </div>

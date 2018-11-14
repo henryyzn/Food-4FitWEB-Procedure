@@ -24,7 +24,7 @@
                 $listUsuario->sobrenome = $rs['sobrenome'];
                 $listUsuario->nome_completo = $rs['nome_completo'];
                 $listUsuario->email = $rs['email'];
-                $listUsuario->data_nascimento = $rs['data_nascimento'];
+                $listUsuario->data_nascimento = date('d/m/Y', strtotime($rs['data_nascimento']));
                 $listUsuario->cpf = $rs['cpf'];
                 $listUsuario->rg = $rs['rg'];
                 $listUsuario->genero = $rs['genero'];

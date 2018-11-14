@@ -197,9 +197,9 @@
     }
 }
 .generic-table tr:first-child{
-    background-color: $mediumgrey;
+    background-color: $darkgrey;
     >td span{
-        @include texto(18px, $black, 'Roboto Bold');
+        @include texto(18px, $lightgrey, 'Roboto Bold');
         padding: 12px;
     }
 }

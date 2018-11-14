@@ -856,7 +856,7 @@ img.btn-logout:hover {
     display: grid;
     align-items: flex-start;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    //grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 30px 30px;
     grid-template-areas: "one two" "three four" "three five";
     box-sizing: border-box;
@@ -864,7 +864,7 @@ img.btn-logout:hover {
 
     .one { grid-area: one; }
 
-    .two { grid-area: two; }
+    .two { grid-area: two; position: relative; }
 
     .three { grid-area: three; }
 
@@ -878,6 +878,7 @@ img.btn-logout:hover {
         border-radius: 5px;
         box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
         transition: 200ms ease-in-out;
+        overflow: hidden;
         .title{
             @include texto(18px, $white, 'Roboto Bold');
             margin: 0;
@@ -888,6 +889,39 @@ img.btn-logout:hover {
         >p{
             @include texto(16px, $grey, 'Roboto Regular', 23px, left);
             width: 90%;
+        }
+        .index-profile-card{
+            @include img-fit(100%, 200px);
+        }
+        .holder{
+            @include bloco(100%, 100%, auto);
+            @include position(absolute, 0, 0, 0, 0);
+            .index-profile-image{
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                margin: 90px auto 90px auto;
+                overflow: hidden;
+                box-sizing: border-box;
+                border: 5px solid $white;
+                z-index: 99;
+                img{
+                    @include img-fit(100%, 100%);
+                }
+            }
+        }
+        .index-profile-infos{
+            @include bloco(100%, 100%, auto);
+            >h2{
+                @include texto(23px, $white, 'Roboto Bold', 28px, center);
+            }
+            #matricula{
+                @include texto(16px, $mediumgrey, 'Roboto Medium', 24px, center);
+
+            }
+            #email{
+                @include texto(16px, $grey, 'Roboto Medium Italic', 24px, center);
+            }
         }
         &:hover{
             background: linear-gradient(45deg, $olivine, $gold);
@@ -1324,6 +1358,23 @@ input:-webkit-autofill {
             @include texto(16px, $grey, 'Roboto Medium Italic');
             display: inline;
             float: right;
+        }
+    }
+}
+
+//Fit Session
+.fit-session-block{
+    @include bloco(100%, 100%, auto);
+    @include display(flex, row, flex-start, flex-start);
+    .fit-session-aside{
+        @include bloco(100%, 400px, 100vh);
+        background-color: $darkgrey;
+        >h2{
+            @include texto(21px, $white, 'Roboto Bold', 28px, left);
+        }
+        >p{
+            @include texto(16px, $mediumgrey, 'Roboto Medium', 21px, left);
+            width: 90%;
         }
     }
 }
