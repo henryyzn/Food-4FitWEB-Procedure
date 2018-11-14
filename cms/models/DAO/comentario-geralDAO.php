@@ -49,7 +49,7 @@ class comentarioGeralDAO {
         $listComentarios->id_usuario = $rs['id_usuario'];
         $listComentarios->assunto = $rs['assunto'];
         $listComentarios->texto = $rs['texto'];
-        $listComentarios->data = $rs['data'];
+        $listComentarios->data = date('d/m/Y', strtotime($rs['data']));
         $listComentarios->ativo = $rs['ativo'];
 
         $conex = new mysql_db();
@@ -87,7 +87,7 @@ class comentarioGeralDAO {
             $listComentarios[$cont]->id_usuario_comentario = $rs['id_usuario_comentario'];
             $listComentarios[$cont]->assunto = $rs['assunto'];
             $listComentarios[$cont]->texto = $rs['texto'];
-            $listComentarios[$cont]->data = $rs['data'];
+            $listComentarios[$cont]->data = date('d/m/Y', strtotime($rs['data']));
             $listComentarios[$cont]->nome = $rs['nome'];
             $listComentarios[$cont]->email = $rs['email'];
             $listComentarios[$cont]->id_usuario = $rs['id_usuario'];
@@ -120,7 +120,7 @@ class comentarioGeralDAO {
             $listComentariosGerais[$cont]->texto = $rs['texto'];
             $listComentariosGerais[$cont]->ativo = $rs['ativo'];
             $listComentariosGerais[$cont]->foto = $rs['foto'];
-            $listComentariosGerais[$cont]->data = $rs['data'];
+            $listComentariosGerais[$cont]->data = date('d/m/Y', strtotime($rs['data']));
 
             $cont+=1;
         }
@@ -151,7 +151,7 @@ class comentarioGeralDAO {
             $listComentariosGerais[$cont]->texto = $rs['texto'];
             $listComentariosGerais[$cont]->ativo = $rs['ativo'];
             $listComentariosGerais[$cont]->foto = $rs['foto'];
-            $listComentariosGerais[$cont]->data = $rs['data'];
+            $listComentariosGerais[$cont]->data = date('d/m/Y', strtotime($rs['data']));
 
             $cont+=1;
         }
