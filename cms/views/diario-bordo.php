@@ -20,6 +20,8 @@
             $diarioBordoDAO = new diarioBordoDAO;
             $id = $_GET['id'];
             $diarioBordoDAO->delete($id);
+        }elseif($modo == 'transformar'){
+            header("location:diario-bordo.php");
         }
     }
 
@@ -33,7 +35,7 @@
     <title>Food 4fit - CMS</title>
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
-    <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases.css">
+    <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
     <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
     <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
     <link rel="stylesheet" href="../../assets/css/font-style.css">
@@ -51,14 +53,14 @@
         <?php require_once("../components/navbar.php")?>
         <div id="page-content">
             <div class="diario-border-wrapper">
-                <table class="table-diario">
-                    <tr id="contact-table-trow">
+                <table class="generic-table">
+                    <tr>
                         <td><span>Nome:</span></td>
                         <td><span>E-Mail:</span></td>
                         <td><span>Assunto:</span></td>
                         <td><span>Progresso:</span></td>
                         <td><span>Data Envio:</span></td>
-                        <td colspan="2"><span>Opções:</span></td>
+                        <td colspan="3"><span>Opções:</span></td>
                     </tr>
                     <?php
                         require_once("../models/DAO/diario-bordoDAO.php");
@@ -69,56 +71,20 @@
 
                         for($i = 0; $i < count($lista); $i++){
                     ?>
-                    <tr class="contact-table-rrow">
-                        <td><span><?php echo($lista[$i]->nome)?></span></td>
-                        <td><span><?php echo($lista[$i]->email)?></span></td>
-                        <td><span><?php echo($lista[$i]->titulo)?></span></td>
-                        <td><span><?php echo($lista[$i]->progresso)?></span></td>
-                        <td><span><?php echo($lista[$i]->data)?></span></td>
-                        <td>
-                            <div class="coluna">
-                                <img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="view margin-right-10px" onclick="abrir(<?php echo($lista[$i]->id)?>)">
-                                <img src="../../assets/images/cms/symbols/excluir.svg" alt="" onclick="javascript:location.href='diario-bordo.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
-                            </div>
-                        </td>
+                    <tr>
+                        <td><span class="table-result"><strong><?php echo($lista[$i]->nome)?></strong></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->email)?></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->progresso)?></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->data)?></span></td>
+                        <td width="42px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="abrir(<?php echo($lista[$i]->id)?>)"></td>
+                        <td width="42px"><img src="../../assets/images/icons/level-up.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='diario-bordo.php?modo=transformar&id=<?php echo($lista[$i]->id)?>'"></td>
+                        <td width="42px"><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='diario-bordo.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                     </tr>
                     <?php
                         }
                     ?>
                 </table>
-                <aside class="menu-lateral-diario form-generic">
-                    <div>
-                        <h2>Filtros</h2>
-                    </div>
-                    <form class="form-generic-content width-300px margin-right-auto margin-left-auto">
-                        <label class="label-generic padding-top-20px">
-                            Progresso:
-                        </label>
-                        <input type="checkbox">
-                        <label class="label-generic">PÉSSIMO</label>
-                        <input type="checkbox">
-                        <label class="label-generic">RUIM</label>
-                        <input type="checkbox">
-                        <label class="label-generic">REGULAR</label>
-                        <input type="checkbox">
-                        <label class="label-generic">BOM</label>
-                        <input type="checkbox">
-                        <label class="label-generic">ÓTIMO</label>
-
-                        <h3 class="padding-top-20px">Idade:</h3>
-                        <label class="label-generic">Entre:</label>
-                        <input type="text" class="input-generic">
-                        <label class="label-generic">À:</label>
-                        <input type="text" class="input-generic">
-
-                        <label class="label-generic">Data de Envio Posterior a:</label>
-                        <input type="text" class="input-generic">
-                        <label class="label-generic">Data de Envio anterior a:</label>
-                        <input type="text" class="input-generic">
-
-                        <input type="submit" name="submit" class="display-none" class="input-generic">
-                    </form>
-                </aside>
             </div>
         </div>
     </div>

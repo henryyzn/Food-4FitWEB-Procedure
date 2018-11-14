@@ -47,7 +47,7 @@ class dicasFitnessDAO {
         $listDicasFitness->id_funcionario = $rs['id_funcionario'];
         $listDicasFitness->titulo = $rs['titulo'];
         $listDicasFitness->texto = $rs['texto'];
-        $listDicasFitness->data = $rs['data'];
+        $listDicasFitness->data = date('d/m/Y', strtotime($rs['data']));
         $listDicasFitness->ativo = $rs['ativo'];
 
         $conex = new mysql_db();
@@ -80,7 +80,7 @@ class dicasFitnessDAO {
         $listDicasFitness->id_funcionario = $rs['id_funcionario'];
         $listDicasFitness->titulo = $rs['titulo'];
         $listDicasFitness->texto = $rs['texto'];
-        $listDicasFitness->data = $rs['data'];
+        $listDicasFitness->data = date('d/m/Y', strtotime($rs['data']));
         $listDicasFitness->ativo = $rs['ativo'];
         $listDicasFitness->nome = $rs['nome'];
         $listDicasFitness->email = $rs['email'];
@@ -121,7 +121,7 @@ class dicasFitnessDAO {
             $listDicasFitness[$cont]->id_funcionario = $rs['id_funcionario'];
             $listDicasFitness[$cont]->titulo = $rs['titulo'];
             $listDicasFitness[$cont]->texto = $rs['texto'];
-            $listDicasFitness[$cont]->data = $rs['data'];
+            $listDicasFitness[$cont]->data = date('d/m/Y', strtotime($rs['data']));
             $listDicasFitness[$cont]->ativo = $rs['ativo'];
             $cont+=1;
         }
@@ -136,6 +136,8 @@ class dicasFitnessDAO {
 
         if($PDO_conex->query($sql))
             header('location:dicas-fitness.php');
+        else
+            echo('<script>alert("Erro ao excluir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
     }
 
     public function update($classDicasFitness){
@@ -148,13 +150,15 @@ class dicasFitnessDAO {
         ativo = '".$classDicasFitness->ativo."'
         where id=".$classDicasFitness->id;
 
-        echo($sql);
+        //echo($sql);
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
 
         if($PDO_conex->query($sql))
             header('location:dicas-fitness.php');
+        else
+            echo('<script>alert("Erro ao atualizar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
         $conex->desconectar();
 

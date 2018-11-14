@@ -866,13 +866,7 @@ img.btn-logout:hover {
 
     .two { grid-area: two; }
 
-    .three {
-        grid-area: three;
-        box-sizing: border-box;
-        border-left: 20px solid transparent;
-        border-right: 20px solid transparent;
-        padding-bottom: 20px;
-    }
+    .three { grid-area: three; }
 
     .four { grid-area: four; }
 
@@ -902,12 +896,13 @@ img.btn-logout:hover {
     }
 }
 .interact-card{
-    @include bloco($width: 100%, $height: auto);
+    @include bloco($width: auto, $height: auto);
     border-radius: 3px;
-    background: $mediumgrey;
+    background: $darkgreymedium;
     box-sizing: border-box;
     position: relative;
     @include display(flex, row, flex-start, center);
+    margin: 0 20px 20px 20px;
     >figure{
         @include bloco($width: 50px, $height: 50px);
         min-width: 50px;
@@ -923,15 +918,23 @@ img.btn-logout:hover {
         @include position(absolute, null, 10px, 10px, null);
     }
     >div{
-        display: flex;
         width: 100%;
+        height: auto;
         >h2{
-            @include texto(18px, $black, 'Roboto Bold');
+            @include texto(18px, $white, 'Roboto Bold');
             margin: 0px;
         }
         >p{
             @include texto(16px, $grey, 'Roboto Medium Italic');
             margin: 0px;
+        }
+    }
+    &:hover{
+        background-color: $lightgrey;
+        >div{
+            >h2{
+                color: $black;
+            }
         }
     }
 }
@@ -1187,42 +1190,49 @@ img.btn-logout:hover {
     table{@include bloco(100%, 100%, 100%);}
 }
 
-.menu-lateral-diario{
-    @include bloco(100%, 350px, 100vh);
-    background: $olivine;
-    >div{
-        h2{
-            @include texto(28px,  $white, "Roboto Bold");
-            padding: 16px;
+#modal-diario-header{
+    display: flex;
+    width: 100%;
+    height: auto;
+    >figure{
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: $shadow;
+        >img{
+            @include img-fit(48px, 48px);
         }
-        background-color: bisque;
     }
-    table{
-        @include bloco($width: 100%, $height: auto);
-        border-collapse: collapse;
-        #contact-table-trow{
-            background-color: $mediumgrey;
-            >td{
-                >span{
-                    @include texto(18px, $black, 'Roboto Bold');
-                    padding: 12px;
-                }
-            }
-        }
-        .contact-table-rrow{
-            >td{
-                >span{
-                    @include texto(16px, $grey, 'Roboto Medium');
-                }
-                >div>img{
-                    @include img-fit(40px, 40px);
-                    display: inline-block;
-                    padding: 10px 0px 10px 0px;
-                }
-            }
-        }
+    >h2{
+        font-size: 20px;
+        color: $white;
     }
 }
+#email-label-modal-diario{
+    @include texto(16px, $grey, 'Roboto Medium Italic', 19px);
+}
+#modal-diario-assunto{
+    @include texto(18px, $white, 'Roboto Bold', 23px);
+    margin-top: 20px;
+}
+.modal-diario-text{
+    //Texto do modal
+    width: 90%;
+    display: block;
+    font-family: "Roboto Regular";
+    color: $mediumgrey;
+    text-align: left;
+    font-size: 16px;
+    line-height: 21px;
+    a{
+        //Link do texto do modal
+        font-family: "Roboto Bold Italic";
+        color: #E85858;
+        text-decoration: none;
+    }
+}
+
 
 .profile-wrapper{
     @include bloco(100%, 100%, 90vh);

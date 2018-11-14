@@ -47,7 +47,7 @@ class dicasSaudeDAO {
         $listDicasSaude->id_funcionario = $rs['id_funcionario'];
         $listDicasSaude->titulo = $rs['titulo'];
         $listDicasSaude->texto = $rs['texto'];
-        $listDicasSaude->data = $rs['data'];
+        $listDicasSaude->data = date('d/m/Y', strtotime($rs['data']));
         $listDicasSaude->ativo = $rs['ativo'];
 
         $conex = new mysql_db();
@@ -86,7 +86,7 @@ class dicasSaudeDAO {
             $listDicasSaude[$cont]->id_funcionario = $rs['id_funcionario'];
             $listDicasSaude[$cont]->titulo = $rs['titulo'];
             $listDicasSaude[$cont]->texto = $rs['texto'];
-            $listDicasSaude[$cont]->data = $rs['data'];
+            $listDicasSaude[$cont]->data = date('d/m/Y', strtotime($rs['data']));
             $listDicasSaude[$cont]->ativo = $rs['ativo'];
             $cont+=1;
         }
@@ -101,6 +101,8 @@ class dicasSaudeDAO {
 
         if($PDO_conex->query($sql))
             header('location:dicas-saude.php');
+        else
+            echo('<script>alert("Erro ao excluir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
     }
 
     public function update($classDicasSaude){
@@ -120,6 +122,8 @@ class dicasSaudeDAO {
 
         if($PDO_conex->query($sql))
             header('location:dicas-saude.php');
+        else
+            echo('<script>alert("Erro ao atualizar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
         $conex->desconectar();
 

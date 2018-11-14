@@ -224,7 +224,7 @@ tr td:nth-child(4){
 }
 .table-generic-opts{
     @include img-fit(30px, 30px);
-    margin: 10px;
+    margin: 10px 0 10px 0;
 }
 
 /* MODAL GENERICO */
@@ -239,11 +239,11 @@ tr td:nth-child(4){
 	background: rgba(0, 0, 0, 0.5);
 	.generic-modal-wrapper{
 		//Holder do modal
-		@include bloco($width: auto, $height: auto);
-		@include display(flex, column, center, center);
+		@include bloco(100%, 500px, auto);
+		@include display(flex, column, center, null);
 		box-sizing: border-box;
-		padding-left: 30px;
-		padding-right: 30px;
+		padding-left: 20px;
+		padding-right: 20px;
 		border-radius: 10px;
 		background-color: $white;
 		position: relative;
@@ -255,23 +255,6 @@ tr td:nth-child(4){
 		    >img{
 		    	//Imagem do botão
 				@include img-fit(21px, 21px);
-			}
-		}
-		>p{
-			//Texto do modal
-			width: 80%;
-			display: block;
-			font-family: "Roboto Regular";
-			color: #282828;
-			text-align: center;
-			font-size: 16px;
-			line-height: 21px;
-			margin: 0 auto;
-			a{
-				//Link do texto do modal
-				font-family: "Roboto Bold Italic";
-				color: #E85858;
-				text-decoration: none;
 			}
 		}
 	}

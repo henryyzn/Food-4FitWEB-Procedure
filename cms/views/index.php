@@ -47,13 +47,13 @@
                             <span class="subtitle padding-left-20px">Produto de Nome X</span>
                         </div>
                         <div class="three card-dash">
-                            <h2 class="title padding-top-20px padding-bottom-10px padding-left-20px">Últimos Pratos Adicionados</h2>
+                            <h2 class="title padding-top-20px padding-bottom-10px padding-left-20px">Últimos Comentários Adicionados</h2>
                             <?php
-                                require_once("../models/DAO/pratosDAO.php");
+                                require_once("../models/DAO/comentario-geralDAO.php");
 
-                                $pratosDAO = new pratosDAO();
+                                $comentarioGeralDAO = new comentarioGeralDAO();
 
-                                $lista = $pratosDAO->selectAll();
+                                $lista = $comentarioGeralDAO->selectAccept();
 
                                 for($i = 0; $i < @count($lista); $i++){
                             ?>
@@ -62,17 +62,106 @@
                                     <img src="../../<?php echo($lista[$i]->foto)?>" alt="">
                                 </figure>
                                 <div>
-                                    <h2>Nome do Usuário:</h2>
-                                    <p>Changelog</p>
+                                    <h2><?php echo($lista[$i]->assunto)?></h2>
+                                    <p><?php echo($lista[$i]->email)?></p>
                                 </div>
-                                <span>Horário</span>
+                                <span><?php echo($lista[$i]->data)?></span>
                             </div>
                             <?php
                                 }
                             ?>
                         </div>
-                        <div class="four card-dash">
-                            <p>a</p>
+                        <div class="four card-dash" onclick="javascript:location.href='diario-bordo.php'">
+                            <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Resumo do Diário de Bordo</h2>
+                            <?php
+                                require_once("../models/DAO/diario-bordoDAO.php");
+
+                                $diarioBordoDAO = new diarioBordoDAO();
+
+                                $lista = $diarioBordoDAO->selectProgress('otimo');
+
+                                for($i = 0; $i < @count($lista); $i++){
+                                    $porcentagem = 100;
+                                    $progresso = $lista[$i]->progresso;
+
+                                    $nova_porcentagem = ($porcentagem / 100) * $progresso . "%";
+                            ?>
+                            <p class="subtitle padding-left-20px"><strong>Ótimo:</strong> <?php echo($nova_porcentagem)?></p>
+                            <?php
+                                }
+                            ?>
+                            <!-- ---------------------- -->
+                            <?php
+                                require_once("../models/DAO/diario-bordoDAO.php");
+
+                                $diarioBordoDAO = new diarioBordoDAO();
+
+                                $lista = $diarioBordoDAO->selectProgress('bom');
+
+                                for($i = 0; $i < @count($lista); $i++){
+                                    $porcentagem = 100;
+                                    $progresso = $lista[$i]->progresso;
+
+                                    $nova_porcentagem = ($porcentagem / 100) * $progresso . "%";
+                            ?>
+                            <p class="subtitle padding-left-20px"><strong>Bom:</strong> <?php echo($nova_porcentagem)?></p>
+                            <?php
+                                }
+                            ?>
+                            <!-- ---------------------- -->
+                            <?php
+                                require_once("../models/DAO/diario-bordoDAO.php");
+
+                                $diarioBordoDAO = new diarioBordoDAO();
+
+                                $lista = $diarioBordoDAO->selectProgress('regular');
+
+                                for($i = 0; $i < @count($lista); $i++){
+                                    $porcentagem = 100;
+                                    $progresso = $lista[$i]->progresso;
+
+                                    $nova_porcentagem = ($porcentagem / 100) * $progresso . "%";
+                            ?>
+                            <p class="subtitle padding-left-20px"><strong>Regular:</strong> <?php echo($nova_porcentagem)?></p>
+                            <?php
+                                }
+                            ?>
+                            <!-- ---------------------- -->
+                            <?php
+                                require_once("../models/DAO/diario-bordoDAO.php");
+
+                                $diarioBordoDAO = new diarioBordoDAO();
+
+                                $lista = $diarioBordoDAO->selectProgress('ruim');
+
+                                for($i = 0; $i < @count($lista); $i++){
+                                    $porcentagem = 100;
+                                    $progresso = $lista[$i]->progresso;
+
+                                    $nova_porcentagem = ($porcentagem / 100) * $progresso . "%";
+                            ?>
+                            <p class="subtitle padding-left-20px"><strong>Ruim:</strong> <?php echo($nova_porcentagem)?></p>
+                            <?php
+                                }
+                            ?>
+                            <!-- ---------------------- -->
+                            <?php
+                                require_once("../models/DAO/diario-bordoDAO.php");
+
+                                $diarioBordoDAO = new diarioBordoDAO();
+
+                                $lista = $diarioBordoDAO->selectProgress('pessimo');
+
+                                for($i = 0; $i < @count($lista); $i++){
+                                    $porcentagem = 100;
+                                    $progresso = $lista[$i]->progresso;
+
+                                    $nova_porcentagem = ($porcentagem / 100) * $progresso . "%";
+                            ?>
+                            <p class="subtitle padding-left-20px padding-bottom-15px"><strong>Péssimo:</strong> <?php echo($nova_porcentagem)?></p>
+                            <?php
+                                }
+                            ?>
                         </div>
                         <div class="five card-dash">
                             <p>a</p>
@@ -82,5 +171,16 @@
             </div>
         </section>
         <script src="../../assets/js/theme.js"></script>
+        <script>
+            (function($) {
+                //Setamos o valor inicial
+                var count = 3;
+                var i = null;
+
+                //escondemos todos os elementos maior que o valor inicial
+                $(".interact-card").slice(count).hide();
+
+            }(jQuery));
+        </script>
     </body>
 </html>

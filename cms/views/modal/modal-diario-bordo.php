@@ -8,30 +8,34 @@
         require_once('../../models/DAO/diario-bordoDAO.php');
 
         $diarioBordoDAO = new diarioBordoDAO;
-        $listDiarioBordo = $diarioBordoDAO->selectId($id);
+        $listDiarioBordo = $diarioBordoDAO->selectInfo($id);
 
         //Resgatando do Banco de dados
         //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
         if(@count($listDiarioBordo)>0){
             $id = $listDiarioBordo->id;
             $id_usuario = $listDiarioBordo->id_usuario;
-            $titulo = $listDiarioBordo->titulo;
-            $texto = $listDiarioBordo->texto;
+            $assunto = $listDiarioBordo->titulo;
+            $depoimento = $listDiarioBordo->texto;
             $progresso = $listDiarioBordo->progresso;
             $data = $listDiarioBordo->data;
+            $nome = $listDiarioBordo->nome;
+            $email = $listDiarioBordo->email;
+            $avatar = $listDiarioBordo->avatar;
+            $data_nascimento = $listDiarioBordo->data_nascimento;
+            $idade = date_diff(date_create($data_nascimento), date_create('now'))->y;
 ?>
-<h2 class="margin-top-60px margin-bottom-20px"><?php echo($titulo)?></h2>
-<p class="padding-bottom-60px"><?php echo($texto)?></p>
-<!--
-<div class="generic-modal-row margin-top-30px margin-bottom-60px">
-    <div class="btn-generic-modal cancel box-shadow margin-left-auto margin-right-15px">
-        <span>Recusar</span>
-    </div>
-    <div class="btn-generic-modal confirm box-shadow margin-right-auto">
-        <span>Aceitar</span>
-    </div>
+<div id="modal-diario-header" class="margin-top-20px">
+    <figure style="">
+        <img src="../../<?php echo($avatar)?>" alt="Avatar do Usuário">
+    </figure>
+    <h2 class="padding-left-20px">
+        Nome: <?php echo($nome)?>, <?php echo($idade)?> anos
+        <span id="email-label-modal-diario" class="padding-top-5px"> <?php echo($email)?></span>
+    </h2>
 </div>
--->
+<h2 id="modal-diario-assunto" class="padding-bottom-10px"><?php echo($assunto)?></h2>
+<p class="modal-diario-text padding-bottom-30px"><?php echo($depoimento)?></p>
 <?php
         }
     }
