@@ -58,7 +58,7 @@
                         <div class="two card-dash">
                             <img src="../../assets/images/backgrounds/profile-head.jpeg" alt="" class="index-profile-card">
                             <div class="holder">
-                                <figure class="index-profile-image">
+                                <figure class="index-profile-image" onclick="javascript:location.href='perfil.php'">
                                     <img src="../../<?php echo($_SESSION['avatar_funcionario'])?>" alt="">
                                 </figure>
                             </div>
@@ -76,7 +76,7 @@
                                 <br>
                                 Caso ache necessário, veja o guia de ajuda de interface disponível logo abaixo para aprender sobre o serviço.
                             </p>
-                            <div class="btn-generic margin-left-20px margin-bottom-20px">
+                            <div class="btn-generic margin-left-20px margin-bottom-20px" onclick="javascript:location.href='ajuda.php'">
                                 <span>Ler Mais</span>
                             </div>
                         </div>

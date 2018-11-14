@@ -868,7 +868,7 @@ img.btn-logout:hover {
 
     .three { grid-area: three; }
 
-    .four { grid-area: four; }
+    .four { grid-area: four; cursor: pointer; }
 
     .five { grid-area: five; }
 
@@ -903,10 +903,16 @@ img.btn-logout:hover {
                 margin: 90px auto 90px auto;
                 overflow: hidden;
                 box-sizing: border-box;
-                border: 5px solid $white;
+                border: 5px solid $olivine;
                 z-index: 99;
+                box-shadow: $shadow;
+                transition: 200ms ease-out;
                 img{
                     @include img-fit(100%, 100%);
+                }
+                &:hover{
+                    transform: scale(1.05);
+                    transition: 200ms ease-out;
                 }
             }
         }
@@ -925,7 +931,6 @@ img.btn-logout:hover {
         }
         &:hover{
             background: linear-gradient(45deg, $olivine, $gold);
-            cursor: pointer;
         }
     }
 }
@@ -937,6 +942,8 @@ img.btn-logout:hover {
     position: relative;
     @include display(flex, row, flex-start, center);
     margin: 0 20px 20px 20px;
+    box-shadow: $shadow;
+    transition: 200ms ease-out;
     >figure{
         @include bloco($width: 50px, $height: 50px);
         min-width: 50px;
@@ -965,6 +972,7 @@ img.btn-logout:hover {
     }
     &:hover{
         background-color: $lightgrey;
+        transform: scale(1.05);
         >div{
             >h2{
                 color: $black;
