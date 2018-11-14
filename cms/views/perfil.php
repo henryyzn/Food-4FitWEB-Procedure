@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?pho echo($_SESSION['nome_funcionario'])?> :: Food 4fit - CMS</title>
+    <title><?php echo($_SESSION['nome_funcionario'])?> :: Food 4fit - CMS</title>
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
     <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
@@ -55,7 +55,7 @@
                         <span class="lbl-result" id="cpf"><?php echo($_SESSION['cpf_funcionario'])?></span>
 
                         <label for="salario" class="lbl-ext">Salário:</label>
-                        <span class="lbl-result" id="salario"><?php echo($_SESSION['salario_funcionario'])?></span>
+                        <span class="lbl-result" id="salario">R$ <?php echo($_SESSION['salario_funcionario'])?>,00</span>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-if(isset($_GET['modo'])){
+    if(isset($_GET['modo'])){
     $modo = $_GET['modo'];
     if($modo == 'excluir'){
         require_once('../../cms/models/contatoClass.php');
@@ -11,9 +11,6 @@ if(isset($_GET['modo'])){
         $contatoDAO->delete($id);
         }
     }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

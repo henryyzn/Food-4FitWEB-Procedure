@@ -31,7 +31,6 @@
             require_once('../models/DAO/lojasDAO.php');
 
             $lojasDAO = new lojasDAO;
-            session_start();
             $id = $_GET['id'];
             $_SESSION['id'] = $id;
 

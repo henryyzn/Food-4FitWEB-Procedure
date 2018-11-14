@@ -228,7 +228,7 @@ body {
         padding: 5px;
         @include display(flex, row, space-between, center);
         flex-shrink: 0;
-        >div{
+        >form{
             display: flex;
             align-items: center;
             >input{
@@ -248,6 +248,10 @@ body {
             >img{
                 cursor: pointer;
             }
+        }
+        >div{
+            display: flex;
+            align-items: center;
         }
         #titulo-pagina{
             @include texto(21px, $white, 'Roboto Bold');

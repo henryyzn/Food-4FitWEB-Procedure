@@ -101,7 +101,7 @@
             <span class="image"><img src="../../assets/images/cms/icons/lojas.svg" alt="Nossas Lojas"></span>
             <span class="label">Nossas Lojas</span>
         </a>
-        <a href="#">
+        <a href="ajuda.php">
             <span class="image"><img src="../../assets/images/cms/icons/ajuda.svg" alt="Ajuda"></span>
             <span class="label">Ajuda</span>
         </a>

@@ -9,9 +9,9 @@
 
             $passwd = md5($senha);
 
-            $sql = "SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, ativo, matricula, avatar FROM tbl_funcionario WHERE matricula = '".$matricula."' AND senha = '".$passwd."' AND ativo = '1';";
+            $sql = "SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, ativo, matricula, avatar, data_efetivacao, genero, RG, CPF, data_nasc, salario FROM tbl_funcionario WHERE matricula = '".$matricula."' AND senha = '".$passwd."' AND ativo = '1';";
 
-            echo($sql);
+            //echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -28,11 +28,12 @@
                 $listLogin->ativo = $rs['ativo'];
                 $listLogin->matricula = $rs['matricula'];
                 $listLogin->avatar = $rs['avatar'];
-                $listLogin->dataEfetv = $rs['dataEfetv'];
-                $listLogin->dataNasc = date('d/m/Y', strtotime($rs['dataNasc']));
+                $listLogin->dataEfetv = date('d/m/Y', strtotime($rs['data_efetivacao']));
+                $listLogin->dataNasc = date('d/m/Y', strtotime($rs['data_nasc']));
                 $listLogin->genero = $rs['genero'];
-                $listLogin->rg = $rs['rg'];
-                $listLogin->cpf = $rs['cpf'];
+                $listLogin->salario = $rs['salario'];
+                $listLogin->rg = $rs['RG'];
+                $listLogin->cpf = $rs['CPF'];
 
                 $conex = new mysql_db();
                 $PDO_conex = $conex->conectar();

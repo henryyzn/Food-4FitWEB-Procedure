@@ -22,6 +22,8 @@
         $_SESSION['dataEfetv_funcionario'] = null;
         $_SESSION['dataNasc_funcionario'] = null;
         $_SESSION['genero_funcionario'] = null;
+        $_SESSION['rg_funcionario'] = null;
+        $_SESSION['cpf_funcionario'] = null;
 
         $listLogin = $loginDAO->checkLogin($matricula, $senha);
 
@@ -34,10 +36,12 @@
             $_SESSION['avatar_funcionario'] = $listLogin->avatar;
             $_SESSION['rg_funcionario'] = $listLogin->rg_funcionario;
             $_SESSION['cpf_funcionario'] = $listLogin->cpf_funcionario;
-            $_SESSION['salario_funcionario'] = $listLogin->salario_funcionario;
-            $_SESSION['dataEfetv_funcionario'] = $listLogin->dataEfetv_funcionario;
-            $_SESSION['dataNasc_funcionario'] = $listLogin->dataNasc_funcionario;
-            $_SESSION['genero_funcionario'] = $listLogin->genero_funcionario;
+            $_SESSION['salario_funcionario'] = $listLogin->salario;
+            $_SESSION['dataEfetv_funcionario'] = $listLogin->dataEfetv;
+            $_SESSION['dataNasc_funcionario'] = $listLogin->dataNasc;
+            $_SESSION['genero_funcionario'] = $listLogin->genero;
+            $_SESSION['rg_funcionario'] = $listLogin->rg;
+            $_SESSION['cpf_funcionario'] = $listLogin->cpf;
 
             header('location:index.php');
         }
