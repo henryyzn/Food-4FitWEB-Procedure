@@ -256,7 +256,6 @@ body {
             @include texto(21px, $white, 'Roboto Bold');
             padding-left: 20px;
             text-transform: uppercase;
-            flex: 0 0 350px;
         }
         #ultimas-interacoes {
             @include texto(18px, $white, 'Roboto Bold');
@@ -1115,7 +1114,18 @@ img.btn-logout:hover {
     width: 80%;
     margin: 0 auto;
 }
-
+.categoria-block{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.categoria-form-right{
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: $lightgrey;
+    overflow: auto;
+}
 .status-prato{
     @include bloco($width: auto, $height: 25px);
 	@include position(absolute, 13px, 10px, $bottom: null, $left: null);
@@ -1393,16 +1403,16 @@ input:-webkit-autofill {
 .fit-session-block{
     @include bloco(100%, 100%, auto);
     @include display(flex, row, flex-start, flex-start);
-    .fit-session-aside{
-        @include bloco(100%, 400px, 100vh);
-        background-color: $mediumgrey;
-        >h2{
-            @include texto(21px, $black, 'Roboto Bold', 28px, left);
-        }
-        >p{
-            @include texto(16px, $darkgreymedium, 'Roboto Medium', 21px, left);
-            width: 90%;
-        }
+}
+.explanation-aside{
+    @include bloco(100%, 400px, 100vh);
+    background-color: $mediumgrey;
+    >h2{
+        @include texto(21px, $black, 'Roboto Bold', 28px, left);
+    }
+    >p{
+        @include texto(16px, $darkgreymedium, 'Roboto Medium', 21px, left);
+        width: 90%;
     }
 }
 

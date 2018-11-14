@@ -19,23 +19,6 @@
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
-    <style>
-        .categoria-block{
-            width: 100%;
-            height: auto;
-            display: flex;
-        }
-        .categoria-form-right{
-            width: 100%;
-            max-width: 400px;
-            height: 100vh;
-            background-color: #FCFCFC;
-            overflow: auto;
-        }
-        .image-view{
-            max-width: 300px; height: auto; display: block;
-        }
-    </style>
 </head>
     <body>
      <section id="main">

@@ -16,11 +16,9 @@
         $_SESSION['email_funcionario'] = null;
         $_SESSION['matricula_funcionario'] = null;
         $_SESSION['avatar_funcionario'] = null;
-        $_SESSION['rg_funcionario'] = null;
-        $_SESSION['cpf_funcionario'] = null;
         $_SESSION['salario_funcionario'] = null;
-        $_SESSION['dataEfetv_funcionario'] = null;
-        $_SESSION['dataNasc_funcionario'] = null;
+        $_SESSION['data_efetivacao_funcionario'] = null;
+        $_SESSION['data_nascimento_funcionario'] = null;
         $_SESSION['genero_funcionario'] = null;
         $_SESSION['rg_funcionario'] = null;
         $_SESSION['cpf_funcionario'] = null;
@@ -34,11 +32,9 @@
             $_SESSION['nome_funcionario'] = $listLogin->nome_completo;
             $_SESSION['email_funcionario'] = $listLogin->email;
             $_SESSION['avatar_funcionario'] = $listLogin->avatar;
-            $_SESSION['rg_funcionario'] = $listLogin->rg_funcionario;
-            $_SESSION['cpf_funcionario'] = $listLogin->cpf_funcionario;
             $_SESSION['salario_funcionario'] = $listLogin->salario;
-            $_SESSION['dataEfetv_funcionario'] = $listLogin->dataEfetv;
-            $_SESSION['dataNasc_funcionario'] = $listLogin->dataNasc;
+            $_SESSION['data_efetivacao_funcionario'] = $listLogin->data_efetivacao;
+            $_SESSION['data_nascimento_funcionario'] = $listLogin->data_nascimento;
             $_SESSION['genero_funcionario'] = $listLogin->genero;
             $_SESSION['rg_funcionario'] = $listLogin->rg;
             $_SESSION['cpf_funcionario'] = $listLogin->cpf;

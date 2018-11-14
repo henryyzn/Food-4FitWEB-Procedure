@@ -32,10 +32,10 @@
                     $descontoClass = new  Desconto();
                     $descontoDAO = new descontoDAO();
 
-                    $descontoClass->titulo = $_POST['titulo'];
+                    $descontoClass->titulo = $_POST['nome'];
                     $descontoClass->valor = $_POST['valor'];
-                    $descontoClass->codig_cupom = $_POST['desconto'];
-                    $descontoClass->validade = $_POST['data'];
+                    $descontoClass->codig_cupom = $_POST['codig_cupom'];
+                    $descontoClass->validade = $_POST['validade'];
                     $descontoClass->ativo = $_POST['ativo'];
 
                     $descontoDAO->insert($descontoClass);
@@ -51,29 +51,24 @@
                         <h2 class="form-title">Cadastrar uma promoção</h2>
 
                         <div class="form-column">
-                            <label for="titulo" class="label-generic">Prato à receber desconto:</label>
-                            <input id="titulo" name="titulo" class="input-generic" required placeholder="Nome do prato">
+                            <label for="titulo" class="label-generic">Nome:</label>
+                            <input id="nome" name="nome" class="input-generic" required placeholder="Nome do prato">
                         </div>
                         <div class="form-column">
-                            <label for="titulo" class="label-generic">Valor atual:</label>
+                            <label for="titulo" class="label-generic">Valor novo:</label>
                             <input id="valor" name="valor" class="input-generic" required placeholder="R$ 000,00">
                         </div>
                         <div class="form-column">
-                            <label for="titulo" class="label-generic">Desconto:</label>
-                            <input id="desconto" name="desconto" class="input-generic" required placeholder="Digite um desconto para promoção...">
+                            <label for="titulo" class="label-generic">Código do cupom:</label>
+                            <input id="codig_cupom" name="codig_cupom" class="input-generic" required placeholder="Digite um desconto para promoção...">
                         </div>
                         <div class="form-column">
-                            <label for="titulo" class="label-generic">Data de término:</label>
-                            <input id="data" name="data" class="input-generic" required placeholder="Digite uma data de trérmino para a promoção...">
+                            <label for="titulo" class="label-generic">Validade:</label>
+                            <input id="validade" name="validade" class="input-generic" required placeholder="Digite uma data de trérmino para a promoção...">
                         </div>
-                        <div class="form-column">
-                            <label for="titulo" class="label-generic">Status inicial da promoção:</label>
-                            <div class="switch_box margin-bottom-15px">
-                                <input type="checkbox" name="ativo" value="1" class="switch-styled">
-                            </div>
-                        </div>
+                        <input type="hidden" id="ativo" name="ativo" value="1">
                         <div class="form-row">
-                            <button type="submit" name="btnSalvar" value="Salvar" class="btn-generic margin-right-20px">
+                            <button type="submit" name="btn-salvar" value="Salvar" class="btn-generic margin-right-20px">
                                 <span>Salvar</span>
                             </button>
                             <span class="btn-cancelar">Cancelar</span>
