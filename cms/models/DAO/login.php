@@ -29,7 +29,7 @@
                 $listLogin->matricula = $rs['matricula'];
                 $listLogin->avatar = $rs['avatar'];
                 $listLogin->data_efetivacao = date('d/m/Y', strtotime($rs['data_efetivacao']));
-                $listLogin->data_nasc = date('d/m/Y', strtotime($rs['data_nasc']));
+                $listLogin->data_nascimento = date('d/m/Y', strtotime($rs['data_nasc']));
                 $listLogin->genero = $rs['genero'];
                 $listLogin->salario = $rs['salario'];
                 $listLogin->rg = $rs['RG'];
