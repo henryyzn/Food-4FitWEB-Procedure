@@ -8,7 +8,6 @@
         }
 
         public function insert($classPrato){
-<<<<<<< HEAD
             $sql1 = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, preco, confi_public, ativo, id_usuario) values (
                     '".$classPrato->id_categoria."',
                     '".$classPrato->titulo."',
@@ -21,7 +20,6 @@
             $sql2 = "INSERT INTO tbl_foto_prato(id_prato, foto) values (
                     LAST_INSERT_ID(),
                     'assets/archives/pratos/".$classPrato->foto."');";
-=======
             $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario) values (
                     '".$classPrato->idCategoria."',
                     '".$classPrato->titulo."',
@@ -32,14 +30,12 @@
                     1
 
                     );";
->>>>>>> origin/master
 
 //            echo($sql1);
 //            echo($sql2);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
-<<<<<<< HEAD
             if($PDO_conex->query($sql1)){
                 if($PDO_conex->query($sql2))
                     header('location:todos-os-pratos.php');
@@ -48,13 +44,11 @@
             }else{
                 echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
             }
-=======
             if($PDO_conex->query($sql))
                 header('location:pratos.php');
             else
                 echo($sql);
 
->>>>>>> origin/master
             $conex->desconectar();
 
         }
