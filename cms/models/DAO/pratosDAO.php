@@ -8,31 +8,15 @@
         }
 
         public function insert($classPrato){
-            $sql1 = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, preco, confi_public, ativo, id_usuario) values (
-                    '".$classPrato->id_categoria."',
-                    '".$classPrato->titulo."',
-                    '".$classPrato->descricao."',
-                    '".$classPrato->resumo."',
-                    '".$classPrato->preco."',
-                    '".$classPrato->confi_public."',
-                    '".$classPrato->ativo."',
-                    '".$classPrato->idUsuario."');";
-            $sql2 = "INSERT INTO tbl_foto_prato(id_prato, foto) values (
-                    LAST_INSERT_ID(),
-                    'assets/archives/pratos/".$classPrato->foto."');";
-            $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario) values (
+            $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario, preco) values (
                     '".$classPrato->idCategoria."',
                     '".$classPrato->titulo."',
                     '".$classPrato->descricao."',
                     '".$classPrato->resumo."',
                     '".$classPrato->confiPublic."',
                     '".$classPrato->ativo."',
-                    1
-
-                    );";
-
-//            echo($sql1);
-//            echo($sql2);
+                    '".$classPrato->id_usuario."'
+                    '".$classPrato->preco."');";
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -89,6 +73,38 @@
             $listSelecPrato = null;
             $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, prato.titulo AS titulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.preco AS preco, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato ORDER BY prato.id DESC;";
 
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
+
+            $cont=0;
+            while($rs=$select->fetch(PDO::FETCH_ASSOC))
+            {
+                $listSelecPrato[] = new Prato();
+                $listSelecPrato[$cont]->id = $rs['id'];
+                $listSelecPrato[$cont]->idCategoria = $rs['id_categoria'];
+                $listSelecPrato[$cont]->titulo = $rs['titulo'];
+                $listSelecPrato[$cont]->descricao = $rs['descricao'];
+                $listSelecPrato[$cont]->resumo = $rs['resumo'];
+                $listSelecPrato[$cont]->preco = $rs['preco'];
+                $listSelecPrato[$cont]->ativo = $rs['ativo'];
+                $listSelecPrato[$cont]->idUsuario = $rs['id_usuario'];
+                $listSelecPrato[$cont]->id_foto_prato = $rs['id_foto_prato'];
+                $listSelecPrato[$cont]->id_prato = $rs['id_prato'];
+                $listSelecPrato[$cont]->foto = $rs['foto'];
+
+                $cont+=1;
+            }
+
+            return $listSelecPrato;
+        }
+
+        public function selectAllById($id_prato){
+            $listSelecPrato = null;
+
+            $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, prato.titulo AS titulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.preco AS preco, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato WHERE prato.id = '".$id_prato."' ORDER BY prato.id DESC;";
+            //echo $sql;
+            //print_r($value);
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             $select = $PDO_conex->query($sql);

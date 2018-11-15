@@ -50,7 +50,7 @@
 
                 for($i = 0; $i < count($lista); $i++){
             ?>
-			<div class="generic-card animate fadeIn" onclick="javascript:location.href='prato.php'">
+			<div class="generic-card animate fadeIn" onclick="javascript:location.href='prato.php?id_prato=<?php echo($lista[$i]->id)?>'">
 				<img src="<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
 				<div class="generic-card-overlay">
 					<span class="card-dish-name margin-bottom-15px"><?php echo($lista[$i]->titulo)?></span>

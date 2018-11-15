@@ -1,44 +1,64 @@
 <?php
     session_start();
-    //Verifica se o botão de adicionar ao carrinho existe, no caso, se foi clicado
-    if(!isset($_SESSION['shoppingcart'])){
-          $_SESSION['shoppingcart'] = array();
-    }
-    if(isset($_POST['carrinho'])){
-        if($_POST['carrinho'] == 'add'){
-            $id = $_POST['id'];
-            $titulo = $_POST['titulo'];
+    require_once("modulo.php");
 
+    $id = null;
+    $titulo = null;
+    $categoria = null;
+    $preco = null;
+    $foto = null;
+
+    //Verifica se o botão de adicionar ao carrinho existe, no caso, se foi clicado
+    if(!isset($_SESSION['carrinho'])){
+          $_SESSION['carrinho'] = array();
+    }
+    if(isset($_GET['acao'])){
+        if($_GET['acao'] == 'add'){
+            $_SESSION['itens-carrinho'] = array("id_prato"=>$_GET['id_prato'], "titulo"=>$_GET['titulo'], "preco"=>$_GET['preco'], "id_categoria_prato"=>$_GET['id_categoria_prato'], "foto_prato"=>$_GET['foto_prato'], "quantidade"=>$_GET['quantidade']);
+            //print_r($_SESSION['itens-carrinho']);
+
+            $id = $_GET['id_prato'];
             //Verifica se a variavel de sessão id do carrinho não existe
-            if(!isset($_SESSION['shoppingcart'][$id])){
-                //Se não existir, vale um
-                $_SESSION['shoppingcart'][$id] = 1;
+            if(!isset($_SESSION['carrinho'][$id])){
+                //Se não existir, cria uma
+                $_SESSION['carrinho'][$id] = $_SESSION['itens-carrinho'];
                 header("location:carrinho.php");
             }else{
-                //Se existir, incrementa um
-                $_SESSION['shoppingcart'][$id] += 1;
+                //$_SESSION['carrinho'][$id] += 1;
+                //unset($_SESSION['carrinho']);
                 header("location:carrinho.php");
-                //unset($_SESSION['shoppingcart'][$id]);
             }
-        }elseif($_POST['carrinho'] == 'del'){
-            $id = intval($_POST['id']);
-            if(isset($_SESSION['shoppingcart'][$id])){
+        }elseif($_GET['acao'] == 'del'){
+            $id = intval($_GET['id']);
+            if(isset($_SESSION['carrinho'][$id])){
                 unset($_SESSION['carrinho'][$id]);
             }
-        }elseif($_POST['carrinho'] == 'up'){
-            if(is_array($_POST['prato'])){
-                foreach($_POST['prato'] as $id => $qtd){
+        }elseif($_GET['acao'] == 'up'){
+            if(is_array($_GET['prato'])){
+                foreach($_GET['prato'] as $id => $qtd){
                     $id = intval($id);
                     $qtd = intval($qtd);
                     if(!empty($qtd) || $qtd <> 0){
-                        $_SESSION['shoppingcart'][$id] = $qtd;
+                        $_SESSION['carrinho'][$id] = $qtd;
                     }else{
-                        unset($_SESSION['shoppingcart'][$id]);
+                        unset($_SESSION['carrinho'][$id]);
                     }
                 }
             }
         }
     }
+    if(isset($_GET['id_prato'])){
+        $id_prato = $_GET['id_prato'];
+        if($id_prato == null || ''){
+            header("location:404.php");
+        }
+
+        require_once('cms/models/DAO/pratosDAO.php');
+
+        $pratosDAO = new pratosDAO;
+        $lista = $pratosDAO->selectAllById($id_prato);
+
+        for($i = 0; $i < @count($lista); $i++){
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -46,7 +66,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php echo($_SESSION['shoppingcart'][$id])?> - Food 4fit</title>
+	<title><?php echo($lista[$i]->titulo)?> - Food 4fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
 	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
     <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
@@ -74,9 +94,10 @@
             </span>
         </div>
 -->
+        <?php //var_dump($_SESSION['carrinho'])?>
         <div id="product-view-block">
             <figure id="product-view-image-container">
-                <img src="assets/images/dishs/img1.jpg" alt="Nome do Prato" id="product-view-image">
+                <img src="<?php echo($lista[$i]->foto)?>" alt="Nome do Prato" id="product-view-image">
                 <div id="product-view-image-carrousel">
                     <div class="next-image" style="border-bottom-left-radius: 10px;">
                         <img src="assets/images/dishs/img1.jpg" alt="Mais Imagens">
@@ -93,9 +114,9 @@
                 </div>
             </figure>
             <article id="product-view-info-container">
-                <form action="prato.php" method="POST" name="frmcompra">
-                    <h2 id="product-view-dish-name" class="padding-top-70px padding-left-15px padding-bottom-5px">Nome do Prato</h2>
-                    <span id="product-view-dish-code" class="padding-left-15px">código do produto: 029331</span>
+                <form action="prato.php" method="GET" name="frmcompra">
+                    <h2 id="product-view-dish-name" class="padding-top-70px padding-left-15px padding-bottom-5px"><?php echo($lista[$i]->titulo)?></h2>
+                    <span id="product-view-dish-code" class="padding-left-15px">código do produto: <?php echo($lista[$i]->id)?></span>
                     <div class="avaliation-stars padding-top-15px padding-left-15px padding-bottom-30px">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
@@ -103,7 +124,7 @@
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                     </div>
-                    <span id="product-view-price" class="padding-left-15px padding-bottom-5px">R$ 000,00</span>
+                    <span id="product-view-price" class="padding-left-15px padding-bottom-5px">R$ <?php echo($lista[$i]->preco)?></span>
                     <span id="product-view-price-descrip" class="padding-left-15px padding-bottom-30px">Em 12x sem juros no cartão de <b>R$ 00,00</b></span>
 
                     <h3 id="product-view-price-full" class="padding-left-15px">R$ 000,00 <span>à vista</span></h3>
@@ -111,11 +132,12 @@
                         <img src="assets/images/icons/credit-card.svg" alt="Bandeira">
                     </div>
 
-                    <input type="hidden" name="carrinho" id="carrinho" value="add">
-                    <input type="hidden" name="id" value="2" id="id">
+                    <input type="hidden" name="acao" id="acao" value="add">
+                    <input type="hidden" name="id_prato" value="<?php echo($id_prato)?>" id="id_prato">
                     <input type="hidden" name="id_categoria_prato" id="id_categoria_prato" value="1">
                     <input type="hidden" name="titulo" id="titulo" value="Teste">
                     <input type="hidden" name="preco" id="preco" value="200.00">
+                    <input type="hidden" name="quantidade" id="quantidade" value="1">
                     <input type="hidden" name="foto_prato" id="foto_prato" value="assets/images/dishs/img1.jpg">
 
 
@@ -185,3 +207,7 @@
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 </body>
 </html>
+<?php
+        }
+    }
+?>

@@ -22,6 +22,7 @@
         $classPrato->ativo = '1';
         $classPrato->idUsuario = $_SESSION['id_usuario'];
         $classPrato->foto = $_GET['foto'];
+        $classPratp->preco = '40.00';
 
         $pratosDAO = new pratosDAO();
         if($_GET['btn-salvar'] == "Salvar"){

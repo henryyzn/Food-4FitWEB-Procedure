@@ -24,4 +24,8 @@
 
         header('location:login.php');
 	}
+
+    function carrinho(){
+
+    }
 ?>

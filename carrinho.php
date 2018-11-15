@@ -1,5 +1,4 @@
 <?php
-
     session_start();
     require_once('modulo.php');
     validateLog();
@@ -55,30 +54,36 @@
                 </div>
                 <section class="shopping-cart-grid">
                     <?php
-                        echo ($_SESSION['shoppingcart'][$id]);
-//                        require_once("cms/models/DAO/enderecoDAO.php");
-//
-//                        $enderecoDAO = new enderecoDAO();
-//
-//                        $lista = $enderecoDAO->selectAll();
-//
-//                        for($i = 0; $i < count($lista); $i++){
+                          //print_r($_SESSION['carrinho']);
+
+
+                          require_once("cms/models/DAO/pratosDAO.php");
+
+                          $pratosDAO = new pratosDAO();
+
+                          foreach($_SESSION['carrinho'] as $key => $value) {
+                              //echo $key; // output 1 and 226
+                              //var_dump($value['id_prato']); // output 4 and -1
+                              $id_prato = $value['id_prato'];
+                              $lista = $pratosDAO->selectAllById($id_prato);
+                              for($i = 0; $i < count($lista); $i++){
+
                     ?>
                     <div class="shopping-cart-row">
                         <div class="shopping-cart-column">
                             <figure class="shopping-cart-image-container">
-                                <img src="assets/images/dishs/img1.jpg" alt="Nome do Prato">
+                                <img src="<?php echo($lista[$i]->foto)?>" alt="Nome do Prato">
                             </figure>
                         </div>
                         <div class="shopping-cart-column align-flex-start">
                             <div class="switch_box margin-bottom-15px">
                                 <input type="checkbox" name="chkdish" class="switch-styled">
                             </div>
-                            <h2 class="padding-bottom-5px">Nome do Prato</h2>
+                            <h2 class="padding-bottom-5px"><?php echo($lista[$i]->titulo)?></h2>
                             <h3 class="padding-bottom-15px">Categoria: Nome da Categoria</h3>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price">R$ 000,00</span>
+                            <span id="shopping-cart-price">R$ <?php echo($lista[$i]->preco)?></span>
                         </div>
                         <div class="shopping-cart-column align-x">
                             <div class="input-group input-number-group">
@@ -97,7 +102,8 @@
                     </div>
                     <div class="shopping-cart-separator"></div>
                     <?php
-//                        }
+                              }
+                        }
                     ?>
                 </section>
                 <div id="shopping-cart-select-block">
