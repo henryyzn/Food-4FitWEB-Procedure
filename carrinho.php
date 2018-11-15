@@ -2,8 +2,35 @@
     session_start();
     require_once('modulo.php');
     validateLog();
-    if(isset($_POST['btn-comprar'])){
-        echo("<script>alert('teste');</script>");
+    if(isset($_GET['btn-comprar'])){
+        require_once('cms/models/pedidoClass.php');
+        foreach($_GET['id_prato'] as $id => $id_prato) {
+            $pedido = array('id'=>$id_prato, 'quantidade'=>$_GET['quantidade']);
+            print_r($pedido);
+        }
+//        $pedido = array();
+//        $lista = array("id"=>$_GET['id_prato'], "quantidade"=>$_GET['quantidade']);
+//        $pedido['prato'] = $lista;
+//
+//        foreach($pedido as $p) {
+//            var_dump($p);
+//        }
+//        $id = $_GET['id_prato'];
+//        $_SESSION['pedido'] = array();
+//        $_SESSION['itens-pedido'] = array("id_prato"=>$_GET['id_prato'], "quantidade"=>$_GET['quantidade']);
+//        $_SESSION['pedido'][$id] = $_SESSION['itens-pedido'];
+//        $classPedido = new Pedido();
+//        $classPedido->idCategoria = $_GET['idCategoria'];
+//        $classPedido->titulo = $_GET['titulo'];
+//        $classPedido->descricao = $_GET['descricao'];
+//        $classPedido->resumo = $_GET['resumo'];
+//        $classPedido->confiPublic = '0';
+//        $classPedido->ativo = '1';
+//
+//        $pedidoDAO = new pedidoDAO();
+//        if($_GET['btn-comprar'] == "Comprar"){
+//            $pedidoDAO->insert($classPedido);
+//        }
     }
 ?>
 <!DOCTYPE html>
@@ -28,12 +55,28 @@
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 	<script src="assets/js/card.js"></script>
+	<style>
+        .btn-counter{
+            background-color: #9CC283;
+            color: white;
+            border-radius: 3px;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .counter{
+            background-color: white;
+            color: black;
+            border-radius: 3px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <h2 id="page-title" class="margin-left-auto margin-right-auto margin-bottom-30px">MEU CARRINHO</h2>
-        <form action="carrinho.php" method="POST" name="frmcarrinho" style="width: 100%;">
+        <form action="carrinho.php" method="GET" name="frmcarrinho" style="width: 100%;">
             <div class="shopping-cart-block">
                 <div class="shopping-cart-title-menu">
                     <div class="shopping-cart-menu-column align-x">
@@ -54,45 +97,42 @@
                 </div>
                 <section class="shopping-cart-grid">
                     <?php
-                          //print_r($_SESSION['carrinho']);
+                        require_once("cms/models/DAO/pratosDAO.php");
 
+                        $pratosDAO = new pratosDAO();
 
-                          require_once("cms/models/DAO/pratosDAO.php");
-
-                          $pratosDAO = new pratosDAO();
-
-                          foreach($_SESSION['carrinho'] as $key => $value) {
-                              //echo $key; // output 1 and 226
-                              //var_dump($value['id_prato']); // output 4 and -1
-                              $id_prato = $value['id_prato'];
-                              $lista = $pratosDAO->selectAllById($id_prato);
-                              for($i = 0; $i < count($lista); $i++){
-
+                        foreach($_SESSION['carrinho'] as $key => $value) {
+                            $id_prato = $value['id_prato'];
+                            $titulo = $value['titulo'];
+                            $preco = $value['preco'];
+                            $foto_prato = $value['foto_prato'];
+                            //$quantidade = $value['quantidade'];
                     ?>
-                    <div class="shopping-cart-row">
+                    <input type="hidden" name="id_prato[]" id="id_prato" value="<?php echo($id_prato)?>">
+                    <div class="shopping-cart-row" data-quantidade>
                         <div class="shopping-cart-column">
                             <figure class="shopping-cart-image-container">
-                                <img src="<?php echo($lista[$i]->foto)?>" alt="Nome do Prato">
+                                <img src="<?php echo($foto_prato)?>" alt="Nome do Prato">
                             </figure>
                         </div>
                         <div class="shopping-cart-column align-flex-start">
                             <div class="switch_box margin-bottom-15px">
-                                <input type="checkbox" name="chkdish" class="switch-styled">
+                                <input type="checkbox" name="check" id="check" value="1" class="switch-styled">
                             </div>
-                            <h2 class="padding-bottom-5px"><?php echo($lista[$i]->titulo)?></h2>
+                            <h2 class="padding-bottom-5px"><?php echo($titulo)?></h2>
                             <h3 class="padding-bottom-15px">Categoria: Nome da Categoria</h3>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price">R$ <?php echo($lista[$i]->preco)?></span>
+                            <span id="shopping-cart-price">R$ <?php echo($preco)?></span>
                         </div>
-                        <div class="shopping-cart-column align-x">
-                            <div class="input-group input-number-group">
+                        <div class="shopping-cart-column align-y">
+                            <div class="input-group input-number-group" data-f4f-number-group>
                                 <div class="input-group-button">
-                                    <span class="input-number-decrement" >-</span>
+                                    <span class="input-number-decrement" data-f4f-number-decrement>-</span>
                                 </div>
-                                <input class="input-number" type="number" value="1" min="1" max="1000">
+                                <input class="input-number" type="number" name="quantidade[]" value="1" min="1" max="1000">
                                 <div class="input-group-button">
-                                    <span class="input-number-increment">+</span>
+                                    <span class="input-number-increment" data-f4f-number-increment>+</span>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +142,6 @@
                     </div>
                     <div class="shopping-cart-separator"></div>
                     <?php
-                              }
                         }
                     ?>
                 </section>
@@ -134,22 +173,22 @@
             </div>
         </form>
 	</section>
-	<div class="modal" id="modal-carrinho">
-        <div class="popup-confirm">
-            <h2 class="padding-top-30px padding-bottom-15px" style="font-size: 21px; font-family: 'Roboto Medium'; color: #000; text-align: center;">PEDIDO REALIZADO</h2>
-            <span class="padding-bottom-15px" style="display: block; font-size: 16px; font-family: 'Roboto Medium'; color: #282828; text-align: center;">Isso aí! Compra finalizada!</span>
-            <figure style="width: 90%; max-width: 180px;" class="margin-left-auto margin-right-auto padding-bottom-30px">
-                <img src="" alt="Logo" style="max-width: 100%; object-fit: cover; display: block; max-height: 100%;">
-            </figure>
-            <span class="padding-bottom-15px cart-descript">Você pode visualizar seus pedidos em Meus Pedidos</span>
-            <div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;">
-                <a href="index.php" class="padding-right-15px" style="text-decoration: none; font-size: 18px; font-family: 'Roboto Medium Italic'; color: #7F7F7F;">Retornar à página inicial</a>
-                <div class="btn-generic margin-right-30px margin-top-30px margin-bottom-30px">
-                    <span>Finalizar</span>
-                </div>
-            </div>
-        </div>
-    </div>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
+	<script>
+        $("[data-f4f-number-group]").each(function () {
+            var input = $(this).find("input");
+            $(this).on("click", "[data-f4f-number-decrement], [data-f4f-number-increment]", function () {
+                var number = parseInt(input.val());
+                if ($(this).is("[data-f4f-number-increment]")) {
+                    number + 1;
+                } else {
+                    number - 1;
+                }
+
+                number = Math.max(1, Math.min(1000, number));
+                input.val(number);
+            });
+        });
+    </script>
 </body>
 </html>

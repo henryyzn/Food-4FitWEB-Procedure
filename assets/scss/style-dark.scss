@@ -160,6 +160,7 @@ a{
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+    color: $white;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -185,6 +186,7 @@ a{
     background-color: transparent;
     font-family: 'Roboto Bold';
     font-size: 21px;
+    color: $white;
 }
 .input-number-group .input-number-decrement {
     margin-right: 0.3rem;
