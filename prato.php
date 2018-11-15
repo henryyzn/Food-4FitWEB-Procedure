@@ -1,10 +1,52 @@
+<?php
+    session_start();
+    //Verifica se o botão de adicionar ao carrinho existe, no caso, se foi clicado
+    if(!isset($_SESSION['shoppingcart'])){
+          $_SESSION['shoppingcart'] = array();
+    }
+    if(isset($_POST['carrinho'])){
+        if($_POST['carrinho'] == 'add'){
+            $id = $_POST['id'];
+            $titulo = $_POST['titulo'];
+
+            //Verifica se a variavel de sessão id do carrinho não existe
+            if(!isset($_SESSION['shoppingcart'][$id])){
+                //Se não existir, vale um
+                $_SESSION['shoppingcart'][$id] = 1;
+                header("location:carrinho.php");
+            }else{
+                //Se existir, incrementa um
+                $_SESSION['shoppingcart'][$id] += 1;
+                header("location:carrinho.php");
+                //unset($_SESSION['shoppingcart'][$id]);
+            }
+        }elseif($_POST['carrinho'] == 'del'){
+            $id = intval($_POST['id']);
+            if(isset($_SESSION['shoppingcart'][$id])){
+                unset($_SESSION['carrinho'][$id]);
+            }
+        }elseif($_POST['carrinho'] == 'up'){
+            if(is_array($_POST['prato'])){
+                foreach($_POST['prato'] as $id => $qtd){
+                    $id = intval($id);
+                    $qtd = intval($qtd);
+                    if(!empty($qtd) || $qtd <> 0){
+                        $_SESSION['shoppingcart'][$id] = $qtd;
+                    }else{
+                        unset($_SESSION['shoppingcart'][$id]);
+                    }
+                }
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Nome do Prato - Food 4fit</title>
+	<title><?php echo($_SESSION['shoppingcart'][$id])?> - Food 4fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
 	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
     <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
@@ -23,6 +65,7 @@
 <body>
 	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <div class="main">
+<!--
         <div id="breadcrumb" class="product-view">
             <span>
                 <a href="#">Pratos para ganhar massa</a>
@@ -30,6 +73,7 @@
                 <a href="#">Pratos nordestinos</a>
             </span>
         </div>
+-->
         <div id="product-view-block">
             <figure id="product-view-image-container">
                 <img src="assets/images/dishs/img1.jpg" alt="Nome do Prato" id="product-view-image">
@@ -49,33 +93,44 @@
                 </div>
             </figure>
             <article id="product-view-info-container">
-                <h2 id="product-view-dish-name" class="padding-top-70px padding-left-15px padding-bottom-5px">Nome do Prato</h2>
-                <span id="product-view-dish-code" class="padding-left-15px">código do produto: 029331</span>
-                <div class="avaliation-stars padding-top-15px padding-left-15px padding-bottom-30px">
-                    <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
-                    <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
-                    <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
-                    <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
-                    <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
-                </div>
-                <span id="product-view-price" class="padding-left-15px padding-bottom-5px">R$ 000,00</span>
-                <span id="product-view-price-descrip" class="padding-left-15px padding-bottom-30px">Em 12x sem juros no cartão de <b>R$ 00,00</b></span>
-
-                <h3 id="product-view-price-full" class="padding-left-15px">R$ 000,00 <span>à vista</span></h3>
-                <div id="credit-card-flag" class="padding-left-15px padding-top-15px padding-bottom-30px">
-                    <img src="assets/images/icons/credit-card.svg" alt="Bandeira">
-                </div>
-                <div class="buy-button margin-left-15px" onclick="location.href='carrinho.php';">
-                    <span class="padding-right-5px">Comprar</span>
-                    <div class="buy-button-image">
-                        <img src="assets/images/icons/shopping-cart-white.svg" alt="Comprar">
+                <form action="prato.php" method="POST" name="frmcompra">
+                    <h2 id="product-view-dish-name" class="padding-top-70px padding-left-15px padding-bottom-5px">Nome do Prato</h2>
+                    <span id="product-view-dish-code" class="padding-left-15px">código do produto: 029331</span>
+                    <div class="avaliation-stars padding-top-15px padding-left-15px padding-bottom-30px">
+                        <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
+                        <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
+                        <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
+                        <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
+                        <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                     </div>
-                </div>
-                <div class="social-share padding-top-30px padding-left-15px">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Compartilhar no Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Compartilhar no Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Obter link compartilhável">
-                </div>
+                    <span id="product-view-price" class="padding-left-15px padding-bottom-5px">R$ 000,00</span>
+                    <span id="product-view-price-descrip" class="padding-left-15px padding-bottom-30px">Em 12x sem juros no cartão de <b>R$ 00,00</b></span>
+
+                    <h3 id="product-view-price-full" class="padding-left-15px">R$ 000,00 <span>à vista</span></h3>
+                    <div id="credit-card-flag" class="padding-left-15px padding-top-15px padding-bottom-30px">
+                        <img src="assets/images/icons/credit-card.svg" alt="Bandeira">
+                    </div>
+
+                    <input type="hidden" name="carrinho" id="carrinho" value="add">
+                    <input type="hidden" name="id" value="2" id="id">
+                    <input type="hidden" name="id_categoria_prato" id="id_categoria_prato" value="1">
+                    <input type="hidden" name="titulo" id="titulo" value="Teste">
+                    <input type="hidden" name="preco" id="preco" value="200.00">
+                    <input type="hidden" name="foto_prato" id="foto_prato" value="assets/images/dishs/img1.jpg">
+
+
+                    <button type="submit" name="btn-addcart" value="Adicionar" class="buy-button margin-left-15px">
+                        <span class="padding-right-5px">Comprar</span>
+                        <div class="buy-button-image">
+                            <img src="assets/images/icons/shopping-cart-white.svg" alt="Comprar">
+                        </div>
+                    </button>
+                    <div class="social-share padding-top-30px padding-left-15px">
+                        <img src="assets/images/icons/facebook-color.svg" alt="Compartilhar no Facebook">
+                        <img src="assets/images/icons/twitter-color.svg" alt="Compartilhar no Twitter">
+                        <img src="assets/images/icons/share.svg" alt="Obter link compartilhável">
+                    </div>
+                </form>
             </article>
         </div>
         <section id="product-view-info-block" class="margin-top-60px margin-bottom-30px">

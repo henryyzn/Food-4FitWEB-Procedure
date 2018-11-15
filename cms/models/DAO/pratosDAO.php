@@ -8,6 +8,20 @@
         }
 
         public function insert($classPrato){
+<<<<<<< HEAD
+            $sql1 = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, preco, confi_public, ativo, id_usuario) values (
+                    '".$classPrato->id_categoria."',
+                    '".$classPrato->titulo."',
+                    '".$classPrato->descricao."',
+                    '".$classPrato->resumo."',
+                    '".$classPrato->preco."',
+                    '".$classPrato->confi_public."',
+                    '".$classPrato->ativo."',
+                    '".$classPrato->idUsuario."');";
+            $sql2 = "INSERT INTO tbl_foto_prato(id_prato, foto) values (
+                    LAST_INSERT_ID(),
+                    'assets/archives/pratos/".$classPrato->foto."');";
+=======
             $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario) values (
                     '".$classPrato->idCategoria."',
                     '".$classPrato->titulo."',
@@ -18,16 +32,29 @@
                     1
 
                     );";
+>>>>>>> origin/master
 
-            //echo($sql);
+//            echo($sql1);
+//            echo($sql2);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
+<<<<<<< HEAD
+            if($PDO_conex->query($sql1)){
+                if($PDO_conex->query($sql2))
+                    header('location:todos-os-pratos.php');
+                else
+                    echo('<script>alert("Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.");</script>');
+            }else{
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            }
+=======
             if($PDO_conex->query($sql))
                 header('location:pratos.php');
             else
                 echo($sql);
 
+>>>>>>> origin/master
             $conex->desconectar();
 
         }
@@ -66,7 +93,7 @@
 
         public function selectAll(){
             $listSelecPrato = null;
-            $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, prato.titulo AS tiulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato ORDER BY prato.id DESC";
+            $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, prato.titulo AS titulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.preco AS preco, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato ORDER BY prato.id DESC;";
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -81,6 +108,7 @@
                 $listSelecPrato[$cont]->titulo = $rs['titulo'];
                 $listSelecPrato[$cont]->descricao = $rs['descricao'];
                 $listSelecPrato[$cont]->resumo = $rs['resumo'];
+                $listSelecPrato[$cont]->preco = $rs['preco'];
                 $listSelecPrato[$cont]->ativo = $rs['ativo'];
                 $listSelecPrato[$cont]->idUsuario = $rs['id_usuario'];
                 $listSelecPrato[$cont]->id_foto_prato = $rs['id_foto_prato'];

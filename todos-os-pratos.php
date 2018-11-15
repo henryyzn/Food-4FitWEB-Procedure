@@ -42,16 +42,22 @@
 		</header>
 		<div class="generic-grid animate fadeInUp">
 		    <?php
-                for($i=0; $i<120; $i++){
+                require_once("cms/models/DAO/pratosDAO.php");
+
+                $pratosDAO = new pratosDAO();
+
+                $lista = $pratosDAO->selectAll();
+
+                for($i = 0; $i < count($lista); $i++){
             ?>
 			<div class="generic-card animate fadeIn" onclick="javascript:location.href='prato.php'">
-				<img src="assets/images/backgrounds/img.jpg" alt="Teste" class="generic-card-img">
+				<img src="<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
 				<div class="generic-card-overlay">
-					<span class="card-dish-name margin-bottom-15px">Frango Grelhado</span>
+					<span class="card-dish-name margin-bottom-15px"><?php echo($lista[$i]->titulo)?></span>
 			  		<div class="card-dish-separator margin-bottom-15px"></div>
-			  		<p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
+			  		<p class="card-dish-description margin-bottom-30px"><?php echo($lista[$i]->resumo)?></p>
 			  		<div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-			  			<span class="padding-right-15px">R$ 129,90</span><!-- PREÇO -->
+			  			<span class="padding-right-15px">R$ <?php echo($lista[$i]->preco)?></span><!-- PREÇO -->
 			  			<div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
 			  		</div>
 				</div>

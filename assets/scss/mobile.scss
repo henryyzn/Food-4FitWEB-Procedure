@@ -54,6 +54,11 @@
         	text-align: center;
         }
     }
+    .shopping-cart-row{
+        flex-direction: column;
+        .shopping-cart-column{width: 100%;}
+    }
+    .shopping-cart-title-menu{display: none;}
 }
 @media screen and (max-width: 768px) {
 	#app-section{
@@ -99,6 +104,11 @@
         	text-align: center;
         }
     }
+    .shopping-cart-row{
+        flex-direction: column;
+        .shopping-cart-column{width: 100%;}
+    }
+    .shopping-cart-title-menu{display: none;}
 }
 /*--------------------------------------------------*/
 @media screen and (max-device-width: 528px) {

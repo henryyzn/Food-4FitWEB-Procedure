@@ -18,7 +18,6 @@
             <div id="informacoes-content">
                 <span id="nome" onclick="javascript:location.href='perfil.php'"><?php echo $_SESSION['nome_funcionario'] ?></span>
                 <span id="email"><?php echo $_SESSION['email_funcionario'] ?></span>
-                <a href="#" id="dropdown"></a>
             </div>
         </div>
     </div>

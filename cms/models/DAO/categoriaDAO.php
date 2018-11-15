@@ -2,8 +2,7 @@
     class categoriaDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('../models/categoriaClass.php');
-
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categoriaClass.php');
 
         }
 
