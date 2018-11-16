@@ -25,7 +25,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?>
+	<?php require_once("components/navbar.php"); ?>
 	<section class="main">
         <h2 id="page-title">MEUS PRATOS</h2>
         <div class="generic-grid animate fadeInUp">

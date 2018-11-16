@@ -23,7 +23,7 @@
     <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <h2 id="page-title">NOSSAS LOJAS</h2>
         <div id="map-canvas" class="animate fadeInDown"></div>

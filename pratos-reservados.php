@@ -29,7 +29,7 @@
     <script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main"><!-- CONTAINER-MÃE DO SITE -->
         <h2 id="page-title">PRATOS RESERVADOS</h2>
         <div class="generic-grid animate fadeInUp">

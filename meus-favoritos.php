@@ -27,7 +27,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
         <div class="generic-block"><!-- SEGUNDO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
             <h2 id="page-title">MEUS FAVORITOS</h2><!-- TÍTULO DA PÁGINA -->

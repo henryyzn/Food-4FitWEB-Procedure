@@ -20,7 +20,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
         <h2 id="page-title">HOMENAGEM À PARCEIROS</h2>
         <p id="page-subtitle" class="padding-bottom-25px">Conheça os nossos laços que foram e são <br> essenciais para que a Food 4Fit cresça <br> cada vez mais a cada dia!</p>

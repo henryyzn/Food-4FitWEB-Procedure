@@ -20,7 +20,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?>
+	<?php require_once("components/navbar.php"); ?>
 	<section class="main">
 		<h2 id="page-title">PROMOÇÕES</h2>
         <header class="slider-1200-250 margin-top-30px">

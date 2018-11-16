@@ -157,7 +157,7 @@
     </script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
 		<h2 id="page-title">MEUS ENDEREÇOS</h2>
 		<div class="address-block margin-top-30px">

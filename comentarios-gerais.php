@@ -68,7 +68,7 @@
     </style>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="geral-pubs-block"><!-- CONTAINER-MÃE DO SITE -->
         <h2 id="page-title">PUBLICAÇÕES GERAIS</h2>
         <p id="page-subtitle">Veja publicações de quem utiliza nosso serviço<br>e interaja com a comunidade!</p>

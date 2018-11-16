@@ -22,7 +22,7 @@
     <script src="assets/js/scripts.js"></script>
 </head>
 <body>
-    <?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+    <?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
 		<header id="header-flat"><!-- CABEÇALHO DA INDEX -->
 			<div id="header-flat-row1" class="animate fadeInDown"><!-- PRIMEIRO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->

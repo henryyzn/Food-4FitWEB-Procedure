@@ -25,7 +25,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?>
+	<?php require_once("components/navbar.php"); ?>
 	<section class="main">
 		<header class="profile-header-block box-shadow">
 			<div class="profile-header-overlay margin-top-30px margin-bottom-30px">

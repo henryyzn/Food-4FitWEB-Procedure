@@ -19,7 +19,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?>
+	<?php require_once("components/navbar.php"); ?>
 	<div class="main">
 		<header class="filter-menu">
 			<div class="filter-menu-column">

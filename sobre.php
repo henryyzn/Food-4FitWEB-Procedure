@@ -19,7 +19,7 @@
 	<script src="assets/js/scripts.js"></script>
 </head>
 <body>
-	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <h1 id="page-title" class="margin-left-auto margin-right-auto animate fadeInUp">SOBRE A FOOD 4FIT</h1><!-- TÍTULO DA PÁGINA -->
         <article id="about-us-block" class="margin-top-15px"><!-- BLOCO GERAL DA PÁGINA -->

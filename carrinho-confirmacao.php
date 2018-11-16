@@ -58,7 +58,7 @@
     </style>
 </head>
 <body>
-	<?php require_once("components/navbar.html") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <form action="carrinho-confirmacao.php" method="GET" name="frmcompra" id="form-compra" class="width-100">
             <?php

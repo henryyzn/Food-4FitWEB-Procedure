@@ -84,7 +84,7 @@
     </script>
 </head>
 <body>
-	<?php require_once("components/navbar.html"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<header class="personal-fitness-block animate fadeIn fast">
 		<div class="personal-fitness-content">
 	        <figure class="column1 animate fadeInLeft">

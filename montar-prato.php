@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <?php require_once("components/navbar.html") ?>
+    <?php require_once("components/navbar.php") ?>
     <section class="main">
         <h2 id="page-title" class="animate fadeInUp">MONTE SEU PRATO</h2>
         <p id="page-subtitle">Monte o seu prato de acordo com as<br>suas necessidades, e deixa<br>que a gente prepara tudo para você!</p>
