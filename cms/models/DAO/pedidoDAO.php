@@ -73,5 +73,31 @@ class pedidoDAO {
 
         $conex->desconectar();
     }
+    public function selectAll(){
+        $listPedidos = null;
+        $sql="SLECT * FROM tbl_pedido ORDER BY id DESC;";
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listPedidos[] = new Pedido();
+            $listPedidos[$count]->id = $rs['id'];
+            $listPedidos[$count]->id_usuario = $rs['id_usuario'];
+            $listPedidos[$count]->titulo = $rs['titulo'];
+            $listPedidos[$count]->texto = $rs['texto'];
+            $listPedidos[$count]->progresso = $rs['progresso'];
+            $listPedidos[$count]->data = date('d/m/Y', strtotime($rs['data']));
+            $count+=1;
+        }
+        return $listDiarioBordo;
+    }
 }
 ?>

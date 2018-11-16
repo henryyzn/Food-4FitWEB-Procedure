@@ -126,7 +126,7 @@
                             }
                         ?>
                     </table>
-                      <div class="categoria-form-right">
+                    <div class="categoria-form-right">
                         <div class="form-generic border-30px">
                             <form action="upload/upload-foto-prato.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
                                 <label class="label-generic">Imagem:</label>

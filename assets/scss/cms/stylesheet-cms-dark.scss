@@ -297,6 +297,7 @@ img.btn-logout:hover {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 #list-content {
@@ -745,9 +746,10 @@ img.btn-logout:hover {
     padding: 0 20px;
     box-sizing: border-box;
     margin: 15px 0px;
-    >a {
+    >a, div{
         text-decoration: none;
         @include display(flex, row, center, center);
+        cursor: pointer;
         >img {
             width: 50px;
             height: 50px;
@@ -1071,6 +1073,15 @@ img.btn-logout:hover {
 //Pratos
 .pratos-wrapper{
     @include bloco($width: 100%, $height: auto);
+}
+#add-prato-form{
+    @include bloco(100%, 400px, 100vh);
+    @include position(absolute, 0, 0, 0, null);
+    background: $darkgrey;
+    display: none;
+}
+.elementPhoto{
+    max-width: 200px;
 }
 .edit-btns{
 	@include bloco($width: auto, $maxwidth: null, $height: 30px);

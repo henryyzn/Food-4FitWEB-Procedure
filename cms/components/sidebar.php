@@ -61,7 +61,7 @@
             <span class="image"><img src="../../assets/images/cms/icons/niveis-de-acesso.svg" alt="Níveis de Acesso"></span>
             <span class="label">Níveis de Acesso</span>
         </a>
-        <a href="#">
+        <a href="pedidos.php">
             <span class="image"><img src="../../assets/images/cms/icons/pedidos.svg" alt="Pedidos"></span>
             <span class="label">Pedidos<span class="badge">12</span></span>
         </a>

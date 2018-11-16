@@ -1,5 +1,8 @@
 <?php
     session_start();
+    $id = null;
+    $foto = null;
+    $botao = "Salvar";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,8 +21,18 @@
     <link rel="stylesheet" href="../../assets/css/align.css">
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/public/js/jquery.form.js"></script>
     <script src="../../assets/js/scripts.js"></script>
     <script src="../../assets/js/js.cookie.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#foto').on('change', function(){
+                $('#frmfoto').ajaxForm({
+                    target:'#visualizar'
+                }).submit();
+            });
+        });
+    </script>
 </head>
 <body>
     <section id="main">
@@ -27,85 +40,13 @@
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
             <div id="page-content">
-                <form id="form-content" class="display-none">
-                    <div id="form-two-sides">
-                        <div id="form-left-side" class="padding-left-20px padding-right-20px">
-                            <div class="form-generic">
-                                <div class="form-generic-content">
-                                    <h2 class="form-title margin-top-20px">Cadastrar um Prato</h2>
-                                    <div class="form-column">
-                                        <label for="titulo" class="label-generic">Nome do Prato:</label>
-                                        <input id="titulo" name="titulo" class="input-generic" required placeholder="Digite um nome para o prato...">
-                                    </div>
-                                    <div class="form-column">
-                                        <label for="categoria" class="label-generic">Categoria:</label>
-                                        <select id="categoria" name="categoria.id" class="input-generic" required>
-                                            <option disabled selected value="">Selecione uma opção</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-column">
-                                        <label for="resumo" class="label-generic">Resumo do Prato:</label>
-                                        <textarea id="resumo" name="resumo" class="textarea-generic" required placeholder="Digite um resumo para o prato..."></textarea>
-                                    </div>
-                                    <div class="form-column">
-                                        <label for="descricao" class="label-generic">Descrição do Prato:</label>
-                                        <textarea id="descricao" name="descricao" class="textarea-generic"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="form-right-side">
-                            <div class="padding-top-10px">
-                                <div>
-                                    <img>
-                                    <div class="image-upload active">
-                                        <label for="foto1" class="file-label">Escolher Imagem</label>
-                                        <input id="foto1" name="uploadData.foto1" type="file" accept="image/*">
-                                    </div>
-                                    <div class="image-upload">
-                                        <label for="foto2" class="file-label">Escolher Imagem</label>
-                                        <input id="foto2" name="uploadData.foto2" type="file" accept="image/*">
-                                    </div>
-                                    <div class="image-upload">
-                                        <label for="foto3" class="file-label">Escolher Imagem</label>
-                                        <input id="foto3" name="uploadData.foto3" type="file" accept="image/*">
-                                    </div>
-                                    <div class="image-upload">
-                                        <label for="foto4" class="file-label">Escolher Imagem</label>
-                                        <input id="foto4" name="uploadData.foto4" type="file" accept="image/*">
-                                    </div>
-                                    <div class="thumbnails">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="preco-prato">
-                                    <span>Preço Total: R$ 000,00</span>
-                                </div>
-                                <span class="status margin-bottom-10px">Status Inicial do Prato:</span>
-                                <div class="select-block">
-                                    <div class="switch_box">
-                                        <input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1">
-                                    </div>
-                                    <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
-                                </div>
-                                <div id="btn-save">
-                                    <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
-                                    <span>Salvar</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="submit" name="submit" class="display-none">
-                </form>
                 <div id="list-content">
                     <div class="pratos-wrapper">
                          <div id="page-actions">
-                            <a href="add-prato.php">
+                            <div id="open-form">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Prato</span>
-                            </a>
+                            </div>
                             <a href="add-promocao.php">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Promoção</span>
@@ -151,9 +92,66 @@
                         </div>
                     </div>
                 </div>
+                <aside class="explanation-aside hide" id="add-prato-form">
+                    <div class="form-generic border-30px">
+                        <form action="upload/upload-foto-prato.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
+                            <label class="label-generic">Imagem:</label>
+                            <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                                <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
+                            </div>
+                            <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
+                            <input type="file" name="fileimage" id="foto" style="display: none;">
+                        </form>
+                        <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="add-prato.php">
+                            <input name="foto" type="hidden" value="<?php echo($foto)?>">
+                            <input name="id" type="hidden" value="<?php echo($id)?>">
+
+                            <label for="titulo" class="label-generic">Titulo</label>
+                            <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
+
+                            <label for="descricao" class="label-generic">Descricao</label>
+                            <textarea type="text"  id="descricao" name="descricao" class="textarea-generic" required maxlength="255"></textarea>
+
+                            <label for="resumo" class="label-generic">Resumo</label>
+                            <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
+
+                            <label for="idCategoria" class="label-generic">Categoria</label>
+                            <select type="text"  id="id_categoria" name="idCategoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
+
+                            <?php
+                                require_once('../models/DAO/categoriaDAO.php');
+
+                                $categoriaDAO = new categoriaDAO();
+                                $lista = $categoriaDAO->selectAll();
+
+                                for($i = 0; $i < count($lista); $i++){
+                            ?>
+                                <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
+                            <?php
+                                }
+                            ?>
+
+                            </select>
+
+                            <div class="form-row">
+                                <span>Cancelar</span>
+                                <button type="submit" class="btn-generic margin-left-20px" name="btn-salvar" value="<?php echo($botao)?>">
+                                    <span><?php echo ($botao)?></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </aside>
             </div>
         </div>
     </section>
     <script src="../../assets/js/theme.js"></script>
+    <script>
+        $(document).ready(function(){
+           $("#open-form").click(function () {
+                $("#add-prato-form").slideToggle("fast");
+            });
+        });
+    </script>
 </body>
 </html>

@@ -19,6 +19,15 @@
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#foto').on('change', function(){
+                $('#frmfoto').ajaxForm({
+                    target:'#visualizar'
+                }).submit();
+            });
+        });
+    </script>
 </head>
 <body>
     <section id="main">
