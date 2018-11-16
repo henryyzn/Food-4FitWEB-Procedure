@@ -1,4 +1,4 @@
-<div class="form-generic width-500px margin-right-auto margin-left-auto margin-top-30px hide" id="form-cadastrar-endereco">
+<div class="form-generic width-500px margin-right-auto margin-left-auto margin-top-30px" id="form-cadastrar-endereco">
     <h3 class="form-title">Cadastre um Endereço:</h3>
     <form action="#" method="POST" name="frmendereco" class="form-generic-content">
         <label for="logradouro" class="label-generic">Logradouro:</label>
@@ -27,10 +27,13 @@
         </select>
 
         <div class="margin-top-30px margin-bottom-30px form-row">
-            <span class="margin-right-15px">Cancelar</span>
+            <span class="margin-right-15px" onclick="fechar()">Cancelar</span>
             <div class="btn-generic">
                 <span>Salvar</span>
             </div>
         </div>
     </form>
 </div>
+<figure class="close-modal" onclick="fechar()">
+    <img src="assets/images/icons/delete.svg" alt="Fechar Modal">
+</figure>

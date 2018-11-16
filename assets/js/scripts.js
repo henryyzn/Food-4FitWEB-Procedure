@@ -127,18 +127,6 @@ $(document).ready(function () {
         }
     });
 
-    $("[data-f4f-chk-reserve]").on("change", function () {
-        var row = $(this).closest(".shopping-cart-row");
-        if ($(this).is(":checked")) {
-            var div = $("[data-f4f-reserve]").children("div").clone().removeClass("display-none");
-            row.after(div);
-        } else {
-            if (row.next().is(".form-generic")) {
-                row.next().remove();
-            }
-        }
-    });
-
     $("[data-f4f-scroll-to]").on("click", function () {
         var element = $(this).data("f4f-scroll-to");
         $([document.documentElement, document.body]).animate({
@@ -194,7 +182,7 @@ function abrir(id){
     var modal = $('.close-modal');
     $('.generic-modal').css('display', 'flex');
     $.ajax({
-        url: "modal/modal-diario-bordo.php",
+        url: "modal/modal-carrinho-cartao.php.php",
         type: "POST",
         data: {modo: 'modal', id:id},
         dataType: "html"
@@ -206,4 +194,32 @@ function abrir(id){
 }
 function fechar(){
     $('.generic-modal').css('display', 'none');
+}
+function modalEndereco(){
+    var modal = $('.close-modal');
+    $('.generic-modal').css('display', 'flex');
+    $.ajax({
+        url: "modal/modal-carrinho-endereco.php",
+        type: "POST",
+        data: {modo: 'modal'},
+        dataType: "html"
+        }).done(function(dados){
+            $('.generic-modal-wrapper').html(dados);
+        }).fail(function(dados){
+            alert("Erro ao abrir.");
+        });
+}
+function modalCartao(){
+    var modal = $('.close-modal');
+    $('.generic-modal').css('display', 'flex');
+    $.ajax({
+        url: "modal/modal-carrinho-cartao.php",
+        type: "POST",
+        data: {modo: 'modal'},
+        dataType: "html"
+        }).done(function(dados){
+            $('.generic-modal-wrapper').html(dados);
+        }).fail(function(dados){
+            alert("Erro ao abrir.");
+        });
 }

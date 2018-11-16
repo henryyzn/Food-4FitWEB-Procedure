@@ -4,33 +4,22 @@
     validateLog();
     if(isset($_GET['btn-comprar'])){
         require_once('cms/models/pedidoClass.php');
-        foreach($_GET['id_prato'] as $id => $id_prato) {
-            $pedido = array('id'=>$id_prato, 'quantidade'=>$_GET['quantidade']);
-            print_r($pedido);
+        require_once('cms/models/DAO/pedidoDAO.php');
+
+        $id = $_GET['id_prato'];
+        $quantidade = $_GET['quantidade'];
+
+        $pedido = array_map(function($id, $qtd){ return array('id_prato' => $id, 'quantidade' => $qtd); }, $id, $quantidade);
+        //print_r($pedido);
+
+        $classPedido = new Pedido();
+        $classPedido->id_usuario = $_SESSION['id_usuario'];
+        $classPedido->pedido = $pedido;
+
+        $pedidoDAO = new pedidoDAO();
+        if($_GET['btn-comprar'] == "Comprar"){
+            $pedidoDAO->insertOrdem($classPedido);
         }
-//        $pedido = array();
-//        $lista = array("id"=>$_GET['id_prato'], "quantidade"=>$_GET['quantidade']);
-//        $pedido['prato'] = $lista;
-//
-//        foreach($pedido as $p) {
-//            var_dump($p);
-//        }
-//        $id = $_GET['id_prato'];
-//        $_SESSION['pedido'] = array();
-//        $_SESSION['itens-pedido'] = array("id_prato"=>$_GET['id_prato'], "quantidade"=>$_GET['quantidade']);
-//        $_SESSION['pedido'][$id] = $_SESSION['itens-pedido'];
-//        $classPedido = new Pedido();
-//        $classPedido->idCategoria = $_GET['idCategoria'];
-//        $classPedido->titulo = $_GET['titulo'];
-//        $classPedido->descricao = $_GET['descricao'];
-//        $classPedido->resumo = $_GET['resumo'];
-//        $classPedido->confiPublic = '0';
-//        $classPedido->ativo = '1';
-//
-//        $pedidoDAO = new pedidoDAO();
-//        if($_GET['btn-comprar'] == "Comprar"){
-//            $pedidoDAO->insert($classPedido);
-//        }
     }
 ?>
 <!DOCTYPE html>
@@ -101,7 +90,7 @@
 
                         $pratosDAO = new pratosDAO();
 
-                        foreach($_SESSION['carrinho'] as $key => $value) {
+                        foreach(@$_SESSION['carrinho'] as $key => $value) {
                             $id_prato = $value['id_prato'];
                             $titulo = $value['titulo'];
                             $preco = $value['preco'];

@@ -1,38 +1,77 @@
 <?php
 
 //Ações do banco
-class pesquisaDAO {
+class pedidoDAO {
 
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\pesquisaClass.php');
+        require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\pedidoClass.php');
     }
 
-    public function selectSearch($search){
-        $listPesquisa = null;
+    public function insertOrdem($classPedido){
+        $sql = "INSERT INTO tbl_ordem_servico(id_usuario) VALUES ('".$classPedido->id_usuario."');";
 
-        $sql = "SELECT prato.id as id, prato.titulo as titulo, fotoprato.foto as foto FROM tbl_prato as prato INNER JOIN tbl_foto_prato as fotoprato WHERE prato.id = fotoprato.id_prato AND titulo LIKE '%".$search."' UNION SELECT id, titulo, foto FROM tbl_ingrediente WHERE titulo LIKE '%".$search."' UNION SELECT id, titulo, foto FROM tbl_categoria WHERE titulo LIKE '%".$search."' UNION SELECT id, titulo, foto FROM tbl_categoria_ingrediente WHERE titulo LIKE '%".$search."';";
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+
+        //Executa a query
+        if($PDO_conex->query($sql)){
+            echo("<script>alert('Ordem de serviço enviada com sucesso.')</script>");
+            //header('location:diario-de-bordo.php');
+            $last_id = $PDO_conex->lastInsertId();
+            $array = $classPedido->pedido;
+
+            foreach($array as $data){
+
+                $sql2 = "INSERT INTO tbl_prato_ordem_servico (id_ordem_servico, quantidade, id_prato) VALUES ($last_id, $data[quantidade], $data[id_prato])";
+                echo $sql;
+
+                if($PDO_conex->query($sql2)){
+                    echo("<script>alert('Ordem de prato de serviço enviada com sucesso.')</script>");
+                    header("location:carrinho-confirmacao.php?last_id=".$last_id);
+                }else{
+                    echo('<script>alert("2Erro ao realizar compra.</br>Tente novamente ou contate o técnico.");</script>');
+                }
+
+                $conex->desconectar();
+            }
+        }else{
+            echo('<script>alert("Erro ao realizar compra.</br>Tente novamente ou contate o técnico.");</script>');
+        }
+
+        $conex->desconectar();
+    }
+    public function pagamento($classPedido){
+        $sql = "INSERT INTO tbl_pagamento (id_ordem_servico) VALUES ('".$classPedido->id_ordem_servico."');";
         //echo $sql;
         //Instancia a classe
         $conex = new mysql_db();
         //Abre a Conexao
         $PDO_conex = $conex->conectar();
+
         //Executa a query
+        if($PDO_conex->query($sql)){
+            //echo("<script>alert('Ordem de serviço enviada com sucesso.')</script>");
+            $sql2 = "INSERT INTO tbl_pedido (id_ordem_servico) VALUES ('".$classPedido->id_ordem_servico."');";
 
-        $select = $PDO_conex->query($sql);
+            if($PDO_conex->query($sql2)){
+                echo ("<script>window.alert('Compra realizada com sucesso.'); window.location.href='meus-pedidos.php';</script>");
+                unset($_SESSION['carrinho']);
+                unset($_SESSION['itens-carrinho']);
+                unset($_SESSION['last_id']);
+            }else{
+                echo('<script>alert("Erro ao realizar compra.</br>Tente novamente ou contate o técnico.");</script>');
+            }
+            $conex->desconectar();
 
-        $cont=0;
-        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
-        //Cria um objeto array da classe Contato
-            $listPesquisa[] = new Pesquisa();
-            $listPesquisa[$cont]->id = $rs['id'];
-            $listPesquisa[$cont]->titulo = $rs['titulo'];
-            $listPesquisa[$cont]->foto = $rs['foto'];
-            $cont+=1;
+        }else{
+            echo('<script>alert("Erro ao realizar compra.</br>Tente novamente ou contate o técnico.");</script>');
         }
-        return $listPesquisa;
-    }
 
+        $conex->desconectar();
+    }
 }
 ?>

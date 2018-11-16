@@ -604,6 +604,9 @@ input[type="checkbox"].switch-styled:checked:after{
 .hide{
     display: none;
 }
+.hide-2{
+    display: none;
+}
 /* BLOCO/WRAPPER GENÉRICO - 100% DE LARGURA */
 .generic-block{
 	@include bloco(100%, false, auto, false);

@@ -350,55 +350,6 @@ a{
 	}
 }
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-#shopping-cart-address-block{
-	@include bloco($width: 100%, $height: auto);
-    >h3{
-    	@include titulo($align: center);
-	}
-	.shopping-cart-address-subtitle{
-		@include texto(16px, $grey, 'Roboto Light', 18px, center);
-	    margin-top: 10px;
-	}
-	#shopping-cart-address-row{
-		@include bloco($width: 100%, $height: auto);
-		@include display(flex, row);
-	    .shopping-cart-address-column{
-		    @include bloco($width: 100%, $height: auto);
-		    >div{
-		    	@include bloco($width: 100%, $height: auto);
-				@include display(flex, row);
-			    >input{
-			    	display: block;
-			    }
-			    >label{
-			    	display: block;
-			    }
-		    }
-		    .shopping-cart-address-column-title{
-		    	@include titulo(21px, $black, 'Roboto Medium', 24px, null);
-			}
-			.save-data-button{
-				@include titulo(16px, $grey, 'Roboto Medium Italic', 19px, null);
-			    transition: 200ms ease-in-out;
-			    &:hover{
-			    	color: $darkgrey;
-			    	cursor: pointer;
-			    }
-			}
-		}
-	}
-    #total-price{
-    	@include bloco($width: 100%, $height: auto);
-		>span{
-			@include titulo(1.2rem, $darkgrey, 'Roboto Regular', null, center);
-			padding-top: 30px;
-			>b{
-				font-size: 1.8rem; line-height: 48px;
-			}
-		}
-	}
-}
-
 //Casos de Sucesso
 .success-case-card{
 	@include bloco(100%, 800px, auto);
