@@ -20,6 +20,10 @@ $(document).ready(function () {
         $('.dish-form').addClass("animate fadeInUp");
     });
 
+    $("#open-form").click(function () {
+        $("#painel-lateral").slideToggle("fast");
+    });
+
     $("#open").click(function () {
         $(".form-generic").slideToggle(200);
     });
@@ -178,30 +182,17 @@ $(window).on("load", function () {
     }
 });
 
-function abrir(id){
-    var modal = $('.close-modal');
-    $('.generic-modal').css('display', 'flex');
-    $.ajax({
-        url: "modal/modal-carrinho-cartao.php.php",
-        type: "POST",
-        data: {modo: 'modal', id:id},
-        dataType: "html"
-        }).done(function(dados){
-            $('.generic-modal-wrapper').html(dados);
-        }).fail(function(dados){
-            alert("Erro ao abrir.");
-        });
-}
 function fechar(){
     $('.generic-modal').css('display', 'none');
 }
-function desconto(){
+
+function modalDouble(id, path){
     var modal = $('.close-modal');
     $('.generic-modal').css('display', 'flex');
     $.ajax({
-        url: "modal/modal-desconto.php",
+        url: "modal/modal-" + path + ".php",
         type: "POST",
-        data: {modo: 'modal'},
+        data: {modo: 'modal', id:id},
         dataType: "html"
         }).done(function(dados){
             $('.generic-modal-wrapper').html(dados);
@@ -223,31 +214,5 @@ function modal(path){
             alert("Erro ao abrir.");
         });
 }
-function modalEndereco(){
-    var modal = $('.close-modal');
-    $('.generic-modal').css('display', 'flex');
-    $.ajax({
-        url: "modal/modal-carrinho-endereco.php",
-        type: "POST",
-        data: {modo: 'modal'},
-        dataType: "html"
-        }).done(function(dados){
-            $('.generic-modal-wrapper').html(dados);
-        }).fail(function(dados){
-            alert("Erro ao abrir.");
-        });
-}
-function modalCartao(){
-    var modal = $('.close-modal');
-    $('.generic-modal').css('display', 'flex');
-    $.ajax({
-        url: "modal/modal-carrinho-cartao.php",
-        type: "POST",
-        data: {modo: 'modal'},
-        dataType: "html"
-        }).done(function(dados){
-            $('.generic-modal-wrapper').html(dados);
-        }).fail(function(dados){
-            alert("Erro ao abrir.");
-        });
-}
+
+

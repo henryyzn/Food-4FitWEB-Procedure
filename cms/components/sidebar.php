@@ -39,10 +39,6 @@
             <span class="image"><img src="../../assets/images/cms/icons/ingredientes.svg" alt="Ingredientes"></span>
             <span class="label">Ingredientes</span>
         </a>
-        <a href="promocoes.php">
-            <span class="image"><img src="../../assets/images/cms/icons/promocao.svg" alt="Promoções"></span>
-            <span class="label">Promoções</span>
-        </a>
         <a href="categoria.php">
             <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias"></span>
             <span class="label">Categorias</span>
@@ -67,6 +63,14 @@
         <a href="pedidos.php">
             <span class="image"><img src="../../assets/images/cms/icons/pedidos.svg" alt="Pedidos"></span>
             <span class="label">Pedidos<span class="badge">12</span></span>
+        </a>
+        <a href="promocoes.php">
+            <span class="image"><img src="../../assets/images/cms/icons/promocao.svg" alt="Promoções"></span>
+            <span class="label">Promoções</span>
+        </a>
+        <a href="descontos.php">
+            <span class="image"><img src="../../assets/images/cms/icons/desconto.svg" alt="Descontos"></span>
+            <span class="label">Descontos</span>
         </a>
         <a href="fit-session.php">
             <span class="image"><img src="../../assets/images/cms/icons/fit-session.svg" alt="Fit Session"></span>

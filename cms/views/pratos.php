@@ -60,14 +60,6 @@
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Prato</span>
                             </div>
-                            <div onclick="desconto()">
-                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <span>Adicionar Desconto</span>
-                            </div>
-                            <div onclick="modal('promocao')">
-                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <span>Adicionar Promoção</span>
-                            </div>
                             <a href="pratos.php">
                                 <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
                                 <span>Recarregar Listagem</span>

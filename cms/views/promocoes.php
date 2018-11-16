@@ -43,14 +43,6 @@
                 <div id="list-content">
                     <div class="pratos-wrapper">
                          <div id="page-actions">
-                            <div id="open-form">
-                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <span>Adicionar Prato</span>
-                            </div>
-                            <div onclick="desconto()">
-                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <span>Adicionar Desconto</span>
-                            </div>
                             <div onclick="modal('promocao')">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Promoção</span>

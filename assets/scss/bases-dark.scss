@@ -203,16 +203,6 @@
         padding: 12px;
     }
 }
-.generic-table
-tr td:nth-child(4){
-    width: 70px;
-}
-.generic-table tr td:nth-child(5){
-    width: 70px;
-}
-.generic-table tr td:nth-child(6){
-    width: 70px;
-}
 .table-result{
     @include texto(16px, $grey, 'Roboto Regular');
     padding: 12px;

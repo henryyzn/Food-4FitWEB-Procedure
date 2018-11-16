@@ -336,18 +336,29 @@ a{
     height: auto;
     display: flex;
     flex-direction: row;
-	#shopping-cart-confirm-column-one{
-	    width: 100%;
-	    height: auto;
-	}
-	#shopping-cart-confirm-column-two{
-	    width: 100%;
-	    height: auto;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: flex-end;
-	    align-items: flex-end;
-	}
+}
+#shopping-cart-confirm-column-one{
+    width: 100%;
+    height: auto;
+}
+#shopping-cart-confirm-column-two{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    >h2{
+        color: $black;
+        font-family: 'Roboto light';
+        font-size: 21px;
+        span{
+            font-family: 'Roboto Bold'; font-size: 28px;
+        }
+    }
+    >p{
+        color: $grey;
+    }
 }
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 //Casos de Sucesso
