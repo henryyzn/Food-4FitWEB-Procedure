@@ -202,9 +202,15 @@ input:checked + .toggle .star--6 {
 			    <img src="assets/images/icons/buycart.svg" alt="Carrinho de Compras">
 			</a>
 		</div>
+		<?php
+            if(isset($_SESSION['itens-carrinho'])){
+        ?>
 		<div id="buycart-bubble" class="animate fadeInDown">
-			<span>2</span>
+			<span><?php echo sizeof($_SESSION['carrinho'])?></span>
 		</div>
+		<?php
+            }
+        ?>
 		<div id="navbar-flat-login" class="animate fadeInDown">
 			<img src="assets/images/icons/user.svg" alt="Login">
 		</div>

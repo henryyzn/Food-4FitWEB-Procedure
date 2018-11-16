@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if(isset($_POST['btn-salvar'])){
 
         require_once('cms/models/comentario-postClass.php');

@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $tipoPessoa = null;
     $genero = null;
 
@@ -40,8 +42,6 @@
         $cadUsuarioDAO->insert($classCadUser);
     }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
