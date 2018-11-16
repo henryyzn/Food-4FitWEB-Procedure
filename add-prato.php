@@ -14,15 +14,16 @@
         require_once('cms/models/DAO/categoriaDAO.php');
 
         $classPrato = new Prato();
+        $classPrato->id_prato = $_GET['id_prato'];
         $classPrato->id_categoria = $_GET['id_categoria'];
         $classPrato->titulo = $_GET['titulo'];
         $classPrato->descricao = $_GET['descricao'];
         $classPrato->resumo = $_GET['resumo'];
-        $classPrato->confi_public = '0';
+        $classPrato->confiPublic = '1';
         $classPrato->ativo = '1';
         $classPrato->idUsuario = $_SESSION['id_usuario'];
         $classPrato->foto = $_GET['foto'];
-        $classPratp->preco = '40.00';
+        $classPrato->preco = '40.00';
 
         $pratosDAO = new pratosDAO();
         if($_GET['btn-salvar'] == "Salvar"){
@@ -140,7 +141,6 @@
                             </form>
                             <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="add-prato.php">
                                 <input name="foto" type="hidden" value="<?php echo($foto)?>">
-                                <input name="id" type="hidden" value="<?php echo($id)?>">
 
                                 <label for="titulo" class="label-generic">Titulo</label>
                                 <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">

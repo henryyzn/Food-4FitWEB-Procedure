@@ -39,7 +39,10 @@
             <span class="image"><img src="../../assets/images/cms/icons/ingredientes.svg" alt="Ingredientes"></span>
             <span class="label">Ingredientes</span>
         </a>
-
+        <a href="promocoes.php">
+            <span class="image"><img src="../../assets/images/cms/icons/promocao.svg" alt="Promoções"></span>
+            <span class="label">Promoções</span>
+        </a>
         <a href="categoria.php">
             <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias"></span>
             <span class="label">Categorias</span>

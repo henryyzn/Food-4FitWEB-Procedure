@@ -14,13 +14,15 @@
         require_once('../models/DAO/categoriaDAO.php');
 
         $classPrato = new Prato();
-        $classPrato->idCategoria = $_GET['idCategoria'];
+        $classPrato->id_categoria = $_GET['id_categoria'];
         $classPrato->titulo = $_GET['titulo'];
         $classPrato->descricao = $_GET['descricao'];
         $classPrato->resumo = $_GET['resumo'];
         $classPrato->confiPublic = '0';
         $classPrato->ativo = '1';
-        //$classPrato->id_usuario = 'null';
+        $classPrato->idUsuario = '12';
+        $classPrato->preco = '40.00';
+        $classPrato->foto = $_GET['foto'];
 
         $pratosDAO = new pratosDAO();
         if($_GET['btn-salvar'] == "Salvar"){
@@ -138,7 +140,6 @@
                             </form>
                             <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="add-prato.php">
                                 <input name="foto" type="hidden" value="<?php echo($foto)?>">
-                                <input name="id" type="hidden" value="<?php echo($id)?>">
 
                                 <label for="titulo" class="label-generic">Titulo</label>
                                 <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
@@ -150,7 +151,7 @@
                                 <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
 
                                 <label for="idCategoria" class="label-generic">Categoria</label>
-                                <select type="text"  id="id_categoria" name="idCategoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
+                                <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
 
                                 <?php
                                     require_once('../models/DAO/categoriaDAO.php');

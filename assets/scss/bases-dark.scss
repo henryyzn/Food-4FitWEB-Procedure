@@ -245,7 +245,7 @@ tr td:nth-child(4){
 		padding-left: 20px;
 		padding-right: 20px;
 		border-radius: 10px;
-		background-color: $white;
+		background-color: $darkgrey;
 		position: relative;
 		.close-modal{
 			//Botão para fechar o modal
@@ -437,12 +437,12 @@ tr td:nth-child(4){
     justify-content: flex-end;
 	>span{
 	    font-family:'Roboto Medium Italic';
-	    color: #7F7F7F;
+	    color: $grey;
 	    font-size: 18px;
 	    display: block;
 	    transition: 200ms ease-in-out;
 		&:hover{
-		    color: #282828;
+		    color: $mediumgrey;
 		    cursor: pointer;
 		}
 	}

@@ -3,19 +3,6 @@
     $id = null;
     $foto = null;
     $botao = "Salvar";
-
-    if(isset($_GET['modo'])){
-        $modo = $_GET['modo'];
-        if($modo == 'excluir'){
-
-            require_once('../models/pratosClass.php');
-            require_once('../models/DAO/pratosDAO.php');
-
-            $pratosDAO = new pratosDAO;
-            $id = $_GET['id'];
-            $pratosDAO->delete($id);
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -75,31 +62,33 @@
                         </div>
                         <div class="generic-grid animate fadeInUp">
                             <?php
-                                require_once("../../cms/models/DAO/pratosDAO.php");
+                                require_once('../models/DAO/promocaoDAO.php');
 
-                                $pratosDAO = new pratosDAO();
+                                $promocaoDAO = new promocaoDAO();
 
-                                $lista = $pratosDAO->selectAll();
+                                $lista = $promocaoDAO->selectDouble();
 
                                 for($i = 0; $i < @count($lista); $i++){
-
                             ?>
                             <div class="generic-card">
-                                <img src="../../<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
+                                <img src="../../<?php echo($lista[$i]->foto_prato)?>" alt="Teste" class="generic-card-img">
                                 <div class="generic-card-ovy">
-                                    <span class="card-dish-name margin-bottom-20px"><?php echo($lista[$i]->titulo)?></span>
+                                    <span class="card-dish-name margin-bottom-20px"><?php echo($lista[$i]->nome_prato)?></span>
                                     <div class="card-dish-separator margin-bottom-15px"></div>
-                                    <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> Alguma Coisa</p>
+                                    <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> <?php echo($lista[$i]->titulo)?></p>
 
                                     <div class="edit-btns">
                                         <img src="../../assets/images/icons/edit.svg" alt="Editar Prato">
-                                        <img src="../../assets/images/icons/delete-white.svg" alt="Excluir Prato" onclick="javascript:location.href='pratos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
+                                        <img src="../../assets/images/icons/delete-white.svg" alt="Excluir Prato">
                                         <img src="../../assets/images/icons/checked-white.svg" alt="">
                                     </div>
+                                    <span class="avaliacoes-pratos">
+                                        Ver Avaliações
+                                    </span>
                                 </div>
                             </div>
                             <?php
-                            }
+                                }
                             ?>
                         </div>
                     </div>
@@ -116,18 +105,19 @@
                         </form>
                         <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="add-prato.php">
                             <input name="foto" type="hidden" value="<?php echo($foto)?>">
+                            <input name="id" type="hidden" value="<?php echo($id)?>">
 
-                            <label for="titulo" class="label-generic">Titulo:</label>
+                            <label for="titulo" class="label-generic">Titulo</label>
                             <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
-                            <label for="descricao" class="label-generic">Descricao:</label>
-                            <textarea type="text" id="descricao" name="descricao" class="textarea-generic" required maxlength="560"></textarea>
+                            <label for="descricao" class="label-generic">Descricao</label>
+                            <textarea type="text"  id="descricao" name="descricao" class="textarea-generic" required maxlength="255"></textarea>
 
-                            <label for="resumo" class="label-generic">Resumo:</label>
+                            <label for="resumo" class="label-generic">Resumo</label>
                             <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
 
-                            <label for="idCategoria" class="label-generic">Categoria:</label>
-                            <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma categoria:</option>
+                            <label for="idCategoria" class="label-generic">Categoria</label>
+                            <select type="text"  id="id_categoria" name="idCategoria" class="input-generic" required maxlength="255"><option>Selecione uma Categoria:</option>
 
                             <?php
                                 require_once('../models/DAO/categoriaDAO.php');

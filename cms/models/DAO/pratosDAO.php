@@ -8,30 +8,32 @@
         }
 
         public function insert($classPrato){
-            $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario, preco) values (
-                    '".$classPrato->idCategoria."',
+            $sql = "INSERT INTO tbl_prato(id_categoria, titulo, descricao, resumo, confi_public, ativo, id_usuario, preco) values ('".$classPrato->id_categoria."',
                     '".$classPrato->titulo."',
                     '".$classPrato->descricao."',
                     '".$classPrato->resumo."',
                     '".$classPrato->confiPublic."',
                     '".$classPrato->ativo."',
-                    '".$classPrato->id_usuario."'
+                    '".$classPrato->idUsuario."',
                     '".$classPrato->preco."');";
+            //echo $sql;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql1)){
-                if($PDO_conex->query($sql2))
-                    header('location:todos-os-pratos.php');
-                else
-                    echo('<script>alert("Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.");</script>');
+            if($PDO_conex->query($sql)){
+                $last_id = $PDO_conex->lastInsertId();
+                $sql2 = "INSERT INTO tbl_foto_prato (id_prato, foto) VALUES (
+                '".$last_id."',
+                'assets/archives/pratos/".$classPrato->foto."');";
+                if($PDO_conex->query($sql2)){
+                    header("location:pratos.php");
+                }else{
+                    echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                }
+
             }else{
                 echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
             }
-            if($PDO_conex->query($sql))
-                header('location:pratos.php');
-            else
-                echo($sql);
 
             $conex->desconectar();
 
@@ -132,16 +134,19 @@
         }
 
         public function delete($id){
-            $sql = "delete from tbl_prato where id=".$id;
+            $sql = "delete from tbl_foto_prato where id_prato = ".$id;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             echo ($sql);
             if($PDO_conex->query($sql))
-//                header('location:add-prato.php');
-                echo ($sql);
+                $last_id = $PDO_conex->lastInsertId();
+                $sql2 = "DELETE FROM tbl_prato WHERE id = ".$id;
+                if($PDO_conex->query($sql2)){
+                    header("location:pratos.php");
+                }
             else
-                echo ('Erro no banco de dados!');
+                echo('<script>alert("Erro ao excluir informações do sistema.</br>Tente novamente ou contate o técnico.");</script>');
         }
 
         public function update($classPrato){

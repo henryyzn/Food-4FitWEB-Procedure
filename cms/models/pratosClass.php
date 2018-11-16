@@ -5,6 +5,7 @@
         public $titulo;
         public $descricao;
         public $resumo;
+        public $preco;
         public $ativo;
         public $confiPublic;
         public $idUsuario;

@@ -195,6 +195,34 @@ function abrir(id){
 function fechar(){
     $('.generic-modal').css('display', 'none');
 }
+function desconto(){
+    var modal = $('.close-modal');
+    $('.generic-modal').css('display', 'flex');
+    $.ajax({
+        url: "modal/modal-desconto.php",
+        type: "POST",
+        data: {modo: 'modal'},
+        dataType: "html"
+        }).done(function(dados){
+            $('.generic-modal-wrapper').html(dados);
+        }).fail(function(dados){
+            alert("Erro ao abrir.");
+        });
+}
+function modal(path){
+    var modal = $('.close-modal');
+    $('.generic-modal').css('display', 'flex');
+    $.ajax({
+        url: "modal/modal-" + path + ".php",
+        type: "POST",
+        data: {modo: 'modal'},
+        dataType: "html"
+        }).done(function(dados){
+            $('.generic-modal-wrapper').html(dados);
+        }).fail(function(dados){
+            alert("Erro ao abrir.");
+        });
+}
 function modalEndereco(){
     var modal = $('.close-modal');
     $('.generic-modal').css('display', 'flex');
