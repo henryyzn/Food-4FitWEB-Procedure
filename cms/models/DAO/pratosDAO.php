@@ -26,7 +26,7 @@
                 '".$last_id."',
                 'assets/archives/pratos/".$classPrato->foto."');";
                 if($PDO_conex->query($sql2)){
-                    header("location:pratos.php");
+                    header("location:add-prato.php");
                 }else{
                     echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
                 }
@@ -143,7 +143,7 @@
                 $last_id = $PDO_conex->lastInsertId();
                 $sql2 = "DELETE FROM tbl_prato WHERE id = ".$id;
                 if($PDO_conex->query($sql2)){
-                    header("location:pratos.php");
+                    header("location:add-prato.php");
                 }
             else
                 echo('<script>alert("Erro ao excluir informações do sistema.</br>Tente novamente ou contate o técnico.");</script>');
