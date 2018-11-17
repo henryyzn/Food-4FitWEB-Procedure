@@ -60,7 +60,34 @@
 
             return $listDesconto;
             }
+        }
+        public function selectCodigo($codig_cupom){
+            $sql="select * from tbl_desconto where codig_cupom = '".$codig_cupom."';";
+            //echo($sql);
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
 
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+                $listDesconto = new Desconto();
+                $listDesconto->id = $rs['id'];
+                $listDesconto->titulo = $rs['titulo'];
+                $listDesconto->codig_cupom = $rs['codig_cupom'];
+                $listDesconto->valor = $rs['valor'];
+                $listDesconto->ativo = $rs['ativo'];
+                $listDesconto->validade = ['validade'];
+
+                $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('');
+            else
+                echo('Erro');
+
+            $conex->desconectar();
+
+            return $listDesconto;
+            }
         }
 
         public function selectAll(){
