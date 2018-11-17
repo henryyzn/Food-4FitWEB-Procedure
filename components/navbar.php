@@ -185,12 +185,12 @@ input:checked + .toggle .star--6 {
 	<div id="navbar-flat-content">
 		<a href="index.php" id="navbar-flat-logo" class="animate fadeInDown">FOOD 4FIT</a>
 		<div id="navbar-flat-search" class="animate fadeInDown">
-		    <form action="todos-os-pratos.php" name="frmsearch" method="GET" id="form-search">
-			    <input type="text" name="search" placeholder="Pesquise" required>
+		    <form action="pesquisa.php" name="frmsearch" method="POST" id="form-search">
+			    <input type="text" name="pesquisa" placeholder="Pesquise" required>
 		        <div id="navbar-flat-search-button">
-			        <img src="assets/images/icons/search.svg" alt="Pesquise">
+			        <label for="btn-search"><img src="assets/images/icons/search.svg" alt="Pesquise"></label>
 			    </div>
-			    <input type="submit" class="display-none">
+			    <input type="submit" name="btn-search" id="btn-search" class="display-none">
 			</form>
 		</div>
 
@@ -219,9 +219,7 @@ input:checked + .toggle .star--6 {
 		</div>
 	</div>
 </nav>
-<aside id="sidebar-left"><!-- MENU LATERAL ESQUERDO -->
-	<h2>FOOD 4FIT</h2>
-	<div class="sidebar-separator"></div>
+<aside id="sidebar-left" class="padding-top-30px"><!-- MENU LATERAL ESQUERDO -->
 	<ul class="sidebar-left-list padding-left-30px">
 		<li><a href="index.php">Página Inicial</a></li>
 		<li><a href="todos-os-pratos.php">Pratos</a></li>
@@ -237,9 +235,7 @@ input:checked + .toggle .star--6 {
 		<img src="assets/images/simbols/close.svg" alt="Fechar Menu">
 	</div>
 </aside>
-<aside id="sidebar-right"><!-- MENU LATERAL DIREITO -->
-	<h2>FOOD 4FIT</h2>
-	<div class="sidebar-separator"></div>
+<aside id="sidebar-right" class="padding-top-30px"><!-- MENU LATERAL DIREITO -->
 	<ul class="sidebar-right-list padding-right-30px">
 		<li><a href="meu-perfil.php">Meu Perfil</a></li>
 		<li><a href="meus-pedidos.php">Pedidos</a></li>
@@ -247,22 +243,13 @@ input:checked + .toggle .star--6 {
 		<li><a href="meus-favoritos.php">Favoritos</a></li>
 		<li><a href="diario-de-bordo.php">Diário de Bordo</a></li>
 		<li><a href="notificacoes.php"><span>12</span>Notificações</a></li>
-	</ul>
-	<div class="sidebar-separator"></div>
-	<ul class="sidebar-right-list padding-right-30px">
 		<li><a href="meus-pratos.php">Meus Pratos</a></li>
 		<li><a href="pratos-reservados.php">Pratos Reservados</a></li>
 		<li><a href="app.php">Aplicativo</a></li>
-	</ul>
-	<div class="sidebar-separator"></div>
-	<ul class="sidebar-right-list padding-right-30px">
 		<li><a href="configuracoes.php">Configurações</a></li>
 		<li><a href="termos-uso.php">Termos de Uso</a></li>
 		<li><a href="politicas-privacidade.php">Políticas de Privacidade</a></li>
 		<li><a href="modulo.php?logout">Logout</a></li>
-	</ul>
-	<div class="sidebar-separator"></div>
-	<ul class="sidebar-right-list padding-right-30px">
 	    <li id="flex"><label class="label" for="themeSwitch">
             <div class="toggleWrapper">
                 <input type="checkbox" class="dn" id="themeSwitch" name="theme" value="1"/>

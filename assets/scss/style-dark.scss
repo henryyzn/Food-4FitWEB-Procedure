@@ -1455,6 +1455,7 @@ a{
     background-color: transparent;
 	#product-view-dish-name{
 		@include texto(28px, $white, 'Roboto Bold');
+        padding-top: 70px;
 	}
 	#product-view-dish-code{
 		@include texto(14px, $grey, 'Roboto Regular');

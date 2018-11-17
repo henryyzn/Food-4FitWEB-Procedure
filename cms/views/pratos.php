@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     $id = null;
     $foto = null;
     $botao = "Salvar";
@@ -15,6 +16,50 @@
             $id = $_GET['id'];
             $pratosDAO->delete($id);
         }
+    }
+
+    if(isset($_GET['btn-salvar'])){
+        $values = $_GET['id_ingrediente'];
+        $keys = array_keys($values);
+        $size = count($values);
+
+        for ($i = 0; $i < $size; $i++) {
+            $key   = $keys[$i];
+            $value = $values[$key];
+
+            print_r($value);
+
+        }
+
+//        require_once('../models/pratosClass.php');
+//        require_once('../models/categoriaClass.php');
+//        require_once('../models/DAO/pratosDAO.php');
+//        require_once('../models/pratoFotoClass.php');
+//        require_once('../models/DAO/pratoFotoDAO.php');
+//        require_once('../models/DAO/categoriaDAO.php');
+//
+//        $classPrato = new Prato();
+//        $classPrato->id_categoria = $_GET['id_categoria'];
+//        $classPrato->id_ingrediente = $_GET['id_ingrediente'];
+//        $classPrato->titulo = $_GET['titulo'];
+//        $classPrato->descricao = $_GET['descricao'];
+//        $classPrato->resumo = $_GET['resumo'];
+//        $classPrato->confiPublic = '0';
+//        $classPrato->ativo = '1';
+//        $classPrato->idUsuario = '12';
+//        $classPrato->preco = '40.00';
+//        $classPrato->foto = $_GET['foto'];
+//
+//        $pratosDAO = new pratosDAO();
+//        if($_GET['btn-salvar'] == "Salvar"){
+//            if($pratosDAO->insert($classPrato)){
+//                $pratosDAO->insertIngrediente($classPrato);
+//            }
+//        }else{
+//           $pratosDAO->id = $_GET['id'];
+//           $pratosDAO->update($classPrato);
+//        }
+
     }
 ?>
 <!DOCTYPE html>
@@ -46,6 +91,32 @@
             });
         });
     </script>
+    <style>
+        .collapsible {
+            background-color: #202020;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border-radius: 3px;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #303030;
+        }
+    </style>
 </head>
 <body>
     <section id="main">
@@ -57,10 +128,8 @@
                     <div class="pratos-wrapper">
                          <div id="page-actions">
                             <div id="open-form">
-
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <a href="add-prato.php"><span>Adicionar Prato</span></a>
-
+                                <span>Adicionar Prato</span>
                             </div>
                             <a href="pratos.php">
                                 <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
@@ -83,7 +152,7 @@
                                 <div class="generic-card-ovy">
                                     <span class="card-dish-name margin-bottom-20px"><?php echo($lista[$i]->titulo)?></span>
                                     <div class="card-dish-separator margin-bottom-15px"></div>
-                                    <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> Alguma Coisa</p>
+                                    <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> <?php echo($lista[$i]->titulo_categoria)?></p>
 
                                     <div class="edit-btns">
                                         <img src="../../assets/images/icons/edit.svg" alt="Editar Prato">
@@ -108,7 +177,7 @@
                             <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
                             <input type="file" name="fileimage" id="foto" style="display: none;">
                         </form>
-                        <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="add-prato.php">
+                        <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="pratos.php">
                             <input name="foto" type="hidden" value="<?php echo($foto)?>">
 
                             <label for="titulo" class="label-generic">Titulo:</label>
@@ -122,21 +191,36 @@
 
                             <label for="idCategoria" class="label-generic">Categoria:</label>
                             <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma categoria:</option>
+                                <?php
+                                    require_once('../models/DAO/categoriaDAO.php');
 
-                            <?php
-                                require_once('../models/DAO/categoriaDAO.php');
+                                    $categoriaDAO = new categoriaDAO();
+                                    $lista = $categoriaDAO->selectAll();
 
-                                $categoriaDAO = new categoriaDAO();
-                                $lista = $categoriaDAO->selectAll();
-
-                                for($i = 0; $i < count($lista); $i++){
-                            ?>
+                                    for($i = 0; $i < count($lista); $i++){
+                                ?>
                                 <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
-                            <?php
-                                }
-                            ?>
-
+                                <?php
+                                    }
+                                ?>
                             </select>
+
+                            <div class="collapsible">Ingredientes:</div>
+                            <div class="content">
+                                <?php
+                                    require_once('../models/DAO/ingredientesDAO.php');
+
+                                    $ingredientesDAO = new ingredientesDAO();
+                                    $lista = $ingredientesDAO->selectAll();
+
+                                    for($i = 0; $i < @count($lista); $i++){
+                                ?>
+                                <input type="checkbox" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+
 
                             <div class="form-row">
                                 <span>Cancelar</span>
@@ -162,6 +246,21 @@
                 $("#add-prato-form").slideToggle("fast");
             });
         });
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "flex") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "flex";
+            }
+          });
+        }
     </script>
 </body>
 </html>

@@ -22,8 +22,6 @@
                 $_SESSION['carrinho'][$id] = $_SESSION['itens-carrinho'];
                 header("location:carrinho.php");
             }else{
-                //$_SESSION['carrinho'][$id] += 1;
-                //unset($_SESSION['carrinho']);
                 header("location:carrinho.php");
             }
         }elseif($_GET['acao'] == 'del'){
@@ -42,6 +40,7 @@
         require_once('cms/models/DAO/pratosDAO.php');
 
         $pratosDAO = new pratosDAO;
+
         $lista = $pratosDAO->selectAllById($id_prato);
 
         for($i = 0; $i < @count($lista); $i++){
@@ -80,7 +79,6 @@
             </span>
         </div>
 -->
-        <?php //var_dump($_SESSION['carrinho'])?>
         <div id="product-view-block">
             <figure id="product-view-image-container">
                 <img src="<?php echo($lista[$i]->foto)?>" alt="Nome do Prato" id="product-view-image">
@@ -101,20 +99,20 @@
             </figure>
             <article id="product-view-info-container">
                 <form action="prato.php" method="GET" name="frmcompra">
-                    <h2 id="product-view-dish-name" class="padding-top-70px padding-left-15px padding-bottom-5px"><?php echo($lista[$i]->titulo)?></h2>
-                    <span id="product-view-dish-code" class="padding-left-15px">código do produto: <?php echo($lista[$i]->id)?></span>
-                    <div class="avaliation-stars padding-top-15px padding-left-15px padding-bottom-30px">
+                    <h2 id="product-view-dish-name" class="padding-left-30px padding-bottom-5px"><?php echo($lista[$i]->titulo)?></h2>
+                    <span id="product-view-dish-code" class="padding-left-30px">código do produto: <?php echo($lista[$i]->id)?></span>
+                    <div class="avaliation-stars padding-top-15px padding-left-30px padding-bottom-30px">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                         <img src="assets/images/icons/star.svg" class="avaliation-stars-image" alt="Star">
                     </div>
-                    <span id="product-view-price" class="padding-left-15px padding-bottom-5px">R$ <?php echo($lista[$i]->preco)?></span>
-                    <span id="product-view-price-descrip" class="padding-left-15px padding-bottom-30px">Em 12x sem juros no cartão de <b>R$ 00,00</b></span>
+                    <span id="product-view-price" class="padding-left-30px padding-bottom-5px">R$ <?php echo($lista[$i]->preco)?></span>
+                    <span id="product-view-price-descrip" class="padding-left-30px padding-bottom-30px">Em 12x sem juros no cartão de <b>R$ 00,00</b></span>
 
-                    <h3 id="product-view-price-full" class="padding-left-15px">R$ 000,00 <span>à vista</span></h3>
-                    <div id="credit-card-flag" class="padding-left-15px padding-top-15px padding-bottom-30px">
+                    <h3 id="product-view-price-full" class="padding-left-30px">R$ 000,00 <span>à vista</span></h3>
+                    <div id="credit-card-flag" class="padding-left-30px padding-top-15px padding-bottom-30px">
                         <img src="assets/images/icons/credit-card.svg" alt="Bandeira">
                     </div>
 
@@ -124,16 +122,16 @@
                     <input type="hidden" name="titulo" id="titulo" value="Teste">
                     <input type="hidden" name="preco" id="preco" value="200.00">
                     <input type="hidden" name="quantidade" id="quantidade" value="1">
-                    <input type="hidden" name="foto_prato" id="foto_prato" value="assets/images/dishs/img1.jpg">
+                    <input type="hidden" name="foto_prato" id="foto_prato" value="<?php echo($lista[$i]->foto)?>">
 
 
-                    <button type="submit" name="btn-addcart" value="Adicionar" class="buy-button margin-left-15px">
+                    <button type="submit" name="btn-addcart" value="Adicionar" class="buy-button margin-left-30px">
                         <span class="padding-right-5px">Comprar</span>
                         <div class="buy-button-image">
                             <img src="assets/images/icons/shopping-cart-white.svg" alt="Comprar">
                         </div>
                     </button>
-                    <div class="social-share padding-top-30px padding-left-15px">
+                    <div class="social-share padding-top-30px padding-left-30px">
                         <img src="assets/images/icons/facebook-color.svg" alt="Compartilhar no Facebook">
                         <img src="assets/images/icons/twitter-color.svg" alt="Compartilhar no Twitter">
                         <img src="assets/images/icons/share.svg" alt="Obter link compartilhável">

@@ -99,17 +99,20 @@
     @include bloco(95%, 520px, auto);
     margin: 0px auto 20px auto;
     position: relative;
-    >form
+    >form{
         #navbar-flat-search-button{
             //Botão de Pesquisa
             width: 24px;
             height: 24px;
             background-color: transparent;
             @include position(absolute, $top: 10px, $right: 10px, $bottom: null, $left: null);
-            >img{
-                @include img-fit(24px, 24px);
+            >label{
+                img{
+                    @include img-fit(24px, 24px);
+                }
             }
         }
+    }
 }
 #navbar-flat-search>form>input{
 	/*Barra de pesquisa*/
@@ -229,6 +232,7 @@
 	right: 0;
 	bottom: 0;
 	z-index: 99999;
+    overflow: auto;
 }
 #sidebar-right::-webkit-scrollbar {
     display: none;

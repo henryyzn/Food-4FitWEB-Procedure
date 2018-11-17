@@ -8,6 +8,22 @@
 	.filter-menu{
 		display: block;
 	}
+    //Prato
+    #product-view-block{
+        @include display(flex, column, center, center);
+    }
+    #product-view-info-container{
+        #product-view-dish-name{
+            padding-top: 0px;
+        }
+    }
+    #product-view-info-block{
+        flex-direction: column;
+        .product-view-info-column{
+            margin-bottom: 20px;
+            width: 80%;
+        }
+    }
 }
 @media screen and (max-width: 968px) {
 	#shopping-cart-confirm-block{
@@ -16,6 +32,22 @@
 	.filter-menu{
 		display: block;
 	}
+    //Prato
+    #product-view-block{
+        @include display(flex, column, center, center);
+    }
+    #product-view-info-container{
+        #product-view-dish-name{
+            padding-top: 0px;
+        }
+    }
+    #product-view-info-block{
+        flex-direction: column;
+        .product-view-info-column{
+            margin-bottom: 20px;
+            width: 80%;
+        }
+    }
 }
 /*--------------------------------------------------*/
 @media screen and (max-device-width: 768px) {

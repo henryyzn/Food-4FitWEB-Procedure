@@ -4,6 +4,8 @@
     if(isset($_GET['search'])){
         require_once('../models/diario-bordoClass.php');
         require_once('../models/DAO/diario-bordoDAO.php');
+
+        $_SESSION['master_key'] = $_GET['search'];
     }
 ?>
 <!DOCTYPE html>
@@ -12,7 +14,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca por '<?php echo($_GET['search'])?>' :: Food 4fit - CMS</title>
+    <title>Busca por '<?php echo($_SESSION['master_key'])?>' :: Food 4fit - CMS</title>
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
     <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
@@ -96,14 +98,14 @@
             <?php require_once("../components/navbar.php")?>
             <div id="page-content">
                 <section class="search-block">
-                    <h2 id="search-page-title" class="padding-top-30px">Resultados para '<?php echo($_GET['search'])?>'</h2>
+                    <h2 id="search-page-title" class="padding-top-30px">Resultados para '<?php echo($_SESSION['master_key'])?>'</h2>
                     <div class="search-block-content">
                         <?php
                             require_once("../models/DAO/pesquisaDAO.php");
 
                             $pesquisaDAO = new pesquisaDAO();
 
-                            $lista = $pesquisaDAO->selectSearch($_GET['search']);
+                            $lista = $pesquisaDAO->selectSearch($_SESSION['master_key']);
 
                             for($i = 0; $i < count($lista); $i++){
                         ?>
