@@ -20,6 +20,21 @@
         if($_GET['btn-comprar'] == "Comprar"){
             $pedidoDAO->insertOrdem($classPedido);
         }
+    }elseif(isset($_POST['btn-cupom'])){
+        require_once('cms/models/descontoClass.php');
+        require_once('cms/models/DAO/descontoDAO.php');
+
+        $classDesconto = new Desconto();
+        $codig_cupom = $_POST['codig_cupom'];
+
+        $descontoDAO = new descontoDAO();
+        if($_POST['btn-cupom'] == "Cupom"){
+            if($descontoDAO->selectCodigo($codig_cupom)){
+                echo('<script>alert("Processado!");</script>');
+            }else{
+                echo('<script>alert("Este cupom não existe ou não é mais válido.");</script>');
+            }
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -141,26 +156,28 @@
                     <label for="chkall" class="padding-left-15px">Selecionar Todos</label>
                     <div class="btn-generic-disabled margin-left-30px" ><span>Excluir</span></div>
                 </div>
-                <section id="shopping-cart-confirm-block" class="padding-bottom-30px">
-                    <div id="shopping-cart-confirm-column-one">
-                        <h2 class="padding-left-30px padding-top-30px padding-bottom-15px">Cupom de Desconto</h2>
-                        <p class="padding-bottom-15px padding-left-30px">Digite o seu cupom de desconto para receber um desconto<br>no seu valor total do pedido. Múltiplos cupons não serão aplicados.</p>
-                        <div style="display: flex;">
-                            <input class="margin-left-30px" type="text" style="width: 350px; border: none; outline: none; height: 40px; background-color: #E8E8E8; border-radius: 5px; text-indent: 12px; font-family: 'Roboto Medium Italic';" placeholder="Digite o cupom...">
-                            <div class="btn-generic margin-left-15px">
-                                <span>Processar</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="shopping-cart-confirm-column-two">
-                        <h2 class="padding-right-30px padding-top-30px padding-bottom-30px" style="font-family: 'Roboto light'; font-size: 21px; color: #282828;">Total a Pagar: <span style="font-family: 'Roboto Bold'; font-size: 28px; color: #000;">R$ 000,00</span></h2>
-                        <button name="btn-comprar" value="Comprar" type="submit" class="btn-generic margin-right-30px">
-                            <span>Comprar</span>
-                        </button>
-                    </div>
-                </section>
+                <div id="shopping-cart-confirm-column-two">
+                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ 000,00</span></h2>
+                    <button name="btn-comprar" value="Comprar" type="submit" class="btn-generic margin-right-30px">
+                        <span>Comprar</span>
+                    </button>
+                </div>
             </div>
         </form>
+        <div id="shopping-cart-confirm-block" class="padding-bottom-30px">
+            <form action="carrinho.php" method="POST" name="frmdesconto" class="width-100">
+                <div id="shopping-cart-confirm-column-one">
+                    <h2 class="padding-left-30px padding-top-30px padding-bottom-15px">Cupom de Desconto</h2>
+                    <p class="padding-bottom-15px padding-left-30px">Digite o seu cupom de desconto para receber um desconto<br>no seu valor total do pedido. Múltiplos cupons não serão aplicados.</p>
+                    <div style="display: flex;">
+                        <input class="margin-left-30px" name="codig_cupom" type="text" style="width: 350px; border: none; outline: none; height: 40px; background-color: #E8E8E8; border-radius: 5px; text-indent: 12px; font-family: 'Roboto Medium Italic';" placeholder="Digite o cupom...">
+                        <button name="btn-cupom" value="Cupom" type="submit" class="btn-generic margin-left-15px">
+                            <span>Processar</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 	<script>

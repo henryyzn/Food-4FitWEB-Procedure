@@ -77,7 +77,7 @@
                         <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                         <td><span class="table-result"><?php echo($lista[$i]->progresso)?></span></td>
                         <td><span class="table-result"><?php echo($lista[$i]->data)?></span></td>
-                        <td width="42px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="abrir(<?php echo($lista[$i]->id)?>)"></td>
+                        <td width="42px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'diario-bordo')"></td>
                         <td width="42px"><img src="../../assets/images/icons/level-up.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='diario-bordo.php?modo=transformar&id=<?php echo($lista[$i]->id)?>'"></td>
                         <td width="42px"><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='diario-bordo.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                     </tr>

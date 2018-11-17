@@ -1,23 +1,23 @@
-
 <?php
     require_once('../../models/DAO/descontoDAO.php');
     require_once('../../models/descontoClass.php');
 
     if(isset($_POST['btn-salvar'])){
 
-        $descontoClass = new Desconto();
+        $classDesconto = new Desconto();
         $descontoDAO = new descontoDAO();
 
-        $descontoClass->titulo = $_POST['titulo'];
-        $descontoClass->valor = $_POST['valor'];
-        $descontoClass->codig_cupom = $_POST['codig_cupom'];
-        $descontoClass->validade = $_POST['validade'];
-        $descontoClass->ativo = $_POST['ativo'];
+        $classDesconto->titulo = $_POST['titulo'];
+        $classDesconto->valor = $_POST['valor'];
+        $classDesconto->codig_cupom = $_POST['codig_cupom'];
+        $validade = date('Y/m/d', strtotime($_POST['validade']));
+        $classDesconto->validade = $validade;
+        $classDesconto->ativo = '1';
 
-        $descontoDAO->insert($descontoClass);
+        $descontoDAO->insert($classDesconto);
     }
 ?>
-<form name="frmdesconto" action="desconto.php" method="POST" class="form-generic width-100 margin-top-30px margin-bottom-30px">
+<form name="frmdesconto" action="modal/modal-desconto.php" method="POST" class="form-generic width-100 margin-top-30px margin-bottom-30px">
     <div class="form-generic-content">
         <h2 class="form-title">Cadastrar um desconto</h2>
 
@@ -26,14 +26,15 @@
 
         <label for="titulo" class="label-generic">Valor novo:</label>
         <input id="valor" name="valor" class="input-generic" required placeholder="R$ 000,00">
+        <script>$('#valor').mask('000.000.000.000.00', {reverse: true});</script>
 
         <label for="titulo" class="label-generic">Código do cupom:</label>
-        <input id="codig_cupom" name="codig_cupom" class="input-generic" required placeholder="Digite um desconto para o desconto...">
+        <input id="codig_cupom" name="codig_cupom" class="input-generic" required placeholder="Digite um código para o desconto...">
 
         <label for="titulo" class="label-generic">Validade:</label>
         <input id="validade" name="validade" class="input-generic" required placeholder="Digite uma data de término para o desconto...">
+        <script>$('#validade').mask('00/00/0000');</script>
 
-        <input type="hidden" id="ativo" name="ativo" value="1">
         <div class="form-row">
             <span class="btn-cancelar" onclick="fechar()">Cancelar</span>
             <button type="submit" name="btn-salvar" value="Salvar" class="btn-generic margin-left-20px">

@@ -336,18 +336,29 @@ a{
     height: auto;
     display: flex;
     flex-direction: row;
-	#shopping-cart-confirm-column-one{
-	    width: 100%;
-	    height: auto;
-	}
-	#shopping-cart-confirm-column-two{
-	    width: 100%;
-	    height: auto;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: flex-end;
-	    align-items: flex-end;
-	}
+}
+#shopping-cart-confirm-column-one{
+    width: 100%;
+    height: auto;
+}
+#shopping-cart-confirm-column-two{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    >h2{
+        color: $black;
+        font-family: 'Roboto light';
+        font-size: 21px;
+        span{
+            font-family: 'Roboto Bold'; font-size: 28px;
+        }
+    }
+    >p{
+        color: $grey;
+    }
 }
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 //Casos de Sucesso
@@ -861,6 +872,39 @@ a{
 }
 
 //Montar Prato
+.add-prato-footer{
+    width: 100%;
+    height: auto;
+    background: $lightgrey;
+    @include position(fixed, null, 0, 0, 0);
+    box-sizing: border-box;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    >div{
+        width: auto;
+        max-width: 1140px;
+        margin: auto;
+        height: auto;
+        background: $olivine;
+        border-radius: 5px;
+        transition: 200ms ease-in-out;
+        h2{
+            @include texto(21px, $white, 'Roboto Bold', 26px, center);
+            padding: 15px;
+            transition: 200ms ease-in-out;
+        }
+        &:hover{
+            background-color: $gold;
+            cursor: pointer;
+            h2{
+                transform: scale(1.02);
+            }
+        }
+    }
+}
+
 #montar-prato {
     @include bloco($width: 100%, $height: auto);
 }

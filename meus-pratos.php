@@ -24,7 +24,7 @@
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 </head>
-<body>
+<body id="relative">
 	<?php require_once("components/navbar.php"); ?>
 	<section class="main">
         <h2 id="page-title">MEUS PRATOS</h2>
@@ -54,6 +54,11 @@
             ?>
         </div>
 	</section>
+	<div class="add-prato-footer" onclick="javascript:location.href='montar-prato.php'">
+	    <div>
+	        <h2>MONTAR PRATO</h2>
+	    </div>
+	</div>
 	<?php require_once("components/footer.html"); ?>
 </body>
 </html>

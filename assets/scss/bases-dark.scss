@@ -196,22 +196,16 @@
         cursor: pointer;
     }
 }
+.show-image{
+    max-width: 200px;
+    display: block;
+}
 .generic-table tr:first-child{
     background-color: $darkgrey;
     >td span{
         @include texto(18px, $lightgrey, 'Roboto Bold');
         padding: 12px;
     }
-}
-.generic-table
-tr td:nth-child(4){
-    width: 70px;
-}
-.generic-table tr td:nth-child(5){
-    width: 70px;
-}
-.generic-table tr td:nth-child(6){
-    width: 70px;
 }
 .table-result{
     @include texto(16px, $grey, 'Roboto Regular');
