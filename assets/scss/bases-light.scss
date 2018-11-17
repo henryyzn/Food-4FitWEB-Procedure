@@ -193,6 +193,10 @@
         }
     }
 }
+.show-image{
+    max-width: 200px;
+    display: block;
+}
 .generic-table tr:first-child{
     background-color: $mediumgrey;
     >td span{

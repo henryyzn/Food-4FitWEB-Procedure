@@ -89,7 +89,7 @@
                             <input type="radio" name="endereco" id="input3" value="1">
                             <label for="input3" class="margin-left-5px">Av. Centuri, 938, João Bosques, Carapicuíba, SP</label>
                         </div>
-                        <span class="save-data-button padding-left-30px padding-top-20px" onclick="modalEndereco()">Cadastrar um endereço</span>
+                        <span class="save-data-button padding-left-30px padding-top-20px" onclick="modal('carrinho-endereco')">Cadastrar um endereço</span>
                     </div>
                     <div class="shopping-cart-address-column">
                         <span class="shopping-cart-address-column-title margin-left-30px padding-top-60px margin-bottom-15px">Frete:</span>
@@ -117,7 +117,7 @@
                         <?php
                             }
                         ?>
-                        <span class="save-data-button padding-left-30px padding-top-30px" onclick="modalCartao()">Cadastrar um cartão</span>
+                        <span class="save-data-button padding-left-30px padding-top-30px" onclick="modal('carrinho-cartao')">Cadastrar um cartão</span>
                     </div>
                 </div>
                 <div id="total-price" style="">

@@ -166,10 +166,10 @@
 
                             $lista = $ingredientesDAO->selectAll();
 
-                            for($i = 0; $i < count($lista); $i++){
+                            for($i = 0; $i < @count($lista); $i++){
                         ?>
                         <tr>
-                            <td><span class="table-result"><img src="<?php echo($lista[$i]->foto)?>"></span></td>
+                            <td><img src="../../<?php echo($lista[$i]->foto)?>" class="show-image"></td>
                             <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                             <td><span class="table-result"><?php echo($lista[$i]->preco)?></span></td>
                             <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>

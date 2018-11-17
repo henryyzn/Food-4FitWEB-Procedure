@@ -13,6 +13,9 @@ body{
 	font-family: "Roboto Regular";
 	background: $darkgreymedium;
 }
+.p-relative{
+    position: relative;
+}
 //Gerais
 
 .main{
@@ -882,6 +885,39 @@ a{
 }
 
 //Montar Prato
+.add-prato-footer{
+    width: 100%;
+    height: auto;
+    background: $darkgrey;
+    @include position(fixed, null, 0, 0, 0);
+    box-sizing: border-box;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    >div{
+        width: auto;
+        max-width: 1140px;
+        margin: auto;
+        height: auto;
+        background: $olivine;
+        border-radius: 5px;
+        transition: 200ms ease-in-out;
+        h2{
+            @include texto(21px, $white, 'Roboto Bold', 26px, center);
+            padding: 15px;
+            transition: 200ms ease-in-out;
+        }
+        &:hover{
+            background-color: $gold;
+            cursor: pointer;
+            h2{
+                transform: scale(1.02);
+            }
+        }
+    }
+}
+
 #montar-prato {
     @include bloco($width: 100%, $height: auto);
 }

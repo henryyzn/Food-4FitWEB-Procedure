@@ -156,6 +156,12 @@
                     <label for="chkall" class="padding-left-15px">Selecionar Todos</label>
                     <div class="btn-generic-disabled margin-left-30px" ><span>Excluir</span></div>
                 </div>
+                <div id="shopping-cart-confirm-column-two">
+                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ 000,00</span></h2>
+                    <button name="btn-comprar" value="Comprar" type="submit" class="btn-generic margin-right-30px">
+                        <span>Comprar</span>
+                    </button>
+                </div>
             </div>
         </form>
         <div id="shopping-cart-confirm-block" class="padding-bottom-30px">
@@ -171,12 +177,6 @@
                     </div>
                 </div>
             </form>
-            <div id="shopping-cart-confirm-column-two">
-                <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ 000,00</span></h2>
-                <button name="btn-comprar" value="Comprar" type="submit" class="btn-generic margin-right-30px">
-                    <span>Comprar</span>
-                </button>
-            </div>
         </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
