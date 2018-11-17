@@ -57,8 +57,10 @@
                     <div class="pratos-wrapper">
                          <div id="page-actions">
                             <div id="open-form">
+
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <span>Adicionar Prato</span>
+                                <a href="add-prato.php"><span>Adicionar Prato</span></a>
+
                             </div>
                             <a href="pratos.php">
                                 <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">

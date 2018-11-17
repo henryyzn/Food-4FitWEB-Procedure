@@ -90,7 +90,7 @@
         public function delete($id){
             $sql = "delete from tbl_categoria where id=".$id;
 
-//            echo ($sql);
+            echo ($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
