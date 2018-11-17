@@ -81,5 +81,28 @@
             if($PDO_conex->query($sql))
                 header('location:fale-conosco.php');
         }
+
+        public function contador(){
+            $rows = null;
+
+            $sql="SELECT COUNT(*) AS total FROM tbl_fale_conosco;";
+
+            //Instancia a classe
+            $conex = new mysql_db();
+            //Abre a Conexao
+            $PDO_conex = $conex->conectar();
+            //Executa a query
+
+            $select = $PDO_conex->query($sql);
+
+            $count=0;
+            while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+            //Cria um objeto array da classe Contato
+                $rows[] = new Contato();
+                $rows[$count]->total = $rs['total'];
+                $count+=1;
+            }
+            return $rows;
+        }
     }
 ?>

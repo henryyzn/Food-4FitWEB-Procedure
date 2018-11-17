@@ -50,7 +50,7 @@
                                 <td><span>Celular</span></td>
                                 <td><span>Assunto</span></td>
                                 <td><span>Comentário</span></td>
-                                <td colspan="3"><span>Opções</span></td>
+                                <td colspan="2"><span>Opções</span></td>
                             </tr>
                             <?php
                                 require_once("../../cms/models/DAO/contatoDAO.php");
@@ -63,14 +63,13 @@
 
                             ?>
                             <tr>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->nome)?></td>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->email)?></td>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->telefone)?></td>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->celular)?></td>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->assunto)?></td>
-                                <td><span class="table-result"></span><?php echo($lista[$i]->observacao)?></td>
-
-
+                                <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->email)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->telefone)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->celular)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->assunto)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->observacao)?></span></td>
+                                <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'fale-conosco')"></td>
                                 <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='fale-conosco.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
                             <?php

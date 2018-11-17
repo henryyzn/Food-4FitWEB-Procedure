@@ -208,8 +208,8 @@
     }
 }
 .table-result{
-    @include texto(16px, $grey, 'Roboto Regular');
-    padding: 12px;
+    @include texto(16px, $mediumgrey, 'Roboto Regular');
+    padding-left: 12px;
 }
 .table-image-result{
     max-width: 300px;

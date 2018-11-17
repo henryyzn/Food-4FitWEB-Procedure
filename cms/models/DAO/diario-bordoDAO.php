@@ -196,5 +196,27 @@ class diarioBordoDAO {
             echo('<script>alert("Erro ao excluir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
     }
 
+    public function contador(){
+        $rows = null;
+
+        $sql="SELECT COUNT(*) AS total FROM tbl_diario_bordo;";
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $rows[] = new DiarioBordo();
+            $rows[$count]->total = $rs['total'];
+            $count+=1;
+        }
+        return $rows;
+    }
 }
 ?>

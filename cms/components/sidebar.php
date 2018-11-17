@@ -29,7 +29,7 @@
         </a>
         <a href="diario-bordo.php">
             <span class="image"><img src="../../assets/images/cms/icons/diario-de-bordo.svg" alt="Diário de Bordo"></span>
-            <span class="label">Diário de Bordo</span>
+            <span class="label">Diário de Bordo<?php require_once('../models/DAO/diario-bordoDAO.php'); $diarioBordoDAO = new diarioBordoDAO(); $rows = $diarioBordoDAO->contador(); for($i = 0; $i < @count($rows); $i++){ ?><span class="badge"><?php echo($rows[$i]->total)?></span><?php } ?></span>
         </a>
         <a href="pratos.php">
             <span class="image"><img src="../../assets/images/cms/icons/pratos.svg" alt="Pratos"></span>
@@ -62,7 +62,7 @@
         </a>
         <a href="pedidos.php">
             <span class="image"><img src="../../assets/images/cms/icons/pedidos.svg" alt="Pedidos"></span>
-            <span class="label">Pedidos<span class="badge">12</span></span>
+            <span class="label">Pedidos<?php require_once('../models/DAO/pedidoDAO.php'); $pedidoDAO = new pedidoDAO(); $rows = $pedidoDAO->contador(); for($i = 0; $i < @count($rows); $i++){ ?><span class="badge"><?php echo($rows[$i]->total)?></span><?php } ?></span>
         </a>
         <a href="promocoes.php">
             <span class="image"><img src="../../assets/images/cms/icons/promocao.svg" alt="Promoções"></span>
@@ -93,7 +93,7 @@
         </a>
         <a href="fale-conosco.php">
             <span class="image"><img src="../../assets/images/cms/icons/fale-conosco.svg" alt="Fale Conosco"></span>
-            <span class="label">Fale Conosco<span class="badge">12</span></span>
+            <span class="label">Fale Conosco<?php require_once('../models/DAO/contatoDAO.php'); $contatoDAO = new contatoDAO(); $rows = $contatoDAO->contador(); for($i = 0; $i < @count($rows); $i++){ ?><span class="badge"><?php echo($rows[$i]->total)?></span><?php } ?></span>
         </a>
         <a href="sobre.php">
             <span class="image"><img src="../../assets/images/cms/icons/sobre-empresa.svg" alt="Sobre a Empresa"></span>

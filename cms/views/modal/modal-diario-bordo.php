@@ -9,8 +9,6 @@
         $diarioBordoDAO = new diarioBordoDAO;
         $listDiarioBordo = $diarioBordoDAO->selectInfo($id);
 
-        //Resgatando do Banco de dados
-        //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
         if(@count($listDiarioBordo)>0){
             $id = $listDiarioBordo->id;
             $id_usuario = $listDiarioBordo->id_usuario;

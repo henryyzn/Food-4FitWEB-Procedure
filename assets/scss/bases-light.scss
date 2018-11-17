@@ -188,9 +188,9 @@
     @include bloco(100%, 100%, auto);
     border-collapse: collapse;
     >tr{
-        &:hover{
-            background-color: $mediumgrey;
-        }
+    }
+    tr:hover{
+        background-color: $mediumgrey;
     }
 }
 .show-image{
@@ -206,7 +206,7 @@
 }
 .table-result{
     @include texto(16px, $grey, 'Roboto Regular');
-    padding: 12px;
+    padding-left: 12px;
 }
 .table-image-result{
     max-width: 300px;
