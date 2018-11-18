@@ -100,6 +100,49 @@ class pedidoDAO {
         return $listDiarioBordo;
     }
 
+    public function selectInfo(){
+        $listPedidos = null;
+
+        $sql="SELECT pedido.id AS id_pedido,
+        CONCAT(usuario.nome, ' ', usuario.sobrenome) AS nome_usuario,
+        usuario.email AS email_usuario,
+        prato.titulo AS titulo_prato,
+        foto_prato.foto AS foto_prato,
+        prato_ordem_servico.quantidade AS quantidade_itens
+        FROM tbl_pedido AS pedido
+        INNER JOIN tbl_ordem_servico AS ordem_servico
+        INNER JOIN tbl_prato AS prato
+        INNER JOIN tbl_foto_prato AS foto_prato
+        INNER JOIN tbl_usuario AS usuario
+        INNER JOIN tbl_prato_ordem_servico AS prato_ordem_servico
+        WHERE ordem_servico.id_usuario = usuario.id
+        AND prato.id = prato_ordem_servico.id_prato
+        AND foto_prato.id_prato = prato.id
+        ORDER BY pedido.id DESC;";
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listPedidos[] = new Pedido();
+            $listPedidos[$count]->id_pedido = $rs['id_pedido'];
+            $listPedidos[$count]->nome_usuario = $rs['nome_usuario'];
+            $listPedidos[$count]->email_usuario = $rs['email_usuario'];
+            $listPedidos[$count]->titulo_prato = $rs['titulo_prato'];
+            $listPedidos[$count]->foto_prato = $rs['foto_prato'];
+            $listPedidos[$count]->quantidade_itens = $rs['quantidade_itens'];
+            $count+=1;
+        }
+        return $listPedidos;
+    }
+
     public function contador(){
         $rows = null;
 

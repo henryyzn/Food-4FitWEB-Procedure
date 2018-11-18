@@ -1,6 +1,5 @@
 <?php
     session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,7 +19,6 @@
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-    <script src="../../assets/js/js.cookie.js"></script>
 </head>
 <body>
 <section id="main">
@@ -35,32 +33,29 @@
                         <td><span>E-Mail:</span></td>
                         <td><span>Prato:</span></td>
                         <td><span>Quantidade:</span></td>
-                        <td colspan="2"><span>Opções:</span></td>
+                        <td colspan="3"><span>Opções:</span></td>
                     </tr>
-<!--
                     <?php
-//                        require_once("../models/DAO/pedidosDAO.php");
-//
-//                        $diarioBordoDAO = new diarioBordoDAO();
-//
-//                        $lista = $diarioBordoDAO->selectDouble();
-//
-//                        for($i = 0; $i < count($lista); $i++){
+                        require_once("../models/DAO/pedidoDAO.php");
+
+                        $pedidoDAO = new pedidoDAO();
+
+                        $lista = $pedidoDAO->selectInfo();
+
+                        for($i = 0; $i < @count($lista); $i++){
                     ?>
                     <tr>
-                        <td><span class="table-result"><strong><?php //echo($lista[$i]->nome)?></strong></span></td>
-                        <td><span class="table-result"><?php //echo($lista[$i]->email)?></span></td>
-                        <td><span class="table-result"><?php //echo($lista[$i]->titulo)?></span></td>
-                        <td><span class="table-result"><?php //echo($lista[$i]->progresso)?></span></td>
-                        <td><span class="table-result"><?php //echo($lista[$i]->data)?></span></td>
-                        <td width="42px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="abrir(<?php //echo($lista[$i]->id)?>)"></td>
-                        <td width="42px"><img src="../../assets/images/icons/level-up.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='diario-bordo.php?modo=transformar&id=<?php //echo($lista[$i]->id)?>'"></td>
-                        <td width="42px"><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='diario-bordo.php?modo=excluir&id=<?php //echo($lista[$i]->id)?>'"></td>
+                        <td><span class="table-result"><strong><?php echo($lista[$i]->nome_usuario)?></strong></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->email_usuario)?></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->titulo_prato)?></span></td>
+                        <td><span class="table-result"><?php echo($lista[$i]->quantidade_itens)?> Unidade(s)</span></td>
+                        <td width="42px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="abrir(<?php echo($lista[$i]->id)?>)"></td>
+                        <td width="42px"><img src="../../assets/images/icons/level-up.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='pedidos.php?modo=enviar&id=<?php echo($lista[$i]->id)?>'"></td>
+                        <td width="42px"><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='pedidos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                     </tr>
                     <?php
-                        //}
+                        }
                     ?>
--->
                 </table>
             </div>
         </div>
