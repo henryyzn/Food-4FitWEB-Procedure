@@ -61,177 +61,142 @@
     <link rel="stylesheet" href="assets/css/sizes.css">
     <link rel="stylesheet" href="assets/css/keyframes.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
-<!--
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
-	<script src="assets/public/js/jquery-ui.min.js"></script>
 	<script src="assets/public/js/jquery.mask.min.js"></script>
-	<script src="https://www.google.com/recaptcha/api.js"></script>
--->
+	<script>
+        $(document).ready(function(){
+            $("#razaoSocial").css('display', 'none');
+            $("#nomeFantasia").css('display', 'none');
+            $("#label-razaoSocial").css('display', 'none');
+            $("#label-nomeFantasia").css('display', 'none');
+            $("#fisica").on('change', function(){
+                $("#razaoSocial").css('display', 'none');
+                $("#nomeFantasia").css('display', 'none');
+                $("#label-razaoSocial").css('display', 'none');
+                $("#label-nomeFantasia").css('display', 'none');
+            });
+            $("#juridica").on('change', function(){
+                $("#razaoSocial").css('display', 'block');
+                $("#nomeFantasia").css('display', 'block');
+                $("#label-razaoSocial").css('display', 'block');
+                $("#label-nomeFantasia").css('display', 'block');
+            });
+        });
+    </script>
 </head>
 <body>
 	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
         <h1 id="page-title" class="margin-left-auto margin-right-auto animate fadeInUp">INFORMAÇÕES BÁSICAS</h1><!-- TÍTULO DA PÁGINA -->
         <div class="form-generic width-600px margin-left-auto margin-right-auto">
-            <div class="form-stepper margin-top-20px margin-bottom-10px">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+
             <form id="form-cadastro-usuario" class="form-generic-content" action="cadastro-usuario.php" method="get">
-        <div>
 
-        <?php
-            if($tipoPessoa == "F"){
-                $checkF = 'checked';
-                $checkJ = null;
-            }else{
-                $checkF = null;
-                $checkJ = 'checked';
-            }
-        ?>
-
-        <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Eu sou...</span>
-        <div id="pessoa" style="display: flex;">
-            <input type="radio" <?php echo($checkF)?> name="pessoa" id="fisica" value="F">
-            <label for="fisica" class="label-generic">Pessoa Física</label>
-            <input type="radio" <?php echo ($checkJ)?> name="pessoa" id="juridica" value="J" required class="margin-left-15px">
-            <label for="juridica" class="label-generic">Pessoa Jurídica</label>
-        </div>
-
-        <div>
-            <label for="nome" class="label-generic margin-top-30px">Nome:</label>
-            <input type="text" name="nome" id="nome" class="input-generic" placeholder="Ex: João" required>
-        </div>
-
-        <div>
-            <label for="sobrenome" class="label-generic margin-top-30px">Sobrenome:</label>
-            <input type="text" name="sobrenome" id="sobrenome" class="input-generic" placeholder="Ex: Guedez da Silva" required>
-        </div>
-
-    <div>
-        <label for="razaoSocial" class="label-generic margin-top-30px">Razão Social:</label>
-        <input type="text" name="razaoSocial" id="razaoSocial" class="input-generic" required>
-    </div>
-
-    <div>
-        <label for="nomeFantasia" class="label-generic margin-top-30px">Nome Fantasia:</label>
-        <input type="text" name="nomeFantasia" id="nomeFantasia" class="input-generic" required>
-    </div>
-
-    <label for="email" class="label-generic margin-top-30px">E-Mail:</label>
-    <input type="email" name="email" id="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
-
-    <label for="email" class="label-generic margin-top-30px">Confirma E-Mail:</label>
-    <input type="email" name="emailConfirma" id="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
-
-    <div>
-        <label for="rg" class="label-generic margin-top-30px">RG:</label>
-        <input type="text" name="rg" id="rg" class="input-generic" placeholder="Ex: 12.345.678-9">
-    </div>
-
-    <div>
-        <label for="cpf" class="label-generic margin-top-30px">CPF:</label>
-        <input type="text" name="cpf" id="cpf" class="input-generic" placeholder="Ex: 111.222.333-44">
-    </div>
-
-    <div>
-        <label for="inscricaoEstadual" class="label-generic margin-top-30px">Inscrição Estadual:</label>
-        <input type="text" name="inscricaoEstadual" id="inscricaoEstadual" class="input-generic" placeholder="Ex: 980.572.254.579">
-    </div>
-
-    <div>
-        <label for="cnpj" class="label-generic margin-top-30px">CNPJ:</label>
-        <input type="text" name="cnpj" id="cnpj" class="input-generic" placeholder="Ex: 55.233.069/0001-57" >
-    </div>
-
-    <div class="margin-top-30px margin-bottom-30px form-row">
-    </div>
-</div>
-
-<div>
-        <label for="dtnasc" class="label-generic margin-top-30px">Data de Nascimento:</label>
-        <input type="text" name="dtnasc" id="dtnasc" class="input-generic" placeholder="Ex: 01/01/1990">
-
-    <div>
-
-        <?php
-
-            if($genero == "M"){
-                $checkM = 'checked';
-                $checkF = null;
-            }else{
-                $checkM = null;
-                $checkF = 'checked';
-            }
-        ?>
+                <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Eu sou...</span>
+                <div id="pessoa" style="display: flex;">
+                    <input type="radio" checked name="pessoa" id="fisica" value="F">
+                    <label for="fisica" class="label-generic">Pessoa Física</label>
+                    <input type="radio" name="pessoa" id="juridica" value="J" required class="margin-left-15px">
+                    <label for="juridica" class="label-generic">Pessoa Jurídica</label>
+                </div>
 
 
-        <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
-        <div id="sexo" style="display: flex;">
-            <input type="radio" name="sexo" id="homem" value="M" <?php echo($checkM); ?> >
-            <label for="homem" class="label-generic">Homem</label>
-            <input type="radio" name="sexo" id="mulher" value="F" <?php echo ($checkF); ?> required class="margin-left-15px">
-            <label for="mulher" class="label-generic">Mulher</label>
-        </div>
-    </div>
-
-    <label for="telefone" class="label-generic margin-top-30px">Telefone:</label>
-    <input type="tel" name="telefone" id="telefone" class="input-generic" placeholder="Ex: (11) 9999-9999">
-
-    <label for="celular" class="label-generic margin-top-30px">Celular:</label>
-    <input type="text" name="celular" id="celular" class="input-generic" placeholder="Ex: (11) 98888-8888">
-
-    <span class="aviso-contato">Caso necessário o contato através de e-mail ou<br>
-        telefone/celular, usaremos o seu nome escolhido como vulgo.
-    </span>
+                <label for="nome" class="label-generic margin-top-30px">Nome:</label>
+                <input type="text" name="nome" id="nome" class="input-generic" placeholder="Ex: João" required>
 
 
-    <div class="margin-top-30px margin-bottom-30px form-row">
 
-    </div>
-</div>
-
-<div>
-        <label for="senha" class="label-generic margin-top-30px">Senha:</label>
-        <input type="password" name="senha" id="senha" class="input-generic">
-
-        <label for="confsenha" class="label-generic margin-top-30px">Confirme a Senha:</label>
-        <input type="password" name="confsenha" id="confsenha" class="input-generic">
-
-        <label for="perguntasecreta" class="label-generic margin-top-30px">Pergunta Secreta:</label>
-        <select name="perguntasecreta" id="perguntasecreta" class="input-generic margin-top-30px">
-        <option>Selecione uma opção:</option>
-
-        <?php
-            require_once("./cms/models/DAO/pergunta-secretaDAO.php");
-
-            $perguntaDAO = new perguntaDAO();
-            $lista = $perguntaDAO->selectAll();
-            for($i = 0; $i < count($lista); $i++){
+                <label for="sobrenome" class="label-generic margin-top-30px">Sobrenome:</label>
+                <input type="text" name="sobrenome" id="sobrenome" class="input-generic" placeholder="Ex: Guedez da Silva" required>
 
 
-        ?>
-        <option value="<?php echo ($lista[$i]->id)?>"><?php echo($lista[$i]->pergunta)?></option>
-        <?php
-            }
-        ?>
 
-        </select>
+                <label for="razaoSocial" id="label-razaoSocial" class="label-generic margin-top-30px">Razão Social:</label>
+                <input type="text" name="razaoSocial" id="razaoSocial" class="input-generic" required>
 
-        <label for="respostasecreta" class="label-generic margin-top-30px">Resposta:</label>
-        <input type="text" name="respostasecreta" id="respostasecreta" class="input-generic margin-bottom-60px" required>
 
-        <div class="captcha-container margin-top-30px g-recaptcha"></div>
 
-        <div class="margin-top-30px margin-bottom-30px form-row">
-            <span class="margin-right-15px">Cancelar</span>
-            <button type="submit" class="btn-generic" name="btn-finalizar">
-                <span>Finalizar</span>
-            </button>
-        </div>
-</div>
-        <input type="submit" class="display-none">
+                <label for="nomeFantasia" id="label-nomeFantasia" class="label-generic margin-top-30px">Nome Fantasia:</label>
+                <input type="text" name="nomeFantasia" id="nomeFantasia" class="input-generic" required>
+
+
+                <label for="email" class="label-generic margin-top-30px">E-Mail:</label>
+                <input type="email" name="email" id="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
+
+                <label for="rg" class="label-generic margin-top-30px">RG:</label>
+                <input type="text" name="rg" id="rg" class="input-generic" placeholder="Ex: 12.345.678-9">
+
+
+
+                <label for="cpf" class="label-generic margin-top-30px">CPF:</label>
+                <input type="text" name="cpf" id="cpf" class="input-generic" placeholder="Ex: 111.222.333-44">
+
+
+
+                <label for="inscricaoEstadual" class="label-generic margin-top-30px">Inscrição Estadual:</label>
+                <input type="text" name="inscricaoEstadual" id="inscricaoEstadual" class="input-generic" placeholder="Ex: 980.572.254.579">
+
+
+
+                <label for="cnpj" class="label-generic margin-top-30px">CNPJ:</label>
+                <input type="text" name="cnpj" id="cnpj" class="input-generic" placeholder="Ex: 55.233.069/0001-57" >
+
+                <label for="dtnasc" class="label-generic margin-top-30px">Data de Nascimento:</label>
+                <input type="text" name="dtnasc" id="dtnasc" class="input-generic" placeholder="Ex: 01/01/1990">
+
+                <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
+                <div id="sexo" style="display: flex;">
+                    <input type="radio" name="sexo" id="homem" value="M">
+                    <label for="homem" class="label-generic">Homem</label>
+                    <input type="radio" name="sexo" id="mulher" value="F" required class="margin-left-15px">
+                    <label for="mulher" class="label-generic">Mulher</label>
+                </div>
+
+                <label for="telefone" class="label-generic margin-top-30px">Telefone:</label>
+                <input type="tel" name="telefone" id="telefone" class="input-generic" placeholder="Ex: (11) 9999-9999">
+
+                <label for="celular" class="label-generic margin-top-30px">Celular:</label>
+                <input type="text" name="celular" id="celular" class="input-generic" placeholder="Ex: (11) 98888-8888">
+
+                <span class="aviso-contato">Caso necessário o contato através de e-mail ou<br>
+                    telefone/celular, usaremos o seu nome escolhido como vulgo.
+                </span>
+
+                <label for="senha" class="label-generic margin-top-30px">Senha:</label>
+                <input type="password" name="senha" id="senha" class="input-generic">
+
+                <label for="confsenha" class="label-generic margin-top-30px">Confirme a Senha:</label>
+                <input type="password" name="confsenha" id="confsenha" class="input-generic">
+
+                <label for="perguntasecreta" class="label-generic margin-top-30px">Pergunta Secreta:</label>
+                <select name="perguntasecreta" id="perguntasecreta" class="input-generic margin-top-30px">
+                <option>Selecione uma opção:</option>
+
+                <?php
+                    require_once("./cms/models/DAO/pergunta-secretaDAO.php");
+
+                    $perguntaDAO = new perguntaDAO();
+                    $lista = $perguntaDAO->selectAll();
+                    for($i = 0; $i < count($lista); $i++){
+
+
+                ?>
+                    <option value="<?php echo ($lista[$i]->id)?>"><?php echo($lista[$i]->pergunta)?></option>
+                <?php
+                    }
+                ?>
+
+                </select>
+
+                <label for="respostasecreta" class="label-generic margin-top-30px">Resposta:</label>
+                <input type="text" name="respostasecreta" id="respostasecreta" class="input-generic margin-bottom-60px" required>
+
+                <div class="margin-top-30px margin-bottom-30px form-row">
+                    <span class="margin-right-15px">Cancelar</span>
+                    <button type="submit" class="btn-generic" name="btn-finalizar">
+                        <span>Finalizar</span>
+                    </button>
+                </div>
             </form>
         </div>
 	</section>
