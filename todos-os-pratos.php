@@ -51,9 +51,9 @@
 
                 $lista = $pratosDAO->selectAll();
 
-                for($i = 0; $i < count($lista); $i++){
+                for($i = 0; $i < @count($lista); $i++){
             ?>
-			<div class="generic-card animate fadeIn" onclick="javascript:location.href='prato.php?id_prato=<?php echo($lista[$i]->id)?>'">
+			<div class="generic-card animate fadeIn item" onclick="javascript:location.href='prato.php?id_prato=<?php echo($lista[$i]->id)?>'">
 				<img src="<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
 				<div class="generic-card-overlay">
 					<span class="card-dish-name margin-bottom-15px"><?php echo($lista[$i]->titulo)?></span>
@@ -74,28 +74,5 @@
 		</div>
 	</div>
 	<?php require_once("components/footer.html"); ?>
-	<script>
-        (function($) {
-            //Setamos o valor inicial
-            var count = 9;
-            var i = null;
-
-            //escondemos todos os elementos maior que o valor inicial
-            $(".generic-card").slice(count).hide();
-
-            $('#see-more').click(function() {
-
-                //Somamos a quantidade nova a ser exibida
-                count += 9;
-
-                //Rodamos o loop no valor total
-                for (i = 0; i < count; i++) {
-                    //Mostramos o item
-                    $('.generic-card').eq(i).show();
-                }
-            });
-
-        }(jQuery));
-    </script>
 </body>
 </html>

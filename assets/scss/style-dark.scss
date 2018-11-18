@@ -11,7 +11,7 @@ body{
 	margin: 0;
 	padding: 0;
 	font-family: "Roboto Regular";
-	background: $darkgreymedium;
+	background: $darkgrey;
 }
 .p-relative{
     position: relative;
@@ -22,7 +22,7 @@ body{
 	/*Container-mãe do block do site*/
 	@include bloco(100%, 1200px, auto);
 	@include display(flex, column);
-	background-color: $darkgrey;
+	background: transparent;
     margin: 124px auto 0px auto;
 	z-index: 1;
 }

@@ -157,9 +157,31 @@ $(document).ready(function () {
         $("#modal-carrinho").addClass("display-flex");
     });
 
-    $("[data-f4f-trigger-search]").on("click", function () {
-        $("#form-search").find(":submit").click();
-    });
+    //Função para mostrar mais itens de uma listagem
+    (function($) {
+        //Setamos o valor inicial da listagem
+        var count = 9;
+
+        //Setamos o valor inicial do index para o laço for
+        var i = null;
+
+        //Escondemos todos os elementos maior que o valor inicial
+        $(".item").slice(count).hide();
+
+        //Declaramos uma ação de click no botão 'see-more'
+        $('#see-more').click(function() {
+
+            //Somamos a quantidade nova a ser exibida
+            count += 9;
+
+            //Rodamos o loop no valor total
+            for (i = 0; i < count; i++) {
+                //Mostramos o item
+                $('.item').eq(i).show();
+            }
+        });
+        //Fazemos com que a função fique encapsulada
+    }(jQuery));
 
     $("[data-f4f-image-gallery]").each(function () {
         var mainImage = $(this).find("[data-f4f-main-image]");

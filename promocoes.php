@@ -53,21 +53,27 @@
         <h3 class="promotion-subtitle padding-top-30px padding-left-30px">Promoções Válidas Até dd/MM</h3>
         <div class="generic-grid animate fadeInUp">
             <?php
-                for($i = 1; $i < 10; $i++){
+                require_once("cms/models/DAO/promocaoDAO.php");
+
+                $promocaoDAO = new promocaoDAO();
+
+                $lista = $promocaoDAO->selectDouble();
+
+                for($i = 0; $i < @count($lista); $i++){
+                    $calculo_promocao = null;
             ?>
-			<div class="generic-card">
-				<img src="assets/images/backgrounds/img.jpg" alt="Teste" class="generic-card-img">
+			<div class="generic-card item">
+				<img src="<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
 				<div class="generic-card-overlay">
-					<span class="card-dish-name margin-bottom-15px">Frango Grelhado</span>
+					<span class="card-dish-name margin-bottom-15px"><?php echo($lista[$i]->nome_prato)?></span>
 			  		<div class="card-dish-separator margin-bottom-15px"></div>
-			  		<p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
+			  		<p class="card-dish-description margin-bottom-30px"><?php echo($lista[$i]->resumo)?></p>
 			  		<div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-			  			<span class="padding-right-15px">R$ 129,90</span><!-- PREÇO -->
+			  			<span class="padding-right-15px">R$ <?php echo($lista[$i]->preco_desconto)?></span><!-- PREÇO -->
 			  			<div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
 			  		</div>
-
                     <div class="promotion-identificator">
-                        <span>12%</span>
+                        <span><?php echo($calculo_promocao)?></span>
                     </div>
 				</div>
 			</div>
@@ -75,17 +81,8 @@
                 }
             ?>
         </div>
-		<div class="margin-right-auto margin-left-auto margin-bottom-30px">
-		  	<div class="pagination">
-			    <a href="#">&laquo;</a>
-			    <a href="#" class="active">1</a>
-			    <a href="#">2</a>
-			    <a href="#">3</a>
-			    <a href="#">4</a>
-			    <a href="#">5</a>
-			    <a href="#">6</a>
-			    <a href="#">&raquo;</a>
-		  	</div>
+		<div class="margin-right-auto margin-left-auto margin-bottom-30px btn-generic" id="see-more">
+            <span>Ver Mais</span>
 		</div>
 		<section class="generic-block">
 		    <h2 id="healthy-tricks-title">Não sabe por onde começar?<br>Deixa que a gente te ajuda!</h2>

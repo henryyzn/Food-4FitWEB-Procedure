@@ -92,7 +92,7 @@ class promocaoDAO {
     public function selectDouble(){
         $listPromocao = null;
 
-        $sql = "SELECT prato.id AS id_prato, prato.titulo AS nome_prato, foto_prato.foto AS foto_prato, categoria_prato.titulo AS nome_categoria FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato INNER JOIN tbl_categoria AS categoria_prato WHERE prato.id = foto_prato.id_prato AND prato.id = categoria_prato.id_categoria_parent;";
+        $sql = "SELECT prato.id AS id_prato, prato.titulo AS nome_prato, prato.resumo AS resumo, prato.descricao AS descricao, prato.ativo AS ativo, foto_prato.foto AS foto, prato.preco AS preco_normal, promocao.desconto AS preco_desconto, categoria.titulo AS nome_categoria FROM tbl_prato AS prato INNER JOIN tbl_promocao AS promocao INNER JOIN tbl_categoria AS categoria INNER JOIN tbl_foto_prato AS foto_prato WHERE prato.id = promocao.id_prato AND prato.id_categoria = categoria.id AND foto_prato.id_prato = prato.id ORDER BY promocao.id DESC;";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -107,9 +107,15 @@ class promocaoDAO {
         //Cria um objeto array da classe Contato
             $listPromocao[] = new Promocao();
             $listPromocao[$count]->id_prato = $rs['id_prato'];
-            $listPromocao[$count]->foto_prato = $rs['foto_prato'];
-            $listPromocao[$count]->titulo = $rs['titulo'];
             $listPromocao[$count]->nome_prato = $rs['nome_prato'];
+            $listPromocao[$count]->resumo = $rs['resumo'];
+            $listPromocao[$count]->descricao = $rs['descricao'];
+            $listPromocao[$count]->ativo = $rs['ativo'];
+            $listPromocao[$count]->descricao = $rs['descricao'];
+            $listPromocao[$count]->foto = $rs['foto'];
+            $listPromocao[$count]->preco_normal = $rs['preco_normal'];
+            $listPromocao[$count]->preco_desconto = $rs['preco_desconto'];
+            $listPromocao[$count]->nome_categoria = $rs['nome_categoria'];
             $count+=1;
         }
         return $listPromocao;

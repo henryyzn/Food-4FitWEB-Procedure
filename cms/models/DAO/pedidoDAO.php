@@ -55,7 +55,7 @@ class pedidoDAO {
         //Executa a query
         if($PDO_conex->query($sql)){
             //echo("<script>alert('Ordem de serviço enviada com sucesso.')</script>");
-            $sql2 = "INSERT INTO tbl_pedido (id_ordem_servico) VALUES ('".$classPedido->id_ordem_servico."');";
+            $sql2 = "INSERT INTO tbl_pedido (id_ordem_servico, status) VALUES ('".$classPedido->id_ordem_servico."', '1');";
 
             if($PDO_conex->query($sql2)){
                 echo ("<script>window.alert('Compra realizada com sucesso.'); window.location.href='meus-pedidos.php';</script>");
