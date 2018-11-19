@@ -27,7 +27,8 @@
         }elseif($_GET['acao'] == 'del'){
             $id = intval($_GET['id']);
             if(isset($_SESSION['carrinho'][$id])){
-                unset($_SESSION['carrinho'][$id]);
+                //unset($_SESSION['carrinho'][$id]);
+                echo($id);
             }
         }
     }

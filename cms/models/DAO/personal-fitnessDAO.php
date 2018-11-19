@@ -47,7 +47,7 @@ class personalFitnessDAO {
         $listPersonalFitness->id_funcionario = $rs['id_funcionario'];
         $listPersonalFitness->titulo = $rs['titulo'];
         $listPersonalFitness->texto = $rs['texto'];
-        $listPersonalFitness->data = $rs['data'];
+        $listPersonalFitness->data = date('d/m/Y', strtotime($rs['data']));
         $listPersonalFitness->ativo = $rs['ativo'];
 
         $conex = new mysql_db();
@@ -68,7 +68,7 @@ class personalFitnessDAO {
 
     public function selectAll(){
         $listPersonalFitness = null;
-        $sql="select * from tbl_personal_fitness order by id desc";
+        $sql="SELECT pf.id AS id, pf.id_funcionario AS id_funcionario, pf.titulo AS titulo, pf.texto AS texto, pf.data AS data, pf.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS autor FROM tbl_personal_fitness AS pf INNER JOIN tbl_funcionario AS f WHERE pf.id_funcionario = f.id order by pf.id desc;";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -86,8 +86,9 @@ class personalFitnessDAO {
             $listPersonalFitness[$cont]->id_funcionario = $rs['id_funcionario'];
             $listPersonalFitness[$cont]->titulo = $rs['titulo'];
             $listPersonalFitness[$cont]->texto = $rs['texto'];
-            $listPersonalFitness[$cont]->data = $rs['data'];
+            $listPersonalFitness[$cont]->data = date('d/m/Y', strtotime($rs['data']));
             $listPersonalFitness[$cont]->ativo = $rs['ativo'];
+            $listPersonalFitness[$cont]->autor = $rs['autor'];
             $cont+=1;
         }
         return $listPersonalFitness;
@@ -113,7 +114,7 @@ class personalFitnessDAO {
         ativo = '".$classPersonalFitness->ativo."'
         where id=".$classPersonalFitness->id;
 
-        echo($sql);
+        //echo($sql);
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();

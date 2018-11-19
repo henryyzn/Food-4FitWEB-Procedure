@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratos :: Food 4fit - CMS</title>
+    <title>Promoções :: Food 4fit - CMS</title>
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
     <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
@@ -21,18 +21,9 @@
     <link rel="stylesheet" href="../../assets/css/align.css">
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/public/js/jquery.mask.min.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-    <script src="../../assets/js/js.cookie.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#foto').on('change', function(){
-                $('#frmfoto').ajaxForm({
-                    target:'#visualizar'
-                }).submit();
-            });
-        });
-    </script>
 </head>
 <body>
     <section id="main">
@@ -63,11 +54,11 @@
                                 for($i = 0; $i < @count($lista); $i++){
                             ?>
                             <div class="generic-card">
-                                <img src="../../<?php echo($lista[$i]->foto_prato)?>" alt="Teste" class="generic-card-img">
+                                <img src="../../<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
                                 <div class="generic-card-ovy">
                                     <span class="card-dish-name margin-bottom-20px"><?php echo($lista[$i]->nome_prato)?></span>
                                     <div class="card-dish-separator margin-bottom-15px"></div>
-                                    <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> <?php echo($lista[$i]->titulo)?></p>
+                                    <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> <?php echo($lista[$i]->nome_categoria)?></p>
 
                                     <div class="edit-btns">
                                         <img src="../../assets/images/icons/edit.svg" alt="Editar Prato">
@@ -144,12 +135,5 @@
         </article>
     </div>
     <script src="../../assets/js/theme.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#open-form").click(function () {
-                $("#add-prato-form").slideToggle("fast");
-            });
-        });
-    </script>
 </body>
 </html>

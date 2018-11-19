@@ -36,12 +36,15 @@
 
         <label for="desconto" class="label-generic">Valor novo:</label>
         <input id="desconto" name="desconto" class="input-generic" required placeholder="R$ 000,00">
+        <script>$('#desconto').mask('000.000.000.000.00', {reverse: true});</script>
 
         <label for="data_inicio" class="label-generic">Data de Início:</label>
         <input id="data_inicio" name="data_inicio" class="input-generic" required placeholder="Digite uma data de início para a promoção...">
+        <script>$('#data_inicio').mask('00/00/0000');</script>
 
         <label for="data_termino" class="label-generic">Data de Término:</label>
         <input id="data_termino" name="data_termino" class="input-generic" required placeholder="Digite uma data de término para a promoção...">
+        <script>$('#data_termino').mask('00/00/0000');</script>
 
         <div class="form-row">
             <span class="btn-cancelar" onclick="fechar()">Cancelar</span>

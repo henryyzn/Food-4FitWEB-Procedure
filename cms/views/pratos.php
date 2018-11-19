@@ -81,7 +81,6 @@
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-    <script src="../../assets/js/js.cookie.js"></script>
     <script>
         $(document).ready(function(){
             $('#foto').on('change', function(){
@@ -91,32 +90,6 @@
             });
         });
     </script>
-    <style>
-        .collapsible {
-            background-color: #202020;
-            color: white;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 15px;
-            border-radius: 3px;
-        }
-
-        .active, .collapsible:hover {
-            background-color: #555;
-        }
-
-        .content {
-            padding: 0 18px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            background-color: #303030;
-        }
-    </style>
 </head>
 <body>
     <section id="main">
@@ -205,8 +178,10 @@
                                 ?>
                             </select>
 
-                            <div class="collapsible">Ingredientes:</div>
-                            <div class="content">
+                            <div class="collapsible-generic">
+                                <span>Ingredientes:</span>
+                            </div>
+                            <div class="collapsible-content-generic">
                                 <?php
                                     require_once('../models/DAO/ingredientesDAO.php');
 
@@ -215,14 +190,12 @@
 
                                     for($i = 0; $i < @count($lista); $i++){
                                 ?>
-                                <input type="checkbox" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?>
+                                <label class="label-generic"><input type="checkbox" id="ingredientes" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></label>
                                 <?php
                                     }
                                 ?>
                             </div>
-
-
-                            <div class="form-row">
+                            <div class="form-row margin-top-20px">
                                 <span>Cancelar</span>
                                 <button type="submit" class="btn-generic margin-left-20px" name="btn-salvar" value="<?php echo($botao)?>">
                                     <span><?php echo ($botao)?></span>
@@ -247,7 +220,7 @@
             });
         });
 
-        var coll = document.getElementsByClassName("collapsible");
+        var coll = $(".collapsible-generic");
         var i;
 
         for (i = 0; i < coll.length; i++) {

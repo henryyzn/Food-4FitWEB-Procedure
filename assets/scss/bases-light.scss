@@ -368,7 +368,7 @@
 		width: 100%;
 	  	resize: none;
 	  	height: 150px;
-	  	background-color: #E8E8E8;
+	  	background-color: $mediumgrey;
 	  	border-radius: 5px;
 	  	border: none;
 	  	outline: none;
@@ -383,7 +383,7 @@
 		width: 100%;
 		height: auto;
 		min-height: 230px;
-		background-color: #E8E8E8;
+		background-color: $mediumgrey;
 	  	border-radius: 5px;
 	  	border: none;
 	  	outline: none;
@@ -412,6 +412,43 @@
 	  	font-family: "Roboto Medium";
 	  	color: #000;
 	  	display: inline-block;
+    }
+    .collapsible-generic{
+        background-color: $mediumgrey;
+        color: $black;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-radius: 3px;
+    }
+    .collapsible-generic span{
+        display: block;
+        font-size: 18px;
+        color: $black;
+        padding: 15px;
+    }
+
+    .active, .collapsible-generic:hover {
+        background-color: #DDDDDD;
+    }
+
+    .collapsible-content-generic {
+        padding: 0 18px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        background-color: $mediumgrey;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+    .collapsible-content-generic label{
+        width: auto;
+        display: flex;
+        height: 50px;
+        align-items: center;
     }
 }
 .form-row{
@@ -510,6 +547,7 @@
 	@include bloco(100%, 1200px, auto);
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: $shadow;
 	.slider_content{
         width: 100%;
         height: 250px;
