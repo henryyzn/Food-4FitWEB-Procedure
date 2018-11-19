@@ -9,24 +9,28 @@
 
     public function insert($classCatIngrediente){
         $sql = "insert into tbl_categoria_ingrediente(
-                id_categoria_ingrediente_parent,
+
                 titulo,
                 foto,
                 ativo
                 ) values (
-                '".$classCatIngrediente->$idCatIngredienteP."',
+
+                 '".$classCatIngrediente->titulo."',
                 'assets/imagens/categorias/".$classCatIngrediente->foto."',
-                '".$classCatIngrediente->titulo."',
-                '".$classCatIngrediente->ativo."',
+                '".$classCatIngrediente->ativo."'
                 )";
+
+            echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
                 header('location:categorias-ingredientes.php');
 
-            $conex-desconectar();
+            $conex->desconectar();
     }
+
+
 
     public function selectId($id){
        $sql = "select * from tbl_categoria_ingrediente where id=".$id;
@@ -56,8 +60,28 @@
 
         }
 
-
     }
+
+//    public function selectSub(){
+//        $listSub = null;
+//        $sql = "select id, titulo from tbl_categoria_ingrediente order by id desc";
+//
+//        $conex = new mysql_db();
+//        $PDO_conex = $conex->conectar();
+//        $select = $PDO_conex->query($sql);
+//
+//        $cont=0;
+//        while($rs=$select->fetch(PDO::FETCH_ASSOC))
+//        {
+//            $listSub[] = new categoriaIngrediente();
+//            $listSub[$cont]->id = $rs['id'];
+//            $listSub[$cont]->titulo = $rs['titulo'];
+//
+//            $cont+=1;
+//        }
+//
+//        return $listSub;
+//    }
 
     public function selectAll(){
         $listCatI = null;

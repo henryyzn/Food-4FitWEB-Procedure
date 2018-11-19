@@ -1,5 +1,27 @@
 <?php
     session_start();
+
+    $botao = "Salvar";
+
+    if(isset($_GET['btn-salvar'])){
+        require_once('../models/categorias-ingredientesClass.php');
+        require_once('../models/DAO/categorias-ingredientesDAO.php');
+
+        $classCatIngrediente  = new categoriaIngrediente();
+//        $classCatIngrediente->idCatIngredienteP = $_GET['tituloFilha'];
+        $classCatIngrediente-> titulo = $_GET['titulo'];
+        $classCatIngrediente-> foto = $_GET['foto'];
+        $classCatIngrediente-> ativo = $_GET['ativo'];
+
+        $catIngredienteDAO = new catIngredienteDAO();
+        if($_GET['btn-salvar'] == "Salvar"){
+            $catIngredienteDAO->insert($classCatIngrediente);
+        }else{
+//            $classCatIngrediente->id = $_GET['id'];
+//            $catIngredienteDAO->update($classCatIngrediente);
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,6 +41,39 @@
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
+
+     <script>
+        $(document).ready(function(){
+            $('#foto').on('change', function(){
+                $('#frmfoto').ajaxForm({
+                    target:'#visualizar'
+                }).submit();
+            });
+        });
+    </script>
+     <style>
+        .categoria-block{
+            width: 100%;
+            height: auto;
+            display: flex;
+        }
+        .categoria-form-right{
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: #FCFCFC;
+            overflow: auto;
+        }
+        .image-view{
+            max-width: 300px; height: auto; display: block;
+        }
+
+
+        .elementPhoto{
+            max-width: 200px;
+        }
+    </style>
+
 </head>
     <body>
      <section id="main">
@@ -35,7 +90,7 @@
                             <td colspan="3"><span>Opções</span></td>
                         </tr>
                         <tr>
-                            <td><img alt=""></td>
+                            <td><img class="elementPhoto"></td>
                             <td><span class="table-result"></span></td>
                             <td><span class="table-result"></span></td>
                             <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
@@ -45,7 +100,7 @@
                     </table>
                     <div class="categoria-form-right">
                         <div class="form-generic border-30px">
-                            <form action="upload/upload-categoria.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
+                            <form action="upload/upload-categoria-ingrediente.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
                                 <label class="label-generic">Imagem:</label>
                                 <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
                                     <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
@@ -53,18 +108,25 @@
                                 <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
                                 <input type="file" name="fileimage" id="foto" style="display: none;">
                             </form>
-                            <form id="form-categoria" class="form-generic-content margin-top-30px" name="frmcategoria" method="GET" action="categoria.php">
+                            <form id="form-categoria-ingrediente" class="form-generic-content margin-top-30px" name="frmcategoriaingrediente" method="GET" action="categorias-ingredientes.php">
                                 <input name="foto" type="hidden" value="">
 
-                                <label for="titulo" class="label-generic">Título Categoria Pai</label>
+                                <label for="titulo" class="label-generic">Título Categoria</label>
                                 <input type="text" value="<?= @$titulo ?>" id="titulo" name="titulo" class="input-generic" required maxlength="255">
+
+
+<!--
+                                <label for="titulo" class="label-generic">Título Categoria Filha</label>
+                                <input type="text"  id="tituloFilha" name="tituloFilha" class="input-generic" required maxlength="255">
+-->
+
 
                                 <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
                                 <div class="form-row">
                                     <span>Cancelar</span>
                                     <button type="submit" class="btn-generic margin-left-20px" name="btn-salvar" value="<?php echo($botao)?>">
-                                        <span>Salvar</span>
+                                        <span><?php echo($botao)?></span>
                                     </button>
                                 </div>
                             </form>
