@@ -109,13 +109,13 @@
 
                 $lista = $comentarioGeralDAO->selectAccept();
 
-                for($i = 0; $i < count($lista); $i++){
+                for($i = 0; $i < @count($lista); $i++){
             ?>
             <div class="publication margin-bottom-30px">
                 <header class="publication-cabecalho">
-                    <img src="assets/images/icons/person.jpg" alt="" class="profile-image-pub">
+                    <img src="assets/images/icons/person.jpg" alt="Avatar de <?php echo($lista[$i]->nome)?>" onclick="javascript:location.href='usuario.php?id_usuario=<?php echo($lista[$id]->id_usuario)?>'" class="profile-image-pub">
                     <section class="profile-name-date-pub">
-                        <h2><?php echo($lista[$i]->nome)?></h2>
+                        <a href="usuario.php?id_usuario=<?php echo($lista[$i]->id_usuario)?>"><?php echo($lista[$i]->nome)?></a>
                         <h3>Em: <?php echo($lista[$i]->data)?></h3>
                     </section>
                 </header>

@@ -9,7 +9,7 @@
 
         $classComentario = new ComentarioPost();
         $classComentario->id_dica_fitness = $_POST['id_dica_fitness'];
-        $classComentario->id_usuario = "2";
+        $classComentario->id_usuario = $_SESSION['id_usuario'];
         $classComentario->assunto = $_POST['assunto'];
         $classComentario->texto = $_POST['texto'];
         $classComentario->data = date('y/m/d');
@@ -53,16 +53,16 @@
 
                 $dicasFitnessDAO = new dicasFitnessDAO();
 
-                $lista = $dicasFitnessDAO->selectAll();
+                $lista = $dicasFitnessDAO->selectAllActive();
 
-                for($i = 0; $i < count($lista); $i++){
+                for($i = 0; $i < @count($lista); $i++){
             ?>
             <article class="fitness-tips-card" onclick="javascript:location.href='publicacao-dicas-fitness.php?publication&id=<?php echo($lista[$i]->id)?>'">
                 <h2 class="padding-top-30px padding-left-30px"><?php echo($lista[$i]->titulo)?></h2>
                 <!--p class="padding-top-15px padding-left-30px">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."</p-->
                 <div class="fitness-tips-row">
-                    <span class="padding-left-30px padding-top-15px padding-bottom-30px">Dt. Publicação: <?php echo($lista[$i]->data)?></span>
-                    <span class="padding-right-30px padding-top-15px padding-bottom-30px">Autor: <?php echo($lista[$i]->id_funcionario)?></span>
+                    <span class="padding-left-30px padding-top-15px padding-bottom-30px">Data de Publicação: <?php echo($lista[$i]->data)?></span>
+                    <span class="padding-right-30px padding-top-15px padding-bottom-30px">Autor: <?php echo($lista[$i]->autor)?></span>
                 </div>
             </article>
             <?php

@@ -139,21 +139,22 @@ class comentarioGeralDAO {
 
         $select = $PDO_conex->query($sql);
 
-        $cont=0;
+        $count=0;
         while($rs=$select->fetch(PDO::FETCH_ASSOC)){
         //Cria um objeto array da classe Contato
             $listComentariosGerais[] = new ComentarioGeral();
-            $listComentariosGerais[$cont]->nome = $rs['nome'];
-            $listComentariosGerais[$cont]->email = $rs['email'];
-            $listComentariosGerais[$cont]->id_usuario = $rs['id_usuario'];
-            $listComentariosGerais[$cont]->id_comentario = $rs['id_comentario'];
-            $listComentariosGerais[$cont]->assunto = $rs['assunto'];
-            $listComentariosGerais[$cont]->texto = $rs['texto'];
-            $listComentariosGerais[$cont]->ativo = $rs['ativo'];
-            $listComentariosGerais[$cont]->foto = $rs['foto'];
-            $listComentariosGerais[$cont]->data = date('d/m/Y', strtotime($rs['data']));
+            $listComentariosGerais[$count]->nome = $rs['nome'];
+            $listComentariosGerais[$count]->email = $rs['email'];
+            $listComentariosGerais[$count]->id_comentario_usuario = $rs['id_comentario_usuario'];
+            $listComentariosGerais[$count]->id_comentario = $rs['id_comentario'];
+            $listComentariosGerais[$count]->assunto = $rs['assunto'];
+            $listComentariosGerais[$count]->texto = $rs['texto'];
+            $listComentariosGerais[$count]->ativo = $rs['ativo'];
+            $listComentariosGerais[$count]->id_usuario = $rs['id_usuario'];
+            $listComentariosGerais[$count]->foto = $rs['foto'];
+            $listComentariosGerais[$count]->data = date('d/m/Y', strtotime($rs['data']));
 
-            $cont+=1;
+            $count+=1;
         }
         return $listComentariosGerais;
     }

@@ -612,7 +612,6 @@ a{
 }
 .geral-pubs-block{
 	@include bloco(100%, 780px, auto);
-	background: $darkgrey;
 	margin: 124px auto 0px auto;
 	.geral-pubs-wrapper{
 		width: 100%;
@@ -647,7 +646,7 @@ a{
 }
 .publication{
 	@include bloco(100%, 100%, auto);
-    background: $darkgreymedium;
+    background: $darkgrey;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: $shadow;
@@ -656,15 +655,16 @@ a{
     @include img-fit(60px, 60px);
     border-radius: 50px;
     margin-right: 20px;
+    box-shadow: $shadow;
 }
 .profile-name-date-pub{
     @include bloco($width: 100%, $height: auto);
     @include display(flex, column, center, flex-start);
-    >h2{
+    >a{
         @include texto(21px, $white, 'Roboto Bold', 32px);
     }
     >h3{
-        @include texto(16px, $grey, 'Roboto Italic', 24px);
+        @include texto(16px, $mediumgrey, 'Roboto Italic', 24px);
     }
 }
 .publication-image{
@@ -1472,7 +1472,7 @@ a{
 .why-comida-pub{
     @include bloco(100%, 100%, auto);
     border-radius: 5px;
-    background-color: $darkgreymedium;
+    background-color: $darkgrey;
     box-sizing: border-box;
     border: 20px solid transparent;
     transition: 200ms ease-in-out;
@@ -1918,14 +1918,12 @@ a{
 .pub-row{
     width: 100%;
     height: auto;
-    background-color: $darkgreymedium;
+    background-color: $darkgrey;
     position: relative;
     border-radius: 10px;
-    box-shadow: 0px 0px 36px 2px rgba(0,0,0,0.15);
+    box-shadow: $shadow;
 	>h2{
-	    font-size: 21px;
-	    color: $white;
-	    font-family: "Roboto Bold";
+	    @include texto(21px, $white, 'Roboto Bold', 32px, left);
 		&:after{
 		    content: "";
 		    display: block;
@@ -1937,34 +1935,23 @@ a{
 		}
 	}
 	>p{
-	    font-size: 16px;
-	    color: $grey;
-	    font-family: "Roboto Regular";
-	    width: 80%;
-	    line-height: 24px;
+	    @include texto(16px, $mediumgrey, 'Roboto Bold', 24px, left);
+        width: 80%;
 	}
 	>a{
-	    font-size: 18px;
-	    background-color: #E85858;
-	    display: block;
-	    box-sizing: border-box;
-	    width: 90px;
-	    text-align: center;
-	    line-height: 30px;
-	    color: #FFF;
-	    border-radius: 5px;
-	    font-family: "Roboto Medium";
-	    text-decoration: none;
-	    transition: 150ms ease-in-out;
+	    @include texto(18px, $white, 'Roboto Medium', 28px, center);
+        background-color: $sunsetorange;
+        box-sizing: border-box;
+        width: 90px;
+        border-radius: 5px;
+        transition: 150ms ease-in-out;
 		&:hover{
-		    background-color: #E83131;
+		    background-color: $sunsetorange;
 		    font-family: "Roboto Bold";
 		}
 	}
 	>span{
-	    color: $grey;
-	    font-family: "Roboto Italic";
-	    display: block;
+	    @include texto(18px, $grey, 'Roboto Italic', 24px, left);
 	}
 }
 //Publicação
@@ -2008,30 +1995,41 @@ a{
 .health-tricks-card{
     width: 100%;
     height: auto;
-    background-color: $darkgreymedium;
+    border-radius: 10px;
+    background-color: $darkgrey;
     position: relative;
     margin-bottom: 30px;
+    box-shadow: $shadow;
+    overflow: hidden;
+    transition: 200ms ease-in-out;
+    &:hover{
+        cursor: pointer;
+        background: linear-gradient(45deg, $olivine, $gold);
+        .health-tricks-card-publishedby{
+            color: $lightgrey;
+        }
+    }
 	>h2{
-	    font-size: 21px;
-	    font-family: "Roboto Bold";
-	    color: $white;
-	    text-align: center;
+        @include texto(21px, $white, 'Roboto Bold', 32px, center);
+        &:after{
+            content: "";
+            display: block;
+            margin: 0 auto;
+            background: $white;
+            width: 80px;
+            height: 3px;
+            border-radius: 20px;
+            margin-top: 15px;
+        }
 	}
 	>p{
+        @include texto(16px, $mediumgrey, 'Roboto Regular', 26px, center);
 	    width: 80%;
 	    max-width: 500px;
-	    text-align: center;
-	    font-size: 16px;
-	    font-family: "Roboto Regular";
-	    color: $grey;
 	    margin: 0 auto;
 	}
 	.health-tricks-card-publishedby{
-	    font-family: "Roboto Medium Italic";
-	    font-size: 16px;
-	    text-align: center;
-	    display: block;
-	    color: #7F7F7F;
+        @include texto(16px, $grey, 'Roboto Medium Italic', 26px, center);
 	}
 }
 
@@ -2439,10 +2437,11 @@ a{
 }
 .fitness-tips-card{
     @include bloco($width: 100%, $height: auto);
-    background-color: $darkgreymedium;
+    background-color: $darkgrey;
     border-radius: 5px;
     margin-bottom: 30px;
     transition: 200ms ease-in-out;
+    box-shadow: $shadow;
     >h2{
         @include texto(21px, $white, 'Roboto Bold', 23px, left);
     }

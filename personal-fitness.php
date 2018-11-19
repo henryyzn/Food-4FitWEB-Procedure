@@ -41,7 +41,7 @@
     </header>
     <section class="main" style="margin: 0 auto;" id="archor"><!-- CONTAINER-MÃE DO SITE -->
     	<h2 id="page-title">PUBLICAÇÕES</h2>
-        <div class="personal-fitness-pubs-block width-medium margin-top-15px">
+        <div class="personal-fitness-pubs-block width-medium">
             <?php
                 require_once("cms/models/DAO/personal-fitnessDAO.php");
 

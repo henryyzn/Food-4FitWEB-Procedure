@@ -32,13 +32,13 @@
 
                 $dicasSaudeDAO = new dicasSaudeDAO();
 
-                $lista = $dicasSaudeDAO->selectAll();
+                $lista = $dicasSaudeDAO->selectAllActive();
 
-                for($i = 0; $i < count($lista); $i++){
+                for($i = 0; $i < @count($lista); $i++){
             ?>
             <div class="health-tricks-card animate fadeInUp">
                 <h2 class="padding-top-30px"><?php echo($lista[$i]->titulo)?></h2>
-                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b><?php echo($lista[$i]->id_funcionario)?></b></span>
+                <span class="health-tricks-card-publishedby padding-top-30px padding-bottom-15px">Publicado por <b><?php echo($lista[$i]->autor)?></b> em <?php echo($lista[$i]->data)?></span>
                 <div class="btn-generic animate fadeInUp margin-bottom-30px margin-left-auto margin-right-auto" onclick="javascript:location.href='publicacao-dicas-saude.php?publication&id=<?php echo($lista[$i]->id)?>'">
                     <span>Ver Mais</span>
                 </div>

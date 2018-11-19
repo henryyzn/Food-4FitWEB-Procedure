@@ -34,7 +34,7 @@ class dicasSaudeDAO {
         }
 
     public function selectId($id){
-        $sql="select * from tbl_dica_saude where id=".$id;
+        $sql="SELECT d.id AS id, d.id_funcionario AS id_funcionario, d.titulo AS titulo, d.texto AS texto, d.data AS data, d.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS autor FROM tbl_dica_saude AS d INNER JOIN tbl_funcionario AS f WHERE d.id_funcionario = f.id AND d.id = ".$id." ORDER BY d.id DESC;";
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
@@ -42,33 +42,31 @@ class dicasSaudeDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listDicasSaude = new DicasSaude();
-        $listDicasSaude->id = $rs['id'];
-        $listDicasSaude->id_funcionario = $rs['id_funcionario'];
-        $listDicasSaude->titulo = $rs['titulo'];
-        $listDicasSaude->texto = $rs['texto'];
-        $listDicasSaude->data = date('d/m/Y', strtotime($rs['data']));
-        $listDicasSaude->ativo = $rs['ativo'];
+            $listDicasSaude = new DicasSaude();
+            $listDicasSaude->id = $rs['id'];
+            $listDicasSaude->id_funcionario = $rs['id_funcionario'];
+            $listDicasSaude->titulo = $rs['titulo'];
+            $listDicasSaude->texto = $rs['texto'];
+            $listDicasSaude->data = date('d/m/Y', strtotime($rs['data']));
+            $listDicasSaude->ativo = $rs['ativo'];
+            $listDicasSaude->autor = $rs['autor'];
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
-        if($PDO_conex->query($sql))
-            echo('');
-        else
-            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('');
+            else
+                echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
-        $conex->desconectar();
+            $conex->desconectar();
 
-        return $listDicasSaude;
-
+            return $listDicasSaude;
         }
-
-
     }
 
     public function selectAll(){
         $listDicasSaude = null;
-        $sql="select * from tbl_dica_saude order by id desc";
+        $sql="SELECT * FROM tbl_dica_saude ORDER BY id DESC;";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -78,17 +76,45 @@ class dicasSaudeDAO {
 
         $select = $PDO_conex->query($sql);
 
-        $cont=0;
+        $count=0;
         while($rs=$select->fetch(PDO::FETCH_ASSOC)){
         //Cria um objeto array da classe Contato
             $listDicasSaude[] = new DicasSaude();
-            $listDicasSaude[$cont]->id = $rs['id'];
-            $listDicasSaude[$cont]->id_funcionario = $rs['id_funcionario'];
-            $listDicasSaude[$cont]->titulo = $rs['titulo'];
-            $listDicasSaude[$cont]->texto = $rs['texto'];
-            $listDicasSaude[$cont]->data = date('d/m/Y', strtotime($rs['data']));
-            $listDicasSaude[$cont]->ativo = $rs['ativo'];
-            $cont+=1;
+            $listDicasSaude[$count]->id = $rs['id'];
+            $listDicasSaude[$count]->id_funcionario = $rs['id_funcionario'];
+            $listDicasSaude[$count]->titulo = $rs['titulo'];
+            $listDicasSaude[$count]->texto = $rs['texto'];
+            $listDicasSaude[$count]->data = date('d/m/Y', strtotime($rs['data']));
+            $listDicasSaude[$count]->ativo = $rs['ativo'];
+            $count+=1;
+        }
+        return $listDicasSaude;
+    }
+
+    public function selectAllActive(){
+        $listDicasSaude = null;
+        $sql="SELECT d.id AS id, d.id_funcionario AS id_funcionario, d.titulo AS titulo, d.texto AS texto, d.data AS data, d.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS autor FROM tbl_dica_saude AS d INNER JOIN tbl_funcionario AS f WHERE d.id_funcionario = f.id AND d.ativo = 1 ORDER BY d.id DESC;";
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listDicasSaude[] = new DicasSaude();
+            $listDicasSaude[$count]->id = $rs['id'];
+            $listDicasSaude[$count]->id_funcionario = $rs['id_funcionario'];
+            $listDicasSaude[$count]->titulo = $rs['titulo'];
+            $listDicasSaude[$count]->texto = $rs['texto'];
+            $listDicasSaude[$count]->data = date('d/m/Y', strtotime($rs['data']));
+            $listDicasSaude[$count]->ativo = $rs['ativo'];
+            $listDicasSaude[$count]->autor = $rs['autor'];
+            $count+=1;
         }
         return $listDicasSaude;
     }

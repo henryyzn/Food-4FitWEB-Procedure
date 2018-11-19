@@ -34,32 +34,33 @@ class porQueComidaFitnessDAO {
         }
 
     public function selectId($id){
-        $sql="select * from tbl_why_comida_fitness where id=".$id;
-
+        $sql="select p.id AS id, p.id_funcionario AS id_funcionario, p.titulo AS titulo, p.texto AS texto, p.data AS data, p.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS autor FROM tbl_why_comida_fitness AS p INNER JOIN tbl_funcionario AS f WHERE p.id = ".$id;
+        //echo $sql;
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
         $select = $PDO_conex->query($sql);
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listPqComidaFitness = new PorQueComidaFitness();
-        $listPqComidaFitness->id = $rs['id'];
-        $listPqComidaFitness->id_funcionario = $rs['id_funcionario'];
-        $listPqComidaFitness->titulo = $rs['titulo'];
-        $listPqComidaFitness->texto = $rs['texto'];
-        $listPqComidaFitness->data = $rs['data'];
-        $listPqComidaFitness->ativo = $rs['ativo'];
+            $listPqComidaFitness = new PorQueComidaFitness();
+            $listPqComidaFitness->id = $rs['id'];
+            $listPqComidaFitness->id_funcionario = $rs['id_funcionario'];
+            $listPqComidaFitness->titulo = $rs['titulo'];
+            $listPqComidaFitness->texto = $rs['texto'];
+            $listPqComidaFitness->data = date('d/m/Y', strtotime($rs['data']));
+            $listPqComidaFitness->ativo = $rs['ativo'];
+            $listPqComidaFitness->autor = $rs['autor'];
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
-        if($PDO_conex->query($sql))
-            echo('');
-        else
-            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('');
+            else
+                echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
-        $conex->desconectar();
+            $conex->desconectar();
 
-        return $listPqComidaFitness;
+            return $listPqComidaFitness;
 
         }
 
@@ -68,7 +69,7 @@ class porQueComidaFitnessDAO {
 
     public function selectAll(){
         $listPqComidaFitness = null;
-        $sql="select * from tbl_why_comida_fitness order by id desc";
+        $sql="select p.id AS id, p.id_funcionario AS id_funcionario, p.titulo AS titulo, p.texto AS texto, p.data AS data, p.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS nome FROM tbl_why_comida_fitness AS p INNER JOIN tbl_funcionario AS f order by id desc";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -78,17 +79,45 @@ class porQueComidaFitnessDAO {
 
         $select = $PDO_conex->query($sql);
 
-        $cont=0;
+        $count=0;
         while($rs=$select->fetch(PDO::FETCH_ASSOC)){
         //Cria um objeto array da classe Contato
             $listPqComidaFitness[] = new PorQueComidaFitness();
-            $listPqComidaFitness[$cont]->id = $rs['id'];
-            $listPqComidaFitness[$cont]->id_funcionario = $rs['id_funcionario'];
-            $listPqComidaFitness[$cont]->titulo = $rs['titulo'];
-            $listPqComidaFitness[$cont]->texto = $rs['texto'];
-            $listPqComidaFitness[$cont]->data = $rs['data'];
-            $listPqComidaFitness[$cont]->ativo = $rs['ativo'];
-            $cont+=1;
+            $listPqComidaFitness[$count]->id = $rs['id'];
+            $listPqComidaFitness[$count]->id_funcionario = $rs['id_funcionario'];
+            $listPqComidaFitness[$count]->titulo = $rs['titulo'];
+            $listPqComidaFitness[$count]->texto = $rs['texto'];
+            $listPqComidaFitness[$count]->data = date('d/m/Y', strtotime($rs['data']));
+            $listPqComidaFitness[$count]->ativo = $rs['ativo'];
+            $count+=1;
+        }
+        return $listPqComidaFitness;
+    }
+
+    public function selectAllActive(){
+        $listPqComidaFitness = null;
+        $sql="select p.id AS id, p.id_funcionario AS id_funcionario, p.titulo AS titulo, p.texto AS texto, p.data AS data, p.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS autor FROM tbl_why_comida_fitness AS p INNER JOIN tbl_funcionario AS f WHERE p.ativo = 1 order by id desc";
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listPqComidaFitness[] = new PorQueComidaFitness();
+            $listPqComidaFitness[$count]->id = $rs['id'];
+            $listPqComidaFitness[$count]->id_funcionario = $rs['id_funcionario'];
+            $listPqComidaFitness[$count]->titulo = $rs['titulo'];
+            $listPqComidaFitness[$count]->texto = $rs['texto'];
+            $listPqComidaFitness[$count]->data = date('d/m/Y', strtotime($rs['data']));
+            $listPqComidaFitness[$count]->ativo = $rs['ativo'];
+            $listPqComidaFitness[$count]->autor = $rs['autor'];
+            $count+=1;
         }
         return $listPqComidaFitness;
     }

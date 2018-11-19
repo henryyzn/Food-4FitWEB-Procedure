@@ -32,13 +32,13 @@
 
                     $pqComidaFitnessDAO = new porQueComidaFitnessDAO();
 
-                    $lista = $pqComidaFitnessDAO->selectAll();
+                    $lista = $pqComidaFitnessDAO->selectAllActive();
 
-                    for($i = 0; $i < count($lista); $i++){
+                    for($i = 0; $i < @count($lista); $i++){
                 ?>
-                <div class="why-comida-pub" onclick="javascript:location.href='publicacao-por-que.php?publication&id=<?php echo($lista[$i]->id)?>'">
+                <div class="why-comida-pub margin-bottom-20px" onclick="javascript:location.href='publicacao-por-que.php?publication&id=<?php echo($lista[$i]->id)?>'">
                     <h2><?php echo($lista[$i]->titulo)?></h2>
-                    <span>DT. Public: <?php echo($lista[$i]->data)?></span>
+                    <span>Data de Publicação: <?php echo($lista[$i]->data)?></span>
                 </div>
                 <?php
                     }
