@@ -17,7 +17,7 @@ class diarioBordoDAO {
         '".$classDiarioBordo->progresso."',
         '".$classDiarioBordo->data."');";
 
-        echo($sql);
+        //echo($sql);
 
         //Instancia a classe
         $conex = new mysql_db();

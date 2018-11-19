@@ -55,7 +55,7 @@ class pedidoDAO {
         //Executa a query
         if($PDO_conex->query($sql)){
             //echo("<script>alert('Ordem de serviço enviada com sucesso.')</script>");
-            $sql2 = "INSERT INTO tbl_pedido (id_ordem_servico, status) VALUES ('".$classPedido->id_ordem_servico."', '1');";
+            $sql2 = "INSERT INTO tbl_pedido (id_ordem_servico, status, data) VALUES ('".$classPedido->id_ordem_servico."', '1', '".date("Y-m-d h:i:s")."');";
 
             if($PDO_conex->query($sql2)){
                 echo ("<script>window.alert('Compra realizada com sucesso.'); window.location.href='meus-pedidos.php';</script>");
@@ -103,22 +103,25 @@ class pedidoDAO {
     public function selectInfo(){
         $listPedidos = null;
 
-        $sql="SELECT pedido.id AS id_pedido,
-        CONCAT(usuario.nome, ' ', usuario.sobrenome) AS nome_usuario,
-        usuario.email AS email_usuario,
-        prato.titulo AS titulo_prato,
-        foto_prato.foto AS foto_prato,
-        prato_ordem_servico.quantidade AS quantidade_itens
-        FROM tbl_pedido AS pedido
-        INNER JOIN tbl_ordem_servico AS ordem_servico
-        INNER JOIN tbl_prato AS prato
-        INNER JOIN tbl_foto_prato AS foto_prato
-        INNER JOIN tbl_usuario AS usuario
-        INNER JOIN tbl_prato_ordem_servico AS prato_ordem_servico
-        WHERE ordem_servico.id_usuario = usuario.id
-        AND prato.id = prato_ordem_servico.id_prato
-        AND foto_prato.id_prato = prato.id
-        ORDER BY pedido.id DESC;";
+        $sql="SELECT
+            pedido.id AS id_pedido,
+            CONCAT(usuario.nome, ' ', usuario.sobrenome) AS nome_usuario,
+            usuario.email AS email_usuario,
+            prato.titulo AS titulo_prato,
+            foto_prato.foto AS foto_prato,
+            prato_ordem_servico.quantidade AS quantidade_itens
+            FROM tbl_pedido AS pedido
+            INNER JOIN tbl_ordem_servico AS ordem_servico
+            INNER JOIN tbl_prato_ordem_servico AS prato_ordem_servico
+            INNER JOIN tbl_prato AS prato
+            INNER JOIN tbl_foto_prato AS foto_prato
+            INNER JOIN tbl_usuario AS usuario
+            WHERE prato_ordem_servico.id_ordem_servico = ordem_servico.id
+            AND pedido.id_ordem_servico = ordem_servico.id
+            AND prato_ordem_servico.id_prato = prato.id
+            AND foto_prato.id_prato = prato.id
+            AND ordem_servico.id_usuario = usuario.id
+            ORDER BY pedido.id DESC;";
 
         //Instancia a classe
         $conex = new mysql_db();
