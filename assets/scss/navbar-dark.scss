@@ -37,7 +37,8 @@
     @include position(absolute, 10px, false, false, 10px);
     overflow: hidden;
     >img{
-        @include img-fit(40px, 40px);
+		@include img-fit(40px, 40px);
+		box-shadow: $shadow;
     }
 }
 #navbar-flat-buycart{
@@ -72,7 +73,8 @@
     overflow: hidden;
     >img{
         //imagem botão usuário
-        @include img-fit(40px, 40px);
+		@include img-fit(40px, 40px);
+		box-shadow: $shadow;
     }
 }
 #user-bubble{

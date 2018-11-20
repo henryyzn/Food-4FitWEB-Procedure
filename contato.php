@@ -50,7 +50,7 @@
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
         <h2 id="page-title" class="margin-left-auto margin-right-auto">ENTRE EM CONTATO</h2>
 
-        <div class="form-generic width-750px margin-left-auto margin-right-auto margin-top-30px">
+        <div class="form-generic width-750px margin-left-auto margin-right-auto margin-top-30px margin-bottom-30px">
             <form class="form-generic-content" id="form-contato" action="contato.php" method="get">
                 <label for="nome" class="label-generic">Nome:</label>
                 <input type="text" id="nome" name="nome" class="input-generic" placeholder="Digite o seu nome..." required>
@@ -73,9 +73,12 @@
                 <label for="comentario" class="label-generic">O que deseja nos dizer?</label>
                 <textarea id="comentario" name="observacao" class="textarea-generic" required></textarea>
 
-                <div class="btn-generic margin-bottom-30px">
-                <input type="submit" value="Salvar" name="btn-salvar">
-                <span>Salvar</span>
+                <div class="form-row">
+                    <span>Cancelar</span>
+                    <button type="submit" value="Salvar" name="btn-salvar" class="margin-left-20px btn-generic">
+                        <span>Salvar</span>
+                    </button>
+                </div>
             </div>
             </form>
 

@@ -212,7 +212,7 @@ input:checked + .toggle .star--6 {
             }
         ?>
 		<div id="navbar-flat-login" class="animate fadeInDown">
-			<img src="assets/images/icons/user.svg" alt="Login">
+			<img src="<?php if(isset($_SESSION['avatar_usuario'])){echo($_SESSION['avatar_usuario']);}else{echo('assets/archives/avatares/padrao.png');} ?>" alt="Login">
 		</div>
 		<div id="user-bubble" class="animate fadeInDown">
 			<span>12</span>
