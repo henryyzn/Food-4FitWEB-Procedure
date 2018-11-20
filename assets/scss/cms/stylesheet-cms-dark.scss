@@ -664,13 +664,13 @@ img.btn-logout:hover {
     }
 }
 #sidebar nav {
-    padding: 5px 0;
+    padding: 0px 0px 5px 0px;
 }
 
 #sidebar nav a {
     @include texto(16px, $darkgrey, 'Roboto Bold');
     height: 35px;
-    padding: 2px 0;
+    padding: 0px 0px 2px 0px;
     position: relative;
     transition: 100ms ease-in-out;
 }
@@ -962,7 +962,7 @@ img.btn-logout:hover {
     position: relative;
     @include display(flex, row, flex-start, center);
     margin: 0 20px 20px 20px;
-    box-shadow: $shadow;
+    box-shadow: $shadowlight;
     transition: 200ms ease-out;
     >figure{
         @include bloco($width: 50px, $height: 50px);

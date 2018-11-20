@@ -362,10 +362,78 @@ a{
 }
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 //Casos de Sucesso
+.success-cases-header{
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    padding: 0;
+    margin-top: 124px;
+    position: relative;
+    margin-bottom: -124px;
+    >img{
+        @include img-fit(100%, 480px);
+    }
+    .success-cases-header-overlay{
+        @include position(absolute, 0, 0, 0, 0);
+        background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+        >div{
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            margin: 0 auto;
+            >h2{
+                @include texto(32px, $black, 'Roboto Black', 38px, left);
+                &:after{
+                    content: "";
+                    display: block;
+                    width: 80px;
+                    height: 5px;
+                    border-radius: 5px;
+                    background: $black;
+                    margin: 20px 0px;
+                }
+            }
+            >p{
+                @include texto(18px, $darkgreymedium, 'Roboto Regular', 24px, left);
+                width: 85%;
+                max-width: 550px;
+                margin-bottom: 20px;
+            }
+            >article{
+                width: 120px;
+                height: 50px;
+                border-radius: 50px;
+                @include display(flex, row, center, center);
+                background: transparent;
+                border: 3px solid $black;
+                margin-bottom: 60px;
+                transition: 200ms ease-in-out;
+                >span{
+                    @include texto(18px, $black, 'Roboto Bold', 24px, center);
+                }
+                &:hover{
+                    background-color: $black;
+                    cursor: pointer;
+                    >span{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
 .success-case-card{
 	@include bloco(100%, 800px, auto);
     box-sizing: border-box;
+    border-radius: 5px;
     position: relative;
+    background-color: $mediumgrey;
+    box-shadow: $shadowlight;
+    transition: 200ms ease-in-out;
 	>span{
 		@include texto(18px, $black, 'Roboto Bold', 21px, null);
 	}
@@ -374,8 +442,19 @@ a{
 	    width: 55%;
 	    min-width: 90px;
 	}
+    &:hover{
+        background: linear-gradient(45deg, $aspargus, $olivine);
+        box-shadow: $shadow;
+        cursor: pointer;
+        span, p{
+            color: $white;
+        }
+        .profile-picture span{
+            color: $white;
+        }
+    }
 	.profile-picture{
-	    @include bloco(auto, 200px, 60px);
+	    @include bloco(auto, auto, 60px);
 	    @include display(flex, row, false, center);
 		>div{
 			@include img-fit(60px, 60px);
@@ -387,9 +466,19 @@ a{
 			}
 		}
 		>span{
-			@include texto(18px, $black, 'Roboto Bold');
+			@include texto(21px, $black, 'Roboto Bold');
 		}
 	}
+    .go-to-button{
+        @include img-fit(50px, 50px);
+        @include position(absolute, null, 30px, 30px, null);
+        transition: 200ms ease-in-out;
+        border-radius: 50%;
+        overflow: hidden;
+        &:hover{
+            background: $gold;
+        }
+    }
 }
 
 
@@ -441,7 +530,7 @@ a{
 /* CABEÇALHO INDEX */
 #header-flat{
 	/*Container-mãe do cabeçalho da página index*/
-	@include bloco(100%, 1140px, auto);
+	@include bloco(100%, 1200px, auto);
     margin: 0 auto;
 	#header-flat-row1{
 		/*Container-filho do cabeçalh da indexo*/
@@ -453,7 +542,7 @@ a{
 		border-bottom-left-radius: 10px;
 		>img{
 			/*Imagem do cabeçalho da index*/
-			@include img-fit(1140px, 300px);
+			@include img-fit(1200px, 300px);
 			border-bottom-right-radius: 10px;
 			border-bottom-left-radius: 10px;
 		}
@@ -462,7 +551,7 @@ a{
 			@include bloco(100%, null, 100%);
 			@include position(absolute, 0, false, false, 0);
 			@include display(flex, column, center, left);
-			background: linear-gradient(to right, rgba(156, 194, 131, 0.9) 20%, rgba(255,217,76,0.2));
+			background: linear-gradient(to right, rgba(156, 194, 131, 1) 30%, rgba(0,0,0,0.3));
 			border-bottom-right-radius: 10px;
 			border-bottom-left-radius: 10px;
 			>h2{
@@ -708,23 +797,47 @@ a{
 .main-login{
     /*Container-mãe do block do login*/
     @include bloco(100%, 100%, 100vh);
-    margin: 0 auto;
- 	@include display(flex, column, center, center);
+ 	@include display(flex, row, flex-start, center);
+    background: rgba(0,0,0,0.3);
     position: relative;
 	z-index: 1;
-	.title-login{
-		@include texto(58px, $white, 'Roboto Bold', 72px, left);
-	    @include position(absolute, 40px, false, false, 40px);
-	}
-	.subtitle-login{
-		@include texto(21px, $darkgrey, 'Roboto Medium');
-	    @include position(absolute, 190px, false, false, 40px);
-	}
+	.column-one-lg{
+        @include bloco($width: 50%, $height: auto);
+        @include display(flex, column, center, center);
+        background-color: transparent;
+        figure{
+            @include bloco(100%, 400px, auto);
+            box-sizing: border-box;
+            padding: 0 30px 0 30px;
+            img{
+                @include img-fit(400px, 400px);
+                -webkit-animation: pulse 3s infinite ease-in-out;
+                -o-animation: pulse 3s infinite ease-in-out;
+                -ms-animation: pulse 3s infinite ease-in-out;
+                -moz-animation: pulse 3s infinite ease-in-out;
+                animation: pulse 3s infinite ease-in-out;
+            }
+        }
+
+    }
+    .column-two-lg{
+        @include bloco($width: 50%, $height: 100vh);
+        @include display(flex, column, center, center);
+        background-color: $white;
+        >form{
+            >h2{
+                @include texto(52px, $olivine, 'Roboto Black', 58px, left);
+            }
+            >span{
+                @include texto(21px, $grey, 'Roboto Bold', 48px, left);   
+            }
+        }
+    }
 }
 .login-form-separator{
     width: 100%;
     height: 3px;
-    background: rgba(255,255,255,0.3);
+    background: $mediumgrey;
     border-radius: 50px;
     margin: 20px auto;
 }
@@ -741,21 +854,15 @@ a{
 		@include texto($size: 18px, $family: 'Roboto Medium');
 	}
 	&.facebook{
+        background-color: $facebook;
         >span{
-            color: $facebook;
-        }
-        &:hover{
-            background: $facebook;
-            >span{color: $white;}
+            color: $white;
         }
 	}
     &.google{
+        background-color: $google;
         >span{
-            color: $google;
-        }
-        &:hover{
-            background: $google;
-            >span{color: $white;}
+            color: $white;
         }
 	}
 }
@@ -1515,7 +1622,6 @@ a{
 #product-view-info-container{
 	@include bloco(100%, 600px, auto);
     box-sizing: border-box;
-    background-color: #FCFCFC;
 	#product-view-dish-name{
 		@include texto(28px, $black, 'Roboto Bold');
         padding-top: 70px;
@@ -1605,7 +1711,7 @@ a{
     background: #FCFCFC;
     box-sizing: border-box;
     border: 30px solid #FCFCFC;
-	#product-view-comments-title{
+	#mments-title{
 		@include texto(21px, $black, 'Roboto Bold');
 	}
 	.comment-row{

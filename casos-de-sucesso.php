@@ -24,101 +24,52 @@
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
-	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
-        <h2 id="page-title">CASOS DE SUCESSO</h2>
-        <p id="page-subtitle">Conheça casos de sucesso de pessoas que utilizaram nossos serviços e aproveitaram nossos produtos, alcançando seus próprios objetivos</p>
-        <div class="generic-block margin-top-30px">
-            <div class="success-case-card margin-left-auto margin-right-auto margin-top-30px">
-                <div class="padding-top-30px margin-left-30px profile-picture">
-                    <div>
-                        <img src="assets/images/icons/person.jpg" alt="Usuario XXXXX">
-                    </div>
-                    <span class="padding-left-15px">Regina,32</span>
-                </div>
-                <p class="padding-left-30px padding-top-30px padding-bottom-30px">Emagreci 21Kg com exercícios e as refeições da Food 4Fit!</p>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-                <div class="options-dots">
-				    <img src="assets/images/icons/dots.svg" alt="Opções">
-				</div>
+    <figure class="success-cases-header">
+        <img src="assets/images/backgrounds/caso-sucesso/cover.jpg" alt="Imagem" class="animate fadeIn">
+        <div class="success-cases-header-overlay">
+            <div>
+                <h2 class="margin-left-30px animate fadeIn delay-1s">CASOS DE SUCESSO</h2>
+                <p class="margin-left-30px animate fadeIn delay-1500ms">Conheça casos de sucesso de pessoas que utilizaram nossos serviços e aproveitaram nossos produtos, alcançando seus próprios objetivos</p>
+                <article class="margin-left-30px animate fadeIn delay-2s">
+                    <span>Ver Casos</span>
+                </article>
             </div>
+        </div>
+    </figure>
+    <section class="main"><!-- CONTAINER-MÃE DO SITE -->
+        <!-- <h2 id="page-title">CASOS DE SUCESSO</h2>
+        <p id="page-subtitle">Conheça casos de sucesso de pessoas que utilizaram nossos serviços e aproveitaram nossos produtos, alcançando seus próprios objetivos</p> -->
+        <div class="generic-block border-30px">
+            <?php
+                require_once("cms/models/DAO/caso-sucessoDAO.php");
 
-            <div class="success-case-card margin-left-auto margin-right-auto margin-top-30px">
-                <div class="padding-top-30px margin-left-30px profile-picture">
-                    <div>
-                        <img src="assets/images/icons/person.jpg" alt="Usuario XXXXX">
-                    </div>
-                    <span class="padding-left-15px">Regina,32</span>
-                </div>
-                <p class="padding-left-30px padding-top-30px padding-bottom-30px">Emagreci 21Kg com exercícios e as refeições da Food 4Fit!</p>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-                <div class="options-dots">
-				    <img src="assets/images/icons/dots.svg" alt="Opções">
-				</div>
-            </div>
+                $casoSucessoDAO = new casoSucessoDAO();
 
-            <div class="success-case-card margin-left-auto margin-right-auto margin-top-30px">
-                <div class="padding-top-30px margin-left-30px profile-picture">
-                    <div>
-                        <img src="assets/images/icons/person.jpg" alt="Usuario XXXXX">
-                    </div>
-                    <span class="padding-left-15px">Regina,32</span>
-                </div>
-                <p class="padding-left-30px padding-top-30px padding-bottom-30px">Emagreci 21Kg com exercícios e as refeições da Food 4Fit!</p>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-                <div class="options-dots">
-				    <img src="assets/images/icons/dots.svg" alt="Opções">
-				</div>
-            </div>
+                $lista = $casoSucessoDAO->selectAll();
 
-            <div class="success-case-card margin-left-auto margin-right-auto margin-top-30px">
+                for($i = 0; $i < @count($lista); $i++){
+                    $idade = date_diff(date_create($lista[$i]->data_nascimento), date_create('now'))->y;
+            ?>
+            <div class="success-case-card margin-left-auto margin-right-auto">
                 <div class="padding-top-30px margin-left-30px profile-picture">
                     <div>
-                        <img src="assets/images/icons/person.jpg" alt="Usuario XXXXX">
+                        <img src="<?php echo($lista[$i]->avatar)?>" alt="Imagem de perfil do usuário">
                     </div>
-                    <span class="padding-left-15px">Regina,32</span>
+                    <span class="padding-left-15px"><?php echo($lista[$i]->nome)?>, <?php echo($idade)?> anos</span>
                 </div>
-                <p class="padding-left-30px padding-top-30px padding-bottom-30px">Emagreci 21Kg com exercícios e as refeições da Food 4Fit!</p>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-                <div class="options-dots">
-				    <img src="assets/images/icons/dots.svg" alt="Opções">
-				</div>
+                <p class="padding-left-30px padding-top-30px padding-bottom-30px"><?php echo($lista[$i]->titulo)?></p>
+                <img class="go-to-button" src="assets/images/icons/ir-para.svg" alt="Ler Mais" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'caso-sucesso');">
             </div>
-
-            <div class="success-case-card margin-left-auto margin-right-auto margin-top-30px">
-                <div class="padding-top-30px margin-left-30px profile-picture">
-                    <div>
-                        <img src="assets/images/icons/person.jpg" alt="Usuario XXXXX">
-                    </div>
-                    <span class="padding-left-15px">Regina,32</span>
-                </div>
-                <p class="padding-left-30px padding-top-30px padding-bottom-30px">Emagreci 21Kg com exercícios e as refeições da Food 4Fit!</p>
-                <div class="social-bar animate fadeInUp">
-                    <img src="assets/images/icons/facebook-color.svg" alt="Facebook">
-                    <img src="assets/images/icons/twitter-color.svg" alt="Twitter">
-                    <img src="assets/images/icons/share.svg" alt="Link Compartilhável">
-                </div>
-                <div class="options-dots">
-				    <img src="assets/images/icons/dots.svg" alt="Opções">
-				</div>
-            </div>
+            <?php
+                }
+            ?>
         </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
+    <div class="generic-modal animate fadeIn" id="abrir">
+        <article class="generic-modal-wrapper">
+
+        </article>
+    </div>
 </body>
 </html>

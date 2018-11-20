@@ -653,7 +653,6 @@ input[type="checkbox"].switch-styled:checked:after{
 .generic-block{
 	@include bloco(100%, false, auto, false);
     position: relative;
-    overflow: hidden;
 }
 
 /* ESTRELAS DE AVALIAÇÃO */

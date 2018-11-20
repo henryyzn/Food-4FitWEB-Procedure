@@ -157,6 +157,35 @@ class dicasFitnessDAO {
         return $listDicasFitness;
     }
 
+    public function selectAllActiveRand(){
+        $listDicasFitness = null;
+
+        $sql="SELECT d.id AS id, d.id_funcionario AS id_funcionario, d.titulo AS titulo, d.texto AS texto, d.data AS data, d.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS autor FROM tbl_dica_fitness AS d INNER JOIN tbl_funcionario AS f WHERE d.ativo = 1 AND d.id_funcionario = f.id ORDER BY RAND();";
+
+        //Instancia a classe
+        $conex = new mysql_db();
+        //Abre a Conexao
+        $PDO_conex = $conex->conectar();
+        //Executa a query
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listDicasFitness[] = new DicasFitness();
+            $listDicasFitness[$count]->id = $rs['id'];
+            $listDicasFitness[$count]->id_funcionario = $rs['id_funcionario'];
+            $listDicasFitness[$count]->titulo = $rs['titulo'];
+            $listDicasFitness[$count]->texto = $rs['texto'];
+            $listDicasFitness[$count]->data = date('d/m/Y', strtotime($rs['data']));
+            $listDicasFitness[$count]->ativo = $rs['ativo'];
+            $listDicasFitness[$count]->autor = $rs['autor'];
+            $count+=1;
+        }
+        return $listDicasFitness;
+    }
+
     public function delete($id){
         $sql = "delete from tbl_dica_fitness where id=".$id;
 

@@ -27,13 +27,22 @@
 <body>
     <?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
+        <?php
+            require_once("cms/models/DAO/destaqueDAO.php");
+
+            $destaqueDAO = new destaqueDAO;
+
+            $listDestaque = $destaqueDAO->selectLastInsert();
+
+            if(@count($listDestaque)>0){
+        ?>
 		<header id="header-flat"><!-- CABEÇALHO DA INDEX -->
 			<div id="header-flat-row1" class="animate fadeInDown"><!-- PRIMEIRO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
-				<img src="assets/images/backgrounds/home.jpg" alt="Header"><!-- IMAGEM DO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
+				<img src="<?php echo($listDestaque->foto)?>" alt="Header"><!-- IMAGEM DO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
 				<div id="header-flat-overlay"><!-- CAMADA DO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
-					<h2 class="padding-left-30px padding-bottom-15px">Legumes Sem Limite</h2><!-- TÍTULO DO DESTAQUE -->
-					<p class="padding-left-30px">Um prato repleto de legumes fresquinhos para a sua dieta!</p><!-- DESCRIÇÃO DO DESTAQUE -->
-					<div id="header-flat-overlay-seemore"><!-- RODAPÉ VIA PHP -->
+					<h2 class="padding-left-30px padding-bottom-15px"><?php echo($listDestaque->titulo)?>, R$ <?php echo($listDestaque->preco)?></h2><!-- TÍTULO DO DESTAQUE -->
+					<p class="padding-left-30px"><?php echo($listDestaque->resumo)?></p><!-- DESCRIÇÃO DO DESTAQUE -->
+					<div id="header-flat-overlay-seemore" onclick="javascript:location.href='prato.php?id_prato=<?php echo($listDestaque->id_prato)?>'"><!-- RODAPÉ VIA PHP -->
 						<figure>
 							<img src="assets/images/icons/arrow.svg" alt="Ver Mais Sobre Prato Destaque"><!-- IMAGEM DO BOTÃO PARA VER MAIS SOBRE O DESTAQUE -->
 						</figure>
@@ -41,6 +50,9 @@
 				</div>
 			</div>
         </header>
+        <?php
+            }
+        ?>
         <article class="generic-block"><!-- SEGUNDO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
             <h2 id="page-title">DESTAQUES</h2><!-- TÍTULO DA PÁGINA -->
             <div class="generic-grid animate fadeInUp">

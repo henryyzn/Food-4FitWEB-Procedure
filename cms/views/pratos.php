@@ -4,61 +4,70 @@
     $id = null;
     $foto = null;
     $botao = "Salvar";
+    
+    require_once('../models/pratosClass.php');
+    require_once('../models/DAO/pratosDAO.php');
+    $pratosDAO = new pratosDAO;
+            
 
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
         if($modo == 'excluir'){
-
-            require_once('../models/pratosClass.php');
-            require_once('../models/DAO/pratosDAO.php');
-
-            $pratosDAO = new pratosDAO;
             $id = $_GET['id'];
             $pratosDAO->delete($id);
+        }elseif($modo == 'ativar'){
+            $id = $_GET['id'];
+            $pratosDAO->active($id);
+        }elseif($modo == 'desativar'){
+            $id = $_GET['id'];
+            $pratosDAO->desactive($id);
+        }elseif($modo == 'destacar'){
+            $id = $_GET['id'];
+            $pratosDAO->destacar($id);
         }
     }
 
     if(isset($_GET['btn-salvar'])){
-        $values = $_GET['id_ingrediente'];
-        $keys = array_keys($values);
-        $size = count($values);
+        // $values = $_GET['id_ingrediente'];
+        // $keys = array_keys($values);
+        // $size = count($values);
 
-        for ($i = 0; $i < $size; $i++) {
-            $key   = $keys[$i];
-            $value = $values[$key];
+        // for ($i = 0; $i < $size; $i++) {
+        //     $key   = $keys[$i];
+        //     $value = $values[$key];
 
-            print_r($value);
+        //     print_r($value);
 
-        }
+        // }
 
-//        require_once('../models/pratosClass.php');
-//        require_once('../models/categoriaClass.php');
-//        require_once('../models/DAO/pratosDAO.php');
-//        require_once('../models/pratoFotoClass.php');
-//        require_once('../models/DAO/pratoFotoDAO.php');
-//        require_once('../models/DAO/categoriaDAO.php');
-//
-//        $classPrato = new Prato();
-//        $classPrato->id_categoria = $_GET['id_categoria'];
-//        $classPrato->id_ingrediente = $_GET['id_ingrediente'];
-//        $classPrato->titulo = $_GET['titulo'];
-//        $classPrato->descricao = $_GET['descricao'];
-//        $classPrato->resumo = $_GET['resumo'];
-//        $classPrato->confiPublic = '0';
-//        $classPrato->ativo = '1';
-//        $classPrato->idUsuario = '12';
-//        $classPrato->preco = '40.00';
-//        $classPrato->foto = $_GET['foto'];
-//
-//        $pratosDAO = new pratosDAO();
-//        if($_GET['btn-salvar'] == "Salvar"){
-//            if($pratosDAO->insert($classPrato)){
-//                $pratosDAO->insertIngrediente($classPrato);
-//            }
-//        }else{
-//           $pratosDAO->id = $_GET['id'];
-//           $pratosDAO->update($classPrato);
-//        }
+       require_once('../models/pratosClass.php');
+       require_once('../models/categoriaClass.php');
+       require_once('../models/DAO/pratosDAO.php');
+       require_once('../models/pratoFotoClass.php');
+       require_once('../models/DAO/pratoFotoDAO.php');
+       require_once('../models/DAO/categoriaDAO.php');
+
+       $classPrato = new Prato();
+       $classPrato->id_categoria = $_GET['id_categoria'];
+       $classPrato->id_ingrediente = $_GET['id_ingrediente'];
+       $classPrato->titulo = $_GET['titulo'];
+       $classPrato->descricao = $_GET['descricao'];
+       $classPrato->resumo = $_GET['resumo'];
+       $classPrato->confiPublic = '0';
+       $classPrato->ativo = '1';
+       $classPrato->idUsuario = '12';
+       $classPrato->preco = '40.00';
+       $classPrato->foto = $_GET['foto'];
+
+       $pratosDAO = new pratosDAO();
+       if($_GET['btn-salvar'] == "Salvar"){
+           if($pratosDAO->insert($classPrato)){
+               $pratosDAO->insertIngrediente($classPrato);
+           }
+       }else{
+          $pratosDAO->id = $_GET['id'];
+          $pratosDAO->update($classPrato);
+       }
 
     }
 ?>
@@ -80,6 +89,7 @@
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
+    <script src="../../assets/public/js/jquery.mask.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
     <script>
         $(document).ready(function(){
@@ -100,7 +110,7 @@
                 <div id="list-content">
                     <div class="pratos-wrapper">
                          <div id="page-actions">
-                            <div id="open-form">
+                            <div id="open-prato-form">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Prato</span>
                             </div>
@@ -118,6 +128,11 @@
                                 $lista = $pratosDAO->selectAll();
 
                                 for($i = 0; $i < @count($lista); $i++){
+                                    $status = $lista[$i]->ativo;
+                                    if($status == 1)
+                                        $status = 'desativar';
+                                    else
+                                        $status = 'ativar';
 
                             ?>
                             <div class="generic-card">
@@ -128,9 +143,10 @@
                                     <p class="categoria-prato margin-bottom-30px"><b>Categoria:</b> <?php echo($lista[$i]->titulo_categoria)?></p>
 
                                     <div class="edit-btns">
-                                        <img src="../../assets/images/icons/edit.svg" alt="Editar Prato">
-                                        <img src="../../assets/images/icons/delete-white.svg" alt="Excluir Prato" onclick="javascript:location.href='pratos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
-                                        <img src="../../assets/images/icons/checked-white.svg" alt="">
+                                        <img src="../../assets/images/cms/symbols/editar.svg" alt="Editar Prato">
+                                        <img src="../../assets/images/cms/symbols/excluir.svg" alt="Excluir Prato" onclick="javascript:location.href='pratos.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
+                                        <img src="../../assets/images/cms/symbols/<?php echo($status)?>.svg" alt="" onclick="javascript:location.href='pratos.php?modo=<?php echo($status)?>&id=<?php echo($lista[$i]->id)?>'">
+                                        <img src="../../assets/images/cms/icons/destaque.svg" alt="" onclick="javascript:location.href='pratos.php?modo=destacar&id=<?php echo($lista[$i]->id)?>'">
                                     </div>
                                 </div>
                             </div>
@@ -161,6 +177,10 @@
 
                             <label for="resumo" class="label-generic">Resumo:</label>
                             <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
+
+                            <label for="preco" class="label-generic">Preço:</label>
+                            <input type="text" id="preco" name="preco" class="input-generic" required maxlength="255">
+                            <script>$('#preco').mask('000.000.000.000.00', {reverse: true});</script>
 
                             <label for="idCategoria" class="label-generic">Categoria:</label>
                             <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma categoria:</option>

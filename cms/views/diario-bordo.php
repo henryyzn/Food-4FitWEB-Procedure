@@ -13,15 +13,19 @@
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
         if($modo == 'excluir'){
-
-            require_once('../models/diario-bordoClass.php');
             require_once('../models/DAO/diario-bordoDAO.php');
 
             $diarioBordoDAO = new diarioBordoDAO;
             $id = $_GET['id'];
             $diarioBordoDAO->delete($id);
         }elseif($modo == 'transformar'){
-            header("location:diario-bordo.php");
+            require_once('../models/caso-sucessoClass.php');
+            require_once('../models/DAO/caso-sucessoDAO.php');
+
+            $classCaso = new casoSucesso();
+            $casoDAO = new casoSucessoDAO();
+            $classCaso->id = $_GET['id'];
+            $casoDAO->insert($classCaso);
         }
     }
 
@@ -36,15 +40,12 @@
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
     <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
-    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
-    <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
     <link rel="stylesheet" href="../../assets/css/font-style.css">
     <link rel="stylesheet" href="../../assets/css/sizes.css">
     <link rel="stylesheet" href="../../assets/css/align.css">
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-    <script src="../../assets/js/js.cookie.js"></script>
 </head>
 <body>
 <section id="main">

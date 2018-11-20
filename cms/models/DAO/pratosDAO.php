@@ -182,6 +182,54 @@
             $conex->desconectar();
 
         }
+        public function active($id){
+            $sql = "UPDATE tbl_prato SET ativo = '1' WHERE id = ".$id;
 
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+
+            if($PDO_conex->query($sql)){
+                header("location:pratos.php");
+            }else{
+                echo('<script>alert("Erro ao ativar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            }
+        }
+
+        public function desactive($id){
+            $sql = "UPDATE tbl_prato SET ativo = '0' WHERE id = ".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+
+            if($PDO_conex->query($sql)){
+                header("location:pratos.php");
+            }else{
+                echo('<script>alert("Erro ao desativar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            }
+        }
+
+        public function destacar($id){
+            $sql="SELECT COUNT(*) AS total FROM tbl_destaque WHERE id_prato = ".$id;
+
+            //Instancia a classe
+            $conex = new mysql_db();
+            //Abre a Conexao
+            $PDO_conex = $conex->conectar();
+            //Executa a query
+
+            $select = $PDO_conex->query($sql);
+
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+            //Cria um objeto array da classe Contato
+                $sql = "INSERT INTO tbl_destaque (id_prato, ativo) VALUES ('$id', '1');";
+                if($PDO_conex->query($sql)){
+                    echo('<script>alert("Prato adicionado aos destaques.");</script>');
+                }else{
+                    echo('<script>alert("Erro ao destacar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                }
+            }else{
+                echo('<script>alert("Erro ao destacar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            }
+        }
     }
 ?>

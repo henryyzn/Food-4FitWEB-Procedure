@@ -374,21 +374,93 @@ a{
 }
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 //Casos de Sucesso
+.success-cases-header{
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    padding: 0;
+    margin-top: 124px;
+    position: relative;
+    margin-bottom: -124px;
+    >img{
+        @include img-fit(100%, 480px);
+    }
+    .success-cases-header-overlay{
+        @include position(absolute, 0, 0, 0, 0);
+        background: linear-gradient(to top, rgba(48,48,48,1), rgba(0,0,0,0));
+        >div{
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            margin: 0 auto;
+            >h2{
+                @include texto(32px, $white, 'Roboto Black', 38px, left);
+                &:after{
+                    content: "";
+                    display: block;
+                    width: 80px;
+                    height: 5px;
+                    border-radius: 5px;
+                    background: $white;
+                    margin: 20px 0px;
+                }
+            }
+            >p{
+                @include texto(18px, $mediumgrey, 'Roboto Regular', 24px, left);
+                width: 85%;
+                max-width: 550px;
+                margin-bottom: 20px;
+            }
+            >article{
+                width: 120px;
+                height: 50px;
+                border-radius: 50px;
+                @include display(flex, row, center, center);
+                background: transparent;
+                border: 3px solid $white;
+                margin-bottom: 60px;
+                transition: 200ms ease-in-out;
+                >span{
+                    @include texto(18px, $white, 'Roboto Bold', 24px, center);
+                }
+                &:hover{
+                    background-color: $white;
+                    cursor: pointer;
+                    >span{
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+}
 .success-case-card{
 	@include bloco(100%, 800px, auto);
     box-sizing: border-box;
+    border-radius: 5px;
 	position: relative;
-	background: $darkgreymedium;
+	background-color: $darkgrey;
+    box-shadow: $shadow;
+    transition: 200ms ease-in-out;
 	>span{
 		@include texto(18px, $white, 'Roboto Bold', 21px, null);
 	}
 	>p{
-		@include texto(16px, $grey, 'Roboto Italic');
+		@include texto(16px, $mediumgrey, 'Roboto Italic');
 	    width: 55%;
 	    min-width: 90px;
 	}
+    &:hover{
+        background: linear-gradient(45deg, $aspargus, $olivine);
+        box-shadow: $shadow;
+        cursor: pointer;
+    }
 	.profile-picture{
-	    @include bloco(auto, 200px, 60px);
+	    @include bloco(auto, auto, 60px);
 	    @include display(flex, row, false, center);
 		>div{
 			@include img-fit(60px, 60px);
@@ -400,9 +472,19 @@ a{
 			}
 		}
 		>span{
-			@include texto(18px, $white, 'Roboto Bold');
+			@include texto(21px, $white, 'Roboto Bold');
 		}
 	}
+    .go-to-button{
+        @include img-fit(50px, 50px);
+        @include position(absolute, null, 30px, 30px, null);
+        transition: 200ms ease-in-out;
+        border-radius: 50%;
+        overflow: hidden;
+        &:hover{
+            background: $gold;
+        }
+    }
 }
 
 
@@ -454,7 +536,7 @@ a{
 /* CABEÇALHO INDEX */
 #header-flat{
 	/*Container-mãe do cabeçalho da página index*/
-	@include bloco(100%, 1140px, auto);
+	@include bloco(100%, 1200px, auto);
     margin: 0 auto;
 	#header-flat-row1{
 		/*Container-filho do cabeçalh da indexo*/
@@ -466,7 +548,7 @@ a{
 		border-bottom-left-radius: 10px;
 		>img{
 			/*Imagem do cabeçalho da index*/
-			@include img-fit(1140px, 300px);
+			@include img-fit(1200px, 300px);
 			border-bottom-right-radius: 10px;
 			border-bottom-left-radius: 10px;
 		}
@@ -475,7 +557,7 @@ a{
 			@include bloco(100%, null, 100%);
 			@include position(absolute, 0, false, false, 0);
 			@include display(flex, column, center, left);
-			background: linear-gradient(to right, rgba(156, 194, 131, 0.9) 20%, rgba(255,217,76,0.2));
+			background: linear-gradient(to right, rgba(156, 194, 131, 1) 30%, rgba(0,0,0,0.3));
 			border-bottom-right-radius: 10px;
 			border-bottom-left-radius: 10px;
 			>h2{
@@ -721,18 +803,42 @@ a{
 .main-login{
     /*Container-mãe do block do login*/
     @include bloco(100%, 100%, 100vh);
-    margin: 0 auto;
- 	@include display(flex, column, center, center);
+    @include display(flex, row, flex-start, center);
+    background: rgba(0,0,0,0.3);
     position: relative;
-	z-index: 1;
-	.title-login{
-		@include texto(58px, $white, 'Roboto Bold', 72px, left);
-	    @include position(absolute, 40px, false, false, 40px);
-	}
-	.subtitle-login{
-		@include texto(21px, $darkgrey, 'Roboto Medium');
-	    @include position(absolute, 190px, false, false, 40px);
-	}
+    z-index: 1;
+    .column-one-lg{
+        @include bloco($width: 50%, $height: auto);
+        @include display(flex, column, center, center);
+        background-color: transparent;
+        figure{
+            @include bloco(100%, 400px, auto);
+            box-sizing: border-box;
+            padding: 0 30px 0 30px;
+            img{
+                @include img-fit(400px, 400px);
+                -webkit-animation: pulse 3s infinite ease-in-out;
+                -o-animation: pulse 3s infinite ease-in-out;
+                -ms-animation: pulse 3s infinite ease-in-out;
+                -moz-animation: pulse 3s infinite ease-in-out;
+                animation: pulse 3s infinite ease-in-out;
+            }
+        }
+
+    }
+    .column-two-lg{
+        @include bloco($width: 50%, $height: 100vh);
+        @include display(flex, column, center, center);
+        background-color: $darkgrey;
+        >form{
+            >h2{
+                @include texto(52px, $olivine, 'Roboto Black', 58px, left);
+            }
+            >span{
+                @include texto(21px, $mediumgrey, 'Roboto Bold', 48px, left);   
+            }
+        }
+    }
 }
 .login-form-separator{
     width: 100%;
@@ -750,27 +856,21 @@ a{
     @include shadow(0.05);
     cursor: pointer;
     transition: 200ms ease-in-out;
-	>span{
-		@include texto($size: 18px, $family: 'Roboto Medium');
-	}
-	&.facebook{
+    >span{
+        @include texto($size: 18px, $family: 'Roboto Medium');
+    }
+    &.facebook{
+        background-color: $facebook;
         >span{
-            color: $facebook;
+            color: $white;
         }
-        &:hover{
-            background: $facebook;
-            >span{color: $white;}
-        }
-	}
+    }
     &.google{
+        background-color: $google;
         >span{
-            color: $google;
+            color: $white;
         }
-        &:hover{
-            background: $google;
-            >span{color: $white;}
-        }
-	}
+    }
 }
 .login-link{
 	@include texto(16px, $black, 'Roboto Medium');
@@ -2288,7 +2388,7 @@ a{
 
 //Meus Pratos
 .edit-btns{
-	@include bloco($width: 62px, $maxwidth: null, $height: 30px);
+	@include bloco($width: auto, $maxwidth: null, $height: 30px);
 	@include display(flex, row, space-between, center);
 	@include position(absolute, 10px, 10px, $bottom: null, $left: null);
 	-webkit-transition: 200ms ease-in-out;
@@ -2430,6 +2530,94 @@ a{
 }
 
 //Dicas Fitness
+.fitness-tips-header{
+    width: 100%;
+    height: auto;
+    margin: 124px auto -124px auto;
+    background-image: linear-gradient(to top, rgba(48,48,48,1), rgba(0,0,0,0)), url('../images/backgrounds/fitsession/dica-fitness-cover.jpg');
+    background-size: cover;
+    .fitness-tips-header-wrapper{
+        width: 100%;
+        max-width: 1920px;
+        height: 100%;
+        padding: 0;   
+    }
+}
+.fitness-tips-header-text{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    >h2{
+        @include texto(32px, $white, 'Roboto Black', 38px, left);
+        padding-top: 30px;
+    }
+    >p{
+        @include texto(18px, $mediumgrey, 'Roboto Regular', 28px, left);
+        width: 85%;
+        max-width: 550px;
+    }
+}
+.fitness-tips-header-slider{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    >div{
+        width: auto;
+        min-width: 300px;
+        max-width: 500px;
+        margin-right: 20px;
+        height: auto;
+        background: $white;
+        border-radius: 10px;
+        transition: 200ms ease-in-out;
+        h2{
+            @include texto(21px, $black, 'Roboto Bold', 28px, left);
+        }
+        p{
+            @include texto(16px, $darkgreymedium, 'Roboto Regular', 23px, left);
+        }
+        span{
+            @include texto(16px, $grey, 'Roboto Medium Italic', 28px, left);
+        }
+        &:hover{
+            transition: 200ms ease-in-out;
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+    }
+}
+@media screen and (max-device-width: 1000px) {
+    .fitness-tips-header-slider{
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        border: 30px solid transparent;
+        >div{
+            width: 100%;
+            max-width: 100%;
+            margin-right: 0px;
+        }
+    }
+}
+@media screen and (max-width: 1000px) {
+    .fitness-tips-header-slider{
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        border: 30px solid transparent;
+        >div{
+            width: 100%;
+            max-width: 100%;
+            margin-right: 0px;
+        }
+    }
+}
+
 .fitness-tips-block{
     @include bloco(100%, 1200px, auto);
     box-sizing: border-box;

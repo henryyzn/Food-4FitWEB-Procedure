@@ -46,10 +46,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Logue-se - Food 4Fit</title>
 	<link rel="icon" type="image/png" href="assets/images/icons/favicon.png"/>
-	<link rel="stylesheet" href="assets/css/style-light.css">
-    <link rel="stylesheet" href="assets/css/bases-light.css">
-    <link rel="stylesheet" href="assets/css/navbar-light.css">
-    <link rel="stylesheet" href="assets/css/footer-light.css">
+	<link rel="stylesheet" id="themeStyle" href="assets/css/style-light.css">
+    <link rel="stylesheet" id="themeBases" href="assets/css/bases-light.css">
+    <link rel="stylesheet" id="themeNavbar" href="assets/css/navbar-light.css">
+    <link rel="stylesheet" id="themeFooter" href="assets/css/footer-light.css">
     <link rel="stylesheet" href="assets/css/colors.css">
     <link rel="stylesheet" href="assets/css/font-style.css">
     <link rel="stylesheet" href="assets/css/align.css">
@@ -58,17 +58,28 @@
     <link rel="stylesheet" href="assets/css/mobile.css">
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#navbar-flat').css('display', 'none');
+        });
+    </script>
 </head>
 <body class="login-bg">
+    <?php require_once('components/navbar.php')?>
     <section class="main-login">
-        <h2 class="title-login">FOOD<br>4FIT</h2>
-        <h3 class="subtitle-login">COMIDA FITNESS</h3>
-        <div class="form-generic width-400px margin-left-auto margin-right-auto">
-            <form class="form-generic-content" method="GET" name="frmlogin" action="login.php">
-                <label for="login" class="label-generic margin-top-30px" style="color: #fff;">Login:</label>
-                <input type="email" name="login" id="login" class="input-generic" style="color: #fff;">
-                <label for="senha" class="label-generic" style="color: #fff;">Senha:</label>
-                <input type="password" name="senha" id="senha" class="input-generic" style="color: #fff;">
+        <article class="column-one-lg">
+            <figure onclick="javascript:location.href='index.php'">
+                <img src="assets/images/logo/logo-4fit.svg" alt="Logo da Food 4Fit">
+            </figure>
+        </article>
+        <div class="column-two-lg border-30px">
+            <form class="form-generic-content width-600px" method="GET" name="frmlogin" action="login.php">
+                <h2>FOOD<br />4FIT</h2>
+                <span>COMIDA FITNESS</span>
+                <label for="login" class="label-generic margin-top-30px">Login:</label>
+                <input type="email" name="login" id="login" class="input-generic">
+                <label for="senha" class="label-generic">Senha:</label>
+                <input type="password" name="senha" id="senha" class="input-generic">
                 <div class="margin-top-30px margin-bottom-30px form-row">
                     <span class="margin-right-15px">Esqueci minha senha</span>
                     <button type="submit" name="btn-login" value="Login" class="btn-generic">

@@ -24,7 +24,7 @@ $(document).ready(function () {
         $("#painel-lateral").slideToggle("fast");
     });
 
-    $("#open-form").click(function () {
+    $("#open-prato-form").click(function () {
         $("#add-prato-form").slideToggle("fast");
     });
 

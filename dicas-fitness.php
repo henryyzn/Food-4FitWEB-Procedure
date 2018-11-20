@@ -41,12 +41,45 @@
     <link rel="stylesheet" href="assets/css/mobile.css">
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
+    <script>
+        $(document).ready(function(){
+            var txt = $('.restrict').text();
+            if(txt.length > 80)
+                $('.restrict').text(txt.substring(0,150) + '... Ler mais');
+        });
+    </script>
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
+    <header class="fitness-tips-header">
+        <div class="fitness-tips-header-wrapper">
+            <article class="fitness-tips-header-text">
+                <h2 class="padding-left-30px">DICAS FITNESS</h2>
+                <p class="padding-left-30px">Acompanhe dicas sobre saúde e bem estar que nossos colaboradores desenvolvem especialmente para os nossos clientes.</p>
+            </article>
+            <div class="fitness-tips-header-slider margin-bottom-30px">
+                <?php
+                    require_once("cms/models/DAO/dicas-fitnessDAO.php");
+
+                    $dicasFitnessDAO = new dicasFitnessDAO();
+
+                    $lista = $dicasFitnessDAO->selectAllActiveRand();
+
+                    for($i = 0; $i < 3; $i++){
+                ?>
+                <div class="border-30px margin-top-30px" onclick="javascript:location.href='publicacao-dicas-fitness.php?publication&id=<?php echo($lista[$i]->id)?>'">
+                    <h2 class="restrict-title padding-bottom-15px"><?php echo($lista[$i]->titulo)?></h2>
+                    <p class="restrict padding-bottom-20px"><?php echo($lista[$i]->texto)?></p>
+                    <span><strong>Autor:</strong> <?php echo($lista[$i]->autor)?></span>
+                    <span><strong>Data da postagem:</strong> <?php echo($lista[$i]->data)?></span>
+                </div>
+                <?php
+                    }
+                ?>
+            </div>
+        </div>
+    </header>
 	<section class="main"><!-- CONTAINER-MÃE DO SITE -->
-        <h2 id="page-title">DICAS FITNESS</h2>
-        <p id="page-subtitle">Acompanhe dicas sobre saúde e bem estar que nossos colaboradores desenvolvem especialmente para os nossos clientes!</p>
         <div class="fitness-tips-block">
             <?php
                 require_once("cms/models/DAO/dicas-fitnessDAO.php");

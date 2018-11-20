@@ -83,7 +83,7 @@
         <div id="product-view-block">
             <figure id="product-view-image-container">
                 <img src="<?php echo($lista[$i]->foto)?>" alt="Nome do Prato" id="product-view-image">
-                <div id="product-view-image-carrousel">
+                <!-- <div id="product-view-image-carrousel" class="hide">
                     <div class="next-image" style="border-bottom-left-radius: 10px;">
                         <img src="assets/images/dishs/img1.jpg" alt="Mais Imagens">
                     </div>
@@ -96,7 +96,7 @@
                     <div class="next-image" style="border-bottom-right-radius: 10px;">
                         <img src="assets/images/dishs/img1.jpg" alt="Mais Imagens">
                     </div>
-                </div>
+                </div> -->
             </figure>
             <article id="product-view-info-container">
                 <form action="prato.php" method="GET" name="frmcompra">
