@@ -106,8 +106,6 @@
         .image-view{
             max-width: 300px; height: auto; display: block;
         }
-
-
         .elementPhoto{
             max-width: 200px;
         }

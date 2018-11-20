@@ -25,7 +25,14 @@
 
         if(@count($listUsuario)>0){
             $_SESSION['id_usuario'] = $listUsuario->id;
+            $_SESSION['tipo_pessoa_usuario'] = $listUsuario->tipo_pessoa;
+            $_SESSION['primeiroNome_usuario'] = $listUsuario->nome;
+            $_SESSION['sobrenome_usuario'] = $listUsuario->sobrenome;
             $_SESSION['nome_usuario'] = $listUsuario->nome_completo;
+            $_SESSION['nome_fantasia_usuario'] = $listUsuario->nome_fantasia;
+            $_SESSION['razao_social_usuario'] = $listUsuario->razao_social;
+            $_SESSION['tipo_pessoa_usuario'] = $listUsuario->tipo_pessoa;
+            $_SESSION['tipo_pessoa_usuario'] = $listUsuario->tipo_pessoa;
             $_SESSION['email_usuario'] = $listUsuario->email;
             $_SESSION['dtNasc_usuario'] = $listUsuario->data_nascimento;
             $_SESSION['cpf_usuario'] = $listUsuario->cpf;
@@ -34,6 +41,9 @@
             $_SESSION['telefone_usuario'] = $listUsuario->telefone;
             $_SESSION['celular_usuario'] = $listUsuario->celular;
             $_SESSION['avatar_usuario'] = $listUsuario->avatar;
+            $_SESSION['pergunta_secreta_usuario'] = $listUsuario->pergunta_secreta;
+            $_SESSION['resposta_secreta_usuario'] = $listUsuario->resp_secreta;
+            $_SESSION['id_pergunta_secreta_usuario'] = $listUsuario->id_pergunta_secreta;
             header('location:meu-perfil.php');
         }
     }

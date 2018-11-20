@@ -77,5 +77,75 @@ class usuarioDAO {
 
         }
     }
+
+    public function update($classUsuario){
+        $sql = "UPDATE tbl_usuario SET
+        nome = '".$classUsuario->nome."',
+        sobrenome = '".$classUsuario->sobrenome."',
+        email = '".$classUsuario->email."',
+        data_nascimento = '".$classUsuario->data_nascimento."',
+        genero = '".$classUsuario->genero."',
+        telefone = '".$classUsuario->telefone."',
+        celular = '".$classUsuario->celular."',
+        avatar = '".$classUsuario->avatar."',
+        resp_secreta = '".$classUsuario->resposta_secreta."',
+        id_pergunta_secreta = '".$classUsuario->pergunta_secreta."'
+        where id = ".$classUsuario->id;
+        echo $sql;
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql)){
+            $sql2 = "SELECT * FROM tbl_usuario WHERE id = ".$classUsuario->id;
+            $select = $PDO_conex->query($sql2);
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+                unset($_SESSION['nome_usuario']);
+                unset($_SESSION['sobrenome_usuario']);
+                unset($_SESSION['email_usuario']);
+                unset($_SESSION['dtNasc_usuario']);
+                unset($_SESSION['genero_usuario']);
+                unset($_SESSION['telefone_usuario']);
+                unset($_SESSION['celular_usuario']);
+                unset($_SESSION['avatar_usuario']);
+                unset($_SESSION['resposta_secreta_usuario']);
+                unset($_SESSION['id_pergunta_secreta_usuario']);
+                
+                $_SESSION['nome_usuario'] = $rs['nome'];
+                $_SESSION['sobrenome_usuario'] = $rs['sobrenome'];
+                $_SESSION['email_usuario'] = $rs['email'];
+                $_SESSION['dtNasc_usuario'] = date('d/m/Y', strtotime($rs['data_nascimento']));
+                $_SESSION['genero_usuario'] = $rs['genero'];
+                $_SESSION['telefone_usuario'] = $rs['telefone'];
+                $_SESSION['celular_usuario'] = $rs['celular'];
+                $_SESSION['avatar_usuario'] = $rs['avatar'];
+                $_SESSION['resposta_secreta_usuario'] = $rs['resp_secreta'];
+                $_SESSION['id_pergunta_secreta_usuario'] = $rs['id_pergunta_secreta'];
+                header('location:meu-perfil.php');
+            }
+        }else{
+            echo('<script>alert("Deu errado!")</script>');
+        }
+        
+        $conex->desconectar();
+    }
+
+    public function deleteImage($id){
+        $sql = "UPDATE tbl_usuario SET avatar = 'assets/archives/avatares/padrao.png' WHERE id = ".$id;
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql))
+            $sql2 = "SELECT avatar FROM tbl_usuario WHERE id = ".$id;
+            $select = $PDO_conex->query($sql2);
+            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
+                $listUsuario = new Usuario();
+                unset($_SESSION['avatar_usuario']);
+                $_SESSION['avatar_usuario'] = $rs['avatar'];
+                header('location:meu-perfil.php');
+            }
+        else
+            echo('<script>alert("Erro ao remover avatar do sistema. Tente novamente ou contate o técnico.");</script>');
+    }
 }
 ?>

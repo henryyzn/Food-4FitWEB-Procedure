@@ -55,7 +55,7 @@
 					<li>CPF/CNPJ: <span><?php echo $_SESSION['cpf_usuario'] ?></span></li>
 					<li>RG: <span><?php echo $_SESSION['rg_usuario'] ?></span></li>
 					<li>Sexo: <span><?php
-                                        if($_SESSION['genero_usuario'] == 'H')
+                                        if($_SESSION['genero_usuario'] == 'M')
                                             echo "Homem";
                                         else
                                             echo "Mulher";

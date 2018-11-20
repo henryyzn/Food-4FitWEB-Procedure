@@ -40,6 +40,29 @@ $(document).ready(function () {
         $('.publication-comments').slideToggle(50);
     });
 
+    $('.data').mask('00/00/0000');
+    $('.cep').mask('00000-000');
+    $('.telefone').mask('(00) 0000-0000');
+    $('.celular')
+        .mask('(99) 99999-9999')
+        .focusout(function (event) {
+            let target, phone, element;
+            target = (event.currentTarget) ? 
+                     event.currentTarget : 
+                     event.srcElement;
+            phone = target.value.replace(/\D/g, '');
+            element = $(target);
+            element.unmask();
+            if (phone.length > 10) {
+                element.mask("(99) 99999-9999");
+            } else {
+                element.mask("(99) 9999-99999");
+            }
+        });
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+    $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+    $('.real').mask('000.000.000.000.00', {reverse: true});
+
     $("#form-cadastro-usuario").submit(function (event) {
         event.preventDefault();
         var userData = formToObject($(this).serializeArrayDisabled());
