@@ -5,13 +5,53 @@
             require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
 
         }
+        public function selectPerguntas(){
+            $listPerguntas = null;
+            $sql = "select * from tbl_pergunta_secreta;";
 
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
+
+            $count=0;
+            while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+                $listPerguntas[] = new Usuario();
+                $listPerguntas[$count]->id = $rs['id'];
+                $listPerguntas[$count]->pergunta = $rs['pergunta'];
+                $count+=1;
+            }
+
+            return $listPerguntas;
+        }
         public function checkLogin($login, $senha){
 
             $passwd = md5($senha);
 
-            $sql="SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, data_nascimento, cpf, rg, genero, telefone, celular, avatar FROM tbl_usuario WHERE email = '".$login."' AND senha = '".$senha."';";
-
+            $sql = "SELECT
+            u.id AS id,
+            u.nome AS nome,
+            u.sobrenome AS sobrenome,
+            CONCAT(u.nome, ' ', u.sobrenome) AS nome_completo,
+            u.tipo_pessoa AS tipo_pessoa,
+            u.nome_fantasia AS nome_fantasia,
+            u.razao_social AS razao_social,
+            u.email AS email,
+            u.data_nascimento AS data_nascimento,
+            u.cpf AS cpf,
+            u.rg AS rg,
+            u.genero AS genero,
+            u.telefone AS telefone,
+            u.celular AS celular,
+            u.avatar AS avatar,
+            u.resp_secreta AS resp_secreta,
+            ps.id AS id_pergunta_secreta,
+            ps.pergunta AS pergunta_secreta
+            FROM tbl_usuario AS u
+            INNER JOIN tbl_pergunta_secreta AS ps
+            WHERE u.id_pergunta_secreta = ps.id 
+            AND u.email = '".$login."'
+            AND u.senha = '".$passwd."';";
+            //echo $sql;
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             $select = $PDO_conex->query($sql);
@@ -23,6 +63,9 @@
                 $listUsuario->nome = $rs['nome'];
                 $listUsuario->sobrenome = $rs['sobrenome'];
                 $listUsuario->nome_completo = $rs['nome_completo'];
+                $listUsuario->razao_social = $rs['razao_social'];
+                $listUsuario->tipo_pessoa = $rs['tipo_pessoa'];
+                $listUsuario->nome_fantasia = $rs['nome_fantasia'];
                 $listUsuario->email = $rs['email'];
                 $listUsuario->data_nascimento = date('d/m/Y', strtotime($rs['data_nascimento']));
                 $listUsuario->cpf = $rs['cpf'];
@@ -31,6 +74,9 @@
                 $listUsuario->telefone = $rs['telefone'];
                 $listUsuario->celular = $rs['celular'];
                 $listUsuario->avatar = $rs['avatar'];
+                $listUsuario->resp_secreta = $rs['resp_secreta'];
+                $listUsuario->pergunta_secreta = $rs['pergunta_secreta'];
+                $listUsuario->id_pergunta_secreta = $rs['id_pergunta_secreta'];
 
                 $conex = new mysql_db();
                 $PDO_conex = $conex->conectar();
