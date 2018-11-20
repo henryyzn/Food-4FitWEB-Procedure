@@ -43,14 +43,14 @@
 
             $listIngrediente = new categoriaIngrediente();
             $listIngrediente->id = $rs['id'];
-            $listIngrediente->idCatIngredienteP = $rs['id_categoria_ingrediente_parent'];
+//            $listIngrediente->idCatIngredienteP = $rs['id_categoria_ingrediente_parent'];
             $listIngrediente->titulo = $rs['titulo'];
             $listIngrediente->ativo = $rs['ativo'];
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                echo('select no Banco');
+                echo($sql);
             else
                 echo('Erro');
 
@@ -117,13 +117,13 @@
 
     public function update($classCatIngrediente){
         $sql = "UPDATE tbl_categoria_ingrediente SET
-        id_categoria_ingrediente_parent = ".$classCatIngrediente->idCatIngredienteP.",
-        titulo = '".$idCatIngredienteP->titulo."',
-        foto = 'assets/imagens/categorias".$idCatIngredienteP->foto."',
-        ativo = ".$classCatIngrediente->ativo.",
+
+        titulo = '".$classCatIngrediente->titulo."',
+        foto = 'assets/imagens/categorias".$classCatIngrediente->foto."',
+        ativo = ".$classCatIngrediente->ativo."
         where id=".$classCatIngrediente->id;
 
-        //            echo($sql);
+        echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -137,8 +137,33 @@
 
         }
 
+    public function active($id){
+        $sql = "UPDATE tbl_categoria_ingrediente SET ativo = '1' WHERE id = ".$id;
 
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql)){
+            header('location:categorias-ingredientes.php');
+        }else{
+            echo('<script>alert("Erro ao ativar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+        }
     }
+
+    public function desactive($id){
+        $sql = "UPDATE tbl_categoria_ingrediente SET ativo = '0' WHERE id = ".$id;
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        if($PDO_conex->query($sql)){
+            header('location:categorias-ingredientes.php');
+        }else{
+            echo('<script>alert("Erro ao desativar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+        }
+    }
+
+}
 
 
 
