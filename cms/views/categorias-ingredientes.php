@@ -7,6 +7,9 @@
     $ativo = null;
     $botao = "Salvar";
 
+    require_once('../models/categorias-ingredientesClass.php');
+    require_once('../models/DAO/categorias-ingredientesDAO.php');
+
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
 
@@ -20,8 +23,7 @@
             $catIngredienteDAO->delete($id);
 
         }else if($modo == 'editar'){
-            require_once('../models/categorias-ingredientesClass.php');
-            require_once('../models/DAO/categorias-ingredientesDAO.php');
+
 
             $catIngredienteDAO  = new catIngredienteDAO();
             $id = $_GET['id'];
@@ -147,6 +149,11 @@
                             $lista = $catIngredienteDAO->selectAll();
 
                             for($i = 0; $i < @count($lista); $i++){
+                                $ativo = $lista[$i]->ativo;
+                            if($ativo == 1)
+                                $ativo = 'desativar';
+                            else
+                                $ativo = 'ativar';
                         ?>
 
                         <tr>
