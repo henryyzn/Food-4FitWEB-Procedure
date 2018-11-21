@@ -2114,52 +2114,7 @@ a{
     flex-direction: column;
     align-items: flex-start;
 }
-.health-tricks-card{
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    background-color: $mediumgrey;
-    position: relative;
-    margin-bottom: 30px;
-    box-shadow: $shadow;
-    overflow: hidden;
-    transition: 200ms ease-in-out;
-    &:hover{
-        cursor: pointer;
-        background: linear-gradient(45deg, $olivine, $gold);
-        >h2{
-            color: $white;
-            &:after{
-                background: $white;
-            }
-        }
-        p, .health-tricks-card-publishedby{
-            color: $lightgrey;
-        }
-    }
-	>h2{
-	    @include texto(21px, $black, 'Roboto Bold', 32px, center);
-        &:after{
-            content: "";
-            display: block;
-            margin: 0 auto;
-            background: $black;
-            width: 80px;
-            height: 3px;
-            border-radius: 20px;
-            margin-top: 15px;
-        }
-	}
-	>p{
-	    @include texto(16px, $grey, 'Roboto Regular', 26px, center);
-        width: 80%;
-        max-width: 500px;
-        margin: 0 auto;
-	}
-	.health-tricks-card-publishedby{
-	    @include texto(16px, $grey, 'Roboto Medium Italic', 26px, center);
-	}
-}
+
 
 //Sobre
 /* SESSÃO SOBRE NÓS */

@@ -2116,7 +2116,9 @@ a{
 //Saude
 .health-tricks-block{
     width: 100%;
+    max-width: 800px;
     height: auto;
+    margin: 0 auto;
     box-sizing: border-box;
     border: 30px solid transparent;
     display: flex;
@@ -2126,42 +2128,33 @@ a{
 .health-tricks-card{
     width: 100%;
     height: auto;
-    border-radius: 10px;
-    background-color: $darkgrey;
-    position: relative;
-    margin-bottom: 30px;
-    box-shadow: $shadow;
+    box-sizing: border-box;
+    border: 20px solid transparent;
+    border-radius: 5px;
+    background: $darkgrey;
     overflow: hidden;
-    transition: 200ms ease-in-out;
-    &:hover{
-        cursor: pointer;
-        background: linear-gradient(45deg, $olivine, $gold);
-        .health-tricks-card-publishedby{
-            color: $lightgrey;
+    box-shadow: $shadow;
+    >figure{
+        width: 100%;
+        max-width: 170px;
+        background: $aspargus;
+        padding: 0;
+    }
+    >div{
+        width: 100%;
+        height: auto;
+        >h2{
+            @include texto(21px, $white, 'Roboto Bold', 28px, left);
+        }
+        >p{
+            @include texto(16px, $lightgrey, 'Roboto Medium Italic', 28px, left);
+            width: 85%;
+            text-overflow: ellipsis;
+        }
+        >span{
+            @include texto(16px, $grey, 'Roboto Medium Italic', 21px, left);
         }
     }
-	>h2{
-        @include texto(21px, $white, 'Roboto Bold', 32px, center);
-        &:after{
-            content: "";
-            display: block;
-            margin: 0 auto;
-            background: $white;
-            width: 80px;
-            height: 3px;
-            border-radius: 20px;
-            margin-top: 15px;
-        }
-	}
-	>p{
-        @include texto(16px, $mediumgrey, 'Roboto Regular', 26px, center);
-	    width: 80%;
-	    max-width: 500px;
-	    margin: 0 auto;
-	}
-	.health-tricks-card-publishedby{
-        @include texto(16px, $grey, 'Roboto Medium Italic', 26px, center);
-	}
 }
 
 //Sobre
