@@ -18,7 +18,20 @@
 
         $pedidoDAO = new pedidoDAO();
         if($_GET['btn-comprar'] == "Comprar"){
+
             $pedidoDAO->insertOrdem($classPedido);
+
+        }elseif($_GET['btn-comprar'] == "Atualizar"){ 
+            foreach($_GET['quantidade'] as $id => $qtd){
+                $id  = intval($id);
+                $qtd = intval($qtd);
+
+                if(!empty($qtd) || $qtd <> 0){
+                     $_SESSION['carrinho'][$id]['quantidade'] = $qtd;
+                }else{
+                    unset($_SESSION['carrinho'][$id]);
+                }
+            }
         }
     }elseif(isset($_POST['btn-cupom'])){
         require_once('cms/models/descontoClass.php');
@@ -35,6 +48,18 @@
                 echo('<script>alert("Este cupom não existe ou não é mais válido.");</script>');
             }
         }
+    }elseif(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+        $id = $_GET['id'];
+        if($modo == 'excluir'){
+            unset($_SESSION['carrinho'][$id]);
+            header('location:carrinho.php');
+        }
+    }elseif(isset($_GET['clean'])){
+        unset($_SESSION['carrinho']);
+        unset($_SESSION['itens-carrinho']);
+        unset($_SESSION['last_id']);
+        header('location:carrinho.php');
     }
 ?>
 <!DOCTYPE html>
@@ -59,22 +84,6 @@
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 	<script src="assets/js/card.js"></script>
-	<style>
-        .btn-counter{
-            background-color: #9CC283;
-            color: white;
-            border-radius: 3px;
-            padding: 5px;
-            cursor: pointer;
-        }
-        .counter{
-            background-color: white;
-            color: black;
-            border-radius: 3px;
-            padding: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
@@ -110,9 +119,11 @@
                             $titulo = $value['titulo'];
                             $preco = $value['preco'];
                             $foto_prato = $value['foto_prato'];
-                            //$quantidade = $value['quantidade'];
+                            $quantidade = $value['quantidade'];
+                            $subtotal = $value['subtotal'];
                     ?>
                     <input type="hidden" name="id_prato[]" id="id_prato" value="<?php echo($id_prato)?>">
+                    <input type="hidden" name="preco[<?php echo($id_prato);?>]" id="preco" value="<?php echo($preco)?>">
                     <div class="shopping-cart-row" data-quantidade>
                         <div class="shopping-cart-column">
                             <figure class="shopping-cart-image-container">
@@ -120,9 +131,7 @@
                             </figure>
                         </div>
                         <div class="shopping-cart-column align-flex-start">
-                            <div class="switch_box margin-bottom-15px">
-                                <input type="checkbox" name="check" id="check" value="1" class="switch-styled">
-                            </div>
+                            <h4 onclick="javascript:location.href='carrinho.php?modo=excluir&id=<?php echo($id_prato)?>'">Remover<h4>
                             <h2 class="padding-bottom-5px"><?php echo($titulo)?></h2>
                             <h3 class="padding-bottom-15px">Categoria: Nome da Categoria</h3>
                         </div>
@@ -134,14 +143,14 @@
                                 <div class="input-group-button">
                                     <span class="input-number-decrement" data-f4f-number-decrement>-</span>
                                 </div>
-                                <input class="input-number" type="number" name="quantidade[]" value="1" min="1" max="1000">
+                                <input class="input-number" type="number" name="quantidade[<?php echo($id_prato);?>]" value="<?php echo($quantidade)?>" min="1" max="100">
                                 <div class="input-group-button">
                                     <span class="input-number-increment" data-f4f-number-increment>+</span>
                                 </div>
                             </div>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price-total">R$ 000,00</span>
+                            <span id="shopping-cart-price-total">R$ <?php echo($subtotal)?></span>
                         </div>
                     </div>
                     <div class="shopping-cart-separator"></div>
@@ -150,15 +159,14 @@
                     ?>
                 </section>
                 <div id="shopping-cart-select-block">
-                    <div class="switch_box margin-left-30px">
-                        <input type="checkbox" name="chkall" id="chkall" class="switch-styled">
-                    </div>
-                    <label for="chkall" class="padding-left-15px">Selecionar Todos</label>
-                    <div class="btn-generic-disabled margin-left-30px" ><span>Excluir</span></div>
+                    <span onclick="javascript:location.href='carrinho.php?clean'">Excluir Tudo</span>
+                    <button onclick="carrinho('atualizar')" name="btn-comprar" value="Atualizar" class="btn-generic margin-left-30px">
+                        <span>Atualizar</span>
+                    </button>
                 </div>
                 <div id="shopping-cart-confirm-column-two">
                     <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ 000,00</span></h2>
-                    <button name="btn-comprar" value="Comprar" type="submit" class="btn-generic margin-right-30px">
+                    <button onclick="carrinho('comprar')" name="btn-comprar" value="Comprar" class="btn-generic margin-right-30px">
                         <span>Comprar</span>
                     </button>
                 </div>
@@ -195,6 +203,18 @@
                 input.val(number);
             });
         });
+
+        function carrinho(pcaminho){
+
+        if(pcaminho=1)
+            document.forms[0].action = "carrinho.php?btn-comprar=Atualizar";
+            document.forms[0].submit();
+        if(pcaminho=2)
+            document.forms[0].action = "carrinho.php?btn-comprar=Comprar";
+
+            document.forms[0].submit();
+
+        }
     </script>
 </body>
 </html>

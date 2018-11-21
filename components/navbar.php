@@ -246,7 +246,6 @@ input:checked + .toggle .star--6 {
 		<li><a href="meus-pratos.php">Meus Pratos</a></li>
 		<li><a href="pratos-reservados.php">Pratos Reservados</a></li>
 		<li><a href="app.php">Aplicativo</a></li>
-		<li><a href="configuracoes.php">Configurações</a></li>
 		<li><a href="termos-uso.php">Termos de Uso</a></li>
 		<li><a href="politicas-privacidade.php">Políticas de Privacidade</a></li>
 		<li><a href="modulo.php?logout">Logout</a></li>

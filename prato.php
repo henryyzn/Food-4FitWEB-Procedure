@@ -14,7 +14,7 @@
     }
     if(isset($_GET['acao'])){
         if($_GET['acao'] == 'add'){
-            $_SESSION['itens-carrinho'] = array("id_prato"=>$_GET['id_prato'], "titulo"=>$_GET['titulo'], "preco"=>$_GET['preco'], "id_categoria_prato"=>$_GET['id_categoria_prato'], "foto_prato"=>$_GET['foto_prato'], "quantidade"=>$_GET['quantidade']);
+            $_SESSION['itens-carrinho'] = array("id_prato"=>$_GET['id_prato'], "titulo"=>$_GET['titulo'], "preco"=>$_GET['preco'], "subtotal"=>$_GET['preco'], "id_categoria_prato"=>$_GET['id_categoria_prato'], "foto_prato"=>$_GET['foto_prato'], "quantidade"=>$_GET['quantidade']);
             $id = $_GET['id_prato'];
             //Verifica se a variavel de sessão id do carrinho não existe
             if(!isset($_SESSION['carrinho'][$id])){
@@ -23,12 +23,6 @@
                 header("location:carrinho.php");
             }else{
                 header("location:carrinho.php");
-            }
-        }elseif($_GET['acao'] == 'del'){
-            $id = intval($_GET['id']);
-            if(isset($_SESSION['carrinho'][$id])){
-                //unset($_SESSION['carrinho'][$id]);
-                echo($id);
             }
         }
     }

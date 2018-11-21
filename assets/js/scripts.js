@@ -146,6 +146,9 @@ function fechar(){
     $('.generic-modal').css('display', 'none');
 }
 
+//Essa função chama uma modal que permite a passagem de um ID
+//O ID é sempre o identificador do item
+//O Path é o nome do arquivo da modal depois do primeiro traço
 function modalDouble(id, path){
     var modal = $('.close-modal');
     $('.generic-modal').css('display', 'flex');
@@ -160,6 +163,8 @@ function modalDouble(id, path){
             alert("Erro ao abrir.");
         });
 }
+//Essa função chama uma modal apenas pra visualização
+//O Path é o nome do arquivo da modal depois do primeiro traço
 function modal(path){
     var modal = $('.close-modal');
     $('.generic-modal').css('display', 'flex');
