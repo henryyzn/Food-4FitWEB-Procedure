@@ -2,7 +2,8 @@
     class catIngredienteDAO{
         public function __construct(){
             require_once('database.php');
-            require_once('../models/categorias-ingredientesClass.php');
+//            require_once('../../models/categorias-ingredientesDAO.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categorias-ingredientesClass.php');
         }
 
 
@@ -16,11 +17,11 @@
                 ) values (
 
                  '".$classCatIngrediente->titulo."',
-                'assets/imagens/categorias/".$classCatIngrediente->foto."',
+                'assets/images/categorias/".$classCatIngrediente->foto."',
                 '".$classCatIngrediente->ativo."'
                 )";
 
-            echo($sql);
+//            echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -45,14 +46,15 @@
             $listIngrediente->id = $rs['id'];
 //            $listIngrediente->idCatIngredienteP = $rs['id_categoria_ingrediente_parent'];
             $listIngrediente->titulo = $rs['titulo'];
+            $listIngrediente->foto = $rs['foto'];
             $listIngrediente->ativo = $rs['ativo'];
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql))
-                echo($sql);
-            else
-                echo('Erro');
+//            if($PDO_conex->query($sql))
+//                echo($sql);
+//            else
+//                echo('Erro');
 
             $conex->desconectar();
 
@@ -96,8 +98,9 @@
         {
             $listCatI[] = new categoriaIngrediente();
             $listCatI[$cont]->id = $rs['id'];
-            $listCatI[$cont]->idCatIngrediente = $rs['id_categoria_ingrediente_parent'];
+//            $listCatI[$cont]->idCatIngrediente = $rs['id_categoria_ingrediente_parent'];
             $listCatI[$cont]->titulo = $rs['titulo'];
+            $listCatI[$cont]->foto = $rs['foto'];
             $listCatI[$cont]->ativo = $rs['ativo'];
 
             $cont+=1;
@@ -119,7 +122,7 @@
         $sql = "UPDATE tbl_categoria_ingrediente SET
 
         titulo = '".$classCatIngrediente->titulo."',
-        foto = 'assets/imagens/categorias".$classCatIngrediente->foto."',
+        foto = 'assets/imagens/categorias/".$classCatIngrediente->foto."',
         ativo = ".$classCatIngrediente->ativo."
         where id=".$classCatIngrediente->id;
 

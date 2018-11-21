@@ -17,7 +17,7 @@
                     //class='elementPhoto' pois esta pegando a class do HTML na página
                     //para estilizar/fixar o tamanho da foto
 					echo("<img src='".$caminho_imagem."' class='elementPhoto'>");
-					echo("<script>frmcategoria.foto.value='$nomearquivo';</script>");
+					echo("<script>frmcategoriaingrediente.foto.value='$nomearquivo';</script>");
 				}
 			}else{
 				$erro="o arquivo selecionado é excede o limite máximo de 5MB";

@@ -54,11 +54,11 @@
         require_once('../models/categorias-ingredientesClass.php');
         require_once('../models/DAO/categorias-ingredientesDAO.php');
 
-        $classCatIngrediente  = new categoriaIngrediente();
+        $classCatIngrediente = new categoriaIngrediente();
 //        $classCatIngrediente->idCatIngredienteP = $_GET['tituloFilha'];
-        $classCatIngrediente-> titulo = $_GET['titulo'];
-        $classCatIngrediente-> foto = $_GET['foto'];
-        $classCatIngrediente-> ativo = $_GET['ativo'];
+        $classCatIngrediente->titulo = $_GET['titulo'];
+        $classCatIngrediente->foto = $_GET['foto'];
+        $classCatIngrediente->ativo = $_GET['ativo'];
 
         $catIngredienteDAO = new catIngredienteDAO();
         if($_GET['btn-salvar'] == "Salvar"){
@@ -88,6 +88,7 @@
     <link rel="stylesheet" href="../../assets/css/align.css">
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
 
      <script>
@@ -150,9 +151,9 @@
 
                         <tr>
                             <td><?php echo($lista[$i]->titulo)?></td>
-                            <td><span class="table-result"></span><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
+                            <td><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
                             <td><span class="table-result"><img src="../../assets/images/cms/symbols/<?php echo($ativo)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=<?php echo($ativo)?>&id=<?php echo($lista[$i]->id)?>'"></span></td>
-                            <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'categorias-ingredientes')"></td>
+                            <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'categoria-ingrediente')"></td>
                             <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
                             <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                         </tr>
@@ -164,17 +165,18 @@
                     </table>
                     <div class="categoria-form-right">
                         <div class="form-generic border-30px">
-                            <form action="upload/upload-categoria-ingrediente.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
+                            <form action="upload/upload-categoria.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
                                 <label class="label-generic">Imagem:</label>
                                 <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
-                                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                                  <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
                                 </div>
                                 <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
                                 <input type="file" name="fileimage" id="foto" style="display: none;">
                             </form>
                             <form id="form-categoria-ingrediente" class="form-generic-content margin-top-30px" name="frmcategoriaingrediente" method="GET" action="categorias-ingredientes.php">
-                                <input name="foto" type="hidden" value="">
+                                <input name="foto" type="hidden" value="<?php echo($foto)?>">
 
+                                <input name="id" type="hidden" value="<?php echo($id)?>">
                                 <label for="titulo" class="label-generic">Título Categoria</label>
                                 <input type="text" value="<?= @$titulo ?>" id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
@@ -200,6 +202,12 @@
             </div>
          </div>
     </section>
+    <div class="generic-modal animate fadeIn" id="abrir">
+        <article class="generic-modal-wrapper">
+
+        </article>
+    </div>
     <script src="../../assets/js/theme.js"></script>
 </body>
 </html>
+
