@@ -1,7 +1,54 @@
 <?php
     session_start();
 
+    $id = null;
+    $titulo = null;
+    $foto = null;
+    $ativo = null;
     $botao = "Salvar";
+
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+
+        if($modo == 'excluir'){
+
+        require_once('../models/categorias-ingredientesClass.php');
+        require_once('../models/DAO/categorias-ingredientesDAO.php');
+
+            $catIngredienteDAO  = new catIngredienteDAO();
+            $id = $_GET['id'];
+            $catIngredienteDAO->delete($id);
+
+        }else if($modo == 'editar'){
+            require_once('../models/categorias-ingredientesClass.php');
+            require_once('../models/DAO/categorias-ingredientesDAO.php');
+
+            $catIngredienteDAO  = new catIngredienteDAO();
+            $id = $_GET['id'];
+            $_SESSION['id'] = $id;
+
+            $listIngrediente = $catIngredienteDAO->selectId($id);
+
+            if(count($listIngrediente)>0)
+            {
+                $id = $listIngrediente->id;
+                $titulo = $listIngrediente->titulo;
+                $foto = $listIngrediente->foto;
+                $ativo = $listIngrediente->ativo;
+
+                $botao = "Editar";
+            }
+        }else if($modo == 'ativar'){
+            $catIngredienteDAO  = new catIngredienteDAO();
+            $id = $_GET['id'];
+            $catIngredienteDAO->active($id);
+        }else if($modo == 'desativar'){
+            $catIngredienteDAO  = new catIngredienteDAO();
+            $id = $_GET['id'];
+            $catIngredienteDAO->desactive($id);
+        }
+
+    }
 
     if(isset($_GET['btn-salvar'])){
         require_once('../models/categorias-ingredientesClass.php');
@@ -17,8 +64,9 @@
         if($_GET['btn-salvar'] == "Salvar"){
             $catIngredienteDAO->insert($classCatIngrediente);
         }else{
-//            $classCatIngrediente->id = $_GET['id'];
-//            $catIngredienteDAO->update($classCatIngrediente);
+            $classCatIngrediente->id = $_SESSION['id'];
+
+            $catIngredienteDAO->update($classCatIngrediente);
         }
     }
 
@@ -89,14 +137,30 @@
                             <td><span>Ativo</span></td>
                             <td colspan="3"><span>Opções</span></td>
                         </tr>
+
+                        <?php
+                           require_once('../models/DAO/categorias-ingredientesDAO.php');
+
+                            $catIngredienteDAO = new catIngredienteDAO();
+
+                            $lista = $catIngredienteDAO->selectAll();
+
+                            for($i = 0; $i < @count($lista); $i++){
+                        ?>
+
                         <tr>
-                            <td><img class="elementPhoto"></td>
-                            <td><span class="table-result"></span></td>
-                            <td><span class="table-result"></span></td>
-                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
-                            <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=editar&id='"></td>
-                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='sobre.php?modo=excluir&id='"></td>
+                            <td><?php echo($lista[$i]->titulo)?></td>
+                            <td><span class="table-result"></span><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
+                            <td><span class="table-result"><img src="../../assets/images/cms/symbols/<?php echo($ativo)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=<?php echo($ativo)?>&id=<?php echo($lista[$i]->id)?>'"></span></td>
+                            <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'categorias-ingredientes')"></td>
+                            <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                         </tr>
+
+                        <?php
+                            }
+                        ?>
+
                     </table>
                     <div class="categoria-form-right">
                         <div class="form-generic border-30px">
