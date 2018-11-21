@@ -132,6 +132,8 @@
 		            <!-- ===================== -->
 					<span style="display: block; font-size: 18px; font-family: 'Roboto Regular'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
 					<?php
+                        //print_r($_SESSION['genero_usuario']);
+
 						if($_SESSION['genero_usuario'] == 'M'){
 							$checkM = 'checked';
 							$checkF = null;

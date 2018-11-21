@@ -115,7 +115,7 @@
                     <input type="hidden" name="id_prato" value="<?php echo($id_prato)?>" id="id_prato">
                     <input type="hidden" name="id_categoria_prato" id="id_categoria_prato" value="1">
                     <input type="hidden" name="titulo" id="titulo" value="Teste">
-                    <input type="hidden" name="preco" id="preco" value="200.00">
+                    <input type="hidden" name="preco" id="preco" value="<?php echo($lista[$i]->preco)?>">
                     <input type="hidden" name="quantidade" id="quantidade" value="1">
                     <input type="hidden" name="foto_prato" id="foto_prato" value="<?php echo($lista[$i]->foto)?>">
 
