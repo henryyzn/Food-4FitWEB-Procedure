@@ -136,7 +136,7 @@
                         ?>
                         <tr>
                             <td><?php echo($lista[$i]->titulo)?></td>
-                            <td><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
+                            <td><span class="table-result"></span><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
                             <td><input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1"></td>
 <!--                                    <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>-->
                             <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
