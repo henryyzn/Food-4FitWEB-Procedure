@@ -87,11 +87,11 @@ class usuarioDAO {
         genero = '".$classUsuario->genero."',
         telefone = '".$classUsuario->telefone."',
         celular = '".$classUsuario->celular."',
-        avatar = '".$classUsuario->avatar."',
+        avatar = 'assets/archives/avatares/".$classUsuario->avatar."',
         resp_secreta = '".$classUsuario->resposta_secreta."',
         id_pergunta_secreta = '".$classUsuario->pergunta_secreta."'
         where id = ".$classUsuario->id;
-        echo $sql;
+        //echo $sql;
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
 

@@ -2,6 +2,9 @@
     session_start();
     require_once('modulo.php');
     validateLog();
+
+    $total = $_SESSION['itens-carrinho'];
+
     if(isset($_GET['btn-comprar'])){
         require_once('cms/models/pedidoClass.php');
         require_once('cms/models/DAO/pedidoDAO.php');
@@ -28,6 +31,23 @@
 
                 if(!empty($qtd) || $qtd <> 0){
                      $_SESSION['carrinho'][$id]['quantidade'] = $qtd;
+
+                     $qty = $_SESSION['carrinho'][$id]['quantidade'];
+                     $preco = $_SESSION['carrinho'][$id]['preco'];
+
+                     $subtotal = $qty * $preco;
+
+                     $_SESSION['carrinho'][$id]['subtotal'] = $subtotal;
+
+                     $n = $_SESSION['carrinho'][$id]['subtotal'];
+                     //var_dump($n);
+
+                     $a = $_SESSION['carrinho'][$id]['id_prato'];
+                     //var_dump($a);
+
+                     $_SESSION['carrinho']['total'] = $_SESSION['carrinho']['total'] + $n;
+
+                     header('location:carrinho.php');
                 }else{
                     unset($_SESSION['carrinho'][$id]);
                 }
@@ -65,6 +85,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <?php //var_dump($_SESSION['carrinho']);?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -121,9 +142,11 @@
                             $foto_prato = $value['foto_prato'];
                             $quantidade = $value['quantidade'];
                             $subtotal = $value['subtotal'];
+                            $total = $_SESSION['carrinho']['total'];
                     ?>
                     <input type="hidden" name="id_prato[]" id="id_prato" value="<?php echo($id_prato)?>">
                     <input type="hidden" name="preco[<?php echo($id_prato);?>]" id="preco" value="<?php echo($preco)?>">
+                    <input type="hidden" name="subtotal[<?php echo($id_prato);?>]" id="subtotal" value="<?php echo($subtotal)?>">
                     <div class="shopping-cart-row" data-quantidade>
                         <div class="shopping-cart-column">
                             <figure class="shopping-cart-image-container">
@@ -165,7 +188,7 @@
                     </button>
                 </div>
                 <div id="shopping-cart-confirm-column-two">
-                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ 000,00</span></h2>
+                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ <?php echo($total)?></span></h2>
                     <button onclick="carrinho('comprar')" name="btn-comprar" value="Comprar" class="btn-generic margin-right-30px">
                         <span>Comprar</span>
                     </button>
