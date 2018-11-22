@@ -3,6 +3,7 @@
 
     require_once("../models/DAO/dataBase.php");
     require_once("../models/DAO/login.php");
+    require_once("../../caminho-pasta.php");
 
     if(isset($_POST['btn-login'])){
         require_once('../models/DAO/login.php');

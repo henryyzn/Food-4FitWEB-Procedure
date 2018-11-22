@@ -60,6 +60,7 @@
         require_once('cms/models/DAO/enderecoDAO.php');
 
         $classMeuEndereco = new Endereco();
+        $classMeuEndereco->idCidade = $_GET['cidade'];
         $classMeuEndereco->logradouro = $_GET['logradouro'];
         $classMeuEndereco->numero = $_GET['numero'];
         $classMeuEndereco->bairro = $_GET['bairro'];

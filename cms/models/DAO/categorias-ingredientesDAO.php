@@ -1,8 +1,13 @@
 <?php
+    @session_start();
     class catIngredienteDAO{
         public function __construct(){
-            require_once('database.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categorias-ingredientesClass.php');
+            require_once('dataBase.php');
+//            require_once('caminho-pasta.php');
+
+//            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categorias-ingredientesClass.php');
+
+            require_once($_SESSION['path'].'cms/models/categorias-ingredientesClass.php');
         }
 
         public function insert($classCatIngrediente){

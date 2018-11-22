@@ -6,7 +6,9 @@ class cartaoDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cartaoClass.php');
+//        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cartaoClass.php');
+
+        require_once($_SESSION['path'].'../models/cartaoClass.php');
     }
 
     public function insert($classCartao){
