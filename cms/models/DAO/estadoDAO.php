@@ -1,12 +1,12 @@
 <?php
     class estadoDAO{
         public function __construct($requestFront = false){
-            require_once('database.php');
+            require_once('dataBase.php');
 
             if($requestFront==true)
-                require_once('cms/models/lojasClass.php');
-            else
                 require_once('../models/lojasClass.php');
+            else
+                require_once('cms/models/lojasClass.php');
 
             error_reporting(E_ALL);
             ini_set('display_errors',1);

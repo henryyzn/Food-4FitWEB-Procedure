@@ -4,6 +4,8 @@
     require_once("cms/models/DAO/dataBase.php");
     require_once("cms/models/DAO/login-usuarioDAO.php");
 
+    require_once("caminho-pasta.php");
+
     $_SESSION['id_usuario'] = null;
     $_SESSION['nome_usuario'] = null;
     $_SESSION['email_usuario'] = null;

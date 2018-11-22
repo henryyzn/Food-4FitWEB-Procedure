@@ -28,7 +28,7 @@
             '".$classMeuEndereco->complemento."'
             );";
 
-           echo($sql);
+           //echo($sql);
 
            //Instancia a classe
             $conex = new mysql_db();
