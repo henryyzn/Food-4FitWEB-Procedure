@@ -1,5 +1,33 @@
 <?php
     session_start();
+    require_once('modulo.php');
+    validateLog();
+
+    $id = null;
+    $titulo = null;
+    $descricao = null;
+    $imagem = null;
+    $id_usuario = null;
+    $botao = "Salvar";
+
+     if(isset($_GET['btn-salvar'])){
+            //echo("<script>console.log('1');</script>");
+            require_once('cms/models/parceirosClass.php');
+            require_once('cms/models/DAO/parceirosDAO.php');
+
+            $classParceiros = new Parceiros();
+            $classParceiros->titulo = $_GET['titulo'];
+            $classParceiros->descricao = $_GET['descricao'];
+            $classParceiros->imagem = $_GET['txtfoto'];
+            $classParceiros->id_usuario = $_SESSION['id_usuario'];
+
+            $parceirosDAO = new parceirosDAO();
+
+           if($_GET['btn-salvar'] == "Salvar"){
+               $parceirosDAO->insertContato($classParceiros);
+           }
+
+        }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,7 +48,18 @@
     <link rel="stylesheet" href="assets/css/keyframes.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/public/js/jquery.form.js"></script>
 	<script src="assets/js/scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#fotos').on('change', function(){
+                $('#frmfoto').ajaxForm({
+                    target:'#view'
+                }).submit();
+            });
+        });
+    </script>
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
@@ -30,18 +69,25 @@
         <div class="contact-buddy-button width-500px margin-auto" id="abrir">
             <span>ENTRE EM CONTATO</span>
         </div>
-        <div class="form-generic width-500px hide margin-left-auto margin-right-auto margin-top-30px">
-            <form class="form-generic-content" id="form-contato">
+        <div class="form-generic width-500px  margin-left-auto margin-right-auto margin-top-30px">
+            <form class="form-generic-content" name="frmcontatoparceiro" id="form-contato">
+                <input type="hidden" name="txtfoto" value="<?php echo($foto)?>">
+
                 <label for="titulo" class="label-generic">Título:</label>
                 <input type="text" id="titulo" name="titulo" class="input-generic" placeholder="Digite um título..." required>
 
                 <label for="descricao" class="label-generic">Descrição:</label>
                 <textarea id="descricao" name="descricao" class="textarea-generic" required></textarea>
 
-                <label for="link" class="label-generic">Link:</label>
-                <input type="text" id="link" name="link" class="input-generic" placeholder="Digite o link do seu site..." required>
-
-                <input type="submit" class="display-none">
+                <input type="submit" name="btn-salvar" value="<?php echo($botao)?>">
+            </form>
+            <form action="upload/upload-imagem-parceiro.php" method="POST" name="frmfoto" enctype="multipart/form-data" class="form-generic-content" id="frmfoto">
+                <label class="label-generic">Imagem:</label>
+                <div id="view" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                    <img src='assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                </div>
+                <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
+                <input type="file" name="fileimage" id="fotos" style="display: none;">
             </form>
             <div class="btn-generic margin-bottom-30px">
                 <span>Enviar</span>

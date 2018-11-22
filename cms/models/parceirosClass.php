@@ -9,9 +9,8 @@
         public $link1;
         public $ativo;
 
-
-
-
+public function __construct(){}
 
     }
+
 ?>

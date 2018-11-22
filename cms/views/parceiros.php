@@ -70,6 +70,13 @@
                             <td><span class="cms-table-title">LINK</span></td>
                             <td colspan="3"><span class="cms-table-title">OPÇÕES</span></td>
                         </tr>
+                        <?php
+                            require_once("../../cms/models/DAO/parceirosDAO.php");
+
+                            $parceiroDAO = new parceiroDAO();
+
+                            $lista = $parceiroDAO -> select
+                        ?>
 
                         <tr>
                             <td><span class="cms-table-result">Nome do Parceiro</span></td>
