@@ -6,7 +6,8 @@ class diarioBordoDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/diario-bordoClass.php');
+        //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/diario-bordoClass.php');
+        require_once($_SESSION['path'].'cms/models/diario-bordoClass.php');
     }
 
     public function insert($classDiarioBordo){

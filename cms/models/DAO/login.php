@@ -2,7 +2,8 @@
     class loginDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/funcionarioClass.php');
+            //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/funcionarioClass.php');
+            require_once($_SESSION['path'].'cms/models/funcionarioClass.php');
         }
 
         public function checkLogin($matricula, $senha){

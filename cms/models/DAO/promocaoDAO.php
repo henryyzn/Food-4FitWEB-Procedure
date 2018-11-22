@@ -6,7 +6,8 @@ class promocaoDAO {
     //Classe construtora
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/promocaoClass.php');
+        //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/promocaoClass.php');
+        require_once($_SESSION['path'].'cms/models/promocaoClass.php');
     }
 
     //Função de inserção no banco

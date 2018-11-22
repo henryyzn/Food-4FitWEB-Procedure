@@ -6,7 +6,8 @@ class ingredientesDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/ingredientesClass.php');
+        //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/ingredientesClass.php');
+        require_once($_SESSION['path'].'cms/models/ingredientesClass.php');
     }
 
     public function insert($classIngredientes){

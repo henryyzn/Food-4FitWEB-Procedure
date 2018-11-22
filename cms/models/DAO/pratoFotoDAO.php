@@ -2,7 +2,8 @@
     class fotoPratoDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('../models/pratoFotoClass.php');
+            //require_once('C://models/pratoFotoClass.php');
+            require_once($_SESSION['path'].'cms/models/pratoFotoClass.php');
         }
 
         public function insert($classFotoPrato){

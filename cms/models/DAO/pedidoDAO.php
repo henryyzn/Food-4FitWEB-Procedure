@@ -6,7 +6,8 @@ class pedidoDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\pedidoClass.php');
+        //require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\pedidoClass.php');
+        require_once($_SESSION['path'].'cms/models/pedidoClass.php');
     }
 
     public function insertOrdem($classPedido){

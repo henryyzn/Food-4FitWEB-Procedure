@@ -2,7 +2,8 @@
     class loginUsuarioDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
+            //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
+            require_once($_SESSION['path'].'cms/models/cartaoClass.php');
 
         }
         public function selectPerguntas(){

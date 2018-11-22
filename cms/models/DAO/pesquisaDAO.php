@@ -6,7 +6,8 @@ class pesquisaDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\pesquisaClass.php');
+        //require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\pesquisaClass.php');
+        require_once($_SESSION['path'].'cms/models/pesquisaClass.php');
     }
 
     public function selectSearch($search){

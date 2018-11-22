@@ -6,7 +6,8 @@ class usuarioDAO {
     //minha classe construtor
     public function __construct(){
         require_once('dataBase.php');
-        require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\usuarioClass.php');
+        //require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\usuarioClass.php');
+        require_once($_SESSION['path'].'cms/models/usuarioClass.php');
     }
     public function selectAll(){
         $listPedidos = null;

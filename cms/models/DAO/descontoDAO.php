@@ -2,7 +2,9 @@
 
     class descontoDAO{
         public function __construct(){
-             require_once('dataBase.php'); require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/descontoClass.php');
+             require_once('dataBase.php');
+             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/descontoClass.php');
+             require_once($_SESSION['path'].'cms/models/descontoClass.php');
         }
 
         public function insert($classDesconto){
