@@ -3,7 +3,8 @@
     class parceirosDAO{
         public function __construct(){
             require_once('database.php');
-            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/parceirosClass.php');
+            //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/parceirosClass.php');
+            require_once($_SESSION['path'].'cms/models/parceirosClass.php');
         }
 
         public function insert($classParceiros){
