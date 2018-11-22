@@ -516,6 +516,49 @@
 	    box-sizing: border-box;
 	    padding: 10px;
     }
+    >a{
+    	/*Texto do botão genérico*/
+    	@include texto(16px, $white, 'Roboto Bold', 18px, center);
+        text-decoration: none;
+	    margin: 0 auto;
+	    box-sizing: border-box;
+	    padding: 10px;
+    }
+    &:hover{
+	    /*Ação ao mover o mouse no botão genérico*/
+	    transform: scale(1.02);
+	    cursor: pointer;
+    }
+    &:active{
+        background: #799B63;
+    }
+}
+.btn-generic-fancy{
+    /*Botão genérico*/
+    @include bloco(auto, 120px, auto);
+    @include display(flex, row, center, center);
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 5px;
+    border: 3px solid $white;
+    outline: none;
+    transition: 300ms ease-out;
+    box-shadow: $shadow;
+    >span{
+    	/*Texto do botão genérico*/
+    	@include texto(16px, $white, 'Roboto Bold', 18px, center);
+	    margin: 0 auto;
+	    box-sizing: border-box;
+	    padding: 10px;
+    }
+    >a{
+    	/*Texto do botão genérico*/
+    	@include texto(16px, $white, 'Roboto Bold', 18px, center);
+        text-decoration: none;
+	    margin: 0 auto;
+	    box-sizing: border-box;
+	    padding: 10px;
+    }
     &:hover{
 	    /*Ação ao mover o mouse no botão genérico*/
 	    transform: scale(1.02);

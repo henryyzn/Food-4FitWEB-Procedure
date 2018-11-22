@@ -93,13 +93,13 @@
             ?>
             <div class="health-tricks-card margin-bottom-30px">
                 <figure>
-                    
+                    <img src="<?php echo($lista[$i]->imagem)?>" alt="">
                 </figure>
-                <div>
+                <div class="border-30px">
                     <h2><?php echo($lista[$i]->titulo)?></h2>
                     <p><?php echo($lista[$i]->texto)?></p>
                     <span>Publicado em <?php echo($lista[$i]->data)?> por <strong><?php echo($lista[$i]->autor)?></strong></span>
-                    <div class="btn-generic">
+                    <div class="btn-generic margin-top-10px">
                         <span>Ler Mais</span>
                     </div>
                 </div>

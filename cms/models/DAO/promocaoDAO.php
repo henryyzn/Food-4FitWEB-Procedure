@@ -65,7 +65,23 @@ class promocaoDAO {
     public function selectAll(){
         $listPromocao = null;
 
-        $sql="select * from tbl_diario_bordo order by id desc";
+        $sql = "SELECT promocao.id AS id_promocao,
+        promocao.desconto AS desconto,
+        promocao.data_inicio AS data_inicio,
+        promocao.data_termino AS data_termino,
+        prato.id AS id_prato,
+        prato.titulo AS titulo, 
+        prato.resumo AS resumo,
+        prato.descricao AS descricao,
+        prato.preco AS preco,
+        prato.ativo AS ativo,
+        foto_prato.foto AS foto
+        FROM tbl_promocao AS promocao
+        INNER JOIN tbl_prato AS prato
+        INNER JOIN tbl_foto_prato AS foto_prato
+        WHERE prato.id = promocao.id_prato
+        AND foto_prato.id_prato = prato.id
+        ORDER BY promocao.id DESC;";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -79,11 +95,18 @@ class promocaoDAO {
         while($rs=$select->fetch(PDO::FETCH_ASSOC)){
         //Cria um objeto array da classe Contato
             $listPromocao[] = new Promocao();
-            $listPromocao[$count]->id = $rs['id'];
-            $listPromocao[$count]->id_prato = $rs['id_prato'];
+            $listPromocao[$count]->id_promocao = $rs['id_promocao'];
             $listPromocao[$count]->desconto = $rs['desconto'];
             $listPromocao[$count]->data_inicio = date('d/m/Y', strtotime($rs['data_inicio']));
             $listPromocao[$count]->data_termino = date('d/m/Y', strtotime($rs['data_termino']));
+            $listPromocao[$count]->id_prato = $rs['id_prato'];
+            $listPromocao[$count]->titulo = $rs['titulo'];
+            $listPromocao[$count]->resumo = $rs['resumo'];
+            $listPromocao[$count]->descricao = $rs['descricao'];
+            $listPromocao[$count]->preco = $rs['preco'];
+            $listPromocao[$count]->ativo = $rs['ativo'];
+            $listPromocao[$count]->foto = $rs['foto'];
+            
             $count+=1;
         }
         return $listPromocao;

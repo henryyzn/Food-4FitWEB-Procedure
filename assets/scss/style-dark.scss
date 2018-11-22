@@ -26,8 +26,40 @@ body{
     margin: 124px auto 0px auto;
 	z-index: 1;
 }
+.separator{
+    width: 80%;
+    height: 3px;
+    border-radius: 5px;
+    background-color: $darkgrey;
+    margin: 20px auto;
+}
 /* TÍTULO DA PÁGINA */
 #page-title{
+	/*Título da página*/
+	display: block;
+	font-size: 18px;
+	letter-spacing: -0.2px;
+	font-family: "Roboto Bold";
+	color: $white;
+	padding: 30px;
+	text-align: center;
+    margin: 0 auto;
+	padding-bottom: 0px;
+	animation: fadeIn 1.5s linear;
+	&:after{
+		/*Barra separada do título da página*/
+		content: "";
+		display: block;
+		width: 30px;
+		height: 3px;
+		margin: auto;
+		border-radius: 30px;
+		background-color: $white;
+		margin-top: 8px;
+		animation: fadeIn 1s linear;
+	}
+}
+#page-title-second{
 	/*Título da página*/
 	display: block;
 	font-size: 18px;
@@ -648,14 +680,15 @@ a{
     margin: 0 auto;
     >h2{
         /*Título da sessão do aplicativo na index*/
-        @include texto(32px, $white, 'Roboto Bold', null, center);
+        @include texto(32px, $white, 'Roboto Bold', 48px, center);
         width: 80%;
+        text-transform: uppercase;
     }
     #app-section-separator{
         /*separador da sessão do aplicativo na index*/
-        @include bloco($width: 80px, $height: 4px);
+        @include bloco($width: 80px, $height: 3px);
         background: $white;
-        border-radius: 50px;
+        border-radius: 5px;
     }
     >p{
         /*Descrição da sessão do aplicativo na index*/
@@ -687,7 +720,7 @@ a{
 	#success-cases-content{
 		/*Container-filho da sessão de casos de sucesso*/
 		@include bloco(80%, 800px, auto);
-		background-image: url('../images/backgrounds/img1.jpg');
+		background-image: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0)), url('../images/backgrounds/img1.jpg');
 		background-size: cover;
 		border-radius: 10px;
 		padding: 0;
@@ -695,7 +728,8 @@ a{
 		box-shadow: $shadow;
 		>h2{
 			/*Título da sessão de casos de sucesso*/
-			@include texto(21px, $white, 'Roboto bold', 23px, null);
+            @include texto(21px, $white, 'Roboto bold', 23px, null);
+            text-transform: uppercase;
             &:after{
                 content: "";
                 @include bloco($width: 80px, $height: 5px);
@@ -1299,6 +1333,11 @@ a{
     box-sizing: border-box;
     padding-left: 30px;
     padding-right: 30px;
+}
+.edit-perfil-block{
+    border-radius: 5px;
+    background-color: $darkgrey; 
+    box-shadow: $shadow;
 }
 .profile-header-card{
     width: 100%;
@@ -2128,17 +2167,25 @@ a{
 .health-tricks-card{
     width: 100%;
     height: auto;
-    box-sizing: border-box;
-    border: 20px solid transparent;
     border-radius: 5px;
     background: $darkgrey;
     overflow: hidden;
     box-shadow: $shadow;
+    display: flex;
+    align-items: center;
     >figure{
         width: 100%;
-        max-width: 170px;
-        background: $aspargus;
+        max-width: 120px;
+        height: 120px;
+        box-sizing: border-box;
+        border-radius: 50%;
+        overflow: hidden;
         padding: 0;
+        margin-left: 30px;
+        box-shadow: $shadow;
+        >img{
+            @include img-fit(100%, 100%);
+        }
     }
     >div{
         width: 100%;
@@ -2492,65 +2539,223 @@ a{
 }
 
 //Baixar o aplicativo
-#app-page{
-	@include bloco(100%, 100vw, 100vh);
-	@include display(flex, row, center, center);
-	position: relative;
-	background: url('../images/backgrounds/app.jpg') no-repeat center center fixed ;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	.app-page-back{
-		@include position(absolute, $top: 30px, $left: 30px);
-		@include texto(18px, $lightgrey, 'Roboto Medium Italic');
-		-webkit-transition: 200ms ease-in-out;
-		   -moz-transition: 200ms ease-in-out;
-		    -ms-transition: 200ms ease-in-out;
-		     -o-transition: 200ms ease-in-out;
-		        transition: 200ms ease-in-out;
-		&:hover{
-			color: $grey;
-		}
-	}
+.anime{
+    opacity: 0;
+    transform: translate3d(0, -75px, 0);
+    transition: 200ms ease-out;
 }
-.app-page-wrapper{
-	@include bloco(100%, 1200px, auto);
-	@include display(flex, row, space-between, center);
-	box-sizing: border-box;
-	border: 30px solid transparent;
-	.column{
-		@include bloco(100%, 600px, auto);
-		>figure{
-			@include bloco(100%, 600px, auto);
-			box-sizing: border-box;
-			border: 12px solid #FFF;
-			padding: 0;
-			overflow: hidden;
-			box-shadow: $shadow;
-			border-radius: 5px;
-			>img{
-				@include img-fit(600px, 600px);
-				-webkit-animation: pulse 3s infinite ease-in-out;
-			    -o-animation: pulse 3s infinite ease-in-out;
-			    -ms-animation: pulse 3s infinite ease-in-out;
-			    -moz-animation: pulse 3s infinite ease-in-out;
-			    animation: pulse 3s infinite ease-in-out;
-			}
-		}
-		>h2{
-			@include texto(38px, $white, 'Roboto Black Italic', 38px);
-			text-shadow: 4px 4px 4px rgba(0,0,0,0.1);
-		}
-		>p{
-			@include texto(18px, $lightgrey, 'Roboto Bold Italic', 28px);
-			text-shadow: 4px 4px 4px rgba(0,0,0,0.1);
-		}
-		>span{
-			@include texto(16px, $white, 'Roboto Light');
-			text-shadow: 4px 4px 4px rgba(0,0,0,0.1);
-		}
-	}
+.anime-start{
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.app-header, .app-block{
+    width: 100%;
+    height: auto;
+    position: relative;
+    background: $darkgreymedium;
+}
+.app-header>img{
+    @include img-fit(100%, 100vh);
+}
+.app-header-overlay{
+    @include position(absolute, 0, 0, 0, 0);
+    background: linear-gradient(120deg, rgba(0,0,0,0.2), rgba(0,0,0,0));
+    display: flex;
+    justify-content: center;
+}
+.app-header-overlay-wrapper{
+    @include bloco(100%, 1200px, auto);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.app-header-overlay-column{
+    @include bloco(100%, 600px, auto);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    >h2{
+        @include texto(72px, $white, 'Roboto Black', 92px, left);
+        text-shadow: 3px 3px 28px rgba(0,0,0,.3);
+        >strong{
+            color: $olivine;
+        }
+    }
+    >h3{
+        @include texto(28px, $lightgrey, 'Roboto Bold', 38px, left);
+        &:after{
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: white;
+            border-radius: 5px;
+            margin: 5px auto 5px 0px;
+        }
+    }
+    >p{
+        @include texto(18px, $lightgrey, 'Roboto Regular', 28px, left);
+    }
+    >div{
+        display: flex;
+    }
+}
+.app-header-overlay-figure{
+    @include bloco(100%, 400px, auto);
+    margin: 0 auto;
+    >img{
+        @include img-fit(100%, auto);
+    }
+}
+.app-block>h2{
+    @include texto(38px, $white, 'Roboto Bold', 48px, center);
+}
+.app-wrapper{
+    @include bloco(100%, 1000px, auto);
+    margin: -50px auto 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.app-wrapper-column{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: auto;
+}
+.app-wrapper-figure{
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    padding: 0;
+}
+.app-wrapper-figure>img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.app-wrapper-column.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.app-wrapper-column h2{
+    font-size: 24px;
+    color: $white;
+    font-family: 'Roboto Bold';
+    line-height: 32px;
+    text-align: right;
+    text-transform: uppercase;
+}
+.app-wrapper-column h2::after{
+    content: "";
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: $white;
+    border-radius: 5px;
+    margin: 10px 0px 10px auto;
+}
+.app-wrapper-column p{
+    font-size: 18px;
+    color: $lightgrey;
+    font-family: 'Roboto regular';
+    line-height: 28px;
+    text-align: right;
+    width: 85%;
+    max-width: 350px;
+    margin-left: auto; 
+}
+.app-caracteristicas{
+    width: 100%;
+    max-width: 1920px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.app-caracteristicas-img{
+    width: 100%;
+    height: 550px;
+    display: block;
+    object-fit: cover;
+}
+.app-caracteristicas-overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(240deg, rgba(0,0,0,0.2), rgba(0,0,0,0));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.app-caracteristicas-overlay-wrapper{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+.app-caracteristicas-card{
+    width: 33.33%;
+    height: auto;
+    background: $darkgrey;
+    box-shadow: 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-right: 15px;
+    box-shadow: $shadow;
+}
+.app-caracteristicas-card>figure{
+    width: 200px;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.app-caracteristicas-card>figure>img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.app-caracteristicas-card>h2{
+    font-size: 21px;
+    color: $white;
+    font-family: 'Roboto Bold';
+    line-height: 28px;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+.app-caracteristicas-card>h2::after{
+    content: "";
+    display: block;
+    margin: 8px auto;
+    width: 50px;
+    height: 4px;
+    border-radius: 10px;
+    background: $white;
+}
+.app-caracteristicas-card>p{
+    font-size: 18px;
+    color: $lightgrey;
+    font-family: 'Roboto Regular';
+    line-height: 28px;
+    width: 85%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 //Dicas Fitness

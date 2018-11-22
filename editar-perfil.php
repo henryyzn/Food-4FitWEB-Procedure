@@ -99,7 +99,7 @@
 		<h2 id="page-title">EDITAR INFORMAÇÕES</h2>
 		<p id="page-subtitle">Por motivos de segurança, dados como RG e CPF/CNPJ não são editáveis.</p>
 		<div class="generic-block padding-top-30px">
-			<div class="form-generic margin-right-auto margin-left-auto width-600px" style="box-sizing: border-box; background-color: #F1F1F1; border: 30px solid transparent">
+			<div class="form-generic margin-right-auto margin-left-auto margin-bottom-30px width-600px edit-perfil-block border-30px">
 				<form action="upload/upload-perfil.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
 					<figure id="visualizar" class="margin-left-auto margin-right-auto profile-edit-image">
 						<img src='<?php echo($_SESSION['avatar_usuario'])?>' alt="Imagem a ser cadastrada">
@@ -177,7 +177,7 @@
 		            <label for="resposta_secreta" class="label-generic">Resposta:</label>
 		            <input id="resposta_secreta" name="resposta_secreta" type="text" class="input-generic" value="<?php echo($_SESSION['resposta_secreta_usuario'])?>">
 		            <!-- ===================== -->
-		            <div class="margin-top-30px margin-bottom-30px form-row">
+		            <div class="margin-top-30px form-row">
                         <span class="margin-right-15px" onclick="javascript:history.back()">Cancelar</span>
                         <button type="submit" name="btn-salvar" value="<?php echo($botao)?>" class="btn-generic">
                             <span>Salvar</span>

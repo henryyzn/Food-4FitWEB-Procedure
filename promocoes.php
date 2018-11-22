@@ -20,12 +20,67 @@
     <link rel="stylesheet" href="assets/css/mobile.css">
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/responsiveslides.min.js"></script>
-	<script src="assets/js/scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <style>
+        .promotion-anchor-block{
+            width: 100%; 
+            height: auto;
+            max-width: 1920px;
+            position: relative;
+            overflow: hidden;
+        }
+        .promotion-anchor-block>img{
+            width: 100%;
+            height: 400px;
+            display: block;
+            object-fit: cover;
+        }
+        .promotion-anchor-overlay{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(120deg, rgba(0,0,0,.5), rgba(0,0,0,.0));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .promotion-anchor-overlay>h2{
+            font-size: 32px;
+            color: white;
+            font-family: 'Roboto Bold';
+            line-height: 38px;
+            text-align: center;
+        }
+        .promotion-anchor-overlay>h2::after{
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            border-radius: 10px;
+            background: white;
+            margin: 15px auto;
+        }
+        .promotion-anchor-overlay>p{
+            font-size: 18px;
+            color: #FCFCFC;
+            font-family: 'Roboto Regular';
+            line-height: 24px;
+            text-align: center;
+            width: 85%;
+            margin: 0 auto;
+        }
+        .promotion-anchor-overlay>p>strong{
+            color: #9CC283;
+        }
+    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?>
 	<section class="main">
-		<h2 id="page-title">PROMOÇÕES</h2>
+		<h2 id="page-title">ULTIMAS PROMOÇÕES</h2>
         <header class="slider-1200-250 margin-top-30px">
             <div class="slider_content"><!--CONTAINER DO SLIDER-->
                 <ul id="slider">
@@ -50,7 +105,7 @@
                 </ul>
             </div>
         </header>
-        <h3 class="promotion-subtitle padding-top-30px padding-left-30px">Promoções Válidas Até dd/MM</h3>
+        <h2 id="page-title-second" class="padding-top-30px padding-left-30px">TODAS AS PROMOÇÕES</h3>
         <div class="generic-grid animate fadeInUp">
             <?php
                 require_once("cms/models/DAO/promocaoDAO.php");
@@ -84,22 +139,17 @@
 		<div class="margin-right-auto margin-left-auto margin-bottom-30px btn-generic" id="see-more">
             <span>Ver Mais</span>
 		</div>
-		<section class="generic-block">
-		    <h2 id="healthy-tricks-title">Não sabe por onde começar?<br>Deixa que a gente te ajuda!</h2>
-		    <div class="healthy-tricks-intro">
-                <figure class="healthy-tricks-intro image animate fadeInLeft">
-                    <img src="assets/images/backgrounds/men.png" alt="Homem Amarrando Sapato">
-                </figure>
-		        <div class="healthy-tricks-intro details animate fadeInRight">
-		            <h3>Dicas de Saúde</h3>
-		            <p class="padding-bottom-30px">Confira dicas essenciais para manter a boa forma sem complicações, como se cuidar com refeições equilibradas e muito mais!</p>
-		            <div class="btn-generic" onclick="javascript:location.href='dicas-de-saude.php'">
-		                <span>Continuar Lendo</span>
-		            </div>
-		        </div>
-		    </div>
-		</section>
-	</section>
+    </section>
+    <div class="promotion-anchor-block">
+        <img src="assets/images/backgrounds/promo.jpg" alt="">
+        <div class="promotion-anchor-overlay">
+            <h2>DICAS DE SAÚDE</h2>
+            <p>Postagens inéditas dedicadas à <strong>você.</strong></p>
+            <div class="btn-generic-fancy margin-top-20px" onclick="javascript:location.href='dicas-de-saude.php'">
+                <span>Ver Mais</span>
+            </div>
+        </div>
+	</div>
 	<?php require_once("components/footer.html"); ?>
 </body>
 </html>
