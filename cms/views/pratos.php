@@ -55,8 +55,9 @@
        $classPrato->resumo = $_GET['resumo'];
        $classPrato->confiPublic = '0';
        $classPrato->ativo = '1';
-       $classPrato->idUsuario = '12';
-       $classPrato->preco = '40.00';
+       $classPrato->id_usuario = '12';
+       //$classPrato->id_funcionario = $_SESSION['id_funcionario'];
+       $classPrato->preco = $_GET['preco'];
        $classPrato->foto = $_GET['foto'];
 
        $pratosDAO = new pratosDAO();

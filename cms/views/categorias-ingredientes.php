@@ -108,20 +108,12 @@
             height: auto;
             display: flex;
         }
-        .categoria-form-right{
-            width: 100%;
-            max-width: 400px;
-            height: 100vh;
-            background-color: #FCFCFC;
-            overflow: auto;
-        }
         .image-view{
             max-width: 300px; height: auto; display: block;
         }
-
-
         .elementPhoto{
             max-width: 200px;
+            display: block;
         }
     </style>
 
@@ -135,10 +127,9 @@
                 <div class="categoria-block">
                     <table class="generic-table">
                         <tr>
-                            <td><span>Título</span></td>
-                            <td><span>foto</span></td>
-                            <td><span>Ativo</span></td>
-                            <td colspan="3"><span>Opções</span></td>
+                            <td><span>Título:</span></td>
+                            <td><span>Imagem:</span></td>
+                            <td colspan="4"><span>Opções:</span></td>
                         </tr>
 
                         <?php
@@ -157,12 +148,12 @@
                         ?>
 
                         <tr>
-                            <td><?php echo($lista[$i]->titulo)?></td>
+                            <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                             <td><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
-                            <td><span class="table-result"><img src="../../assets/images/cms/symbols/<?php echo($ativo)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=<?php echo($ativo)?>&id=<?php echo($lista[$i]->id)?>'"></span></td>
-                            <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'categoria-ingrediente')"></td>
-                            <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
-                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td width="70px"><img src="../../assets/images/cms/symbols/<?php echo($ativo)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=<?php echo($ativo)?>&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td width="70px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'categoria-ingrediente')"></td>
+                            <td width="70px"><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
+                            <td width="70px"><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                         </tr>
 
                         <?php

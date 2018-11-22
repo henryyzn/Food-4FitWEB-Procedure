@@ -109,8 +109,6 @@
     <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
     <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
-    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
-    <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
     <link rel="stylesheet" href="../../assets/css/font-style.css">
     <link rel="stylesheet" href="../../assets/css/sizes.css">
     <link rel="stylesheet" href="../../assets/css/align.css">
@@ -119,7 +117,6 @@
     <script src="../../assets/public/js/jquery.mask.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
     <script src="../../assets/public/js/jquery.form.js"></script>
-    <script src="../../assets/js/js.cookie.js"></script>
     <script>
         $(document).ready(function() {
             $('#valor_energ').mask("#0000.00", {reverse: true});
@@ -141,6 +138,10 @@
     <style>
         .image-view{
             width: 300px; height: auto; display: block;
+        }
+        .select-block{
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
@@ -206,7 +207,20 @@
 
                             <label for="categoria" class="label-generic">Categoria:</label>
                             <select id="id_categoria_ingrediente" name="id_categoria_ingrediente" class="input-generic" required>
-                                <option selected>1</option>
+                                <option selected>Selecione uma opção:</option>
+                                <?php
+                                    require_once("../models/DAO/categorias-ingredientesDAO.php");
+
+                                    $catIngredienteDAO = new catIngredienteDAO();
+
+                                    $lista = $catIngredienteDAO->selectAll();
+
+                                    for($i = 0; $i < @count($lista); $i++){
+                                ?>
+                                <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
+                                <?php
+                                    }
+                                ?>
                             </select>
 
                             <label for="unidadeMedida" class="label-generic">Unidade de Medida:</label>
@@ -253,12 +267,12 @@
 
                             <label for="sodio" class="label-generic">Sódio:</label>
                             <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)" value="<?php echo($sodio)?>">
-                            <span class="status margin-bottom-10px">Status Inicial do Ingrediente:</span>
+                            
                             <div class="select-block">
-                                <div class="switch_box">
+                                <label for="ativo" class="label-generic">Status Inicial do Ingrediente:</label>
+                                <div class="switch_box margin-left-10px">
                                     <input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1">
                                 </div>
-                                <label for="ativo" class="padding-left-15px">Ativado/Desativado</label>
                             </div>
                             <button type="submit" id="btn-save" value="<?php echo($botao)?>" name="btn-salvar">
                                 <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">

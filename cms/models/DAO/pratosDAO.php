@@ -15,7 +15,7 @@
                     '".$classPrato->resumo."',
                     '".$classPrato->confiPublic."',
                     '".$classPrato->ativo."',
-                    '".$classPrato->idUsuario."',
+                    '".$classPrato->id_usuario."',
                     '".$classPrato->preco."');";
             //echo $sql;
 
@@ -23,17 +23,19 @@
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql)){
                 $_SESSION['last_id'] = $PDO_conex->lastInsertId();
+
+                //echo $_SESSION['last_id'];
                 $sql2 = "INSERT INTO tbl_foto_prato (id_prato, foto) VALUES (
                 '".$_SESSION['last_id']."',
                 'assets/archives/pratos/".$classPrato->foto."');";
+
                 if($PDO_conex->query($sql2)){
                     header("location:pratos.php");
                 }else{
                     echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
                 }
-
             }else{
-                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                 echo('<script>alert("Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.");</script>');
             }
 
             $conex->desconectar();
@@ -43,7 +45,13 @@
                     '".$_SESSION['last_id']."',
                     '".$classIngrediente->id_ingrediente."');";
 
-            echo $sql;
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql)){
+                header('location:pratos.php');
+            }else{
+                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            }
         }
 
         public function selectId($id){
