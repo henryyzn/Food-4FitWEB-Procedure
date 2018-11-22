@@ -1,4 +1,32 @@
+ <?php
+    session_start();
+    if(isset($_GET['btn-salvar'])){
+
+        require_once('../models/DAO/parceirosDAO.php');
+        require_once('../models/parceirosClass.php');
+        require_once('../models/DAO/cadastro-usuarioDAO.php');
+        require_once('../models/cadastro-usuarioClass.php');
+
+
+        $parceirosDAO = new parceirosDAO();
+
+        $classParceiros = new Parceiros();
+        $classParceiros->titulo = $_GET['titulo'];
+        $classParceiros->descricao = $_GET['descricao'];
+        $classParceiros->foto = 'assets/images/box.png';
+        $classParceiros->link1 = $_GET['link'];
+        $classParceiros->ativo = '1';
+        $classParceiros->id_usuario = $_SESSION['id_usuario'];
+
+        if($_GET['btn-salvar'] == "Salvar"){
+           $parceirosDAO->insert($classParceiros);
+        }
+
+    }
+
+?>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -17,52 +45,23 @@
     </head>
     <body>
         <section>
-            <?php
-
-
-
-                if(isset($_POST['btnSalvar'])){
-
-                    require_once('../models/DAO/parceirosDAO.php');
-                    require_once('../models/parceirosClass.php');
-                    require_once('../models/DAO/cadastro-usuarioDAO.php');
-                    require_once('../models/cadastro-usuarioClass.php');
-
-                    $parceirosClass = new Parceiros();
-                    $parceirosDAO = new parceirosDAO();
-
-
-
-
-                    $parceirosClass->nome = $_POST['nome'];
-                    //$parceirosClass->titulo = $_POST['titulo'];
-                    $parceirosClass->descricao = $_POST['descricao'];
-                    $parceirosClass->foto = $_POST['foto'];
-                    //$parceirosClass->link1 = $_POST['link'];
-                    //$parceirosClass->ativo = $_POST['ativo'];
-
-                    $parceirosDAO->insert($parceirosClass);
-
-                }
-
-            ?>
-            <form name="frmParceiros" action="cadastro-parceiro.php" method="post">
+            <form name="frmparceiro" action="cadastro-parceiro.php" method="GET">
                 <div class="form-generic">
                     <div class="form-generic-content">
                         <h2 class="form-title">Cadastrar um parceiro</h2>
                         <div>
                             <img>
                             <label for="foto" class="file-label">Escolher Imagem</label>
-                            <input id="foto" name="uploadData" type="file" accept="image/*">
+
                         </div>
                         <span class="label-fix">Nome do Usuário:</span>
                             <p class="label-fix-result">João sei lá das quantas</p>
 
                             <span class="label-fix">Link para o site:</span>
-                            <a href="" class="label-fix-link">www.linkdoparceiro.com</a>
+                            <input type="text" name="link" id="link" class="input-generic">
 
                             <span class="label-fix">Título do Contato:</span>
-                            <p class="label-fix-result">Algum Título</p>
+                            <input type="text" name="titulo" id="titulo" class="input-generic">
 
                             <span class="label-fix">Descrição:</span>
                             <p class="label-fix-result">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
@@ -73,7 +72,7 @@
                         <textarea name="descricao" id="descricao" class="textarea-generic"></textarea>
 
                         <div class="form-row">
-                            <button type="submit" name="btnSalvar" value="Salvar" class="btn-generic margin-right-20px">
+                            <button type="submit" name="btn-salvar" value="Salvar" class="btn-generic margin-right-20px">
                                 <span>Salvar</span>
                             </button>
                             <span class="btn-cancelar">Cancelar</span>

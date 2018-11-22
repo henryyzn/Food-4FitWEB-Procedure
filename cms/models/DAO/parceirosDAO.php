@@ -3,7 +3,7 @@
     class parceirosDAO{
         public function __construct(){
             require_once('database.php');
-            require_once('../models/parceirosClass.php');
+            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/parceirosClass.php');
         }
 
         public function insert($classParceiros){
@@ -27,7 +27,33 @@
             $PDO_conex = $conex->conectar();
 
             if($PDO_conex->query($sql))
-                echo('Inseriu com sucesso');
+                header('location:cadastro-parceiro.php');
+            else
+                //echo('error');
+                echo(''.$sql);
+
+
+            $conex->desconectar();
+        }
+
+        public function insertContato($classParceiros){
+            $sql = "insert into tbl_contato_parceiro(
+            titulo,
+            descricao,
+            imagem,
+            id_usuario) values (
+            '".$classParceiros->titulo."',
+            '".$classParceiros->descricao."',
+            'assets/archives/parceiros/".$classParceiros->imagem."',
+            '".$classParceiros->id_usuario."'
+            );";
+
+            $conex = new mysql_db();
+
+            $PDO_conex = $conex->conectar();
+
+            if($PDO_conex->query($sql))
+                header('location:homenagem-parceiros.php');
             else
                 //echo('error');
                 echo(''.$sql);
