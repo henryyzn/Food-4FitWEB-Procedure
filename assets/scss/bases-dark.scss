@@ -233,7 +233,7 @@
 	background: rgba(0, 0, 0, 0.5);
 	.generic-modal-wrapper{
 		//Holder do modal
-		@include bloco(100%, 500px, auto);
+		height: auto;
 		@include display(flex, column, center, null);
 		box-sizing: border-box;
 		padding-left: 20px;

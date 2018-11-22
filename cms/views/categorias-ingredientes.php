@@ -210,7 +210,7 @@
          </div>
     </section>
     <div class="generic-modal animate fadeIn" id="abrir">
-        <article class="generic-modal-wrapper">
+        <article class="generic-modal-wrapper 550px">
 
         </article>
     </div>
