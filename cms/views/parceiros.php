@@ -73,9 +73,9 @@
                         <?php
                             require_once("../../cms/models/DAO/parceirosDAO.php");
 
-                            $parceiroDAO = new parceiroDAO();
+                            $parceiroDAO = new parceirosDAO();
 
-                            $lista = $parceiroDAO -> select
+                            $lista = $parceiroDAO->selectAll();
                         ?>
 
                         <tr>

@@ -5,6 +5,7 @@
     if($modo == 'excluir'){
         require_once('../../cms/models/contatoClass.php');
         require_once("../../cms/models/DAO/contatoDAO.php");
+        require_once("../../caminho-pasta.php");
 
         $contatoDAO = new contatoDAO();
         $id = $_GET['id'];

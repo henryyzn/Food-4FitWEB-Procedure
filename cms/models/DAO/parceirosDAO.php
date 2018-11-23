@@ -2,7 +2,7 @@
 
     class parceirosDAO{
         public function __construct(){
-            require_once('database.php');
+            require_once('dataBase.php');
             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/parceirosClass.php');
             require_once($_SESSION['path'].'cms/models/parceirosClass.php');
         }
@@ -72,15 +72,15 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-                $listParceiro = new Parceiros();
                 $listParceiro[] = new Parceiros();
+
                 $listParceiro[$cont]->id = $rs['id'];
                 $listParceiro[$cont]->id_usuario = $rs['id_usuario'];
-                $listParceiro[$cont]-> titulo = rs['titulo'];
-                $listParceiro[$cont]-> descricao = rs['descricao'];
-                $listParceiro[$cont]-> foto = rs['foto'];
-                $listParceiro[$cont]-> link1 = rs['link'];
-                $listParceiro[$cont]-> ativo = rs['ativo'];
+                $listParceiro[$cont]-> titulo = $rs['titulo'];
+                $listParceiro[$cont]-> descricao = $rs['descricao'];
+                $listParceiro[$cont]-> foto = $rs['foto'];
+                $listParceiro[$cont]-> link1 = $rs['link'];
+                $listParceiro[$cont]-> ativo = $rs['ativo'];
 
                 $conex = new mysql_db();
                 $PDO_conex = $conex->conectar();
@@ -111,11 +111,11 @@
                 $listParceiro[] = new Parceiros();
                 $listParceiro[$cont]->id = $rs['id'];
                 $listParceiro[$cont]->id_usuario = $rs['id_usuario'];
-                $listParceiro[$cont]-> titulo = rs['titulo'];
-                $listParceiro[$cont]-> descricao = rs['descricao'];
-                $listParceiro[$cont]-> foto = rs['foto'];
-                $listParceiro[$cont]-> link1 = rs['link'];
-                $listParceiro[$cont]-> ativo = rs['ativo'];
+                $listParceiro[$cont]-> titulo = $rs['titulo'];
+                $listParceiro[$cont]-> descricao = $rs['descricao'];
+                $listParceiro[$cont]-> foto = $rs['foto'];
+                $listParceiro[$cont]-> link1 = $rs['link'];
+                $listParceiro[$cont]-> ativo = $rs['ativo'];
 
                 $cont+=1;
             }

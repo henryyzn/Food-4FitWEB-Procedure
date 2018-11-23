@@ -14,12 +14,16 @@ class mysql_db
 	public function __construct(){
         $this->server="10.107.144.250";
         //$this->server="142.44.189.41";
-		//$this->server="127.0.0.1";
+//		$this->server="127.0.0.1";
+//		$this->server="192.168.0.2";
+//        $this->user="food4fit";
         $this->user="root";
-		$this->senha="bcd127";
+//		$this->senha="codefit";
         //$this->senha="";
+        $this->senha="bcd127";
         //$this->senha="mysql@2018";
         $this->dataBaseName="db_food4fit";
+//        $this->dataBaseName="dbfood4fit";
 
 	}
 

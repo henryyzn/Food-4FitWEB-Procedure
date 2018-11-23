@@ -1,4 +1,9 @@
 <?php
+    //Init_set aqui estou inserindo para reportar erros de um modo facilitador
+    //Para podermos ajustar
+    ini_set("display_errors", "1");
+    ini_set("display_startup_errors", "1");
+    error_reporting(E_ALL);
     function validateLog(){
         if(!isset($_SESSION['matricula_funcionario'])) {
             session_unset();

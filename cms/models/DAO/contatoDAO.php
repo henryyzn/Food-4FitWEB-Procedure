@@ -7,7 +7,7 @@
         //das páginas que são iguais, PORTANTO
         //acabam sendo em caminhos diferentes
         public function __construct($requestFront = false){
-            require_once('database.php');
+            require_once('dataBase.php');
 
             if($requestFront==true)
                 require_once('cms/models/contatoClass.php');
