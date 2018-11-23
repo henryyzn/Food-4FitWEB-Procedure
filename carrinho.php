@@ -21,10 +21,6 @@
 
         $pedidoDAO = new pedidoDAO();
         if($_GET['btn-comprar'] == "Comprar"){
-
-            $pedidoDAO->insertOrdem($classPedido);
-
-        }elseif($_GET['btn-comprar'] == "Atualizar"){ 
             foreach($_GET['quantidade'] as $id => $qtd){
                 $id  = intval($id);
                 $qtd = intval($qtd);
@@ -47,12 +43,42 @@
 
                      $_SESSION['carrinho']['total'] = $_SESSION['carrinho']['total'] + $n;
 
-                     header('location:carrinho.php');
+                     $pedidoDAO->insertOrdem($classPedido);
                 }else{
                     unset($_SESSION['carrinho'][$id]);
                 }
             }
+            $pedidoDAO->insertOrdem($classPedido);
         }
+//        }elseif($_GET['btn-comprar'] == "Atualizar"){
+//            foreach($_GET['quantidade'] as $id => $qtd){
+//                $id  = intval($id);
+//                $qtd = intval($qtd);
+//
+//                if(!empty($qtd) || $qtd <> 0){
+//                     $_SESSION['carrinho'][$id]['quantidade'] = $qtd;
+//
+//                     $qty = $_SESSION['carrinho'][$id]['quantidade'];
+//                     $preco = $_SESSION['carrinho'][$id]['preco'];
+//
+//                     $subtotal = $qty * $preco;
+//
+//                     $_SESSION['carrinho'][$id]['subtotal'] = $subtotal;
+//
+//                     $n = $_SESSION['carrinho'][$id]['subtotal'];
+//                     //var_dump($n);
+//
+//                     $a = $_SESSION['carrinho'][$id]['id_prato'];
+//                     //var_dump($a);
+//
+//                     $_SESSION['carrinho']['total'] = $_SESSION['carrinho']['total'] + $n;
+//
+//                     header('location:carrinho.php');
+//                }else{
+//                    unset($_SESSION['carrinho'][$id]);
+//                }
+//            }
+//        }
     }elseif(isset($_POST['btn-cupom'])){
         require_once('cms/models/descontoClass.php');
         require_once('cms/models/DAO/descontoDAO.php');

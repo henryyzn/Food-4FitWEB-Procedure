@@ -160,7 +160,7 @@
                         $titulo = $value['titulo'];
                         $preco = $value['preco'];
                         $foto_prato = $value['foto_prato'];
-                        //$quantidade = $value['quantidade'];
+                        $quantidade = $value['quantidade'];
                 ?>
                 <div class="shopping-cart-row">
                     <div class="shopping-cart-column">
@@ -176,7 +176,7 @@
                         <span id="shopping-cart-price">R$ <?php echo($preco)?></span>
                     </div>
                     <div class="shopping-cart-column align">
-                        <span id="shopping-cart-qty" style="color: #9CC283;">QTD: 3</span>
+                        <span id="shopping-cart-qty" style="color: #9CC283;">QTD: <?php echo($quantidade)?></span>
                     </div>
                     <div class="shopping-cart-column align">
                         <span id="shopping-cart-price-total">R$ 000,00</span>

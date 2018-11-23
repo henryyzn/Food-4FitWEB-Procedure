@@ -4,11 +4,16 @@
 class cartaoDAO {
 
     //minha classe construtor
-    public function __construct(){
+    public function __construct($requestFront = false){
         require_once('dataBase.php');
-//        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cartaoClass.php');
 
-        require_once($_SESSION['path'].'../models/cartaoClass.php');
+        if($requestFront==true)
+            require_once('../models/cartaoClass.php');
+        else
+            require_once('cms/models/cartaoClass.php');
+
+        error_reporting(E_ALL);
+        ini_set('display_errors',1);
     }
 
     public function insert($classCartao){

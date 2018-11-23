@@ -6,9 +6,12 @@
             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categoriaClass.php');
             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/ingredientesClass.php');
             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/cadastro-usuarioClass.php');
-            require_once($_SESSION['path'].'cms/models/pratosClass.php');
-            require_once($_SESSION['path'].'cms/models/categoriaClass.php');
-            require_once($_SESSION['path'].'cms/models/cadastro-usuarioClass.php');
+            @require_once($_SESSION['path'].'cms/models/pratosClass.php');
+            @require_once($_SESSION['path'].'cms/models/categoriaClass.php');
+            @require_once($_SESSION['path'].'cms/models/cadastro-usuarioClass.php');
+
+            error_reporting(E_ALL);
+            ini_set('display_errors',1);
         }
 
         public function insert($classPrato){
