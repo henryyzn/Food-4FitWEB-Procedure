@@ -151,38 +151,52 @@
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
             <div id="page-content">
-                <div style="display: flex; width: 100%; height: auto;">
-                    <table class="generic-table">
-                        <tr>
-                            <td><span>Imagem:</span></td>
-                            <td><span>Título:</span></td>
-                            <td><span>Preço:</span></td>
-                            <td><span>Descrição:</span></td>
-                            <td colspan="3"><span>Opções:</span></td>
-                        </tr>
-                        <?php
-                            require_once("../models/DAO/ingredientesDAO.php");
+                <div id="list-content">
+                    <div class="pratos-wrapper">
+                        <div id="page-actions">
+                            <div id="open-form">
+                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
+                                <span>Adicionar Ingrediente</span>
+                            </div>
+                            <a href="pratos.php">
+                                <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
+                                <span>Recarregar Listagem</span>
+                            </a>
+                        </div>
+                        <table class="generic-table">
+                            <tr>
+                                <td><span>Imagem:</span></td>
+                                <td><span>Título:</span></td>
+                                <td><span>Preço:</span></td>
+                                <td><span>Descrição:</span></td>
+                                <td colspan="3"><span>Opções:</span></td>
+                            </tr>
+                            <?php
+                                require_once("../models/DAO/ingredientesDAO.php");
 
-                            $ingredientesDAO = new ingredientesDAO();
+                                $ingredientesDAO = new ingredientesDAO();
 
-                            $lista = $ingredientesDAO->selectAll();
+                                $lista = $ingredientesDAO->selectAll();
 
-                            for($i = 0; $i < @count($lista); $i++){
-                        ?>
-                        <tr>
-                            <td><img src="../../<?php echo($lista[$i]->foto)?>" class="show-image"></td>
-                            <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
-                            <td><span class="table-result"><?php echo($lista[$i]->preco)?></span></td>
-                            <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>
-                            <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=<?php echo($active)?>&id=<?php echo($lista[$i]->id)?>'"></td>
-                            <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
-                            <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
-                        </tr>
-                        <?php
-                            }
-                        ?>
-                    </table>
-                    <div id="form-right-side" class="form-generic border-30px">
+                                for($i = 0; $i < @count($lista); $i++){
+                            ?>
+                            <tr>
+                                <td><img src="../../<?php echo($lista[$i]->foto)?>" class="show-image"></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->preco)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>
+                                <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=<?php echo($active)?>&id=<?php echo($lista[$i]->id)?>'"></td>
+                                <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
+                                <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+                            </tr>
+                            <?php
+                                }
+                            ?>
+                        </table>
+                    </div>
+                </div>
+                <aside class="explanation-aside hide" id="add-prato-form">
+                    <div class="form-generic border-30px">
                         <form action="upload/upload-ingrediente.php" method="POST" name="frmfoto" enctype="multipart/form-data" class="form-generic-content" id="frmfoto">
                             <h2 class="form-title">Cadastrar um Ingrediente</h2>
 
@@ -267,7 +281,7 @@
 
                             <label for="sodio" class="label-generic">Sódio:</label>
                             <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)" value="<?php echo($sodio)?>">
-                            
+
                             <div class="select-block">
                                 <label for="ativo" class="label-generic">Status Inicial do Ingrediente:</label>
                                 <div class="switch_box margin-left-10px">
@@ -280,10 +294,17 @@
                             </button>
                         </form>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     </section>
     <script src="../../assets/js/theme.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#open-form").click(function () {
+                $("#add-prato-form").slideToggle("fast");
+            });
+        });
+    </script>
 </body>
 </html>

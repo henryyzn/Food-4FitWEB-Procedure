@@ -29,6 +29,8 @@
             background-image: linear-gradient(to left, rgba(156, 194, 151, 0.8) 20%, rgba(0,0,0,0.3)), url('assets/images/backgrounds/dica-saude/dica-saude-cover.jpg');
             background-repeat:no-repeat;
             background-size:cover;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
         }
         .health-tricks-header div{
             width: 100%;

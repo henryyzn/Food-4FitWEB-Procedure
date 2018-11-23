@@ -21,61 +21,6 @@
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/responsiveslides.min.js"></script>
     <script src="assets/js/scripts.js"></script>
-    <style>
-        .promotion-anchor-block{
-            width: 100%; 
-            height: auto;
-            max-width: 1920px;
-            position: relative;
-            overflow: hidden;
-        }
-        .promotion-anchor-block>img{
-            width: 100%;
-            height: 400px;
-            display: block;
-            object-fit: cover;
-        }
-        .promotion-anchor-overlay{
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            background: linear-gradient(120deg, rgba(0,0,0,.5), rgba(0,0,0,.0));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .promotion-anchor-overlay>h2{
-            font-size: 32px;
-            color: white;
-            font-family: 'Roboto Bold';
-            line-height: 38px;
-            text-align: center;
-        }
-        .promotion-anchor-overlay>h2::after{
-            content: "";
-            display: block;
-            width: 60px;
-            height: 4px;
-            border-radius: 10px;
-            background: white;
-            margin: 15px auto;
-        }
-        .promotion-anchor-overlay>p{
-            font-size: 18px;
-            color: #FCFCFC;
-            font-family: 'Roboto Regular';
-            line-height: 24px;
-            text-align: center;
-            width: 85%;
-            margin: 0 auto;
-        }
-        .promotion-anchor-overlay>p>strong{
-            color: #9CC283;
-        }
-    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?>
