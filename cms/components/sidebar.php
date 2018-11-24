@@ -65,10 +65,6 @@
             <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias"></span>
             <span class="label">Categorias</span>
         </a>
-        <a href="categorias-prato.php">
-            <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias de Pratos"></span>
-            <span class="label">Categorias de Pratos</span>
-        </a>
         <a href="categorias-ingredientes.php">
             <span class="image"><img src="../../assets/images/cms/icons/categorias.svg" alt="Categorias de Ingredientes"></span>
             <span class="label">Categorias de Ingredientes</span>

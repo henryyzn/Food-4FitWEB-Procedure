@@ -3,50 +3,37 @@
 
     $id = null;
     $titulo = null;
+    $descricao = null;
     $foto = null;
     $ativo = null;
     $botao = "Salvar";
-
-    require_once('../models/categorias-ingredientesClass.php');
-    require_once('../models/DAO/categorias-ingredientesDAO.php');
+    $edit = "null";
 
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
-
-        if($modo == 'excluir'){
+        $id = $_GET['id'];
 
         require_once('../models/categorias-ingredientesClass.php');
         require_once('../models/DAO/categorias-ingredientesDAO.php');
+        $catIngredienteDAO  = new catIngredienteDAO();
 
-            $catIngredienteDAO  = new catIngredienteDAO();
-            $id = $_GET['id'];
+        if($modo == 'excluir'){
             $catIngredienteDAO->delete($id);
 
         }else if($modo == 'editar'){
-
-
-            $catIngredienteDAO  = new catIngredienteDAO();
-            $id = $_GET['id'];
-            $_SESSION['id'] = $id;
-
             $listIngrediente = $catIngredienteDAO->selectId($id);
-
-            if(count($listIngrediente)>0)
-            {
+            if(@count($listIngrediente)>0){
                 $id = $listIngrediente->id;
                 $titulo = $listIngrediente->titulo;
+                $descricao = $listIngrediente->descricao;
                 $foto = $listIngrediente->foto;
                 $ativo = $listIngrediente->ativo;
-
                 $botao = "Editar";
+                $edit = $botao;
             }
         }else if($modo == 'ativar'){
-            $catIngredienteDAO  = new catIngredienteDAO();
-            $id = $_GET['id'];
             $catIngredienteDAO->active($id);
         }else if($modo == 'desativar'){
-            $catIngredienteDAO  = new catIngredienteDAO();
-            $id = $_GET['id'];
             $catIngredienteDAO->desactive($id);
         }
 
@@ -57,8 +44,8 @@
         require_once('../models/DAO/categorias-ingredientesDAO.php');
 
         $classCatIngrediente = new categoriaIngrediente();
-//        $classCatIngrediente->idCatIngredienteP = $_GET['tituloFilha'];
         $classCatIngrediente->titulo = $_GET['titulo'];
+        $classCatIngrediente->descricao = $_GET['descricao'];
         $classCatIngrediente->foto = $_GET['foto'];
         $classCatIngrediente->ativo = $_GET['ativo'];
 
@@ -66,8 +53,7 @@
         if($_GET['btn-salvar'] == "Salvar"){
             $catIngredienteDAO->insert($classCatIngrediente);
         }else{
-            $classCatIngrediente->id = $_SESSION['id'];
-
+            $classCatIngrediente->id = $_GET['id'];
             $catIngredienteDAO->update($classCatIngrediente);
         }
     }
@@ -127,13 +113,14 @@
                 <div class="categoria-block">
                     <table class="generic-table">
                         <tr>
-                            <td><span>Título:</span></td>
                             <td><span>Imagem:</span></td>
-                            <td colspan="4"><span>Opções:</span></td>
+                            <td><span>Título:</span></td>
+                            <td><span>Descrição:</span></td>
+                            <td colspan="3"><span>Opções:</span></td>
                         </tr>
 
                         <?php
-                           require_once('../models/DAO/categorias-ingredientesDAO.php');
+                            require_once('../models/DAO/categorias-ingredientesDAO.php');
 
                             $catIngredienteDAO = new catIngredienteDAO();
 
@@ -141,25 +128,22 @@
 
                             for($i = 0; $i < @count($lista); $i++){
                                 $ativo = $lista[$i]->ativo;
-                            if($ativo == 1)
-                                $ativo = 'desativar';
-                            else
-                                $ativo = 'ativar';
+                                if($ativo == 1)
+                                    $ativo = 'desativar';
+                                else
+                                    $ativo = 'ativar';
                         ?>
-
                         <tr>
-                            <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                             <td><img src='../../<?php echo($lista[$i]->foto)?>' class="elementPhoto"></td>
+                            <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
+                            <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>
                             <td width="70px"><img src="../../assets/images/cms/symbols/<?php echo($ativo)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=<?php echo($ativo)?>&id=<?php echo($lista[$i]->id)?>'"></td>
-                            <td width="70px"><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'categoria-ingrediente')"></td>
                             <td width="70px"><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
                             <td width="70px"><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categorias-ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                         </tr>
-
                         <?php
                             }
                         ?>
-
                     </table>
                     <div class="categoria-form-right">
                         <div class="form-generic border-30px">
@@ -173,17 +157,14 @@
                             </form>
                             <form id="form-categoria-ingrediente" class="form-generic-content margin-top-30px" name="frmcategoriaingrediente" method="GET" action="categorias-ingredientes.php">
                                 <input name="foto" type="hidden" value="<?php echo($foto)?>">
-
                                 <input name="id" type="hidden" value="<?php echo($id)?>">
-                                <label for="titulo" class="label-generic">Título Categoria</label>
-                                <input type="text" value="<?= @$titulo ?>" id="titulo" name="titulo" class="input-generic" required maxlength="255">
+                                <input type="hidden" name="editar" id="editar" value="<?php echo($edit)?>">
 
+                                <label for="titulo" class="label-generic">Título:</label>
+                                <input type="text" value="<?php echo($titulo)?>" id="titulo" name="titulo" class="input-generic" required maxlength="255">
 
-<!--
-                                <label for="titulo" class="label-generic">Título Categoria Filha</label>
-                                <input type="text"  id="tituloFilha" name="tituloFilha" class="input-generic" required maxlength="255">
--->
-
+                                <label for="descricao" class="label-generic">Descrição:</label>
+                                <textarea id="descricao" name="descricao" class="textarea-generic"><?php echo($descricao)?></textarea>
 
                                 <input id="ativo" name="ativo" class="input-generic" type="hidden" value="1" required maxlength="255">
 
@@ -200,12 +181,19 @@
             </div>
          </div>
     </section>
-    <div class="generic-modal animate fadeIn" id="abrir">
-        <article class="generic-modal-wrapper 550px">
-
-        </article>
-    </div>
     <script src="../../assets/js/theme.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#open-form").click(function () {
+                $("#add-prato-form").slideToggle("fast");
+            });
+
+            var edit = document.getElementById("editar");
+            if(edit.value == "Editar"){
+                $("#add-prato-form").css("display", "block");
+            }
+        });
+    </script>
 </body>
 </html>
 

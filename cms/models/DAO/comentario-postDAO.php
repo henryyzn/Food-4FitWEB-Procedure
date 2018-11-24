@@ -44,25 +44,25 @@ class comentarioPostDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listComentarios = new ComentarioPost();
-        $listComentarios->id = $rs['id'];
-        $listComentarios->id_dica_fitness = $rs['id_dica_fitness'];
-        $listComentarios->id_usuario = $rs['id_usuario'];
-        $listComentarios->assunto = $rs['assunto'];
-        $listComentarios->texto = $rs['texto'];
-        $listComentarios->data = $rs['data'];
-        $listComentarios->ativo = $rs['ativo'];
+            $listComentarios = new ComentarioPost();
+            $listComentarios->id = $rs['id'];
+            $listComentarios->id_dica_fitness = $rs['id_dica_fitness'];
+            $listComentarios->id_usuario = $rs['id_usuario'];
+            $listComentarios->assunto = $rs['assunto'];
+            $listComentarios->texto = $rs['texto'];
+            $listComentarios->data = $rs['data'];
+            $listComentarios->ativo = $rs['ativo'];
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
-        if($PDO_conex->query($sql))
-            echo('select no Banco');
-        else
-            echo('Erro');
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('select no Banco');
+            else
+                echo('Erro');
 
-        $conex->desconectar();
+            $conex->desconectar();
 
-        return $listComentarios;
+            return $listComentarios;
 
         }
     }

@@ -2,8 +2,8 @@
     class categoria{
 
         public $id;
-        public $idCategoriaP;
         public $titulo;
+        public $descricao;
         public $foto;
         public $ativo;
 

@@ -9,27 +9,27 @@
         $modo = $_GET['modo'];
         if($modo == 'excluir'){
 
-            require_once('../models/pratosClass.php');
-            require_once('../models/DAO/pratosDAO.php');
+            require_once('../models/destaqueClass.php');
+            require_once('../models/DAO/destaqueDAO.php');
 
-            $pratosDAO = new pratosDAO;
+            $destaqueDAO = new destaqueDAO;
             $id = $_GET['id'];
-            $pratosDAO->delete($id);
+            $destaqueDAO->delete($id);
         }
     }
 
     if(isset($_GET['btn-salvar'])){
-        $values = $_GET['id_ingrediente'];
-        $keys = array_keys($values);
-        $size = count($values);
-
-        for ($i = 0; $i < $size; $i++) {
-            $key   = $keys[$i];
-            $value = $values[$key];
-
-            print_r($value);
-
-        }
+//        $values = $_GET['id_ingrediente'];
+//        $keys = array_keys($values);
+//        $size = count($values);
+//
+//        for ($i = 0; $i < $size; $i++) {
+//            $key   = $keys[$i];
+//            $value = $values[$key];
+//
+//            print_r($value);
+//
+//        }
     }
 ?>
 <!DOCTYPE html>
@@ -69,16 +69,6 @@
             <div id="page-content">
                 <div id="list-content">
                     <div class="pratos-wrapper">
-                         <div id="page-actions">
-                            <div id="open-form">
-                                <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                                <span>Adicionar Prato</span>
-                            </div>
-                            <a href="pratos.php">
-                                <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
-                                <span>Recarregar Listagem</span>
-                            </a>
-                        </div>
                         <div class="generic-grid animate fadeInUp">
                             <?php
                                 require_once("../../cms/models/DAO/destaqueDAO.php");
@@ -109,100 +99,9 @@
                         </div>
                     </div>
                 </div>
-                <aside class="explanation-aside hide" id="add-prato-form">
-                    <div class="form-generic border-30px">
-                        <form action="upload/upload-foto-prato.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
-                            <label class="label-generic">Imagem:</label>
-                            <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
-                                <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
-                            </div>
-                            <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
-                            <input type="file" name="fileimage" id="foto" style="display: none;">
-                        </form>
-                        <form id="form-add-prato" class="form-generic-content margin-top-30px" name="frmaddprato" method="GET" action="pratos.php">
-                            <input name="foto" type="hidden" value="<?php echo($foto)?>">
-
-                            <label for="titulo" class="label-generic">Titulo:</label>
-                            <input type="text"  id="titulo" name="titulo" class="input-generic" required maxlength="255">
-
-                            <label for="descricao" class="label-generic">Descricao:</label>
-                            <textarea type="text" id="descricao" name="descricao" class="textarea-generic" required maxlength="560"></textarea>
-
-                            <label for="resumo" class="label-generic">Resumo:</label>
-                            <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
-
-                            <label for="idCategoria" class="label-generic">Categoria:</label>
-                            <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma categoria:</option>
-                                <?php
-                                    require_once('../models/DAO/categoriaDAO.php');
-
-                                    $categoriaDAO = new categoriaDAO();
-                                    $lista = $categoriaDAO->selectAll();
-
-                                    for($i = 0; $i < count($lista); $i++){
-                                ?>
-                                <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
-                                <?php
-                                    }
-                                ?>
-                            </select>
-
-                            <div class="collapsible-generic">
-                                <span>Ingredientes:</span>
-                            </div>
-                            <div class="collapsible-content-generic">
-                                <?php
-                                    require_once('../models/DAO/ingredientesDAO.php');
-
-                                    $ingredientesDAO = new ingredientesDAO();
-                                    $lista = $ingredientesDAO->selectAll();
-
-                                    for($i = 0; $i < @count($lista); $i++){
-                                ?>
-                                <label class="label-generic"><input type="checkbox" id="ingredientes" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></label>
-                                <?php
-                                    }
-                                ?>
-                            </div>
-                            <div class="form-row margin-top-20px">
-                                <span>Cancelar</span>
-                                <button type="submit" class="btn-generic margin-left-20px" name="btn-salvar" value="<?php echo($botao)?>">
-                                    <span><?php echo ($botao)?></span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </aside>
             </div>
         </div>
     </section>
-    <div class="generic-modal animate fadeIn" id="abrir">
-        <article class="generic-modal-wrapper">
-
-        </article>
-    </div>
     <script src="../../assets/js/theme.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#open-form").click(function () {
-                $("#add-prato-form").slideToggle("fast");
-            });
-        });
-
-        var coll = $(".collapsible-generic");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "flex") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "flex";
-            }
-          });
-        }
-    </script>
 </body>
 </html>

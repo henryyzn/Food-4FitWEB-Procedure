@@ -12,6 +12,30 @@
             @require_once($_SESSION['path'].'cms/models/destaqueClass.php');
         }
 
+        public function insert($id){
+            $sql="SELECT COUNT(*) AS total FROM tbl_destaque WHERE id_prato = ".$id;
+
+            //Instancia a classe
+            $conex = new mysql_db();
+            //Abre a Conexao
+            $PDO_conex = $conex->conectar();
+            //Executa a query
+
+            $select = $PDO_conex->query($sql);
+
+            if($rs=$select->fetch(PDO::FETCH_ASSOC) > 0){
+            //Cria um objeto array da classe Contato
+                $sql = "INSERT INTO tbl_destaque (id_prato, ativo) VALUES ('$id', '1');";
+                if($PDO_conex->query($sql)){
+                    echo "<script>alert('Prato adicionado aos destaques.'); window.location = 'destaques.php';</script>";
+                }else{
+                    echo "<script>alert('Erro ao destacar item no sistema. Tente novamente ou contate o técnico.'); window.location = 'destaques.php';</script>";
+                }
+            }else{
+                echo "<script>alert('Erro ao destacar item no sistema. Tente novamente ou contate o técnico.'); window.location = 'destaques.php';</script>";
+            }
+        }
+
         public function selectAll(){
             $listContato = null;
 
@@ -81,7 +105,7 @@
                 if($PDO_conex->query($sql))
                     echo('');
                 else
-                    echo('Erro');
+                    echo "<script>alert('Erro ao buscar informações no sistema. Tente novamente ou contate o técnico.'); window.location = 'destaques.php';</script>";
 
                 $conex->desconectar();
 
@@ -90,12 +114,14 @@
         }
 
         public function delete($id){
-            $sql = "delete from tbl_fale_conosco where id=".$id;
+            $sql = "delete from tbl_destaque where id=".$id;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                header('location:fale-conosco.php');
+                header('location:destaques.php');
+            else
+                echo "<script>alert('Erro ao excluir item no sistema. Tente novamente ou contate o técnico.'); window.location = 'destaques.php';</script>";
         }
 
         public function contador(){

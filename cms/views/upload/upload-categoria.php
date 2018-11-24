@@ -4,8 +4,8 @@
 		$tamanhoarquivo = round(($_FILES['fileimage']['size']/1024));
 		$extensao = strrchr($nomearquivo, '.');
 		$nome_foto = pathinfo($nomearquivo, PATHINFO_FILENAME);
-		$upload_dir = "../../../assets/images/categorias/";
-        $upload_dir_img = "../../assets/images/categorias/";
+		$upload_dir = "../../../assets/archives/categorias/";
+        $upload_dir_img = "../../assets/archives/categorias/";
 		$caminho_imagem = $upload_dir.$nomearquivo;
 		$extensoes_permitidas = array('.png', '.jpg', '.jpeg', '.gif', '.svg');
 		if(in_array($extensao, $extensoes_permitidas)){ //in_array(, o que quer buscar)
@@ -17,7 +17,7 @@
                     //class='elementPhoto' pois esta pegando a class do HTML na página
                     //para estilizar/fixar o tamanho da foto
 					echo("<img src='".$caminho_imagem."' class='elementPhoto'>");
-					echo("<script>frmcategoriaingrediente.foto.value='$nomearquivo';</script>");
+					echo("<script>frmcategoria.foto.value='$nomearquivo';</script>");
 				}
 			}else{
 				$erro="o arquivo selecionado é excede o limite máximo de 5MB";

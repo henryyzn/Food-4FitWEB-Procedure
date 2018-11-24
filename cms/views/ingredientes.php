@@ -4,6 +4,11 @@
     $id = null;
     $id_categoria_ingrediente = null;
     $id_unidade_medida = null;
+    $unidade_medida = null;
+    $sigla_unidade_medida = null;
+    $unidade_medida = null;
+    $id_categoria_ingrediente = null;
+    $titulo_cat_ing = null;
     $titulo = null;
     $descricao = null;
     $preco = null;
@@ -18,36 +23,31 @@
     $foto = null;
     $ativo = null;
     $botao = "Salvar";
+    $edit = "null";
 
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
+        $id = $_GET['id'];
+
+        require_once('../models/ingredientesClass.php');
+        require_once('../models/DAO/ingredientesDAO.php');
+        $ingredientesDAO = new ingredientesDAO;
 
         if($modo == 'excluir'){
-
-            require_once('../models/ingredientesClass.php');
-            require_once('../models/DAO/ingredientesDAO.php');
-
-            $ingredientesDAO = new ingredientesDAO;
-            $id = $_GET['id'];
             $ingredientesDAO->delete($id);
 
         }else if($modo == 'editar'){
-
-            //echo("<script>console.log('valido')</script>");
-            require_once('../models/ingredientesClass.php');
-            require_once('../models/DAO/ingredientesDAO.php');
-
-            $ingredientesDAO = new ingredientesDAO;
-            $id = $_GET['id'];
-
             $listIngredientes = $ingredientesDAO->selectId($id);
 
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-            if(count($listIngredientes)>0){
+            if(@count($listIngredientes)>0){
                 $id = $listIngredientes->id;
                 $id_categoria_ingrediente = $listIngredientes->id_categoria_ingrediente;
+                $titulo_cat_ing = $listIngredientes->titulo_cat_ing;
                 $id_unidade_medida = $listIngredientes->id_unidade_medida;
+                $unidade_medida = $listIngredientes->unidade_medida;
+                $sigla_unidade_medida = $listIngredientes->sigla_unidade_medida;
                 $titulo = $listIngredientes->titulo;
                 $descricao = $listIngredientes->descricao;
                 $preco = $listIngredientes->preco;
@@ -60,10 +60,14 @@
                 $fibra_alimentar = $listIngredientes->fibra_alimentar;
                 $sodio = $listIngredientes->sodio;
                 $foto = $listIngredientes->foto;
-                $ativo = $listIngredientes->ativo;
 
                 $botao = "Editar";
+                $edit = $botao;
             }
+        }elseif($modo == 'ativar'){
+            $ingredientesDAO->active($id);
+        }elseif($modo == 'desativar'){
+            $ingredientesDAO->desactive($id);
         }
     }
 
@@ -87,7 +91,7 @@
         $classIngredientes->fibra_alimentar = $_GET['fibra_alimentar'];
         $classIngredientes->sodio = $_GET['sodio'];
         $classIngredientes->foto = $_GET['txtfoto'];
-        $classIngredientes->ativo = $_GET['ativo'];
+        $classIngredientes->ativo = '1';
 
         $ingredientesDAO = new ingredientesDAO();
 
@@ -119,13 +123,14 @@
     <script src="../../assets/public/js/jquery.form.js"></script>
     <script>
         $(document).ready(function() {
-            $('#valor_energ').mask("#0000.00", {reverse: true});
-            $('#carboidratos').mask("#0000.00", {reverse: true});
-            $('#proteinas').mask("#0000.00", {reverse: true});
-            $('#gordura_total').mask("#0000.00", {reverse: true});
-            $('#gordura_saturada').mask("#0000.00", {reverse: true});
-            $('#gordura_trans').mask("#0000.00", {reverse: true});
-            $('#fibra_alimentar').mask("#0000.00", {reverse: true});
+            $('#preco').mask('000.000.000.000.00', {reverse: true});
+            $('#valor_energ').mask("#000.0", {reverse: true});
+            $('#carboidratos').mask("#000.0", {reverse: true});
+            $('#proteinas').mask("#000.0", {reverse: true});
+            $('#gordura_total').mask("#000.0", {reverse: true});
+            $('#gordura_saturada').mask("#000.0", {reverse: true});
+            $('#gordura_trans').mask("#000.0", {reverse: true});
+            $('#fibra_alimentar').mask("#000.0", {reverse: true});
             $('#sodio').mask("#0000.00", {reverse: true});
 
             $('#fotos').on('change', function(){
@@ -158,7 +163,7 @@
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Ingrediente</span>
                             </div>
-                            <a href="pratos.php">
+                            <a href="ingredientes.php">
                                 <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">
                                 <span>Recarregar Listagem</span>
                             </a>
@@ -179,13 +184,18 @@
                                 $lista = $ingredientesDAO->selectAll();
 
                                 for($i = 0; $i < @count($lista); $i++){
+                                    $status = $lista[$i]->ativo;
+                                    if($status == 1)
+                                        $status = 'desativar';
+                                    else
+                                        $status = 'ativar';
                             ?>
                             <tr>
                                 <td><img src="../../<?php echo($lista[$i]->foto)?>" class="show-image"></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->preco)?></span></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>
-                                <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=<?php echo($active)?>&id=<?php echo($lista[$i]->id)?>'"></td>
+                                <td><img src="../../assets/images/cms/symbols/<?php echo($status)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=<?php echo($status)?>&id=<?php echo($lista[$i]->id)?>'"></td>
                                 <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
                                 <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='ingredientes.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
@@ -209,6 +219,8 @@
                         </form>
                         <form class="form-generic-content padding-top-30px" action="ingredientes.php" name="frmcadastro" method="GET">
                             <input name="txtfoto" type="hidden" value="<?php echo($foto)?>">
+                            <input name="id" type="hidden" value="<?php echo($id)?>">
+                            <input type="hidden" name="editar" id="editar" value="<?php echo($edit)?>">
 
                             <label for="titulo" class="label-generic">Nome do Ingrediente:</label>
                             <input id="titulo" name="titulo" class="input-generic" required placeholder="Digite um nome para o ingrediente..." value="<?php echo($titulo)?>">
@@ -221,7 +233,7 @@
 
                             <label for="categoria" class="label-generic">Categoria:</label>
                             <select id="id_categoria_ingrediente" name="id_categoria_ingrediente" class="input-generic" required>
-                                <option selected>Selecione uma opção:</option>
+                                <option selected value="<?php echo($id_categoria_ingrediente)?>"><?php echo($titulo_cat_ing)?></option>
                                 <?php
                                     require_once("../models/DAO/categorias-ingredientesDAO.php");
 
@@ -230,16 +242,14 @@
                                     $lista = $catIngredienteDAO->selectAll();
 
                                     for($i = 0; $i < @count($lista); $i++){
-                                ?>
-                                <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
-                                <?php
+                                        echo("<option value='".$lista[$i]->id."'>".$lista[$i]->titulo."</option>");
                                     }
                                 ?>
                             </select>
 
                             <label for="unidadeMedida" class="label-generic">Unidade de Medida:</label>
                             <select id="id_unidade_medida" name="id_unidade_medida" class="input-generic" required>
-                                <option selected>Selecione uma opção:</option>
+                                <option selected value="<?php echo($id_unidade_medida)?>">(<?php echo($sigla_unidade_medida)?>) <?php echo($unidade_medida)?></option>
                                 <?php
                                     require_once("../models/DAO/unidade-medidaDAO.php");
 
@@ -247,10 +257,9 @@
 
                                     $lista = $unidadeMedidaDAO->selectAll();
 
-                                    for($i = 0; $i < count($lista); $i++){
-                                ?>
-                                <option value="<?php echo($lista[$i]->id)?>"><strong>(<?php echo($lista[$i]->sigla)?>)</strong> <?php echo($lista[$i]->unid_medida)?></option>
-                                <?php
+
+                                    for($i = 0; $i < @count($lista); $i++){
+                                        echo("<option value='".$lista[$i]->id."'>(".$lista[$i]->sigla.") ".$lista[$i]->unid_medida."</option>");
                                     }
                                 ?>
                             </select>
@@ -282,12 +291,6 @@
                             <label for="sodio" class="label-generic">Sódio:</label>
                             <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)" value="<?php echo($sodio)?>">
 
-                            <div class="select-block">
-                                <label for="ativo" class="label-generic">Status Inicial do Ingrediente:</label>
-                                <div class="switch_box margin-left-10px">
-                                    <input type="checkbox" name="ativo" id="ativo" class="switch-styled" value="1">
-                                </div>
-                            </div>
                             <button type="submit" id="btn-save" value="<?php echo($botao)?>" name="btn-salvar">
                                 <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
                                 <span>Salvar</span>
@@ -304,6 +307,11 @@
             $("#open-form").click(function () {
                 $("#add-prato-form").slideToggle("fast");
             });
+
+            var edit = document.getElementById("editar");
+            if(edit.value == "Editar"){
+                $("#add-prato-form").css("display", "block");
+            }
         });
     </script>
 </body>

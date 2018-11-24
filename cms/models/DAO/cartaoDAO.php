@@ -39,7 +39,7 @@ class cartaoDAO {
                       window.history.back();
                    </script>");
         else
-            echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            echo('<script>alert("Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.");</script>');
 
         $conex->desconectar();
     }

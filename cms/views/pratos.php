@@ -7,8 +7,9 @@
     
     require_once('../models/pratosClass.php');
     require_once('../models/DAO/pratosDAO.php');
+    require_once('../models/DAO/destaqueDAO.php');
     $pratosDAO = new pratosDAO;
-            
+    $destaqueDAO = new destaqueDAO;
 
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
@@ -23,53 +24,41 @@
             $pratosDAO->desactive($id);
         }elseif($modo == 'destacar'){
             $id = $_GET['id'];
-            $pratosDAO->destacar($id);
+            $destaqueDAO->insert($id);
         }
     }
 
     if(isset($_GET['btn-salvar'])){
-        // $values = $_GET['id_ingrediente'];
-        // $keys = array_keys($values);
-        // $size = count($values);
+        $preco = array_sum($_GET['ingrediente_preco']);
 
-        // for ($i = 0; $i < $size; $i++) {
-        //     $key   = $keys[$i];
-        //     $value = $values[$key];
+        require_once('../models/pratosClass.php');
+        require_once('../models/categoriaClass.php');
+        require_once('../models/DAO/pratosDAO.php');
+        require_once('../models/pratoFotoClass.php');
+        require_once('../models/DAO/pratoFotoDAO.php');
+        require_once('../models/DAO/categoriaDAO.php');
 
-        //     print_r($value);
+        $classPrato = new Prato();
+        $classPrato->id_categoria = $_GET['id_categoria'];
+        $classPrato->id_ingrediente = $_GET['id_ingrediente'];
+        $classPrato->titulo = $_GET['titulo'];
+        $classPrato->descricao = $_GET['descricao'];
+        $classPrato->resumo = $_GET['resumo'];
+        $classPrato->confiPublic = '0';
+        $classPrato->ativo = '1';
+        $classPrato->id_usuario = '12';
+        $classPrato->preco = $preco;
+        $classPrato->foto = $_GET['foto'];
 
-        // }
-
-       require_once('../models/pratosClass.php');
-       require_once('../models/categoriaClass.php');
-       require_once('../models/DAO/pratosDAO.php');
-       require_once('../models/pratoFotoClass.php');
-       require_once('../models/DAO/pratoFotoDAO.php');
-       require_once('../models/DAO/categoriaDAO.php');
-
-       $classPrato = new Prato();
-       $classPrato->id_categoria = $_GET['id_categoria'];
-       $classPrato->id_ingrediente = $_GET['id_ingrediente'];
-       $classPrato->titulo = $_GET['titulo'];
-       $classPrato->descricao = $_GET['descricao'];
-       $classPrato->resumo = $_GET['resumo'];
-       $classPrato->confiPublic = '0';
-       $classPrato->ativo = '1';
-       $classPrato->id_usuario = '12';
-       //$classPrato->id_funcionario = $_SESSION['id_funcionario'];
-       $classPrato->preco = $_GET['preco'];
-       $classPrato->foto = $_GET['foto'];
-
-       $pratosDAO = new pratosDAO();
-       if($_GET['btn-salvar'] == "Salvar"){
-           if($pratosDAO->insert($classPrato)){
-               $pratosDAO->insertIngrediente($classPrato);
-           }
-       }else{
-          $pratosDAO->id = $_GET['id'];
-          $pratosDAO->update($classPrato);
-       }
-
+        $pratosDAO = new pratosDAO();
+        if($_GET['btn-salvar'] == "Salvar"){
+            if($pratosDAO->insert($classPrato)){
+                $pratosDAO->insertIngrediente($classPrato);
+            }
+        }else{
+           $pratosDAO->id = $_GET['id'];
+           $pratosDAO->update($classPrato);
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -152,7 +141,7 @@
                                 </div>
                             </div>
                             <?php
-                            }
+                                }
                             ?>
                         </div>
                     </div>
@@ -179,11 +168,7 @@
                             <label for="resumo" class="label-generic">Resumo:</label>
                             <textarea type="text"  id="resumo" name="resumo" class="textarea-generic" required maxlength="255"></textarea>
 
-                            <label for="preco" class="label-generic">Preço:</label>
-                            <input type="text" id="preco" name="preco" class="input-generic" required maxlength="255">
-                            <script>$('#preco').mask('000.000.000.000.00', {reverse: true});</script>
-
-                            <label for="idCategoria" class="label-generic">Categoria:</label>
+                            <label for="id_categoria" class="label-generic">Categoria:</label>
                             <select type="text"  id="id_categoria" name="id_categoria" class="input-generic" required maxlength="255"><option>Selecione uma categoria:</option>
                                 <?php
                                     require_once('../models/DAO/categoriaDAO.php');
@@ -212,6 +197,7 @@
                                     for($i = 0; $i < @count($lista); $i++){
                                 ?>
                                 <label class="label-generic"><input type="checkbox" id="ingredientes" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></label>
+                                <input type="hidden" name="ingrediente_preco[]" id="ingrediente_preco" value="<?php echo($lista[$i]->preco)?>">
                                 <?php
                                     }
                                 ?>

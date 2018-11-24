@@ -102,8 +102,7 @@
             $select = $PDO_conex->query($sql);
 
             $count=0;
-            while($rs=$select->fetch(PDO::FETCH_ASSOC))
-            {
+            while($rs=$select->fetch(PDO::FETCH_ASSOC)){
                 $listSelectPrato[] = new Prato();
                 $listSelectPrato[$count]->id = $rs['id'];
                 $listSelectPrato[$count]->idCategoria = $rs['id_categoria'];
@@ -157,19 +156,18 @@
         }
 
         public function delete($id){
-            $sql = "delete from tbl_foto_prato where id_prato = ".$id;
+            $sql = "DELETE FROM tbl_foto_prato WHERE id_prato = ".$id;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
 
             if($PDO_conex->query($sql))
-                $last_id = $PDO_conex->lastInsertId();
                 $sql2 = "DELETE FROM tbl_prato WHERE id = ".$id;
                 if($PDO_conex->query($sql2)){
                     header("location:pratos.php");
                 }
             else
-                echo('<script>alert("Erro ao excluir informações do sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                echo('<script>alert("Erro ao excluir informações do sistema. Tente novamente ou contate o técnico.");</script>');
         }
 
         public function update($classPrato){
@@ -222,28 +220,5 @@
             }
         }
 
-        public function destacar($id){
-            $sql="SELECT COUNT(*) AS total FROM tbl_destaque WHERE id_prato = ".$id;
-
-            //Instancia a classe
-            $conex = new mysql_db();
-            //Abre a Conexao
-            $PDO_conex = $conex->conectar();
-            //Executa a query
-
-            $select = $PDO_conex->query($sql);
-
-            if($rs=$select->fetch(PDO::FETCH_ASSOC)){
-            //Cria um objeto array da classe Contato
-                $sql = "INSERT INTO tbl_destaque (id_prato, ativo) VALUES ('$id', '1');";
-                if($PDO_conex->query($sql)){
-                    echo('<script>alert("Prato adicionado aos destaques.");</script>');
-                }else{
-                    echo('<script>alert("Erro ao destacar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
-                }
-            }else{
-                echo('<script>alert("Erro ao destacar item no sistema.</br>Tente novamente ou contate o técnico.");</script>');
-            }
-        }
     }
 ?>

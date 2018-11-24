@@ -4,6 +4,7 @@
         public $id;
         public $idCatIngredienteP;
         public $titulo;
+        public $descricao;
         public $foto;
         public $ativo;
 
