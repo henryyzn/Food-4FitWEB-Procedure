@@ -7,7 +7,7 @@ class dicasFitnessDAO {
     public function __construct(){
         require_once('dataBase.php');
         //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/dicas-fitnessClass.php');
-        require_once($_SESSION['path'].'cms/models/dicas-fitness.php');
+        @require_once($_SESSION['path'].'cms/models/dicas-fitness.php');
     }
 
     public function insert($classDicasFitness){

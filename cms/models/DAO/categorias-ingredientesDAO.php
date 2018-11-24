@@ -7,7 +7,7 @@
 
 //            require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/categorias-ingredientesClass.php');
 
-            require_once($_SESSION['path'].'cms/models/categorias-ingredientesClass.php');
+            @require_once($_SESSION['path'].'cms/models/categorias-ingredientesClass.php');
         }
 
         public function insert($classCatIngrediente){

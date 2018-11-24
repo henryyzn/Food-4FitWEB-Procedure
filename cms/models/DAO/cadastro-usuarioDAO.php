@@ -2,6 +2,7 @@
     class cadUsuarioDAO{
         public function __construct(){
             require_once('dataBase.php');
+            @require_once($_SESSION['path'].'../cadastro-usuarioClass.php');
         }
 
         public function insert($classCadUser){

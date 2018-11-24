@@ -7,7 +7,7 @@ class comentarioPostDAO {
     public function __construct(){
         require_once('dataBase.php');
         //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/comentario-postClass.php');
-        require_once($_SESSION['path'].'cms/models/comentario-postClass.php');
+        @require_once($_SESSION['path'].'cms/models/comentario-postClass.php');
     }
 
     public function insert($classComentario){

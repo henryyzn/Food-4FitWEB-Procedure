@@ -2,7 +2,7 @@
     class perguntaDAO{
         public function __construct(){
             require_once('dataBase.php');
-            require_once('cms/models/pergunta-secretaClass.php');
+            @require_once($_SESSION['path'].'cms/models/pergunta-secretaClass.php');
         }
 
         public function selectAll(){

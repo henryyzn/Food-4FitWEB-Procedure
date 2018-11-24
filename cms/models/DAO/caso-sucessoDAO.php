@@ -8,7 +8,7 @@ class casoSucessoDAO {
         require_once('dataBase.php');
 //        require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/caso-sucessoClass.php');
 
-        require_once($_SESSION['path'].'../models/caso-sucessoClass.php');
+        @require_once($_SESSION['path'].'../models/caso-sucessoClass.php');
     }
 
     public function insert($classCaso){

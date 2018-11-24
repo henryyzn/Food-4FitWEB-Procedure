@@ -2,8 +2,8 @@
     class catPratoDAO{
         public function __construct(){
             require_once('database.php');
-            require_once('../models/categorias-pratoClass.php');
-            require_once('../models/categorias-ingredientesClass.php');
+            @require_once($_SESSION['path'].'../models/categorias-pratoClass.php');
+            @require_once($_SESSION['path'].'../models/categorias-ingredientesClass.php');
         }
 
         public function insert($classCatPrato){
