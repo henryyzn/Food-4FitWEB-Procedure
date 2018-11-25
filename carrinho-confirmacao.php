@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div id="total-price" style="">
-                    <span>Total da compra:<br><b>R$ 000,00</b></span>
+                    <span>Total da compra:<br><b>R$ <?php echo(number_format($_SESSION['valor-carrinho'], 2, ",", "."));?></b></span>
                 </div>
                 <div class="shopping-cart-row-next">
                     <a href="carrinho.php" class="margin-right-30px">Cancelar</a>
@@ -161,6 +161,8 @@
                         $preco = $value['preco'];
                         $foto_prato = $value['foto_prato'];
                         $quantidade = $value['quantidade'];
+                        $categoria = $value['categoria'];
+                        $subtotal = $value['subtotal'];
                 ?>
                 <div class="shopping-cart-row">
                     <div class="shopping-cart-column">
@@ -170,16 +172,16 @@
                     </div>
                     <div class="shopping-cart-column">
                         <h2 class="padding-bottom-5px"><?php echo($titulo)?></h2>
-                        <h3 class="padding-bottom-15px">Categoria: Nome da Categoria</h3>
+                        <h3 class="padding-bottom-15px">Categoria: <?php echo($categoria)?></h3>
                     </div>
                     <div class="shopping-cart-column align">
-                        <span id="shopping-cart-price">R$ <?php echo($preco)?></span>
+                        <span id="shopping-cart-price">R$ <?php echo(number_format($preco, 2, ",", "."))?></span>
                     </div>
                     <div class="shopping-cart-column align">
-                        <span id="shopping-cart-qty" style="color: #9CC283;">QTD: <?php echo($quantidade)?></span>
+                        <span id="shopping-cart-qty" style="color: #9CC283;"><?php echo($quantidade)?></span>
                     </div>
                     <div class="shopping-cart-column align">
-                        <span id="shopping-cart-price-total">R$ 000,00</span>
+                        <span id="shopping-cart-price-total">R$ <?php echo(number_format($subtotal, 2, ",", ".")) ?></span>
                     </div>
                 </div>
                 <?php
