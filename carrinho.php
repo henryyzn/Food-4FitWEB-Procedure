@@ -3,7 +3,8 @@
     require_once('modulo.php');
     validateLog();
 
-    $total = $_SESSION['itens-carrinho'];
+    $total = @$_SESSION['itens-carrinho'];
+    $_SESSION["valor-carrinho"] = 0;
 
     if(isset($_GET['btn-comprar'])){
         require_once('cms/models/pedidoClass.php');
@@ -41,9 +42,7 @@
                      $a = $_SESSION['carrinho'][$id]['id_prato'];
                      //var_dump($a);
 
-                     $_SESSION['carrinho']['total'] = $_SESSION['carrinho']['total'] + $n;
-
-                     $pedidoDAO->insertOrdem($classPedido);
+                     $_SESSION['valor-carrinho'] += $n;
                 }else{
                     unset($_SESSION['carrinho'][$id]);
                 }
@@ -105,6 +104,7 @@
         unset($_SESSION['carrinho']);
         unset($_SESSION['itens-carrinho']);
         unset($_SESSION['last_id']);
+        unset($_SESSION['valor-carrinho']);
         header('location:carrinho.php');
     }
 ?>
@@ -161,60 +161,59 @@
 
                         $pratosDAO = new pratosDAO();
 
-                        foreach(@$_SESSION['carrinho'] as $key => $value) {
-                            $id_prato = $value['id_prato'];
-                            $titulo = $value['titulo'];
-                            $preco = $value['preco'];
-                            $foto_prato = $value['foto_prato'];
-                            $quantidade = $value['quantidade'];
-                            $subtotal = $value['subtotal'];
-                            $total = $_SESSION['carrinho']['total'];
+                        if (isset($_SESSION['carrinho'])) {
+                            foreach($_SESSION['carrinho'] as $key => $value) {
+                                $id_prato = $value['id_prato'];
+                                $titulo = $value['titulo'];
+                                $categoria = $value['categoria'];
+                                $preco = $value['preco'];
+                                $foto_prato = $value['foto_prato'];
+                                $quantidade = $value['quantidade'];
+                                $subtotal = $value['subtotal'];
                     ?>
-                    <input type="hidden" name="id_prato[]" id="id_prato" value="<?php echo($id_prato)?>">
-                    <input type="hidden" name="preco[<?php echo($id_prato);?>]" id="preco" value="<?php echo($preco)?>">
-                    <input type="hidden" name="subtotal[<?php echo($id_prato);?>]" id="subtotal" value="<?php echo($subtotal)?>">
-                    <div class="shopping-cart-row" data-quantidade>
+                    <div class="shopping-cart-row">
+                        <input type="hidden" name="id_prato[]" id="id_prato" value="<?php echo($id_prato)?>">
+                        <input type="hidden" name="preco[<?php echo($id_prato);?>]" class="preco" value="<?php echo($preco)?>">
+                        <input type="hidden" name="subtotal[<?php echo($id_prato);?>]" class="subtotal" value="<?php echo($subtotal)?>">
                         <div class="shopping-cart-column">
                             <figure class="shopping-cart-image-container">
                                 <img src="<?php echo($foto_prato)?>" alt="Nome do Prato">
                             </figure>
                         </div>
                         <div class="shopping-cart-column align-flex-start">
-                            <h4 onclick="javascript:location.href='carrinho.php?modo=excluir&id=<?php echo($id_prato)?>'">Remover<h4>
+                            <h4 onclick="javascript:location.href='carrinho.php?modo=excluir&id=<?php echo($id_prato)?>'">Remover</h4>
                             <h2 class="padding-bottom-5px"><?php echo($titulo)?></h2>
-                            <h3 class="padding-bottom-15px">Categoria: Nome da Categoria</h3>
+                            <h3 class="padding-bottom-15px">Categoria: <?php echo($categoria)?></h3>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price">R$ <?php echo($preco)?></span>
+                            <span id="shopping-cart-price">R$ <?php echo(number_format($preco, 2, ",", "."))?></span>
                         </div>
                         <div class="shopping-cart-column align-y">
-                            <div class="input-group input-number-group" data-f4f-number-group>
+                            <div class="input-group input-number-group" data-contador>
                                 <div class="input-group-button">
-                                    <span class="input-number-decrement" data-f4f-number-decrement>-</span>
+                                    <span class="input-number-decrement" data-remover>-</span>
                                 </div>
-                                <input class="input-number" type="number" name="quantidade[<?php echo($id_prato);?>]" value="<?php echo($quantidade)?>" min="1" max="100">
+                                <input readonly class="input-number" type="number" name="quantidade[<?php echo($id_prato);?>]" value="<?php echo($quantidade)?>" min="1" max="100">
                                 <div class="input-group-button">
-                                    <span class="input-number-increment" data-f4f-number-increment>+</span>
+                                    <span class="input-number-increment" data-adicionar>+</span>
                                 </div>
                             </div>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price-total">R$ <?php echo($subtotal)?></span>
+                            <span id="shopping-cart-price-total">R$ <?php echo(number_format($subtotal, 2, ",", "."))?></span>
                         </div>
                     </div>
                     <div class="shopping-cart-separator"></div>
                     <?php
+                            }
                         }
                     ?>
                 </section>
                 <div id="shopping-cart-select-block">
                     <span onclick="javascript:location.href='carrinho.php?clean'">Excluir Tudo</span>
-                    <button onclick="carrinho('atualizar')" name="btn-comprar" value="Atualizar" class="btn-generic margin-left-30px">
-                        <span>Atualizar</span>
-                    </button>
                 </div>
                 <div id="shopping-cart-confirm-column-two">
-                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span>R$ <?php echo($total)?></span></h2>
+                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span id="total-pagar">R$ <?php echo(number_format($_SESSION['valor-carrinho'], 2, ",", "."));?></span></h2>
                     <button onclick="carrinho('comprar')" name="btn-comprar" value="Comprar" class="btn-generic margin-right-30px">
                         <span>Comprar</span>
                     </button>
@@ -238,20 +237,38 @@
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 	<script>
-        $("[data-f4f-number-group]").each(function () {
-            var input = $(this).find("input");
-            $(this).on("click", "[data-f4f-number-decrement], [data-f4f-number-increment]", function () {
-                var number = parseInt(input.val());
-                if ($(this).is("[data-f4f-number-increment]")) {
-                    number + 1;
+        $("[data-contador]").each(function () {
+            var inputQuantidade = $(this).find("input");
+            var inputSubtotal = $(this).closest(".shopping-cart-row").find(".subtotal");
+            var inputPreco = $(this).closest(".shopping-cart-row").find(".preco");
+            var textPreco = $(this).closest(".shopping-cart-row").find("#shopping-cart-price-total");
+            
+            $(this).on("click", "[data-adicionar], [data-remover]", function () {
+                var number = parseInt(inputQuantidade.val());
+                if ($(this).is("[data-adicionar]")) {
+                    number += 1;
                 } else {
-                    number - 1;
+                    number -= 1;
                 }
 
                 number = Math.max(1, Math.min(1000, number));
-                input.val(number);
+                inputQuantidade.val(number);
+                var total = number * parseFloat(inputPreco.val());
+                inputSubtotal.val(total);
+                textPreco.text("R$ " + total.toFixed(2).replace(".", ",").replace(/\d(?=(\d{3})+,)/g, "$&."));
+                atualizarTotal();
             });
         });
+        
+        function atualizarTotal() {
+            var total = 0;
+            $(".shopping-cart-row").each(function() {
+                total += parseFloat($(this).find(".subtotal").val()); 
+            });
+            
+            $("#total-pagar").text("R$ " + total.toFixed(2).replace(".", ",").replace(/\d(?=(\d{3})+,)/g, "$&."));
+            console.log(total);
+        }
 
         function carrinho(pcaminho){
 

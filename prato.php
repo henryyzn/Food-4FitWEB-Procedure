@@ -14,7 +14,7 @@
     }
     if(isset($_GET['acao'])){
         if($_GET['acao'] == 'add'){
-            $_SESSION['itens-carrinho'] = array("id_prato"=>$_GET['id_prato'], "titulo"=>$_GET['titulo'], "preco"=>$_GET['preco'], "subtotal"=>$_GET['preco'], "id_categoria_prato"=>$_GET['id_categoria_prato'], "foto_prato"=>$_GET['foto_prato'], "quantidade"=>$_GET['quantidade']);
+            $_SESSION['itens-carrinho'] = array("id_prato"=>$_GET['id_prato'], "titulo"=>$_GET['titulo'], "preco"=>$_GET['preco'], "subtotal"=>$_GET['preco'], "id_categoria_prato"=>$_GET['id_categoria_prato'], "foto_prato"=>$_GET['foto_prato'], "quantidade"=>$_GET['quantidade'], "categoria"=>$_GET["categoria_prato"]);
             $id = $_GET['id_prato'];
             //Verifica se a variavel de sessão id do carrinho não existe
             if(!isset($_SESSION['carrinho'][$id])){
@@ -37,7 +37,6 @@
         $pratosDAO = new pratosDAO;
 
         $lista = $pratosDAO->selectAllById($id_prato);
-
         for($i = 0; $i < @count($lista); $i++){
 ?>
 <!DOCTYPE html>
@@ -113,8 +112,9 @@
 
                     <input type="hidden" name="acao" id="acao" value="add">
                     <input type="hidden" name="id_prato" value="<?php echo($id_prato)?>" id="id_prato">
-                    <input type="hidden" name="id_categoria_prato" id="id_categoria_prato" value="1">
-                    <input type="hidden" name="titulo" id="titulo" value="Teste">
+                    <input type="hidden" name="id_categoria_prato" id="id_categoria_prato" value="<?php echo($lista[$i]->idCategoria)?>">
+                    <input type="hidden" name="categoria_prato" id="categoria_prato" value="<?php echo($lista[$i]->categoria)?>">
+                    <input type="hidden" name="titulo" id="titulo" value="<?php echo($lista[$i]->titulo)?>">
                     <input type="hidden" name="preco" id="preco" value="<?php echo($lista[$i]->preco)?>">
                     <input type="hidden" name="quantidade" id="quantidade" value="1">
                     <input type="hidden" name="foto_prato" id="foto_prato" value="<?php echo($lista[$i]->foto)?>">

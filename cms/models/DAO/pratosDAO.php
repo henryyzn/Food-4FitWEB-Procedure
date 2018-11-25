@@ -126,7 +126,8 @@
         public function selectAllById($id_prato){
             $listSelecPrato = null;
 
-            $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, prato.titulo AS titulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.preco AS preco, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato WHERE prato.id = '".$id_prato."' AND prato.id = foto_prato.id_prato ORDER BY prato.id DESC;";
+            $sql = "SELECT prato.id AS id, prato.id_categoria AS id_categoria, categoria.titulo AS categoria, prato.titulo AS titulo, prato.descricao AS descricao, prato.resumo AS resumo, prato.preco AS preco, prato.ativo AS ativo, prato.confi_public AS confi_public, prato.id_usuario AS id_usuario, foto_prato.id AS id_foto_prato, foto_prato.id_prato AS id_prato, foto_prato.foto AS foto FROM tbl_prato AS prato INNER JOIN tbl_foto_prato AS foto_prato INNER JOIN tbl_categoria AS categoria ON categoria.id = prato.id_categoria WHERE prato.id = '".$id_prato."' AND prato.id = foto_prato.id_prato ORDER BY prato.id DESC;";
+            
             //echo $sql;
             //print_r($value);
             $conex = new mysql_db();
@@ -139,6 +140,7 @@
                 $listSelecPrato[] = new Prato();
                 $listSelecPrato[$cont]->id = $rs['id'];
                 $listSelecPrato[$cont]->idCategoria = $rs['id_categoria'];
+                $listSelecPrato[$cont]->categoria = $rs['categoria'];
                 $listSelecPrato[$cont]->titulo = $rs['titulo'];
                 $listSelecPrato[$cont]->descricao = $rs['descricao'];
                 $listSelecPrato[$cont]->resumo = $rs['resumo'];

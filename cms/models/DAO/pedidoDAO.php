@@ -62,6 +62,7 @@ class pedidoDAO {
                 echo ("<script>window.alert('Compra realizada com sucesso.'); window.location.href='meus-pedidos.php';</script>");
                 unset($_SESSION['carrinho']);
                 unset($_SESSION['itens-carrinho']);
+                unset($_SESSION['valor-carrinho']);
                 unset($_SESSION['last_id']);
             }else{
                 echo('<script>alert("Erro ao realizar compra.</br>Tente novamente ou contate o técnico.");</script>');
