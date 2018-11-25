@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="../../assets/css/align.css">
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/public/js/jquery.mask.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
 </head>
 <body>
@@ -70,7 +71,7 @@
 
                         $lista = $diarioBordoDAO->selectDouble();
 
-                        for($i = 0; $i < count($lista); $i++){
+                        for($i = 0; $i < @count($lista); $i++){
                     ?>
                     <tr>
                         <td><span class="table-result"><strong><?php echo($lista[$i]->nome)?></strong></span></td>
@@ -91,7 +92,7 @@
     </div>
 </section>
 <div class="generic-modal animate fadeIn" id="abrir">
-    <article class="generic-modal-wrapper">
+    <article class="generic-modal-wrapper width-600px">
 
     </article>
 </div>

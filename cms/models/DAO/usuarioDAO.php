@@ -124,7 +124,7 @@ class usuarioDAO {
                 header('location:meu-perfil.php');
             }
         }else{
-            echo('<script>alert("Deu errado!")</script>');
+            echo "<script>alert('Erro ao atualizar informações no sistema. Tente novamente ou contate o técnico.'); window.history.back();</script>";
         }
         
         $conex->desconectar();
@@ -144,9 +144,43 @@ class usuarioDAO {
                 unset($_SESSION['avatar_usuario']);
                 $_SESSION['avatar_usuario'] = $rs['avatar'];
                 header('location:meu-perfil.php');
+            }else{
+                echo "<script>alert('Erro ao deletar informações no sistema. Tente novamente ou contate o técnico.'); window.location = 'editar-perfil.php';</script>";
             }
-        else
-            echo('<script>alert("Erro ao remover avatar do sistema. Tente novamente ou contate o técnico.");</script>');
+    }
+
+    public function selectAllUsers(){
+        $sql = "SELECT * FROM tbl_usuario ORDER BY id DESC;";
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+
+        $select = $PDO_conex->query($sql);
+
+        $count=0;
+        while($rs=$select->fetch(PDO::FETCH_ASSOC)){
+        //Cria um objeto array da classe Contato
+            $listUsuario[] = new Usuario();
+            $listUsuario[$count]->id = $rs['id'];
+            $listUsuario[$count]->tipo_pessoa = $rs['tipo_pessoa'];
+            $listUsuario[$count]->nome = $rs['nome'];
+            $listUsuario[$count]->sobrenome = $rs['sobrenome'];
+            $listUsuario[$count]->nome_fantasia = $rs['nome_fantasia'];
+            $listUsuario[$count]->razao_social = $rs['razao_social'];
+            $listUsuario[$count]->email = $rs['email'];
+            $listUsuario[$count]->rg = $rs['rg'];
+            $listUsuario[$count]->cpf = $rs['cpf'];
+            $listUsuario[$count]->cnpj = $rs['cnpj'];
+            $listUsuario[$count]->genero = $rs['genero'];
+            $listUsuario[$count]->telefone = $rs['telefone'];
+            $listUsuario[$count]->celular = $rs['celular'];
+            $listUsuario[$count]->avatar = $rs['avatar'];
+            $listUsuario[$count]->ativo = $rs['ativo'];
+            $listUsuario[$count]->insc_estadual = $rs['insc_estadual'];
+            $listUsuario[$count]->data_nascimento = date('d/m/Y', strtotime($rs['data_nascimento']));
+            $count+=1;
+        }
+        return $listUsuario;
     }
 }
 ?>

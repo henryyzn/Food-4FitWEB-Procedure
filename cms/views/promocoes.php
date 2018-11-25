@@ -1,8 +1,35 @@
 <?php
     session_start();
-    $id = null;
-    $foto = null;
+
     $botao = "Salvar";
+
+    require_once('../models/DAO/promocaoDAO.php');
+    require_once('../models/promocaoClass.php');
+    $promocaoDAO = new promocaoDAO();
+    $promocaoClass = new Promocao;
+
+    if(isset($_GET['modo'])){
+        $modo = $_GET['modo'];
+        $id = $_GET['id'];
+        if($modo == 'excluir'){
+            $promocaoDAO->delete($id);
+        }elseif($modo == 'editar'){
+            $promocaoDAO->update($id);
+        }
+    }
+
+    if(isset($_GET['btn-salvar'])){
+
+        $promocaoClass->id_prato = $_GET['id_prato'];
+        $promocaoClass->desconto = $_GET['desconto'];
+        $promocaoClass->data_inicio = $_GET['data_inicio'];
+        $promocaoClass->data_termino = $_GET['data_termino'];
+        $promocaoClass->ativo = '1';
+
+        if($_GET['btn-salvar'] == 'Salvar'){
+            $promocaoDAO->insert($promocaoClass);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -52,6 +79,11 @@
                                 $lista = $promocaoDAO->selectDouble();
 
                                 for($i = 0; $i < @count($lista); $i++){
+                                    $status = $lista[$i]->promocao_ativo;
+                                    if($status == 1)
+                                        $status = 'desativar';
+                                    else
+                                        $status = 'ativar';
                             ?>
                             <div class="generic-card">
                                 <img src="../../<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
@@ -62,8 +94,8 @@
 
                                     <div class="edit-btns">
                                         <img src="../../assets/images/icons/edit.svg" alt="Editar Prato">
-                                        <img src="../../assets/images/icons/delete-white.svg" alt="Excluir Prato">
-                                        <img src="../../assets/images/icons/checked-white.svg" alt="">
+                                        <img src="../../assets/images/icons/delete-white.svg" alt="Excluir Prato" onclick="javascript:location.href='promocoes.php?modo=excluir&id=<?php echo($lista[$i]->id_promocao)?>'">
+                                        <img src="../../assets/images/cms/symbols/<?php echo($status)?>.svg" alt="" onclick="javascript:location.href='promocoes.php?modo=<?php echo($status)?>&id=<?php echo($lista[$i]->id_promocao)?>'">
                                     </div>
                                     <span class="avaliacoes-pratos">
                                         Ver Avaliações
@@ -130,7 +162,7 @@
         </div>
     </section>
     <div class="generic-modal animate fadeIn" id="abrir">
-        <article class="generic-modal-wrapper">
+        <article class="generic-modal-wrapper width-500px">
 
         </article>
     </div>

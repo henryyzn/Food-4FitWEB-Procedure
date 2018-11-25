@@ -12,57 +12,40 @@
 
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
+        $id = $_GET['id'];
+
+        require_once('../models/sliderClass.php');
+        require_once('../models/DAO/sliderDAO.php');
+        $sliderDAO = new sliderDAO();
+
 
         if($modo == 'excluir'){
-
-            require_once('../models/sliderClass.php');
-            require_once('../models/DAO/sliderDAO.php');
-
-            $sliderDAO = new sliderDAO;
-            $id = $_GET['id'];
             $sliderDAO->delete($id);
 
         }else if($modo == 'editar'){
-            require_once('../models/sliderClass.php');
-            require_once('../models/DAO/sliderDAO.php');
-
-            $sliderDAO = new sliderDAO;
-            $id = $_GET['id'];
-            $_SESSION['id'] = $id;
-
             $listSlider = $sliderDAO->selectId($id);
-
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-            if(count($listSlider)>0)
-            {
-
+            if(@count($listSlider)>0){
                 $id = $listSlider->id;
                 $imagem = $listSlider->imagem;
                 $ativo = $listSlider->ativo;
 
                 $botao = "Editar";
-
             }
         }
     }
     if(isset($_GET['btn-salvar'])){
-
-        require_once('../models/sliderClass.php');
-        require_once('../models/DAO/sliderDAO.php');
-
         $classSlider = new Slider();
         $classSlider->imagem = $_GET['txtfoto'];
         $classSlider->ativo = $_GET['ativo'];
 
-        $sliderDAO = new sliderDAO();
-
-           if($_GET['btn-salvar'] == "Salvar"){
-               $sliderDAO->insert($classSlider);
-           }elseif($_GET['btn-salvar'] == "Editar"){
-               $classSlider->id = $_SESSION['id'];
-               $sliderDAO->update($classSlider);
-           }
+        if($_GET['btn-salvar'] == "Salvar"){
+            $sliderDAO->insert($classSlider);
+        }elseif($_GET['btn-salvar'] == "Editar"){
+            $classSlider->id = $id;
+            $sliderDAO->update($classSlider);
+        }
     }
 
 ?>
@@ -124,9 +107,9 @@
                             <div class="slider-block-overflow">
                                 <table>
                                     <tr>
-                                        <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
-                                        <td><img src="../../assets/images/cms/symbols/editar-white.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='slider.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
-                                        <td><img src="../../assets/images/cms/symbols/excluir-white.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='slider.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
+                                        <td width="80px"><img src="../../assets/images/cms/symbols/ativar.svg" alt="" class="table-generic-opts"></td>
+                                        <td width="80px"><img src="../../assets/images/cms/symbols/editar-white.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='slider.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
+                                        <td width="80px"><img src="../../assets/images/cms/symbols/excluir-white.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='slider.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                                     </tr>
                                 </table>
                             </div>

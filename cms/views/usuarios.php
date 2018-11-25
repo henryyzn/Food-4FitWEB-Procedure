@@ -5,18 +5,16 @@
     //não irá achar os métodos da Class
     session_start();
 
-    require_once('../../cms/models/cadastro-usuarioClass.php');
+    require_once('../models/usuarioClass.php');
+    require_once("../models/DAO/usuarioDAO.php");
+    $usuarioDAO = new usuarioDAO();
 
     if(isset($_GET['modo'])){
-    $modo = $_GET['modo'];
-    if($modo == 'excluir'){
-
-    require_once('../../cms/models/cadastro-usuarioClass.php');
-    require_once("../../cms/models/DAO/cadastro-usuarioDAO.php");
-
-        $cadUsuarioDAO = new cadUsuarioDAO();
+        $modo = $_GET['modo'];
         $id = $_GET['id'];
-        $cadUsuarioDAO->delete($id);
+
+        if($modo == 'excluir'){
+            $usuarioDAO->delete($id);
         }
     }
 
@@ -28,47 +26,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuários :: Food 4fit - CMS</title>
-    <link rel="icon" type="image/png" href="assets/images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="../../assets/images/icons/favicon.png" />
     <link rel="stylesheet" id="CMSthemeStyle" href="../../assets/css/cms/stylesheet-cms.css">
     <link rel="stylesheet" id="CMSthemeBases" href="../../assets/css/bases-light.css">
-    <link rel="stylesheet" href="../../assets/public/css/jquery.toast.min.css">
-    <link rel="stylesheet" href="../../assets/public/css/sceditor.theme.min.css">
     <link rel="stylesheet" href="../../assets/css/font-style.css">
     <link rel="stylesheet" href="../../assets/css/sizes.css">
     <link rel="stylesheet" href="../../assets/css/align.css">
     <link rel="stylesheet" href="../../assets/css/keyframes.css">
     <script src="../../assets/public/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/public/js/jquery.mask.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-    <script src="../../assets/js/js.cookie.js"></script>
-    <script src="../../assets/js/jquery.js"></script>
-
-    <script>
-
-//        function Listar(){
-//        $.ajax({
-//            type: "GET",
-//            url: "dados.php",
-//            success: function(dados){
-//                $('#consulta').html(dados);
-//            }
-//        });
-//
-//        function modal(idItem)
-//        {
-//
-//           $.ajax({
-//               type: "POST",
-//               url: "modal.php",
-//               data: {id:idItem},
-//               success: function(dados){
-//                   $('.modal').html(dados);
-//               }
-//           });
-//        }
-//    }
-
-    </script>
-
 </head>
 <body>
     <section id="main">
@@ -76,8 +43,6 @@
         <div id="main-content">
             <?php require_once("../components/navbar.php")?>
             <div id="page-content">
-                 <form action="#" class="form-generic-content" id="form-loja">
-
                  <div class="saude-wrapper">
                     <div class="saude-content" id="personal-lista">
                         <table class="generic-table">
@@ -87,40 +52,41 @@
                                 <td><span>E-mail:</span></td>
                                 <td><span>Dt. Nasc.:</span></td>
                                 <td><span>Telefone:</span></td>
-                                <td colspan="2"><span>Opções</span></td>
+                                <td width="80px" colspan="2"><span>Opções</span></td>
                             </tr>
                             <?php
+                                require_once("../models/DAO/usuarioDAO.php");
 
-                                require_once("../../cms/models/DAO/cadastro-usuarioDAO.php");
+                                $usuarioDAO = new usuarioDAO();
 
-                                $cadUsuarioDAO = new cadUsuarioDAO();
+                                $lista = $usuarioDAO->selectAllUsers();
 
-                                $lista = $cadUsuarioDAO->selectAll();
-
-                                for($i = 0; $i < count($lista); $i++){
+                                for($i = 0; $i < @count($lista); $i++){
                             ?>
                             <tr>
                                 <td><span class="table-result"><?php echo($lista[$i]->nome)?></span></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->sobrenome)?></span></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->email)?></span></td>
-                                <td><span class="table-result"><?php echo($lista[$i]->dataNasc)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->data_nascimento)?></span></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->telefone)?></span></td>
-                                <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=visualizar&id=<?php echo($lista[$i]->id)?>'"></td>
+                                <td><img src="../../assets/images/cms/symbols/visualizar.svg" alt="" class="table-generic-opts" onclick="modalDouble(<?php echo($lista[$i]->id)?>, 'usuario')"></td>
                                 <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='usuarios.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
                             </tr>
                             <?php
                                 }
                             ?>
-
                         </table>
                     </div>
                 </div>
 
-                </form>
             </div>
         </div>
-
     </section>
+    <div class="generic-modal animate fadeIn" id="abrir">
+        <article class="generic-modal-wrapper width-600px">
+
+        </article>
+    </div>
     <script src="../../assets/js/theme.js"></script>
 </body>
 </html>

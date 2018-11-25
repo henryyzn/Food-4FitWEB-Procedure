@@ -1,21 +1,6 @@
 
-<?php
-    require_once('../../models/DAO/promocaoDAO.php');
-    require_once('../../models/promocaoClass.php');
-
-    if(isset($_POST['btn-salvar'])){
-
-        $promocaoClass = new Promocao();
-        $promocaoClass->id_prato = $_POST['id_prato'];
-        $promocaoClass->desconto = $_POST['desconto'];
-        $promocaoClass->data_inicio = $_POST['data_inicio'];
-        $promocaoClass->data_termino = $_POST['data_termino'];
-
-        $promocaoDAO = new promocaoDAO();
-        $promocaoDAO->insert($promocaoClass);
-    }
-?>
-<form name="frmdesconto" action="modal/modal-promocao.php" method="POST" class="form-generic width-100 margin-top-30px margin-bottom-30px">
+<?php session_start(); ?>
+<form name="frmpromocao" action="promocoes.php" method="GET" class="form-generic width-100 margin-top-30px margin-bottom-30px">
     <div class="form-generic-content">
         <h2 class="form-title">Cadastrar uma promoção</h2>
 
@@ -26,7 +11,7 @@
                 require_once("../../models/DAO/pratosDAO.php");
                 $pratosDAO = new pratosDAO();
                 $lista = $pratosDAO->selectAll();
-                for($i = 0; $i < count($lista); $i++){
+                for($i = 0; $i < @count($lista); $i++){
             ?>
             <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></option>
             <?php

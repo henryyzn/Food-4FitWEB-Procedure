@@ -622,7 +622,7 @@ img.btn-logout:hover {
     }
 }
 #sidebar {
-    @include bloco(100%, 350px, 100vh);
+    @include bloco(100%, 300px, 100vh);
     background-color: $darkgrey;
     padding: 15px;
     box-sizing: border-box;
@@ -1278,11 +1278,10 @@ img.btn-logout:hover {
     >figure{
         width: 48px;
         height: 48px;
-        border-radius: 50%;
-        overflow: hidden;
-        box-shadow: $shadow;
         >img{
             @include img-fit(48px, 48px);
+            border-radius: 50%;
+            box-shadow: $shadow;
         }
     }
     >h2{
