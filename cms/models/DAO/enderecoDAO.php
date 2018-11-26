@@ -36,12 +36,15 @@
             $PDO_conex = $conex->conectar();
 
             //Executa a query
-            if($PDO_conex->query($sql))
-                header('location:meus-enderecos.php');
-//                echo('Inseriu com sucesso');
-            else
+            if($PDO_conex->query($sql)){
+                $_SESSION['last_id'] = $PDO_conex->lastInsertId();
+                $sql2 = "INSERT INTO tbl_usuario_endereco(
+                    id_usuario, id_endereco) VALUES (
+                    '".$classMeuEndereco->id_usuario."',
+                    '".$_SESSION['last_id']."'";
+            }else{
                 echo('error');
-
+            }
             $conex->desconectar();
 
         }

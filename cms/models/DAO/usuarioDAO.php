@@ -8,6 +8,9 @@ class usuarioDAO {
         require_once('dataBase.php');
         //require_once('C:\xampp\htdocs\arisCodeProcedural\cms\models\usuarioClass.php');
         @require_once($_SESSION['path'].'cms/models/usuarioClass.php');
+        @require_once($_SESSION['path'].'cms/models/enderecoClass.php');
+        @require_once($_SESSION['path'].'cms/models/cidadeClass.php');
+        @require_once($_SESSION['path'].'cms/models/estadoClass.php');
     }
     public function selectAll(){
         $listPedidos = null;
@@ -38,16 +41,51 @@ class usuarioDAO {
     }
 
     public function selectId($id){
-        $listUsuario = null;
-
-        $sql = "SELECT id, tipo_pessoa, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, nome_fantasia, razao_social, email, rg, cpf, cnpj, data_nascimento, genero, telefone, celular, avatar, ativo, insc_estadual FROM tbl_usuario WHERE id = ".$id;
-
+        $sql = "SELECT 
+        u.id AS id, 
+        u.tipo_pessoa AS tipo_pessoa, 
+        u.nome AS nome, 
+        u.sobrenome AS sobrenome, 
+        CONCAT(u.nome, ' ', u.sobrenome) AS nome_completo, 
+        u.nome_fantasia AS nome_fantasia, 
+        u.razao_social AS razao_social, 
+        u.email AS email, 
+        u.rg AS rg, 
+        u.cpf AS cpf, 
+        u.cnpj AS cnpj, 
+        u.data_nascimento AS data_nascimento, 
+        u.genero AS genero, 
+        u.telefone AS telefone, 
+        u.celular AS celular, 
+        u.avatar AS avatar, 
+        u.ativo AS ativo, 
+        u.insc_estadual AS insc_estadual, 
+        e.logradouro AS logradouro, 
+        e.numero AS numero, 
+        e.bairro AS bairro, 
+        e.cep AS cep,
+        e.complemento AS complemento,
+        e.id_cidade AS id_cidade_end,
+        c.id AS id_cidade,
+        c.cidade AS nome_cidade,
+        est.id AS id_estado,
+        est.estado AS nome_estado
+        FROM tbl_usuario AS u 
+        INNER JOIN tbl_usuario_endereco AS ue
+        INNER JOIN tbl_endereco AS e
+        INNER JOIN tbl_cidade AS c
+        INNER JOIN tbl_estado AS est
+        WHERE u.id = ue.id_usuario
+        AND e.id = ue.id_endereco
+        AND e.id_cidade = c.id
+        AND c.id_estado = est.id
+        AND u.id = '".$id."';";
+        
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
         $select = $PDO_conex->query($sql);
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
-
             $listUsuario = new Usuario();
             $listUsuario->id = $rs['id'];
             $listUsuario->tipo_pessoa = $rs['tipo_pessoa'];
@@ -65,12 +103,23 @@ class usuarioDAO {
             $listUsuario->telefone = $rs['telefone'];
             $listUsuario->celular = $rs['celular'];
             $listUsuario->avatar = $rs['avatar'];
-            $listUsuario->ativo = $rs['ativo'];
-            $listUsuario->insc_estadual = $rs['insc_estadual'];
+            $listUsuario->id_endereco = $rs['id_endereco'];
+            $listUsuario->logradouro = $rs['logradouro'];
+            $listUsuario->numero = $rs['numero'];
+            $listUsuario->bairro = $rs['bairro'];
+            $listUsuario->cep = $rs['cep'];
+            $listUsuario->complemento = $rs['complemento'];
+            $listUsuario->id_cidade_end = $rs['id_cidade_end'];
+            $listUsuario->id_cidade = $rs['id_cidade'];
+            $listUsuario->nome_cidade = $rs['nome_cidade'];
+            $listUsuario->nome_estado = $rs['nome_estado'];
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
-            $PDO_conex->query($sql);
+            if($PDO_conex->query($sql))
+                echo('');
+            else
+                echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
             $conex->desconectar();
 

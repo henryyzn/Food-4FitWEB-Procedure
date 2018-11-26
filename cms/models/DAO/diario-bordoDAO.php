@@ -45,30 +45,44 @@ class diarioBordoDAO {
 
         if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-        $listDiarioBordo = new DiarioBordo();
-        $listDiarioBordo->id = $rs['id'];
-        $listDiarioBordo->id_usuario = $rs['id_usuario'];
-        $listDiarioBordo->titulo = $rs['titulo'];
-        $listDiarioBordo->texto = $rs['texto'];
-        $listDiarioBordo->data = date('d/m/Y', strtotime($rs['data']));
-        $listDiarioBordo->progresso = $rs['progresso'];
+            $listDiarioBordo = new DiarioBordo();
+            $listDiarioBordo->id = $rs['id'];
+            $listDiarioBordo->id_usuario = $rs['id_usuario'];
+            $listDiarioBordo->titulo = $rs['titulo'];
+            $listDiarioBordo->texto = $rs['texto'];
+            $listDiarioBordo->data = date('d/m/Y', strtotime($rs['data']));
+            $listDiarioBordo->progresso = $rs['progresso'];
 
-        $conex = new mysql_db();
-        $PDO_conex = $conex->conectar();
-        if($PDO_conex->query($sql))
-            echo('');
-        else
-            echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                echo('');
+            else
+                echo('<script>alert("Erro ao buscar informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
 
-        $conex->desconectar();
+            $conex->desconectar();
 
-        return $listDiarioBordo;
+            return $listDiarioBordo;
 
         }
     }
 
     public function selectInfo($id){
-        $sql = "SELECT diario.id AS id, diario.id_usuario AS id_usuario, diario.titulo AS titulo, diario.texto AS texto, diario.data AS data, diario.progresso AS progresso, usuario.id AS id_tbl_usuario, CONCAT(usuario.nome, ' ', usuario.sobrenome) AS nome, usuario.email AS email, usuario.avatar AS avatar, usuario.data_nascimento AS data_nascimento FROM tbl_diario_bordo AS diario INNER JOIN tbl_usuario AS usuario where diario.id_usuario = usuario.id AND diario.id = ".$id;
+        $sql = "SELECT diario.id AS id, 
+        diario.id_usuario AS id_usuario, 
+        diario.titulo AS titulo, 
+        diario.texto AS texto, 
+        diario.data AS data, 
+        diario.progresso AS progresso, 
+        usuario.id AS id_tbl_usuario, 
+        CONCAT(usuario.nome, ' ', usuario.sobrenome) AS nome,
+        usuario.email AS email,
+        usuario.avatar AS avatar, 
+        usuario.data_nascimento AS data_nascimento 
+        FROM tbl_diario_bordo AS diario 
+        INNER JOIN tbl_usuario AS usuario 
+        where diario.id_usuario = usuario.id 
+        AND diario.id = ".$id;
         //echo $sql;
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();

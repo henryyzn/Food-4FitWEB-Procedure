@@ -56,27 +56,28 @@
 
        if(isset($_GET['btn-salvar'])){
 
-        require_once('cms/models/enderecoClass.php');
-        require_once('cms/models/DAO/enderecoDAO.php');
+            require_once('cms/models/enderecoClass.php');
+            require_once('cms/models/DAO/enderecoDAO.php');
 
-        $classMeuEndereco = new Endereco();
-        $classMeuEndereco->idCidade = $_GET['cidade'];
-        $classMeuEndereco->logradouro = $_GET['logradouro'];
-        $classMeuEndereco->numero = $_GET['numero'];
-        $classMeuEndereco->bairro = $_GET['bairro'];
-        $classMeuEndereco->cep = $_GET['cep'];
-        $classMeuEndereco->complemento = $_GET['complemento'];
+            $classMeuEndereco = new Endereco();
+            $classMeuEndereco->idCidade = $_GET['cidade'];
+            $classMeuEndereco->logradouro = $_GET['logradouro'];
+            $classMeuEndereco->numero = $_GET['numero'];
+            $classMeuEndereco->bairro = $_GET['bairro'];
+            $classMeuEndereco->cep = $_GET['cep'];
+            $classMeuEndereco->complemento = $_GET['complemento'];
+            $classMeuEndereco->id_usuario = $_SESSION['id_usuario'];
 
-        $enderecoDAO = new enderecoDAO();
+            $enderecoDAO = new enderecoDAO();
 
-           if($_GET['btn-salvar'] == "Salvar"){
-               $enderecoDAO->insert($classMeuEndereco);
-           }else{
-               $classMeuEndereco->id = $_SESSION['id'];
+            if($_GET['btn-salvar'] == "Salvar"){
+                $enderecoDAO->insert($classMeuEndereco);
+            }else{
+                $classMeuEndereco->id = $_SESSION['id'];
 
-               $enderecoDAO->update($classMeuEndereco);
-           }
-    }
+                $enderecoDAO->update($classMeuEndereco);
+            }
+        }
 
 ?>
 

@@ -1,6 +1,7 @@
+<?php @session_start(); ?>
 <div class="form-generic width-500px margin-right-auto margin-left-auto margin-top-30px" id="form-cadastrar-endereco">
     <h3 class="form-title">Cadastre um Endereço:</h3>
-    <form action="#" method="POST" name="frmendereco" class="form-generic-content">
+    <form action="meus-enderecos.php" method="GET" name="frmendereco" class="form-generic-content">
         <label for="logradouro" class="label-generic">Logradouro:</label>
         <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Flores/Av. 13 de Maio" class="input-generic">
 
@@ -17,8 +18,23 @@
         <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" pattern="\d{5}-\d{3}">
 
         <label for="estado" class="label-generic">Estado:</label>
-        <select name="estado" id="estado" class="input-generic">
-            <option>Selecione uma opção</option>
+        <select name="estado" id="estado" class="input-generic" required>
+            <option selected>Selecione uma opção:</option>
+            <?php
+                $id = $_SESSION['id_usuario'];
+
+                require_once("../cms/models/DAO/estadoDAO.php");
+
+                $estadoDAO = new estadoDAO();
+                $lista = $estadoDAO->selectAll();
+
+                for($i = 0; $i < count($lista); $i++){
+                    echo($lista[$i]->id);
+            ?>
+            <option value="<?php ?>"><?php echo($lista[$i]->sigla)?></option>
+            <?php
+                }
+            ?>
         </select>
 
         <label for="cidade" class="label-generic">Cidade:</label>

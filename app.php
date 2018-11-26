@@ -27,7 +27,7 @@
         <div class="app-header-overlay">
             <div class="app-header-overlay-wrapper">
                 <div class="app-header-overlay-column">
-                    <figure class="app-header-overlay-figure animate fadeInDown">
+                    <figure class="app-header-overlay-figure padding-top-50px animate fadeInDown">
                         <img src="assets/images/app/app.png" alt="App Food 4Fit">
                     </figure>
                 </div>

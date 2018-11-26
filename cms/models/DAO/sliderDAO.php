@@ -78,7 +78,7 @@ class sliderDAO {
 
         $cont=0;
         while($rs=$select->fetch(PDO::FETCH_ASSOC)){
-        //Cria um objeto array da classe Contato
+            //Cria um objeto array da classe Contato
             $listSlider[] = new Slider();
             $listSlider[$cont]->id = $rs['id'];
             $listSlider[$cont]->imagem = $rs['imagem'];

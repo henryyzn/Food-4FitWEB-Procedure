@@ -98,6 +98,20 @@ body{
     margin-top: 5px;
     animation: fadeIn 1s linear;
 }
+#page-subtitle-second{
+    width: 90%;
+    max-width: 460px;
+    height: auto;
+    text-align: center;
+    color: $lightgrey;
+    font-family: "Roboto Regular";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 auto;
+    margin-top: 5px;
+    animation: fadeIn 1s linear;
+}
 
 //Cadastro de usuário
 #txtpergunta{
@@ -625,7 +639,7 @@ a{
 			border-bottom-left-radius: 10px;
 			>h2{
 				/*Título cabeçalho produto-destaqu da indexe*/
-				@include texto(38px, $white, 'Roboto Bold', 48px, null);
+				@include texto(32px, $white, 'Roboto Bold', 48px, null);
 				&:after{
 				    content: "";
 				    @include bloco($width: 80px, $height: 5px);
@@ -703,7 +717,7 @@ a{
     @include display(flex, row, flex-start, center);
     >img{
         /*Imagem do smartphone da sessão do aplicativo na index*/
-        max-width: 100%;
+        max-width: 55%;
         -webkit-animation: pulse 3s infinite ease-in-out;
         -o-animation: pulse 3s infinite ease-in-out;
         -ms-animation: pulse 3s infinite ease-in-out;
@@ -2622,7 +2636,7 @@ a{
     justify-content: center;
 }
 .app-header-overlay-wrapper{
-    @include bloco(100%, 1200px, auto);
+    @include bloco(100%, 800px, auto);
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -2660,7 +2674,7 @@ a{
     }
 }
 .app-header-overlay-figure{
-    @include bloco(100%, 400px, auto);
+    @include bloco(100%, 300px, auto);
     margin: 0 auto;
     >img{
         @include img-fit(100%, auto);

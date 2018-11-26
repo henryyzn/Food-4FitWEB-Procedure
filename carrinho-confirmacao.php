@@ -40,87 +40,55 @@
 	<script src="assets/public/js/jquery-3.3.1.min.js"></script>
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
-	<style>
-        .btn-counter{
-            background-color: #9CC283;
-            color: white;
-            border-radius: 3px;
-            padding: 5px;
-            cursor: pointer;
-        }
-        .counter{
-            background-color: white;
-            color: black;
-            border-radius: 3px;
-            padding: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
     <section class="main">
-        <form action="carrinho-confirmacao.php" method="GET" name="frmcompra" id="form-compra" class="width-100">
-            <?php
-                //require_once('cms/models/DAO/pratosDAO.php');
+        <form action="carrinho-confirmacao.php" method="GET" name="frmcompra" id="form-compra" class="width-500 margin-auto form-generic-content">
+            <section id="shopping-cart-address-block">
+                <!-- <h3 id="page-title">ENDEREÇO DE ENTREGA</h3>
+                <p id="page-subtitle" class="padding-bottom-20px">Selecione ou cadastre um endereço de entrega</p>
+                <select name="endereco" id="endereco" type="text" class="input-generic" required>
+                    <option selected>Selecione uma opção:</option>
+                    <?php
+                        // $id = $_SESSION['id_usuario'];
 
-                //$pratosDAO = new pratosDAO;
-                //$lista = $pratosDAO->selectAllById($id_prato);
+                        // require_once("cms/models/DAO/usuarioDAO.php");
 
-                /*for($i = 0; $i < @count($lista); $i++){
-                    $
-                }*/
-            ?>
-            <section id="shopping-cart-address-block" class="padding-top-15px">
-                <h3>ENDEREÇO DE ENTREGA</h3>
-                <p class="shopping-cart-address-subtitle">Selecione ou cadastre um endereço de entrega</p>
+                        // $usuarioDAO = new usuarioDAO();
+                        // $listUsuario = $usuarioDAO->selectId($id);
+
+                        // if(@count($listUsuario)>0){
+                        //     echo("<option value=".$listUsuario->id_endereco.">".$listUsuario->logradouro."</option>");
+                        // }
+                    ?>
+                </select>
+                <span class="save-data-button padding-left-30px padding-top-20px" onclick="modal('carrinho-endereco')">Cadastrar um endereço</span> -->
+
+                <h3 id="page-title-second" class="margin-top-30px">PAGAMENTO</h3>
+                <p id="page-subtitle-second">Selecione ou cadastre um cartão de crédito para confirmar o pagamento do pedido</p>
                 <div id="shopping-cart-address-row">
-                    <div class="shopping-cart-address-column">
-                        <span class="shopping-cart-address-column-title margin-left-30px padding-top-60px margin-bottom-15px">Selecione um endereço:</span>
-                        <div class="padding-left-30px">
-                            <input type="radio" name="endereco" id="input1" value="1">
-                            <label for="input1" class="margin-left-5px">R. Silverstone, 391, JD. Flores, Jandira, SP</label>
-                        </div>
-                        <div class="padding-left-30px padding-top-15px">
-                            <input type="radio" name="endereco" id="input2" value="1">
-                            <label for="input2" class="margin-left-5px">R. São Roque, 142, Lago dos Cisnes, Barueri, SP</label>
-                        </div>
-                        <div class="padding-left-30px padding-top-15px">
-                            <input type="radio" name="endereco" id="input3" value="1">
-                            <label for="input3" class="margin-left-5px">Av. Centuri, 938, João Bosques, Carapicuíba, SP</label>
-                        </div>
-                        <span class="save-data-button padding-left-30px padding-top-20px" onclick="modal('carrinho-endereco')">Cadastrar um endereço</span>
-                    </div>
-                    <div class="shopping-cart-address-column">
-                        <span class="shopping-cart-address-column-title margin-left-30px padding-top-60px margin-bottom-15px">Frete:</span>
-                        <p class="padding-left-30px">Frete Gerado: <b>R$ 00,00</b></p>
-                    </div>
-                </div>
-                <h3 class="margin-top-30px">PAGAMENTO</h3>
-                <p class="shopping-cart-address-subtitle">Selecione ou cadastre um cartão de crédito para<br>confirmar o pagamento do pedido</p>
-                <div id="shopping-cart-address-row">
-                    <div class="shopping-cart-address-column">
-                        <span class="shopping-cart-address-column-title margin-left-30px padding-top-60px margin-bottom-15px">Selecione um cartão de crédito:</span>
+                    <div class="shopping-cart-address-column margin-top-30px">
+                        <select name="estado" id="estado" class="input-generic">
                         <?php
                             require_once('cms/models/DAO/cartaoDAO.php');
 
                             $cartaoDAO = new cartaoDAO();
                             $id = $_SESSION['id_usuario'];
                             $lista = $cartaoDAO->selectAllId($id);
-
                             for($i = 0; $i < @count($lista); $i++){
                         ?>
-                        <div class="padding-left-30px padding-bottom-10px cartoes">
-                            <input type="radio" name="cartao" <?php if($lista[$i]->titular == 'Henrique F. Silva') echo 'checked' ?> id="<?php echo($lista[$i]->id)?>" value="<?php echo($lista[$i]->id)?>">
-                            <label for="<?php echo($lista[$i]->id)?>" class="margin-left-5px"><?php echo($lista[$i]->id_bandeira_cartao)?> ****6002, <?php echo($lista[$i]->titular)?></label>
-                        </div>
+                            <option value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->numero)?>, <?php echo($lista[$i]->titular)?></label>
                         <?php
                             }
                         ?>
-                        <span class="save-data-button padding-left-30px padding-top-30px" onclick="modal('carrinho-cartao')">Cadastrar um cartão</span>
+                        </select>
+                        <div class="btn-generic margin-left-auto margin-right-auto margin-bottom-30px" onclick="modal('carrinho-cartao')">
+                            <span>Cadastrar um cartão</span>
+                        </div>
                     </div>
                 </div>
-                <div id="total-price" style="">
+                <div id="total-price" style="text-align: center; font-size: 28px;">
                     <span>Total da compra:<br><b>R$ <?php echo(number_format($_SESSION['valor-carrinho'], 2, ",", "."));?></b></span>
                 </div>
                 <div class="shopping-cart-row-next">
@@ -191,7 +159,7 @@
         </div>
 	</section>
 	<div class="generic-modal animate fadeIn" id="abrir">
-        <article class="generic-modal-wrapper">
+        <article class="generic-modal-wrapper width-500px">
 
         </article>
     </div>

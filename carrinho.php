@@ -49,35 +49,6 @@
             }
             $pedidoDAO->insertOrdem($classPedido);
         }
-//        }elseif($_GET['btn-comprar'] == "Atualizar"){
-//            foreach($_GET['quantidade'] as $id => $qtd){
-//                $id  = intval($id);
-//                $qtd = intval($qtd);
-//
-//                if(!empty($qtd) || $qtd <> 0){
-//                     $_SESSION['carrinho'][$id]['quantidade'] = $qtd;
-//
-//                     $qty = $_SESSION['carrinho'][$id]['quantidade'];
-//                     $preco = $_SESSION['carrinho'][$id]['preco'];
-//
-//                     $subtotal = $qty * $preco;
-//
-//                     $_SESSION['carrinho'][$id]['subtotal'] = $subtotal;
-//
-//                     $n = $_SESSION['carrinho'][$id]['subtotal'];
-//                     //var_dump($n);
-//
-//                     $a = $_SESSION['carrinho'][$id]['id_prato'];
-//                     //var_dump($a);
-//
-//                     $_SESSION['carrinho']['total'] = $_SESSION['carrinho']['total'] + $n;
-//
-//                     header('location:carrinho.php');
-//                }else{
-//                    unset($_SESSION['carrinho'][$id]);
-//                }
-//            }
-//        }
     }elseif(isset($_POST['btn-cupom'])){
         require_once('cms/models/descontoClass.php');
         require_once('cms/models/DAO/descontoDAO.php');
@@ -272,14 +243,14 @@
 
         function carrinho(pcaminho){
 
-        if(pcaminho=1)
-            document.forms[0].action = "carrinho.php?btn-comprar=Atualizar";
-            document.forms[0].submit();
-        if(pcaminho=2)
-            document.forms[0].action = "carrinho.php?btn-comprar=Comprar";
-
-            document.forms[0].submit();
-
+            if(pcaminho=1){
+                document.forms[0].action = "carrinho.php?btn-comprar=Atualizar";
+                document.forms[0].submit();
+            }
+            if(pcaminho=2){
+                document.forms[0].action = "carrinho.php?btn-comprar=Comprar";
+                document.forms[0].submit();
+            }
         }
     </script>
 </body>
