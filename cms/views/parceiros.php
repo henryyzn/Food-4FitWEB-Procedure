@@ -1,30 +1,32 @@
 <?php
     session_start();
+    $id = null;
+    $id_usuario = null;
+    $titulo = null;
+    $descricao = null;
+    $foto = null;
+    $link1 = null;
+    $ativo = null;
+
+    require_once('../models/parceirosClass.php');
+    require_once('../models/DAO/parceirosDAO.php');
+
+    $parceirosDAO = new parceirosDAO();
+
     if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
         if($modo == 'excluir'){
-            require_once('../../cms/models/parceirosClass.php');
-            require_once('../../cms/models/DAO/parceirosDAO.php');
-
-            $parceirosDAO = new parceirosDAO();
             $id = $_GET['id'];
             $parceirosDAO->delete($id);
-        }else if($modo == 'desativar'){
-            require_once('../../cms/models/parceirosClass.php');
-            require_once('../../cms/models/DAO/parceirosDAO.php');
-
-            $parceirosDAO = new parceirosDAO();
-            $id = $_GET['id'];
-            $parceirosDAO->desactive($id);
-        }else if($modo == 'ativar'){
-            require_once('../../cms/models/parceirosClass.php');
-            require_once('../../cms/models/DAO/parceirosDAO.php');
-
-            $parceirosDAO = new parceirosDAO();
+        }elseif($modo == 'ativar'){
             $id = $_GET['id'];
             $parceirosDAO->active($id);
+        }elseif($modo == 'desativar'){
+            $id = $_GET['id'];
+            $parceriosDAO->desactive($id);
         }
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -73,47 +75,33 @@
                         <?php
                             require_once("../../cms/models/DAO/parceirosDAO.php");
 
-                            $parceiroDAO = new parceirosDAO();
+                            $parceirosDAO = new parceirosDAO();
 
-                            $lista = $parceiroDAO->selectAll();
+                            $lista = $parceirosDAO->selectAll();
+
+                            for($i = 0; $i < count($lista); $i++){
                         ?>
 
                         <tr>
-                            <td><span class="cms-table-result">Nome do Parceiro</span></td>
-                            <td><span class="cms-table-result">Título do Contato</span></td>
-                            <td><span class="cms-table-result">Lorem Ipsum is simply dummy text of the printing and...</span></td>
-                            <td><a href="#" class="cms-table-result">www.sitedoparceiro.com</a></td>
+                            <td><span class="cms-table-result"><?php echo($lista[$i]->id)?></span></td>
+                            <td><span class="cms-table-result"><?php echo($lista[$i]->titulo)?></span></td>
+                            <td><span class="cms-table-result"><?php echo($lista[$i]->descricao)?></span></td>
+                            <td><a href="#" class="cms-table-result"><?php echo($lista[$i]->link1)?></a></td>
                             <td colspan="3">
                                 <div class="cms-table-opts">
-                                    <img src="../../assets/images/cms/symbols/visualizar.svg" alt="">
+                                    <img src="../../assets/images/cms/symbols/visualizar.svg" alt="" onclick="javascript:location.href='parceiros.php?modo=visualizar&id=<?php echo($lista[$i]->id)?>'">
                                     <hr/>
-                                    <img src="../../assets/images/cms/symbols/excluir.svg" alt="">
+                                    <img src="../../assets/images/cms/symbols/excluir.svg" alt="" onclick="javascript:location.href='add-pub-parceiros.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'">
                                     <hr/>
                                     <img src="../../assets/images/cms/symbols/direita.svg" alt="">
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                            }
+                       ?>
                     </table>
                     <section class="aside-register-menu form-generic">
-                        <?php
-
-                            if(isset($_POST['btnSalvar'])){
-
-                                require_once('../models/DAO/parceirosDAO.php');
-                                require_once('../models/parecirosClass.php');
-                                //require_once('../models/DAO/cadastr')
-
-                                $parceirosClass = new Parceiros();
-                                $parceirosDAO = new parceirosDAO();
-
-
-                                $parceirosClass->nome = $_POST['nome'];
-                                $parceirosClass->descricao = $_POST['descricao'];
-
-                                $parceirosDAO->insert($parceirosClass);
-                            }
-
-                        ?>
                         <form action="#" class="form-generic-content width-500px" method="post">
                             <h2 class="form-title">Cadastrar um Parceiro</h2>
 

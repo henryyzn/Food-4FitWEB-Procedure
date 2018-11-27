@@ -2,9 +2,9 @@
 
     class parceirosDAO{
         public function __construct(){
-            require_once('dataBase.php');
+            require_once('database.php');
             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/parceirosClass.php');
-            @require_once($_SESSION['path'].'cms/models/parceirosClass.php');
+            require_once($_SESSION['path'].'cms/models/parceirosClass.php');
         }
 
         public function insert($classParceiros){
@@ -72,14 +72,14 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
+                $listParceiro = new Parceiros();
                 $listParceiro[] = new Parceiros();
-
                 $listParceiro[$cont]->id = $rs['id'];
                 $listParceiro[$cont]->id_usuario = $rs['id_usuario'];
                 $listParceiro[$cont]-> titulo = $rs['titulo'];
                 $listParceiro[$cont]-> descricao = $rs['descricao'];
                 $listParceiro[$cont]-> foto = $rs['foto'];
-                $listParceiro[$cont]-> link1 = $rs['link'];
+                $listParceiro[$cont]-> link1 = $rs['link1'];
                 $listParceiro[$cont]-> ativo = $rs['ativo'];
 
                 $conex = new mysql_db();
@@ -96,9 +96,8 @@
             }
         }
 
-
-        public function selectAll($id){
-            $listParceiro = null;
+        public function selectAll(){
+            $listParceiros = null;
             $sql = "select * from tbl_parceiro_fitness order by id desc";
 
             $conex = new mysql_db();
@@ -108,19 +107,19 @@
             $cont=0;
             while($rs=$select->fetch(PDO::FETCH_ASSOC))
             {
-                $listParceiro[] = new Parceiros();
-                $listParceiro[$cont]->id = $rs['id'];
-                $listParceiro[$cont]->id_usuario = $rs['id_usuario'];
-                $listParceiro[$cont]-> titulo = $rs['titulo'];
-                $listParceiro[$cont]-> descricao = $rs['descricao'];
-                $listParceiro[$cont]-> foto = $rs['foto'];
-                $listParceiro[$cont]-> link1 = $rs['link'];
-                $listParceiro[$cont]-> ativo = $rs['ativo'];
+                $listParceiros[] = new Parceiros();
+                $listParceiros[$cont]->id = $rs['id'];
+                $listParceiros[$cont]->id_usuario = $rs['id_usuario'];
+                $listParceiros[$cont]-> titulo = $rs['titulo'];
+                $listParceiros[$cont]-> descricao = $rs['descricao'];
+                $listParceiros[$cont]-> foto = $rs['foto'];
+                $listParceiros[$cont]-> link1 = $rs['link1'];
+                $listParceiros[$cont]-> ativo = $rs['ativo'];
 
                 $cont+=1;
             }
 
-            return $listParceiro;
+            return $listParceiros;
         }
 
         public function delete($id){
