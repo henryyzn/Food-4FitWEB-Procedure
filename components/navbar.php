@@ -56,7 +56,6 @@
 	<ul class="sidebar-right-list padding-right-30px">
 		<li><a href="meu-perfil.php">Meu Perfil</a></li>
 		<li><a href="meus-pedidos.php">Pedidos</a></li>
-		<li><a href="minhas-dietas.php">Minhas Dietas</a></li>
 		<li><a href="meus-favoritos.php">Favoritos</a></li>
 		<li><a href="diario-de-bordo.php">Diário de Bordo</a></li>
 		<li><a href="notificacoes.php"><span>12</span>Notificações</a></li>
