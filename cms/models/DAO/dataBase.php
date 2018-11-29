@@ -12,9 +12,9 @@ class mysql_db
     private $dataBaseName;
 
 	public function __construct(){
-        //$this->server="10.107.144.250";
+        $this->server="10.107.144.250";
         //$this->server="142.44.189.41";
-		$this->server="localhost";
+		//$this->server="localhost";
 //		$this->server="192.168.0.2";
 //      $this->user="food4fit";
         $this->user="root";
