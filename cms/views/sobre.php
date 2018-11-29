@@ -147,6 +147,8 @@
                             <form id="form-sobre-nos" class="form-generic-content margin-top-30px" name="frmcadastro" method="GET" action="sobre.php">
                                 <input name="txtfoto" type="hidden" value="<?php echo($foto)?>">
 
+                                <input name="id" type="hidden" value="<?php echo($id)?>">
+
                                 <label for="titulo" class="label-generic">Título</label>
                                 <input type="text" id="titulo" name="titulo" value="<?php echo($titulo);?>" class="input-generic" required maxlength="255">
 
