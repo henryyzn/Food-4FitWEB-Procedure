@@ -231,5 +231,15 @@ class usuarioDAO {
         }
         return $listUsuario;
     }
+
+    public function delete($id){
+        $sql = "delete from tbl_usuario where id=".$id;
+
+        $conex = new mysql_db();
+        $PDO_conex = $conex->conectar();
+        if($PDO_conex->query($sql))
+            header('location:usuarios.php');
+
+    }
 }
 ?>
