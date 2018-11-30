@@ -2,7 +2,7 @@
 
     class propagandaDAO{
         public function __construct(){
-            require_once('database.php');
+            require_once('dataBase.php');
             @require_once($_SESSION['path'].'cms/models/propagandaClass.php');
         }
 
@@ -30,8 +30,9 @@
             $conex->desconectar();
         }
 
-        public function selectId(){
-            $sql = "select * from tbl_propaganda where id=".$id;
+        public function selectId($id){
+            $sql = "select * from tbl_marketing where id=".$id;
+            //echo $sql;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -39,7 +40,7 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-                $listPropaganda = new Propaganda();
+                $listPropaganda[]= new Propaganda();
                 $listPropaganda[$cont]->id = $rs['id'];
                 $listPropaganda[$cont]->titulo = $rs{'titulo'};
                 $listPropaganda[$cont]->texto = $rs{'texto'};
@@ -55,7 +56,7 @@
 
                 $conex->desconectar();
 
-                return $listComentarios;
+                return $listPropaganda;
 
             }
         }
@@ -84,7 +85,7 @@
         }
 
         public function delete($id){
-            $sql = "delete from tbl_marketing order by id desc";
+            $sql = "DELETE FROM tbl_marketing WHERE id=".$id;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();

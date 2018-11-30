@@ -5,26 +5,64 @@
     $titulo = null;
     $texto = null;
     $imagem = null;
-    $ativo = "Salvar";
+    $ativo = "null";
+    $botao = "Salvar";
     $edit = "null";
 
-    require_once('../models/propagandaClass.php');
-    require_once('../models/DAO/propagandaDAO.php');
-
-    $propagandaDAO = new propagandaDAO();
-
-    if(isset($_GET['modo'])){
+if(isset($_GET['modo'])){
         $modo = $_GET['modo'];
+        $id = $_GET['id'];
+
+        require_once('../models/propagandaClass.php');
+        require_once('../models/DAO/propagandaDAO.php');
+        $propagandaDAO = new propagandaDAO;
+
         if($modo == 'excluir'){
-            $id = $_GET['id'];
             $propagandaDAO->delete($id);
+
+        }else if($modo == 'editar'){
+            $listPropaganda = $propagandaDAO->selectId($id);
+
+            //Resgatando do Banco de dados
+            //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
+            if(@count($listPropaganda)>0){
+                $id = $listPropaganda->id;
+                $titulo = $listPropaganda->titulo;
+                $texto = $listPropaganda->texto;
+                $imagem = $listPropaganda->imagem;
+
+
+                $botao = "Editar";
+                $edit = $botao;
+            }
         }elseif($modo == 'ativar'){
-            $id = $_GET['id'];
             $propagandaDAO->active($id);
         }elseif($modo == 'desativar'){
-            $id = $_GET['id'];
             $propagandaDAO->desactive($id);
         }
+    }
+
+    if(isset($_GET['btn-salvar'])){
+        require_once('../models/propagandaClass.php');
+        require_once('../models/DAO/propagandaDAO.php');
+
+        $classPropaganda = new Propaganda();
+        $classPropaganda->id = $_GET['id'];
+        $classPropaganda->titulo = $_GET['titulo'];
+        $classPropaganda->texto = $_GET['texto'];
+        $classParceiros->imagem = $_GET['imagem'];
+        $classPropaganda->ativo = '1';
+
+        $propagandaDAO = new propagandaDAO();
+
+        if($_GET['btn-salvar'] == "Salvar"){
+           $propagandaDAO->insert($classPropaganda);
+       }elseif($_GET['btn-salvar'] == "Editar"){
+           $classPropaganda->id = $_GET['id'];
+           $propagandaDAO->update($classPropaganda);
+
+       }
+
     }
 
 
