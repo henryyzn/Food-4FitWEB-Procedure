@@ -15,18 +15,23 @@
         $propagandaDAO->insert(classPropaganda);
     }
 ?>
-<form name="frmdesconto" action="modal/modal-propaganda.php" method="POST" class="form-generic width-100 margin-top-30px margin-bottom-30px">
+<form action="upload/upload-propaganda.php" name="frmpropaganda" action="propaganda.php" method="POST" class="form-generic width-100 margin-top-30px margin-bottom-30px">
     <div class="form-generic-content">
         <h2 class="form-title">Cadastrar uma propaganda</h2>
 
         <label for="titulo" class="label-generic">Título:</label>
-        <input id="titulo" name="titulo" class="input-generic" required>
+        <input id="titulo" name="titulo" class="input-generic" required placeholder="Digite o Titulo...">
 
         <label for="titulo" class="label-generic">Texto:</label>
-        <input id="texto" name="texto" class="input-generic" required placeholder="R$ 000,00">
+        <textarea id="texto" name="texto" class="textarea-generic" required placeholder="Digte o Texto..."></textarea>
 
         <img>
         <label for="titulo" class="label-generic">Imagem:</label>
+                <div id="imagem" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                </div>
+                <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
+                <input type="file" name="fileimage" id="fotos" style="display: none;">
 
         <div class="form-row">
             <span class="btn-cancelar" onclick="fechar()">Cancelar</span>

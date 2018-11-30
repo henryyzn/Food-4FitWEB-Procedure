@@ -61,7 +61,7 @@
                 <div id="page-actions">
                     <div onclick="modal('propaganda')">
                         <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
-                        <span>Adicionar Desconto</span>
+                        <span>Adicionar Propaganda</span>
                     </div>
                     <a href="propaganda.php">
                         <img src="../../assets/images/cms/symbols/recarregar.svg" alt="Recarregar">

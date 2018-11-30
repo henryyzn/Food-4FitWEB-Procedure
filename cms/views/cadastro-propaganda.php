@@ -82,13 +82,17 @@ session_start();
     </head>
     <body>
         <section>
-            <form name="frmparceiro" action="cadastro-propaganda.php" method="GET">
+            <form action="upload/upload-propaganda.php" name="frmparceiro" action="cadastro-propaganda.php" method="GET">
                 <div class="form-generic">
                     <div class="form-generic-content">
                         <h2 class="form-title">Cadastrar uma propaganda</h2>
                         <div>
-                            <img>
-                            <label for="foto" class="file-label">Escolher Imagem</label>
+                            <label for="titulo" class="label-generic">Imagem:</label>
+                <div id="imagem" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                    <img src='../../assets/images/simbols/upload.svg' alt="Imagem a ser cadastrada" class="image-view">
+                </div>
+                <label for="fotos" class="file-generic fileimage">Selecione um arquivo...</label>
+                <input type="file" name="fileimage" id="fotos" style="display: none;">
 
                         </div>
                         <span class="label-fix">Titulo:</span>

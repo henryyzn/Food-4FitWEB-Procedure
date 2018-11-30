@@ -71,7 +71,7 @@
             $cont=0;
             while($rs=$select->fetch(PDO::FETCH_ASSOC))
             {
-                $listPropaganda = new Propaganda();
+                $listPropaganda [] = new Propaganda();
                 $listPropaganda[$cont]->id = $rs['id'];
                 $listPropaganda[$cont]->titulo = $rs{'titulo'};
                 $listPropaganda[$cont]->texto = $rs{'texto'};
