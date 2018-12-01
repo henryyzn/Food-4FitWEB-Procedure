@@ -49,6 +49,14 @@
                             <select class="input-generic" type="text" name="propaganda" id="propaganda">
                                 <option selected>Selecione uma opção:</option>
                             </select>
+                        </form>
+                        <form action="upload/upload-foto-marketing.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
+                            <label class="label-generic">Imagem:</label>
+                            <div id="visualizar" class="register_product_image padding-bottom-30px" style="width: 100%; height: auto; border-radius: 3px; overflow: hidden;">
+                                <img src='../../<?php echo($foto)?>' alt="Imagem a ser cadastrada" class="image-view">
+                            </div>
+                            <label for="foto" class="file-generic fileimage">Selecione um arquivo...</label>
+                            <input type="file" name="fileimage" id="foto" style="display: none;">
 
                             <div class="form-row">
                                 <span>Cancelar</span>
