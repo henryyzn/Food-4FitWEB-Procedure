@@ -2,8 +2,8 @@
 
     class propagandaDAO{
         public function __construct(){
-            require_once('database.php');
-            require_once($_SESSION['path'].'cms/models/propagandaClass.php');
+            require_once('dataBase.php');
+            @require_once($_SESSION['path'].'cms/models/propagandaClass.php');
         }
 
         public function insert($classPropaganda){
@@ -14,7 +14,7 @@
             ativo) values (
             '".$classPropaganda->titulo."',
             '".$classPropaganda->texto."',
-            '".$classPropaganda->imagem."',
+            'assets/archives/propaganda/".$classPropaganda->imagem."',
             '".$classPropaganda->ativo."'
             );";
 
@@ -27,11 +27,12 @@
             else
                 echo(''.sql);
 
-            Sconex->desconectar();
+            $conex->desconectar();
         }
 
-        public function selectId(){
-            $sql = "select * from tbl_propaganda where id=".$id;
+        public function selectId($id){
+            $sql = "select * from tbl_marketing where id=".$id;
+            //echo $sql;
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -39,9 +40,78 @@
 
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
-                $listPropaganda = new Propaganda();
+                $listPropaganda[]= new Propaganda();
                 $listPropaganda[$cont]->id = $rs['id'];
+                $listPropaganda[$cont]->titulo = $rs{'titulo'};
+                $listPropaganda[$cont]->texto = $rs{'texto'};
+                $listPropaganda[$cont]->imagem = $rs{'imagem'};
+                $listPropaganda[$cont]->ativo = $rs{'ativo'};
+
+                $conex->desconectar();
+                $PDO_conex = $conex->conectar();
+                if($PDO_conex->query($sql))
+                    echo('select no banco');
+                else
+                    echo('erro');
+
+                $conex->desconectar();
+
+                return $listPropaganda;
+
             }
+        }
+
+        public function selectAll(){
+            $listPropaganda = null;
+            $sql = "select * from tbl_marketing order by id desc";
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            $select = $PDO_conex->query($sql);
+
+            $cont=0;
+            while($rs=$select->fetch(PDO::FETCH_ASSOC))
+            {
+                $listPropaganda [] = new Propaganda();
+                $listPropaganda[$cont]->id = $rs['id'];
+                $listPropaganda[$cont]->titulo = $rs{'titulo'};
+                $listPropaganda[$cont]->texto = $rs{'texto'};
+                $listPropaganda[$cont]->imagem = $rs{'imagem'};
+                $listPropaganda[$cont]->ativo = $rs{'ativo'};
+
+                $cont+=1;
+            }
+            return $listPropaganda;
+        }
+
+        public function delete($id){
+            $sql = "DELETE FROM tbl_marketing WHERE id=".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                header('location:propaganda.php');
+        }
+
+        public function active($id){
+            $sql = "UPDATE tbl_marketing SET ativo = '1' where id=".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+            if($PDO_conex->query($sql))
+                header('location:propaganda.php');
+
+        }
+
+        public function desactive($id){
+            $sql = "UPDATE tbl_marketing SET ativo = '0' where id =".$id;
+
+            $conex = new mysql_db();
+            $PDO_conex = $conex->conectar();
+
+            if($PDO_conex->query($sql))
+                header('location:propaganda.php');
+
         }
     }
 ?>
