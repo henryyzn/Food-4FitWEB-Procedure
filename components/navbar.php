@@ -31,9 +31,9 @@
 		<div id="navbar-flat-login" class="animate fadeInDown">
 			<img src="<?php if(isset($_SESSION['avatar_usuario'])){echo($_SESSION['avatar_usuario']);}else{echo('assets/archives/avatares/padrao.png');} ?>" alt="Login">
 		</div>
-		<div id="user-bubble" class="animate fadeInDown">
+		<!-- <div id="user-bubble" class="animate fadeInDown">
 			<span>12</span>
-		</div>
+		</div> -->
 	</div>
 </nav>
 <aside id="sidebar-left" class="padding-top-30px"><!-- MENU LATERAL ESQUERDO -->
