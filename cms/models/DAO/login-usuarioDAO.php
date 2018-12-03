@@ -39,6 +39,7 @@
             u.email AS email,
             u.data_nascimento AS data_nascimento,
             u.cpf AS cpf,
+            u.cnpj AS cnpj,
             u.rg AS rg,
             u.genero AS genero,
             u.telefone AS telefone,
@@ -70,6 +71,7 @@
                 $listUsuario->email = $rs['email'];
                 $listUsuario->data_nascimento = date('d/m/Y', strtotime($rs['data_nascimento']));
                 $listUsuario->cpf = $rs['cpf'];
+                $listUsuario->cnpj = $rs['cnpj'];
                 $listUsuario->rg = $rs['rg'];
                 $listUsuario->genero = $rs['genero'];
                 $listUsuario->telefone = $rs['telefone'];

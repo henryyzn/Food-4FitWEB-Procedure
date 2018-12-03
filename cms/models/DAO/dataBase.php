@@ -12,25 +12,16 @@ class mysql_db
     private $dataBaseName;
 
 	public function __construct(){
-        $this->server="10.107.144.250";
-        //$this->server="142.44.189.41";
-		//$this->server="localhost";
-//		$this->server="192.168.0.2";
-//      $this->user="food4fit";
-        $this->user="root";
-//		$this->senha="codefit";
-        //$this->senha="";
-        $this->senha="bcd127";
-        //$this->senha="mysql@2018";
-        $this->dataBaseName="db_food4fit";
-//        $this->dataBaseName="dbfood4fit";
-
+		$this->server="127.0.0.1";
+       		$this->user="root";
+        	$this->senha="";
+       		$this->dataBaseName="db_food4fit";
 	}
 
 	public function conectar()
 	{
         try {
-            $conexao = new PDO('mysql:host='.$this->server.';dbname='.$this->dataBaseName,$this->user,$this->senha);
+            $conexao = new PDO('mysql:host='.$this->server.';charset=utf8;dbname='.$this->dataBaseName,$this->user,$this->senha);
             return $conexao;
         }catch (PDOException $Err)
         {

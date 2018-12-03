@@ -2,11 +2,10 @@
     class cidadeDAO{
         public function __construct(){
             require_once('dataBase.php');
-            @require_once($_SESSION['path'].'cms/models/cidadeClass.php');
+           @session_start(); @require_once($_SESSION['path'].'cms/models/cidadeClass.php');
         }
 
         public function selectById($id){
-
             $listCidade = null;
 
             $sql = "select * from tbl_cidade where id_estado=".$id;
@@ -41,9 +40,8 @@
     if(isset($_GET['id'])){
 
         $id = $_GET['id'];
-
+        
         $cidadeDAO = new cidadeDAO();
-
         $cidadeDAO->selectById($id);
 
     }

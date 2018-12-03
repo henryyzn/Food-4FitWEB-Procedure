@@ -7,6 +7,8 @@
         public $bairro;
         public $cep;
         public $complemento;
+        public $cidade;
+        public $uf;
 
         public function __construct(){
 

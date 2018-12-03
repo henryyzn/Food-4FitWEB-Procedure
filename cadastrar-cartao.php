@@ -12,7 +12,7 @@
 
         $classCartao = new Cartao();
         $classCartao->id_bandeira_cartao = $_POST['id_bandeira_cartao'];
-        $classCartao->numero = $_POST['numero'];
+        $classCartao->numero = preg_replace('/\s/', '', $_POST['numero']);
         $classCartao->titular = $_POST['titular'];
         $classCartao->mes_validade = $_POST['mes_validade'];
         $classCartao->ano_validade = $_POST['ano_validade'];

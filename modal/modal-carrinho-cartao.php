@@ -2,6 +2,7 @@
     $meses = array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
     $mes = date("n");
     $ano = date("Y");
+    @session_start();
 ?>
 <div class="form-generic width-1100px margin-right-auto margin-left-auto margin-top-30px" data-card-form id="form-cadastrar-cartao">
     <h3 class="form-title">Cadastre um Cartão de Crédito:</h3>
@@ -44,15 +45,15 @@
             <input type="hidden" name="id_usuario" value="<?php echo($_SESSION['id_usuario'])?>">
 
             <label for="numero" class="label-generic">Número do Cartão:</label>
-            <input type="text" name="numero" id="numero" placeholder="Ex: 1239 9434 2938 0093" class="input-generic" data-card-number>
+            <input type="text" name="numero" id="numero" placeholder="Ex: 1239 9434 2938 0093" class="input-generic" data-card-number required>
 
             <label for="titular" class="label-generic">Títular:</label>
-            <input type="text" name="titular" id="titular" placeholder="Como no cartão" class="input-generic" data-card-holder>
+            <input type="text" name="titular" id="titular" placeholder="Como no cartão" class="input-generic" data-card-holder required>
 
             <div class="form-row">
                 <div style="width: 40%;">
                     <label for="mes_validade" class="label-generic">Mês de Expiração:</label>
-                    <select name="mes_validade" id="mes_validade" class="input-generic" data-card-month>
+                    <select name="mes_validade" id="mes_validade" class="input-generic" data-card-month required>
                         <?php for ($i = 0; $i < count($meses); $i++) { ?>
                             <option value="<?= $i + 1 ?>" <?= $i == $mes - 1 ? "selected" : "" ?>><?= $meses[$i] ?></option>
                         <?php } ?>
@@ -60,7 +61,7 @@
                 </div>
                 <div style="width: 20%;" class="margin-left-15px">
                     <label for="ano_validade" class="label-generic">Ano:</label>
-                    <select name="ano_validade" id="ano_validade" class="input-generic" data-card-year>
+                    <select name="ano_validade" id="ano_validade" class="input-generic" data-card-year required>
                         <option value="" disabled>Ano</option>
                         <?php for ($i = $ano; $i < $ano + 15; $i++) { ?>
                             <option value="<?= $i ?>" <?= $i == $ano ? "selected" : "" ?>><?= $i ?></option>
@@ -69,10 +70,10 @@
                 </div>
                 <div style="width: 40%;" class="margin-left-15px">
                     <label for="codigo" class="label-generic">Código de Segurança</label>
-                    <input type="text" name="codigo" id="codigo" placeholder="No verso do cartão..." class="input-generic" data-card-code>
+                    <input type="text" name="codigo" id="codigo" placeholder="No verso do cartão..." class="input-generic" data-card-code required>
                 </div>
             </div>
-            <input type="hidden" name="id_bandeira_cartao" id="id_bandeira_cartao" value="10">
+            <input type="hidden" name="id_bandeira_cartao" id="id_bandeira_cartao" data-card-flag>
             <div class="margin-top-30px margin-bottom-30px form-row">
                 <span class="margin-right-15px cancel-form-button" data-f4f-slide-hide="#form-cadastrar-cartao" onclick="fechar()">Cancelar</span>
                 <button type="submit" name="btn-salvar" id="Salvar" value="Salvar" class="btn-generic">

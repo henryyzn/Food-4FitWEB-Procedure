@@ -82,7 +82,7 @@
         }
 
         public function selectLastInsert(){
-            $sql = "SELECT MAX(d.id) AS ultimo_inserido, d.id AS id_destaque, p.preco AS preco, d.id_prato AS id_prato_destaque, p.id AS id_prato, p.titulo AS titulo, pf.foto AS foto, p.resumo AS resumo FROM tbl_destaque AS d INNER JOIN tbl_prato AS p INNER JOIN tbl_foto_prato AS pf WHERE d.id_prato = p.id AND pf.id_prato = p.id;";
+            $sql = "SELECT d.id AS id_destaque, p.preco AS preco, d.id_prato AS id_prato_destaque, p.id AS id_prato, p.titulo AS titulo, pf.foto AS foto, p.resumo AS resumo FROM tbl_destaque AS d INNER JOIN tbl_prato AS p INNER JOIN tbl_foto_prato AS pf WHERE d.id_prato = p.id AND pf.id_prato = p.id;";
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
@@ -91,7 +91,6 @@
             if($rs=$select->fetch(PDO::FETCH_ASSOC)){
 
                 $listDestaque = new Destaque();
-                $listDestaque->ultimo_inserido = $rs['ultimo_inserido'];
                 $listDestaque->id_destaque = $rs['id_destaque'];
                 $listDestaque->id_prato_destaque = $rs['id_prato_destaque'];
                 $listDestaque->id_prato = $rs['id_prato'];

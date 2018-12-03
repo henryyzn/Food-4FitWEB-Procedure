@@ -4,7 +4,7 @@
     //todo o caminho desde a raíz do meu projeto
     //Fazendo uma variavel de sessão, passando como parametro 'path', que significa minha pasta
     //Onde jogo minha variavel $URL
-    $caminho = $_SERVER['DOCUMENT_ROOT']."/arisCodeProcedural/";
+    $caminho = $_SERVER['DOCUMENT_ROOT']."/";
 
 
     @session_start();

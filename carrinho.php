@@ -5,6 +5,7 @@
 
     $total = @$_SESSION['itens-carrinho'];
     $_SESSION["valor-carrinho"] = 0;
+    $cupom = null;
 
     if(isset($_GET['btn-comprar'])){
         require_once('cms/models/pedidoClass.php');
@@ -58,8 +59,8 @@
 
         $descontoDAO = new descontoDAO();
         if($_POST['btn-cupom'] == "Cupom"){
-            if($descontoDAO->selectCodigo($codig_cupom)){
-                echo('<script>alert("Processado!");</script>');
+            if($cupom = $descontoDAO->selectCodigo($codig_cupom)){
+                $_SESSION["desconto-carrinho"] = $cupom->valor;
             }else{
                 echo('<script>alert("Este cupom não existe ou não é mais válido.");</script>');
             }
@@ -76,6 +77,7 @@
         unset($_SESSION['itens-carrinho']);
         unset($_SESSION['last_id']);
         unset($_SESSION['valor-carrinho']);
+        unset($_SESSION["desconto-carrinho"]);
         header('location:carrinho.php');
     }
 ?>
@@ -184,28 +186,49 @@
                     <span onclick="javascript:location.href='carrinho.php?clean'">Excluir Tudo</span>
                 </div>
                 <div id="shopping-cart-confirm-column-two">
-                    <h2 class="padding-right-30px padding-top-30px padding-bottom-30px">Total a Pagar: <span id="total-pagar">R$ <?php echo(number_format($_SESSION['valor-carrinho'], 2, ",", "."));?></span></h2>
-                    <button onclick="carrinho('comprar')" name="btn-comprar" value="Comprar" class="btn-generic margin-right-30px">
+                    <h2 class="padding-right-30px padding-top-30px">
+                        Total a Pagar: <span id="total-pagar">R$ <?php echo(number_format($_SESSION['valor-carrinho'], 2, ",", "."));?></span>
+                    </h2>
+                    <?php if (isset($_SESSION["desconto-carrinho"])) { ?>
+                        <span class="padding-right-30px" style="font-size: 12px;"><br>Desconto de <?php echo($_SESSION["desconto-carrinho"]); ?>%</span>
+                    <?php } ?>
+                    
+                    <button onclick="carrinho('comprar')" name="btn-comprar" value="Comprar" class="margin-top-30px btn-generic margin-right-30px">
                         <span>Comprar</span>
                     </button>
                 </div>
             </div>
         </form>
-        <div id="shopping-cart-confirm-block" class="padding-bottom-30px">
-            <form action="carrinho.php" method="POST" name="frmdesconto" class="width-100">
-                <div id="shopping-cart-confirm-column-one">
-                    <h2 class="padding-left-30px padding-top-30px padding-bottom-15px">Cupom de Desconto</h2>
-                    <p class="padding-bottom-15px padding-left-30px">Digite o seu cupom de desconto para receber um desconto<br>no seu valor total do pedido. Múltiplos cupons não serão aplicados.</p>
-                    <div style="display: flex;">
-                        <input class="margin-left-30px" name="codig_cupom" type="text" style="width: 350px; border: none; outline: none; height: 40px; background-color: #E8E8E8; border-radius: 5px; text-indent: 12px; font-family: 'Roboto Medium Italic';" placeholder="Digite o cupom...">
-                        <button name="btn-cupom" value="Cupom" type="submit" class="btn-generic margin-left-15px">
-                            <span>Processar</span>
-                        </button>
+        <?php if (!isset($_SESSION["desconto-carrinho"])) { ?>
+            <div id="shopping-cart-confirm-block" class="padding-bottom-30px">
+                <form action="carrinho.php" method="POST" name="frmdesconto" class="width-100">
+                    <div id="shopping-cart-confirm-column-one">
+                        <h2 class="padding-left-30px padding-top-30px padding-bottom-15px">Cupom de Desconto</h2>
+                        <p class="padding-bottom-15px padding-left-30px">Digite o seu cupom de desconto para receber um desconto<br>no seu valor total do pedido. Múltiplos cupons não serão aplicados.</p>
+                        <div style="display: flex;">
+                            <input class="margin-left-30px" name="codig_cupom" type="text" style="width: 350px; border: none; outline: none; height: 40px; background-color: #E8E8E8; border-radius: 5px; text-indent: 12px; font-family: 'Roboto Medium Italic';" placeholder="Digite o cupom..." autocomplete="off">
+                            <button name="btn-cupom" value="Cupom" type="submit" class="btn-generic margin-left-15px">
+                                <span>Processar</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        <?php } ?>
 	</section>
+	<?php if ($cupom) { ?>
+	    <div class="modal display-flex" id="modal-cupom">
+            <div class="popup-confirm padding-left-30px padding-right-30px" style="max-width: 500px;">
+                <h2 class="padding-top-30px padding-bottom-15px" style="font-size: 21px; font-family: 'Roboto Medium'; color: #000; text-align: center;">CUPOM ATIVADO</h2>
+                <span class="padding-bottom-15px" style="display: block; font-size: 16px; font-family: 'Roboto Medium'; color: #282828; text-align: center; ">Você ativou o cupom <strong><?php echo($cupom->titulo) ?></strong> e ganhou <strong><?php echo($cupom->valor) ?>%</strong> de desconto! Aproveite!.</span>
+                <div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;">
+                    <a href="carrinho.php" class="btn-generic margin-right-30px margin-top-30px margin-bottom-30px">
+                        <span>Ok</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 	<script>
         $("[data-contador]").each(function () {
@@ -238,7 +261,6 @@
             });
             
             $("#total-pagar").text("R$ " + total.toFixed(2).replace(".", ",").replace(/\d(?=(\d{3})+,)/g, "$&."));
-            console.log(total);
         }
 
         function carrinho(pcaminho){
@@ -252,6 +274,8 @@
                 document.forms[0].submit();
             }
         }
+        
+        atualizarTotal();
     </script>
 </body>
 </html>

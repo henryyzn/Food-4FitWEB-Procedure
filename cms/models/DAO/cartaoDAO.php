@@ -6,6 +6,8 @@ class cartaoDAO {
     //minha classe construtor
     public function __construct($requestFront = false){
         require_once('dataBase.php');
+        
+        @session_start();
 
         if($requestFront==true)
             require_once('../models/cartaoClass.php');
@@ -25,8 +27,6 @@ class cartaoDAO {
         '".$classCartao->mes_validade."',
         '".$classCartao->ano_validade."');";
 
-        //echo($sql);
-
         //Instancia a classe
         $conex = new mysql_db();
         //Abre a Conexao
@@ -35,7 +35,6 @@ class cartaoDAO {
         //Executa a query
         if($PDO_conex->query($sql))
             echo ("<script>
-                      window.alert('Cartão Inserido.');
                       window.history.back();
                    </script>");
         else
@@ -109,7 +108,7 @@ class cartaoDAO {
     public function selectAllId($id){
         $listCartoes = null;
 
-        $sql="SELECT * FROM tbl_cartao WHERE id_usuario = '".$id."' ORDER BY id DESC;";
+        $sql="SELECT id, id_usuario, id_bandeira_cartao, mes_validade, ano_validade, titular, LPAD(RIGHT(numero, 4), LENGTH(numero), '•') AS numero FROM tbl_cartao WHERE id_usuario = $id ORDER BY id DESC;";
 
         //Instancia a classe
         $conex = new mysql_db();

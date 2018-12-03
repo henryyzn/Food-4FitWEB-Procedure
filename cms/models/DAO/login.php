@@ -28,12 +28,6 @@
                 $listLogin->salario = $rs['salario'];
                 $listLogin->rg = $rs['RG'];
                 $listLogin->cpf = $rs['CPF'];
-                $conex = new mysql_db();
-                $PDO_conex = $conex->conectar();
-                if($PDO_conex->query($sql))
-                    echo('');
-                else
-                    echo('<script>alert("Erro ao realizar login no sistema. Tente novamente ou contate o técnico.");</script>');
                 $conex->desconectar();
                 return $listLogin;
             }else{

@@ -172,7 +172,7 @@
                     $enderecoDAO = new enderecoDAO();
 
                 //Chamar o método
-                    $lista = $enderecoDAO->selectAll();
+                    $lista = $enderecoDAO->listarEnderecosUsuario($_SESSION['id_usuario']);
 
 
                     //count -> comando que conta quantos itens tem o objeto
@@ -204,22 +204,22 @@
 		        <form action="meus-enderecos.php" class="form-generic-content width-550px margin-left-auto margin-right-auto" method="get">
 
 		            <label for="logradouro" class="label-generic">Logradouro:</label>
-		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($logradouro);?>">
+		            <input type="text" name="logradouro" id="logradouro" placeholder="Ex: R. Elton Silva" class="input-generic" value="<?php echo($logradouro);?>" required>
 
 		            <label for="numero" class="label-generic">Número:</label>
-		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($numero);?>">
+		            <input type="text" name="numero" id="numero" placeholder="Ex: 905" class="input-generic" value="<?php echo($numero);?>" required>
 
 		            <label for="bairro" class="label-generic">Bairro:</label>
-		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($bairro);?>">
+		            <input type="text" name="bairro" id="bairro" placeholder="Ex: JD. Angular" class="input-generic" value="<?php echo($bairro);?>" required>
 
 		            <label for="complemento" class="label-generic">Complemento:</label>
 		            <input type="text" name="complemento" id="complemento" placeholder="Ex: Próximo a X lugar" class="input-generic" value="<?php echo($complemento);?>">
 
 		            <label for="cep" class="label-generic">CEP:</label>
-		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($cep);?>">
+		            <input type="text" name="cep" id="cep" placeholder="Ex: 01234-567" class="input-generic" value="<?php echo($cep);?>" required>
 
                     <label for="estado" class="label-generic">Estado:</label>
-		            <select name="estado" id="estado" class="input-generic"><option>Selecione uma opção:</option>
+		            <select name="estado" id="estado" class="input-generic" required><option selected  value="" disabled>Selecione uma opção:</option>
                         <?php
 
                         require_once("cms/models/DAO/estadoDAO.php");
@@ -242,9 +242,9 @@
 
 
 		            <label for="cidade" class="label-generic">Cidade:</label>
-		            <select name="cidade" id="cidade" class="input-generic">
+		            <select name="cidade" id="cidade" class="input-generic" required>
 
-		                <option selected>Selecione uma opção:</option>
+		                <option selected value="" disabled>Selecione uma opção:</option>
 
 		            </select>
 

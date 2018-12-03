@@ -4,6 +4,7 @@
         public function __construct(){
              require_once('dataBase.php');
              //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/descontoClass.php');
+            @session_start();
              @require_once($_SESSION['path'].'cms/models/descontoClass.php');
         }
 

@@ -38,6 +38,7 @@
             $_SESSION['email_usuario'] = $listUsuario->email;
             $_SESSION['dtNasc_usuario'] = $listUsuario->data_nascimento;
             $_SESSION['cpf_usuario'] = $listUsuario->cpf;
+            $_SESSION['cnpj_usuario'] = $listUsuario->cnpj;
             $_SESSION['rg_usuario'] = $listUsuario->rg;
             $_SESSION['genero_usuario'] = $listUsuario->genero;
             $_SESSION['telefone_usuario'] = $listUsuario->telefone;
