@@ -7,21 +7,34 @@
     require_once("caminho-pasta.php");
 
     $_SESSION['id_usuario'] = null;
+    $_SESSION['tipo_pessoa_usuario'] = null;
+    $_SESSION['primeiroNome_usuario'] = null;
+    $_SESSION['sobrenome_usuario'] = null;
     $_SESSION['nome_usuario'] = null;
+    $_SESSION['nome_fantasia_usuario'] = null;
+    $_SESSION['razao_social_usuario'] = null;
+    $_SESSION['tipo_pessoa_usuario'] = null;
     $_SESSION['email_usuario'] = null;
     $_SESSION['dtNasc_usuario'] = null;
     $_SESSION['cpf_usuario'] = null;
+    $_SESSION['cnpj_usuario'] = null;
     $_SESSION['rg_usuario'] = null;
     $_SESSION['genero_usuario'] = null;
     $_SESSION['telefone_usuario'] = null;
     $_SESSION['celular_usuario'] = null;
     $_SESSION['avatar_usuario'] = null;
+    $_SESSION['pergunta_secreta_usuario'] = null;
+    $_SESSION['resposta_secreta_usuario'] = null;
+    $_SESSION['id_pergunta_secreta_usuario'] = null;
 
     if(isset($_GET['btn-login'])){
 
         $loginUsuarioDAO = new loginUsuarioDAO;
         $login = $_GET['login'];
         $senha = $_GET['senha'];
+
+        error_reporting(E_ALL);
+        ini_set('display_errors',1);
 
         $listUsuario = $loginUsuarioDAO->checkLogin($login, $senha);
 
@@ -33,7 +46,6 @@
             $_SESSION['nome_usuario'] = $listUsuario->nome_completo;
             $_SESSION['nome_fantasia_usuario'] = $listUsuario->nome_fantasia;
             $_SESSION['razao_social_usuario'] = $listUsuario->razao_social;
-            $_SESSION['tipo_pessoa_usuario'] = $listUsuario->tipo_pessoa;
             $_SESSION['tipo_pessoa_usuario'] = $listUsuario->tipo_pessoa;
             $_SESSION['email_usuario'] = $listUsuario->email;
             $_SESSION['dtNasc_usuario'] = $listUsuario->data_nascimento;

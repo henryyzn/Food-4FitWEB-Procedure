@@ -104,6 +104,17 @@
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
 	<script src="assets/js/card.js"></script>
+    <style>
+        .input-group-button{
+            background: #9CC283;
+            border-radius: 5px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
 	<?php require_once("components/navbar.php") ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
@@ -154,7 +165,7 @@
                             </figure>
                         </div>
                         <div class="shopping-cart-column align-flex-start">
-                            <h4 onclick="javascript:location.href='carrinho.php?modo=excluir&id=<?php echo($id_prato)?>'">Remover</h4>
+                            <div class="btn-generic margin-bottom-20px" onclick="javascript:location.href='carrinho.php?modo=excluir&id=<?php echo($id_prato)?>'"><span>Remover</span></div>
                             <h2 class="padding-bottom-5px"><?php echo($titulo)?></h2>
                             <h3 class="padding-bottom-15px">Categoria: <?php echo($categoria)?></h3>
                         </div>
@@ -182,7 +193,7 @@
                         }
                     ?>
                 </section>
-                <div id="shopping-cart-select-block">
+                <div class="btn-generic margin-left-30px" id="shopping-cart-select-block">
                     <span onclick="javascript:location.href='carrinho.php?clean'">Excluir Tudo</span>
                 </div>
                 <div id="shopping-cart-confirm-column-two">

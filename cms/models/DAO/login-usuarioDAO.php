@@ -1,9 +1,14 @@
 <?php
+    @session_start();
+    
     class loginUsuarioDAO{
         public function __construct(){
             require_once('dataBase.php');
             //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/usuarioClass.php');
             @require_once($_SESSION['path'].'cms/models/usuarioClass.php');
+
+            error_reporting(E_ALL);
+            ini_set('display_errors',1);
 
         }
         public function selectPerguntas(){
@@ -53,7 +58,7 @@
             WHERE u.id_pergunta_secreta = ps.id 
             AND u.email = '".$login."'
             AND u.senha = '".$passwd."';";
-            //echo $sql;
+            
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             $select = $PDO_conex->query($sql);

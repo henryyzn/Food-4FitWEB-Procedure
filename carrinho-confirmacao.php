@@ -79,7 +79,7 @@
                         }
                     ?>
                 </select>
-                <span class="save-data-button padding-left-30px padding-top-20px" onclick="modal('carrinho-endereco')">Cadastrar um endereço</span>
+                <div class="btn-generic margin-left-auto margin-right-auto"><span class="save-data-button padding-left-30px padding-top-20px" onclick="modal('carrinho-endereco')">Cadastrar um endereço</span></div>
 
                 <h3 id="page-title-second" class="margin-top-30px">PAGAMENTO</h3>
                 <p id="page-subtitle-second">Selecione ou cadastre um cartão de crédito para confirmar o pagamento do pedido</p>
@@ -210,8 +210,7 @@
                 </div>
             </div>
         </div>
-    <?php } ?>
-	<?php if ($concluido) { ?>
+    <?php }elseif ($concluido) { ?>
         <div class="modal display-flex" id="modal-carrinho">
             <div class="popup-confirm">
                 <h2 class="padding-top-30px padding-bottom-15px" style="font-size: 21px; font-family: 'Roboto Medium'; color: #000; text-align: center;">PEDIDO REALIZADO</h2>
@@ -227,14 +226,13 @@
                 </div>
             </div>
         </div>
-    <? } ?>
-</body>
-</html>
-<?php
-    if ($unset) {
+    <?php }elseif ($unset) {
         unset($_SESSION['carrinho']);
         unset($_SESSION['itens-carrinho']);
         unset($_SESSION['valor-carrinho']);
         unset($_SESSION['desconto-carrinho']);
         unset($_SESSION['last_id']);
-    }
+        } 
+    ?>
+</body>
+</html>

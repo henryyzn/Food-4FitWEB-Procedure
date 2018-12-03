@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     class loginDAO{
         public function __construct(){
             require_once('dataBase.php');
@@ -8,7 +10,7 @@
         public function checkLogin($matricula, $senha){
             $passwd = md5($senha);
             $sql = "SELECT id, nome, sobrenome, CONCAT(nome, ' ', sobrenome) AS nome_completo, email, ativo, matricula, avatar, data_efetivacao, genero, RG, CPF, data_nasc, salario FROM tbl_funcionario WHERE matricula = '".$matricula."' AND senha = '".$passwd."' AND ativo = '1';";
-            echo($sql);
+            
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             $select = $PDO_conex->query($sql);
@@ -28,8 +30,10 @@
                 $listLogin->salario = $rs['salario'];
                 $listLogin->rg = $rs['RG'];
                 $listLogin->cpf = $rs['CPF'];
-                $conex->desconectar();
+                
                 return $listLogin;
+
+                $conex->desconectar();
             }else{
                 echo "<script>alert('Erro ao realizar login no sistema. Tente novamente ou contate o técnico.'); window.location = 'login.php';</script>";
             }
