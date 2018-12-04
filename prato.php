@@ -149,21 +149,21 @@
                         $pratoIngredienteDAO = new pratoIngredienteDAO();
 
                         $listaNutrientes = $pratoIngredienteDAO->selectAllNutrientes($_GET['id_prato']);
-                        for($i = 0; $i < @count($listaNutrientes); $i++){
+                        for($j = 0; $j < @count($listaNutrientes); $j++){
                     ?>
-                    <li><b>Valor Energético:</b> <?php echo($listaNutrientes[$i]->valor_energ)?></li>
-                    <li><b>Carboidratos:</b> <?php echo($listaNutrientes[$i]->carboidratos)?> g</li>
-                    <li><b>Proteínas:</b> <?php echo($listaNutrientes[$i]->proteinas)?> g</li>
-                    <li><b>Gorduras Totais:</b> <?php echo($listaNutrientes[$i]->gordura_total)?> g</li>
-                    <li><b>Gorduras Saturadas:</b> <?php echo($listaNutrientes[$i]->gordura_saturada)?> g</li>
-                    <li><b>Gorduras trans:</b> <?php echo($listaNutrientes[$i]->gordura_trans)?> g</li>
-                    <li><b>Fibra Alimentar:</b> <?php echo($listaNutrientes[$i]->fibra_alimentar)?> g</li>
-                    <li><b>Sódio:</b> <?php echo($listaNutrientes[$i]->sodio)?> mg</li>
+                    <li><b>Valor Energético:</b> <?php echo($listaNutrientes[$j]->valor_energ)?></li>
+                    <li><b>Carboidratos:</b> <?php echo($listaNutrientes[$j]->carboidratos)?> g</li>
+                    <li><b>Proteínas:</b> <?php echo($listaNutrientes[$j]->proteinas)?> g</li>
+                    <li><b>Gorduras Totais:</b> <?php echo($listaNutrientes[$j]->gordura_total)?> g</li>
+                    <li><b>Gorduras Saturadas:</b> <?php echo($listaNutrientes[$j]->gordura_saturada)?> g</li>
+                    <li><b>Gorduras trans:</b> <?php echo($listaNutrientes[$j]->gordura_trans)?> g</li>
+                    <li><b>Fibra Alimentar:</b> <?php echo($listaNutrientes[$j]->fibra_alimentar)?> g</li>
+                    <li><b>Sódio:</b> <?php echo($listaNutrientes[$j]->sodio)?> mg</li>
                     <?php } ?>
                 </ul>
             </div>
         </section>
-        <section id="product-view-comments-block">
+        <!-- <section id="product-view-comments-block">
             <h2 id="product-view-comments-title" class="padding-bottom-15px">Comentários:</h2>
             <div class="comment-row margin-top-15px margin-bottom-15">
                 <div class="comment-row-image" style="margin-top: 30px;">
@@ -175,7 +175,7 @@
                     <span class="padding-left-30px padding-bottom-30px">Postado em 01/01/2018</span>
                 </div>
             </div>
-        </section>
+        </section> -->
 	</div>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 </body>

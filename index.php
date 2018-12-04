@@ -40,7 +40,7 @@
 		<header id="header-flat"><!-- CABEÇALHO DA INDEX -->
 			<div id="header-flat-row1" class="animate fadeInDown"><!-- PRIMEIRO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
 				<img src="<?php echo($listDestaque->foto)?>" alt="Header"><!-- IMAGEM DO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
-				<div id="header-flat-overlay"><!-- CAMADA DO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
+				<div id="header-flat-overlay" class="limit" data-maxlength="150"><!-- CAMADA DO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
 					<h2 class="padding-left-30px padding-bottom-15px"><?php echo($listDestaque->titulo)?>, R$<?php echo($listDestaque->preco)?></h2><!-- TÍTULO DO DESTAQUE -->
 					<p class="padding-left-30px"><?php echo($listDestaque->resumo)?></p><!-- DESCRIÇÃO DO DESTAQUE -->
 					<div id="header-flat-overlay-seemore" onclick="javascript:location.href='prato.php?id_prato=<?php echo($listDestaque->id_prato)?>'"><!-- RODAPÉ VIA PHP -->
@@ -57,15 +57,39 @@
         <article class="generic-block"><!-- SEGUNDO CONTAINER-FILHO DO CABEÇALHO DA INDEX -->
             <h2 id="page-title">DESTAQUES</h2><!-- TÍTULO DA PÁGINA -->
             <div class="generic-grid animate fadeInUp">
-                <div class="generic-card one">
+                <?php
+                    require_once("cms/models/DAO/pratosDAO.php");
+
+                    $pratosDAO = new pratosDAO();
+
+                    $lista = $pratosDAO->selectAll();
+
+                    for($i = 0; $i < @count($lista); $i++){
+                ?>
+                <div class="generic-card" onclick="javascript:location.href='prato.php?id_prato=<?php echo($lista[$i]->id)?>'">
+                    <img src="<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">
+                    <div class="generic-card-overlay">
+                        <span class="card-dish-name margin-bottom-30px"><?php echo($lista[$i]->titulo)?></span>
+                        <div class="card-dish-separator margin-bottom-15px"></div>
+                        <p class="card-dish-description margin-bottom-30px"><?php echo($lista[$i]->resumo)?></p>
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ <?php echo($lista[$i]->preco)?></span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    }
+                ?>
+                <!-- <div class="generic-card one">
                     <img src="assets/images/dishs/img1.jpg" alt="Teste" class="generic-card-img">
                     <div class="generic-card-overlay">
                         <span class="card-dish-name margin-bottom-30px">Frango Com Batatas</span>
                         <div class="card-dish-separator margin-bottom-15px"></div>
                         <p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
-                        <div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-                            <span class="padding-right-15px">R$ 9,90</span><!-- PREÇO -->
-                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ 9,90</span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
                         </div>
                     </div>
                 </div>
@@ -75,9 +99,9 @@
                         <span class="card-dish-name margin-bottom-15px">Bife Com Legumes</span>
                         <div class="card-dish-separator margin-bottom-15px"></div>
                         <p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
-                        <div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-                            <span class="padding-right-15px">R$ 12,90</span><!-- PREÇO -->
-                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ 12,90</span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
                         </div>
                     </div>
                 </div>
@@ -87,9 +111,9 @@
                         <span class="card-dish-name margin-bottom-15px">Salada De Frutas</span>
                         <div class="card-dish-separator margin-bottom-15px"></div>
                         <p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
-                        <div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-                            <span class="padding-right-15px">R$ 5,90</span><!-- PREÇO -->
-                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ 5,90</span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
                         </div>
                     </div>
                 </div>
@@ -99,9 +123,9 @@
                         <span class="card-dish-name margin-bottom-15px">Bife Grelhado Com Molho</span>
                         <div class="card-dish-separator margin-bottom-15px"></div>
                         <p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
-                        <div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-                            <span class="padding-right-15px">R$ 15,90</span><!-- PREÇO -->
-                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ 15,90</span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
                         </div>
                     </div>
                 </div>
@@ -111,9 +135,9 @@
                         <span class="card-dish-name margin-bottom-15px">Ovos Cozidos</span>
                         <div class="card-dish-separator margin-bottom-15px"></div>
                         <p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
-                        <div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-                            <span class="padding-right-15px">R$ 4,90</span><!-- PREÇO -->
-                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ 4,90</span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
                         </div>
                     </div>
                 </div>
@@ -123,12 +147,13 @@
                         <span class="card-dish-name margin-bottom-15px">Salada Simples</span>
                         <div class="card-dish-separator margin-bottom-15px"></div>
                         <p class="card-dish-description margin-bottom-30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni magnam saepe reiciendis.</p>
-                        <div class="card-dish-price margin-bottom-30px"><!-- CONTAINER DO PREÇO DO PRATO NA INDEX -->
-                            <span class="padding-right-15px">R$ 3,90</span><!-- PREÇO -->
-                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div><!-- COMPRA RAPIDA -->
+                        <div class="card-dish-price margin-bottom-30px">
+                            <span class="padding-right-15px">R$ 3,90</span>
+                            <div><img src="assets/images/simbols/delivery-truck.svg" alt="Compra Rápida"></div>
                         </div>
                     </div>
                 </div>
+            </div> -->
             </div>
             <div class="btn-generic margin-right-auto margin-left-auto margin-bottom-30px animate fadeInUp" onclick="javascript:location.href='todos-os-pratos.php'"><!-- BOTÃO PARA VER TODOS OS PRATOS -->
                 <span>Ver Todos</span>
@@ -195,5 +220,17 @@
 		</article>
 	</section>
     <?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
+    <script>
+        $(document).ready(function(){
+            $(".limit p").text(function(index, currentText) {
+                var maxLength = $(this).parent().attr('data-maxlength');
+                if(currentText.length >= maxLength) {
+                return currentText.substr(0, maxLength) + "...";
+                } else {
+                return currentText
+                } 
+            });
+        });
+    </script>
 </body>
 </html>

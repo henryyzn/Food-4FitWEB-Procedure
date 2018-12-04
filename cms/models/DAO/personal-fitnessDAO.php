@@ -35,7 +35,13 @@ class personalFitnessDAO {
         }
 
     public function selectId($id){
-        $sql="select * from tbl_personal_fitness where id=".$id;
+        $sql="SELECT p.id AS id,
+        p.id_funcionario AS id_funcionario,
+        CONCAT(f.nome, ' ', f.sobrenome) AS autor,
+        p.titulo AS titulo,
+        p.texto AS texto, 
+        p.data AS data,
+        p.ativo AS ativo FROM tbl_personal_fitness AS p INNER JOIN tbl_funcionario AS f WHERE p.id_funcionario = f.id AND p.id = ".$id;
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
@@ -50,6 +56,7 @@ class personalFitnessDAO {
         $listPersonalFitness->texto = $rs['texto'];
         $listPersonalFitness->data = date('d/m/Y', strtotime($rs['data']));
         $listPersonalFitness->ativo = $rs['ativo'];
+        $listPersonalFitness->autor = $rs['autor'];
 
         $conex = new mysql_db();
         $PDO_conex = $conex->conectar();
@@ -63,8 +70,6 @@ class personalFitnessDAO {
         return $listPersonalFitness;
 
         }
-
-
     }
 
     public function selectAll(){

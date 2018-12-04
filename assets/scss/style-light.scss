@@ -633,7 +633,7 @@ a{
 			border-bottom-left-radius: 10px;
 			>h2{
 				/*Título cabeçalho produto-destaqu da indexe*/
-				@include texto(32px, $white, 'Roboto Bold', 48px, null);
+				@include texto(28px, $white, 'Roboto Bold', 38px, null);
 				&:after{
 				    content: "";
 				    @include bloco($width: 80px, $height: 5px);
@@ -645,7 +645,7 @@ a{
 			}
 			>p{
 				/*Descrição cabeçalho produto-destaque da index*/
-				@include texto(18px, $white, 'Roboto Regular', 24px, null);
+				@include texto(16px, $white, 'Roboto Regular', 22px, null);
 				width: 50%;
 			}
 			#header-flat-overlay-seemore{

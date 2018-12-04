@@ -221,6 +221,14 @@
     </div>
     <script src="../../assets/js/theme.js"></script>
     <script>
+        
+        $(document).ready(function(){
+            var edit = document.getElementById("editar");
+            if(edit.value == "Editar"){
+                $("#add-form").css("display", "block");
+            }
+        });
+
         var coll = $(".collapsible-generic");
         var i;
 

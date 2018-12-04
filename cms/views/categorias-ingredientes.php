@@ -185,12 +185,12 @@
     <script>
         $(document).ready(function(){
             $("#open-form").click(function () {
-                $("#add-prato-form").slideToggle("fast");
+                $("#add-form").slideToggle("fast");
             });
 
             var edit = document.getElementById("editar");
             if(edit.value == "Editar"){
-                $("#add-prato-form").css("display", "block");
+                $("#add-form").css("display", "block");
             }
         });
     </script>

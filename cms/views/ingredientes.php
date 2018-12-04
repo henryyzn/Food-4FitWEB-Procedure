@@ -304,5 +304,13 @@
         </div>
     </section>
     <script src="../../assets/js/theme.js"></script>
+    <script>
+        $(document).ready(function(){
+            var edit = document.getElementById("editar");
+            if(edit.value == "Editar"){
+                $("#add-form").css("display", "block");
+            }
+        });
+    </script>
 </body>
 </html>
