@@ -10,66 +10,50 @@
     $botao = "Salvar";
 
     if(isset($_GET['modo'])){
+        require_once('../models/dicas-fitnessClass.php');
+        require_once('../models/DAO/dicas-fitnessDAO.php');
+        $dicasFitnessDAO = new dicasFitnessDAO();
+
         $modo = $_GET['modo'];
-
+        $id = $_GET['id'];
         if($modo == 'excluir'){
-
-            require_once('../models/dicas-fitnessClass.php');
-            require_once('../models/DAO/dicas-fitnessDAO.php');
-
-            $dicasFitnessDAO = new dicasFitnessDAO;
-            $id = $_GET['id'];
             $dicasFitnessDAO->delete($id);
-
         }else if($modo == 'editar'){
-            require_once('../models/dicas-fitnessClass.php');
-            require_once('../models/DAO/dicas-fitnessDAO.php');
-
-            $dicasFitnessDAO = new dicasFitnessDAO;
-            $id = $_GET['id'];
             $_SESSION['id'] = $id;
-
             $listDicasFitness = $dicasFitnessDAO->selectId($id);
-
             //Resgatando do Banco de dados
             //Guardando em variaveis locais para serem localizadas na caixa de texto após clicar no botão editar
-            if(count($listDicasFitness)>0)
-            {
-
+            if(count($listDicasFitness)>0){
                 $id = $listDicasFitness->id;
                 $id_funcionario = $listDicasFitness->id_funcionario;
                 $titulo = $listDicasFitness->titulo;
                 $texto = $listDicasFitness->texto;
                 $data = $listDicasFitness->data;
                 $ativo = $listDicasFitness->ativo;
-
                 $botao = "Editar";
-
             }
         }
     }
     if(isset($_GET['btn-salvar'])){
-
         require_once('../models/dicas-fitnessClass.php');
         require_once('../models/DAO/dicas-fitnessDAO.php');
+        $dicasFitnessDAO = new dicasFitnessDAO();
 
         date_default_timezone_set("America/Sao_Paulo");
 
-        $classDicasFitness = new DicasFitness();
+        $classDicasFitness = new DicasFitness;
         $classDicasFitness->id_funcionario = $_GET['id_funcionario'];
         $classDicasFitness->titulo = $_GET['titulo'];
         $classDicasFitness->texto = $_GET['texto'];
         $classDicasFitness->data = date('y/m/d');
         $classDicasFitness->ativo = "1";
 
-        $dicasFitnessDAO = new dicasFitnessDAO();
-
-       if($_GET['btn-salvar'] == "Salvar"){
-           $dicasFitnessDAO->insert($classDicasFitness);
-       }elseif($_GET['btn-salvar'] == "Editar"){
-           $classDicasFitness->id = $_SESSION['id'];
-           $dicasFitnessDAO->update($classDicasFitness);
-       }
+        if($_GET['btn-salvar'] == "Salvar"){
+            $dicasFitnessDAO->insert($classDicasFitness);
+        }elseif($_GET['btn-salvar'] == "Editar"){
+            $classDicasFitness->id = $_SESSION['id'];
+            $dicasFitnessDAO->update($classDicasFitness);
+        }
     }
 
 ?>

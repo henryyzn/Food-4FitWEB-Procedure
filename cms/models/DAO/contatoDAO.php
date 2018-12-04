@@ -50,6 +50,7 @@
             c.id AS id,
             c.nome AS nome,
             c.sobrenome AS sobrenome,
+            c.email AS email,
             c.telefone AS telefone,
             c.celular AS celular,
             c.assunto AS assunto,
@@ -66,6 +67,7 @@
                 $listContato->id = $rs['id'];
                 $listContato->nome = $rs['nome'];
                 $listContato->sobrenome = $rs['sobrenome'];
+                $listContato->email = $rs['email'];
                 $listContato->telefone = $rs['telefone'];
                 $listContato->celular = $rs['celular'];
                 $listContato->assunto = $rs['assunto'];

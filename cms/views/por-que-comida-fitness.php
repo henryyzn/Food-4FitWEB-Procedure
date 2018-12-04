@@ -48,11 +48,11 @@
 
                                 $lista = $porQueComidaFitnessDAO->selectAll();
 
-                                for($i = 0; $i < count($lista); $i++){
+                                for($i = 0; $i < @count($lista); $i++){
                             ?>
                             <tr>
                                 <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
-                                <td><span class="table-result"><?php echo($lista[$i]->id_funcionario)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->autor)?></span></td>
                                 <td><span class="table-result"><?php echo($lista[$i]->data)?></span></td>
                                 <td><img src="../../assets/images/cms/symbols/ativar.svg" alt="Ativar/Desativar" onclick="javascript:location.href='usuarios.php?modo=visualizar&id=<?php echo($lista[$i]->id)?>'" class="table-generic-opts"></td>
                                 <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" onclick="javascript:location.href='add-pub-por-que-comida-fitness.php?modo=editar&id=<?php echo($lista[$i]->id)?>'" class="table-generic-opts"></td>

@@ -532,7 +532,7 @@ a{
 .fit-session-header{
     width: 100%;
     height: 140px;
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: $shadow;
     position: relative;
@@ -1453,9 +1453,6 @@ a{
 	height: auto;
 	display: flex;
 	flex-direction: row;
-    background-color: $lightgrey;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 	.profile-section-column{
 		width: 100%;
 		height: auto;
@@ -2817,6 +2814,94 @@ a{
 }
 
 //Dicas Fitness
+.fitness-tips-header{
+    width: 100%;
+    height: auto;
+    margin: 124px auto -124px auto;
+    background-image: linear-gradient(to top, rgba(255,255,255,1), rgba(0,0,0,0)), url('../images/backgrounds/fitsession/dica-fitness-cover.jpg');
+    background-size: cover;
+    .fitness-tips-header-wrapper{
+        width: 100%;
+        max-width: 1920px;
+        height: 100%;
+        padding: 0;   
+    }
+}
+.fitness-tips-header-text{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    >h2{
+        @include texto(32px, $white, 'Roboto Black', 38px, left);
+        padding-top: 30px;
+    }
+    >p{
+        @include texto(18px, $grey, 'Roboto Regular', 28px, left);
+        width: 85%;
+        max-width: 550px;
+    }
+}
+.fitness-tips-header-slider{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    >div{
+        width: auto;
+        min-width: 300px;
+        max-width: 500px;
+        margin-right: 20px;
+        height: auto;
+        background: $white;
+        border-radius: 10px;
+        transition: 200ms ease-in-out;
+        h2{
+            @include texto(21px, $black, 'Roboto Bold', 28px, left);
+        }
+        p{
+            @include texto(16px, $darkgreymedium, 'Roboto Regular', 23px, left);
+        }
+        span{
+            @include texto(16px, $grey, 'Roboto Medium Italic', 28px, left);
+        }
+        &:hover{
+            transition: 200ms ease-in-out;
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+    }
+}
+@media screen and (max-device-width: 1000px) {
+    .fitness-tips-header-slider{
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        border: 30px solid transparent;
+        >div{
+            width: 100%;
+            max-width: 100%;
+            margin-right: 0px;
+        }
+    }
+}
+@media screen and (max-width: 1000px) {
+    .fitness-tips-header-slider{
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        border: 30px solid transparent;
+        >div{
+            width: 100%;
+            max-width: 100%;
+            margin-right: 0px;
+        }
+    }
+}
+
 .fitness-tips-block{
     @include bloco(100%, 1200px, auto);
     box-sizing: border-box;

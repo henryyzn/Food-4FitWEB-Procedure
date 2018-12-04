@@ -7,7 +7,7 @@ class dicasFitnessDAO {
     public function __construct(){
         require_once('dataBase.php');
         //require_once('C:/xampp/htdocs/arisCodeProcedural/cms/models/dicas-fitnessClass.php');
-        @require_once($_SESSION['path'].'cms/models/dicas-fitness.php');
+        @require_once($_SESSION['path'].'cms/models/dicas-fitnessClass.php');
     }
 
     public function insert($classDicasFitness){
@@ -29,7 +29,7 @@ class dicasFitnessDAO {
             if($PDO_conex->query($sql))
                 header('location:dicas-fitness.php');
             else
-                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                echo "<script>alert('Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.'); window.location = 'add-pub-dicas-fitness.php';</script>";
 
             $conex->desconectar();
         }
@@ -110,8 +110,8 @@ class dicasFitnessDAO {
     }
 
     public function selectAll(){
-        $listDicasFitness = null;
-        $sql="select * from tbl_dica_fitness order by id desc";
+        $listDicasFitness = null; 
+        $sql="SELECT dicas.id AS id, dicas.id_funcionario AS id_funcionario, dicas.titulo AS titulo, dicas.texto AS texto, dicas.data AS data, dicas.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS nome FROM tbl_dica_fitness AS dicas INNER JOIN tbl_funcionario AS f WHERE dicas.id_funcionario = f.id ORDER BY dicas.id DESC;";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -131,6 +131,7 @@ class dicasFitnessDAO {
             $listDicasFitness[$cont]->texto = $rs['texto'];
             $listDicasFitness[$cont]->data = date('d/m/Y', strtotime($rs['data']));
             $listDicasFitness[$cont]->ativo = $rs['ativo'];
+            $listDicasFitness[$cont]->autor = $rs['nome'];
             $cont+=1;
         }
         return $listDicasFitness;

@@ -29,7 +29,7 @@ class porQueComidaFitnessDAO {
             if($PDO_conex->query($sql))
                 header('location:por-que-comida-fitness.php');
             else
-                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                echo "<script>alert('Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.'); window.location = 'add-pub-por-que-comida-fitness.php';</script>";
 
             $conex->desconectar();
         }
@@ -70,7 +70,7 @@ class porQueComidaFitnessDAO {
 
     public function selectAll(){
         $listPqComidaFitness = null;
-        $sql="select p.id AS id, p.id_funcionario AS id_funcionario, p.titulo AS titulo, p.texto AS texto, p.data AS data, p.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS nome FROM tbl_why_comida_fitness AS p INNER JOIN tbl_funcionario AS f order by id desc";
+        $sql="select p.id AS id, p.id_funcionario AS id_funcionario, p.titulo AS titulo, p.texto AS texto, p.data AS data, p.ativo AS ativo, CONCAT(f.nome, ' ', f.sobrenome) AS nome FROM tbl_why_comida_fitness AS p INNER JOIN tbl_funcionario AS f WHERE p.id_funcionario = f.id order by p.id desc";
 
         //Instancia a classe
         $conex = new mysql_db();
@@ -90,6 +90,7 @@ class porQueComidaFitnessDAO {
             $listPqComidaFitness[$count]->texto = $rs['texto'];
             $listPqComidaFitness[$count]->data = date('d/m/Y', strtotime($rs['data']));
             $listPqComidaFitness[$count]->ativo = $rs['ativo'];
+            $listPqComidaFitness[$count]->autor = $rs['nome'];
             $count+=1;
         }
         return $listPqComidaFitness;

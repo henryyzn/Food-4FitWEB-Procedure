@@ -17,7 +17,7 @@
         <img src="../../assets/archives/avatares/padrao.png" alt="Avatar do Usuário">
     </figure>
     <h2 class="padding-left-20px">
-        Nome: <?php echo($message->nome)?> <?php echo($message->sobrenome)?> 
+        <?php echo($message->nome)?> <?php echo($message->sobrenome)?>, <?php echo($message->email)?>  
     </h2>
 </div>
 <h2 id="modal-diario-assunto" class="padding-bottom-10px"><?php echo($message->assunto)?></h2>

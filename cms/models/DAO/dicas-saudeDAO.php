@@ -41,7 +41,7 @@ class dicasSaudeDAO {
             if($PDO_conex->query($sql))
                 header('location:dicas-saude.php');
             else
-                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+            echo "<script>alert('Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.'); window.location = 'add-pub-dicas-saude.php';</script>";
 
             $conex->desconectar();
         }
