@@ -171,11 +171,14 @@
                             <?php
                                 }
                             ?>
+                            <div class="btn-generic margin-left-20px margin-bottom-20px" onclick="javascript:location.href='diario-bordo.php'">
+                                <span>Ver Mais</span>
+                            </div>
                         </div>
-                        <div class="five card-dash">
+                        <!-- <div class="five card-dash">
                             <h2 class="title padding-top-20px padding-bottom-5px padding-left-20px">Mais Comprado Este Mês</h2>
                             <span class="subtitle padding-left-20px">Produto de Nome X</span>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

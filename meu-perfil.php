@@ -26,7 +26,7 @@
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?>
-	<section class="main">
+	<div class="main">
 		<header class="profile-header-block">
 			<div class="profile-header-card margin-top-30px margin-bottom-30px">
 				<figure class="profile-header-card-cover">
@@ -125,7 +125,7 @@
 				</div>
 			</div>
 		</section>
-	</section>
+	</div>
 	<?php require_once("components/footer.html"); ?>
 </body>
 </html>

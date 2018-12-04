@@ -26,7 +26,7 @@
 </head>
 <body>
 	<?php require_once("components/navbar.php"); ?><!-- BARRA DE NAVEGAÇÃO VIA PHP -->
-	<section class="main border-30px"><!-- CONTAINER-MÃE DO SITE -->
+	<div class="main border-30px"><!-- CONTAINER-MÃE DO SITE -->
         <header class="fit-session-header animate fadeInDown fast">
             <img src="assets/images/backgrounds/fitsession/fitsession.jpg" alt="Capa do Fit Session">
             <article>
@@ -90,7 +90,7 @@
                 </article>
             </figure>
         </div>
-	</section>
+	</div>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
 </body>
 </html>

@@ -58,10 +58,10 @@ body {
         @include display(flex, column, center, center);
         >figure{
             @include bloco($width: 300px, $height: 300px);
+            border: none;
+            outline: none;
             >img{
                 @include img-fit(300px, 300px);
-                background-image: url("../../images/logo/logo-4fit.svg");
-                background-size: cover;
                 -webkit-animation: pulse 3s infinite ease-in-out;
                 -o-animation: pulse 3s infinite ease-in-out;
                 -ms-animation: pulse 3s infinite ease-in-out;
@@ -1078,8 +1078,8 @@ img.btn-logout:hover {
 .pratos-wrapper{
     @include bloco($width: 100%, $height: auto);
 }
-#add-prato-form{
-    @include bloco(100%, 400px, 100vh);
+#add-form{
+    @include bloco(100%, 400px, fit-content);
     @include position(absolute, 0, 0, 0, null);
     background: $lightgrey;
     display: none;

@@ -64,7 +64,7 @@
             </div>
         </div>
     </article>
-    <section class="app-caracteristicas">
+    <div class="app-caracteristicas">
         <img src="assets/images/app/app-bg.jpg" alt="App Food 4Fit" class="app-caracteristicas-img">
         <div class="app-caracteristicas-overlay">
             <div class="app-caracteristicas-overlay-wrapper">
@@ -93,7 +93,7 @@
                 </article>
             </div>
         </div>
-    </section>
+    </div>
     <?php require_once("components/footer.html"); ?>
     <script>
         $(document).ready(function() {

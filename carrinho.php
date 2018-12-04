@@ -139,7 +139,7 @@
                         <span class="padding-top-15px padding-bottom-15px">SUBT0TAL</span>
                     </div>
                 </div>
-                <section class="shopping-cart-grid">
+                <div class="shopping-cart-grid">
                     <?php
                         require_once("cms/models/DAO/pratosDAO.php");
 
@@ -192,7 +192,7 @@
                             }
                         }
                     ?>
-                </section>
+                </div>
                 <div class="btn-generic margin-left-30px" id="shopping-cart-select-block">
                     <span onclick="javascript:location.href='carrinho.php?clean'">Excluir Tudo</span>
                 </div>

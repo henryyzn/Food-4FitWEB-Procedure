@@ -68,7 +68,7 @@
         </article>
         <div class="form-login-wrapper">
             <figure>
-                <img src="" alt="">
+                <img src="../../assets/images/logo/logo-4fit.svg" alt="">
             </figure>
             <form action="login.php" name="frmlogin" method="POST" id="form-login" class="width-550px margin-auto padding-top-60px" autocomplete="off">
                 <input type="text" name="matricula" placeholder="Matrícula" class="margin-bottom-20px" autocomplete="off" required>

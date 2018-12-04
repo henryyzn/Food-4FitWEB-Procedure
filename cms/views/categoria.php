@@ -103,7 +103,7 @@
                 <div id="list-content">
                     <div class="categoria-block">
                         <div id="page-actions">
-                            <div id="open-form">
+                            <div id="openform">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Categoria</span>
                             </div>
@@ -135,8 +135,8 @@
                             ?>
                             <tr>
                                 <td><img src="../../<?php echo($lista[$i]->foto)?>" alt="" class="elementPhoto"></td>
-                                <td><span class="table-results"><?php echo($lista[$i]->titulo)?></span></td>
-                                <td><span class="table-results"><?php echo($lista[$i]->descricao)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->titulo)?></span></td>
+                                <td><span class="table-result"><?php echo($lista[$i]->descricao)?></span></td>
                                 <td><img src="../../assets/images/cms/symbols/<?php echo($status)?>.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=<?php echo($status)?>&id=<?php echo($lista[$i]->id)?>'"></td>
                                 <td><img src="../../assets/images/cms/symbols/editar.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=editar&id=<?php echo($lista[$i]->id)?>'"></td>
                                 <td><img src="../../assets/images/cms/symbols/excluir.svg" alt="" class="table-generic-opts" onclick="javascript:location.href='categoria.php?modo=excluir&id=<?php echo($lista[$i]->id)?>'"></td>
@@ -145,7 +145,7 @@
                                 }
                             ?>
                         </table>
-                        <aside class="explanation-aside" id="add-prato-form">
+                        <aside class="explanation-aside" id="add-form">
                             <div class="form-generic border-30px">
                                 <form action="upload/upload-categoria.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
                                     <label class="label-generic">Imagem:</label>
@@ -183,17 +183,5 @@
         </div>
     </section>
 <script src="../../assets/js/theme.js"></script>
-<script>
-    $(document).ready(function(){
-        $("#open-form").click(function () {
-            $("#add-prato-form").slideToggle("fast");
-        });
-
-        var edit = document.getElementById("editar");
-        if(edit.value == "Editar"){
-            $("#add-prato-form").css("display", "block");
-        }
-    });
-</script>
 </body>
 </html>

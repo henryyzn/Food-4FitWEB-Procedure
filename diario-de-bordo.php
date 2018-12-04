@@ -79,7 +79,7 @@
                     <label for="texto" class="label-generic">Depoimento:</label>
                     <textarea name="texto" id="texto" class="textarea-generic"></textarea>
 
-                    <span class="bordo-title" class="margin-top-30px margin-bottom-5px">Progresso:</span>
+                    <span class="bordo-title margin-top-30px margin-bottom-5px">Progresso:</span>
                     <div style="display: flex; justify-content: space-between;" class="margin-bottom-30px">
                         <input type="radio" name="progresso" id="pessimo" value="pessimo" class="react-input">
                         <label for="pessimo" class="react-label">

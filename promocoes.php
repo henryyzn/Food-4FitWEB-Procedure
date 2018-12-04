@@ -50,7 +50,7 @@
                 </ul>
             </div>
         </header>
-        <h2 id="page-title-second" class="padding-top-30px padding-left-30px">TODAS AS PROMOÇÕES</h3>
+        <h3 id="page-title-second" class="padding-top-30px padding-left-30px">TODAS AS PROMOÇÕES</h3>
         <div class="generic-grid animate fadeInUp">
             <?php
                 require_once("cms/models/DAO/promocaoDAO.php");

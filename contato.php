@@ -79,9 +79,7 @@
                         <span>Salvar</span>
                     </button>
                 </div>
-            </div>
             </form>
-
         </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->

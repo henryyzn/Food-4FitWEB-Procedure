@@ -92,7 +92,7 @@
                     <input type="text" id="assunto" name="assunto" class="input-generic">
 
                     <label for="texto" class="label-generic">Comentário:</label>
-                    <textarea type="text" name="texto" id="texto" class="textarea-generic"></textarea>
+                    <textarea name="texto" id="texto" class="textarea-generic"></textarea>
 
                     <div class="form-row">
                         <span>Cancelar</span>

@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    var edit = document.getElementById("editar");
+    if(edit.value == "Editar"){
+        $("#add-form").css("display", "block");
+    }
+    $("#openform").click(function () {
+        $("#add-form").slideToggle("fast");
+    });
+
     $("#navbar-flat-menu").click(function () {
         $("#sidebar-left").fadeIn("fast");
     });

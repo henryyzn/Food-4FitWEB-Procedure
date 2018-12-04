@@ -159,7 +159,7 @@
                 <div id="list-content">
                     <div class="pratos-wrapper">
                         <div id="page-actions">
-                            <div id="open-form">
+                            <div id="openform">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Ingrediente</span>
                             </div>
@@ -205,7 +205,7 @@
                         </table>
                     </div>
                 </div>
-                <aside class="explanation-aside hide" id="add-prato-form">
+                <aside class="explanation-aside hide" id="add-form">
                     <div class="form-generic border-30px">
                         <form action="upload/upload-ingrediente.php" method="POST" name="frmfoto" enctype="multipart/form-data" class="form-generic-content" id="frmfoto">
                             <h2 class="form-title">Cadastrar um Ingrediente</h2>
@@ -291,10 +291,12 @@
                             <label for="sodio" class="label-generic">Sódio:</label>
                             <input id="sodio" name="sodio" class="input-generic" required placeholder="mg (miligramas)" value="<?php echo($sodio)?>">
 
-                            <button type="submit" id="btn-save" value="<?php echo($botao)?>" name="btn-salvar">
-                                <img src="../../assets/images/cms/symbols/salvar.svg" alt="Salvar">
-                                <span>Salvar</span>
-                            </button>
+                            <div class="form-row margin-top-20px">
+                                <span>Cancelar</span>
+                                <button type="submit" class="btn-generic margin-left-20px" name="btn-salvar" value="<?php echo($botao)?>">
+                                    <span><?php echo ($botao)?></span>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </aside>
@@ -302,17 +304,5 @@
         </div>
     </section>
     <script src="../../assets/js/theme.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#open-form").click(function () {
-                $("#add-prato-form").slideToggle("fast");
-            });
-
-            var edit = document.getElementById("editar");
-            if(edit.value == "Editar"){
-                $("#add-prato-form").css("display", "block");
-            }
-        });
-    </script>
 </body>
 </html>

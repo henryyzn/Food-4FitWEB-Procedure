@@ -100,7 +100,7 @@
                 <div id="list-content">
                     <div class="pratos-wrapper">
                          <div id="page-actions">
-                            <div id="open-prato-form">
+                            <div id="openform">
                                 <img src="../../assets/images/cms/symbols/adicionar.svg" alt="Adicionar">
                                 <span>Adicionar Prato</span>
                             </div>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <aside class="explanation-aside hide" id="add-prato-form">
+                <aside class="explanation-aside hide" id="add-form">
                     <div class="form-generic border-30px">
                         <form action="upload/upload-foto-prato.php" method="POST" name="frmfoto" id="frmfoto" class="form-generic-content" enctype="multipart/form-data">
                             <label class="label-generic">Imagem:</label>
@@ -221,12 +221,6 @@
     </div>
     <script src="../../assets/js/theme.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#open-form").click(function () {
-                $("#add-prato-form").slideToggle("fast");
-            });
-        });
-
         var coll = $(".collapsible-generic");
         var i;
 

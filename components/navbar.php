@@ -65,7 +65,7 @@
 		<li><a href="termos-uso.php">Termos de Uso</a></li>
 		<li><a href="politicas-privacidade.php">Políticas de Privacidade</a></li>
 		<li><a href="modulo.php?logout">Logout</a></li>
-	    <li id="flex"><label class="label" for="themeSwitch">
+	    <li id="flex">
             <div class="toggleWrapper">
                 <input type="checkbox" class="dn" id="themeSwitch" name="theme" value="1"/>
                 <label for="themeSwitch" class="toggle margin-right-5px">
@@ -82,7 +82,9 @@
                     <span class="star star--6"></span>
                 </label>
             </div>
-		    Dark Mode</label></li>
+		    Dark Mode
+		</li>
+		<li><a href="cms/views/index.php">CMS</a></li>
 	</ul>
 	<div id="sidebar-right-close">
 		<img src="assets/images/simbols/close.svg" alt="Fechar Menu">

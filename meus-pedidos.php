@@ -62,7 +62,7 @@
                             <h3 class="padding-bottom-15px">Categoria: Nome da Categoria</h3>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price">R$ 000,00</span>
+                            <span class="shopping-cart-price">R$ 000,00</span>
                         </div>
                         <div class="shopping-cart-column align-x">
                             <div class="input-group input-number-group">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="shopping-cart-column align-x">
-                            <span id="shopping-cart-price-total">R$ 000,00</span>
+                            <span class="shopping-cart-price-total">R$ 000,00</span>
                         </div>
                         <div class="shopping-cart-column align-x" style="align-items: center;">
                             <div class="switch_box">

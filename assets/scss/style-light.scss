@@ -293,7 +293,7 @@ a{
     flex-direction: row;
     width: 100%;
     height: auto;
-    #shopping-cart-price-total{
+    .shopping-cart-price-total{
         @include texto(28px, $black, 'Roboto Bold', 32px, center);
     }
     .align-x{
