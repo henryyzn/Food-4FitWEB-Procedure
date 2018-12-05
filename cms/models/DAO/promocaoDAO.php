@@ -79,7 +79,6 @@
             prato.descricao AS descricao,
             prato.preco AS preco,
             prato.ativo AS prato_ativo,
-            promocao.ativo AS promocao_ativo,
             foto_prato.foto AS foto
             FROM tbl_promocao AS promocao
             INNER JOIN tbl_prato AS prato
@@ -109,7 +108,6 @@
                 $listPromocao[$count]->resumo = $rs['resumo'];
                 $listPromocao[$count]->descricao = $rs['descricao'];
                 $listPromocao[$count]->preco = $rs['preco'];
-                $listPromocao[$count]->ativo = $rs['ativo'];
                 $listPromocao[$count]->foto = $rs['foto'];
                 
                 $count+=1;
