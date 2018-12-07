@@ -151,14 +151,14 @@
                         $listaNutrientes = $pratoIngredienteDAO->selectAllNutrientes($_GET['id_prato']);
                         for($j = 0; $j < @count($listaNutrientes); $j++){
                     ?>
-                    <li><b>Valor Energético:</b> <?php echo($listaNutrientes[$j]->valor_energ)?></li>
-                    <li><b>Carboidratos:</b> <?php echo($listaNutrientes[$j]->carboidratos)?> g</li>
-                    <li><b>Proteínas:</b> <?php echo($listaNutrientes[$j]->proteinas)?> g</li>
-                    <li><b>Gorduras Totais:</b> <?php echo($listaNutrientes[$j]->gordura_total)?> g</li>
-                    <li><b>Gorduras Saturadas:</b> <?php echo($listaNutrientes[$j]->gordura_saturada)?> g</li>
-                    <li><b>Gorduras trans:</b> <?php echo($listaNutrientes[$j]->gordura_trans)?> g</li>
-                    <li><b>Fibra Alimentar:</b> <?php echo($listaNutrientes[$j]->fibra_alimentar)?> g</li>
-                    <li><b>Sódio:</b> <?php echo($listaNutrientes[$j]->sodio)?> mg</li>
+                    <li><b>Valor Energético:</b> <?php echo(number_format($listaNutrientes[$j]->valor_energ, 2, ",", "."))?></li>
+                    <li><b>Carboidratos:</b> <?php echo(number_format($listaNutrientes[$j]->carboidratos, 2, ",", "."))?> g</li>
+                    <li><b>Proteínas:</b> <?php echo(number_format($listaNutrientes[$j]->proteinas, 2, ",", "."))?> g</li>
+                    <li><b>Gorduras Totais:</b> <?php echo(number_format($listaNutrientes[$j]->gordura_total, 2, ",", "."))?> g</li>
+                    <li><b>Gorduras Saturadas:</b> <?php echo(number_format($listaNutrientes[$j]->gordura_saturada, 2, ",", "."))?> g</li>
+                    <li><b>Gorduras trans:</b> <?php echo(number_format($listaNutrientes[$j]->gordura_trans, 2, ",", "."))?> g</li>
+                    <li><b>Fibra Alimentar:</b> <?php echo(number_format($listaNutrientes[$j]->fibra_alimentar, 2, ",", "."))?> g</li>
+                    <li><b>Sódio:</b> <?php echo(number_format($listaNutrientes[$j]->sodio, 2, ",", "."))?> mg</li>
                     <?php } ?>
                 </ul>
             </div>

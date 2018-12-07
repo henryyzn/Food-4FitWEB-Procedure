@@ -2,14 +2,17 @@
     class cadUsuarioDAO{
         public function __construct(){
             require_once('dataBase.php');
-            @require_once($_SESSION['path'].'../cadastro-usuarioClass.php');
+            @require_once($_SESSION['path'].'cms/models/cadastro-usuarioClass.php');
         }
 
         public function insert($classCadUser){
 
-
-            $data = explode("/", $classCadUser->dataNasc);
-            $dataNasc = $data[2]."-".$data[0]."-".$data[1];
+            if (isset($classCadUser->dataNasc) && $classCadUser->dataNasc) {
+                $data = explode("/", $classCadUser->dataNasc);
+                $dataNasc = $data[2]."-".$data[0]."-".$data[1];
+            } else {
+                $dataNasc = null;
+            }
 
             $sql = "insert into tbl_usuario(
                  id_pergunta_secreta,
@@ -40,7 +43,7 @@
                  '".$classCadUser->rg."',
                  '".$classCadUser->cpf."',
                  '".$classCadUser->cnpj."',
-                 '".$dataNasc."',
+                 " . ($dataNasc ? "'$dataNasc'" : "NULL") . ",
                  '".$classCadUser->genero."',
                  '".$classCadUser->telefone."',
                  '".$classCadUser->celular."',
@@ -50,12 +53,11 @@
             );";
 
             //Teste sql
-//             echo($sql);
 
             $conex = new mysql_db();
             $PDO_conex = $conex->conectar();
             if($PDO_conex->query($sql))
-                header('location:cadastro-usuario.php');
+                header('location:login.php');
 
             $conex->desconectar();
         }

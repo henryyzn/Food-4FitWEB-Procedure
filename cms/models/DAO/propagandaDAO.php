@@ -48,13 +48,6 @@
                 $listPropaganda[$cont]->ativo = $rs{'ativo'};
 
                 $conex->desconectar();
-                $PDO_conex = $conex->conectar();
-                if($PDO_conex->query($sql))
-                    echo('select no banco');
-                else
-                    echo('erro');
-
-                $conex->desconectar();
 
                 return $listPropaganda;
 

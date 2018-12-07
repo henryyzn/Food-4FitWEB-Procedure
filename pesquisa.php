@@ -43,7 +43,7 @@
 
                 $lista = $pesquisaDAO->search($_SESSION['key']);
 
-                for($i = 0; $i < @count($lista); $i++){
+                for($i = 0; $i < count($lista); $i++){
             ?>
 			<div class="generic-card animate fadeIn" onclick="javascript:location.href='prato.php?id_prato=<?php echo($lista[$i]->id)?>'">
 				<img src="<?php echo($lista[$i]->foto)?>" alt="Teste" class="generic-card-img">

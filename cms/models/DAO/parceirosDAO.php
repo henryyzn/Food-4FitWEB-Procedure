@@ -82,13 +82,6 @@
                 $listParceiro[$cont]-> link1 = $rs['link1'];
                 $listParceiro[$cont]-> ativo = $rs['ativo'];
 
-                $conex = new mysql_db();
-                $PDO_conex = $conex->conectar();
-                if($PDO_conex->query($sql))
-                    echo('select no banco');
-                else
-                    echo('erro');
-
                 $conex-> desconectar();
 
                 return $listComentarios;

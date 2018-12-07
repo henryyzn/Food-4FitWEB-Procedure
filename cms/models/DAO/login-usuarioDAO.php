@@ -85,20 +85,13 @@
                 $listUsuario->resp_secreta = $rs['resp_secreta'];
                 $listUsuario->pergunta_secreta = $rs['pergunta_secreta'];
                 $listUsuario->id_pergunta_secreta = $rs['id_pergunta_secreta'];
-
-                $conex = new mysql_db();
-                $PDO_conex = $conex->conectar();
-                if($PDO_conex->query($sql))
-                    echo('');
-                else
-                    echo('<script>alert("Erro ao realizar login no sistema. Tente novamente ou contate o técnico.");</script>');
-
+                
                 $conex->desconectar();
 
                 return $listUsuario;
 
             }else{
-                echo "<script>alert('Erro ao realizar login no sistema. Tente novamente ou contate o técnico.'); window.location = 'login.php';</script>";
+                return null;
             }
         }
     }

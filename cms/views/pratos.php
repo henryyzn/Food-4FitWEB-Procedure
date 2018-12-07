@@ -29,7 +29,13 @@
     }
 
     if(isset($_GET['btn-salvar'])){
-        $preco = array_sum($_GET['ingrediente_preco']);
+        $ingredientes = [];
+        $precos = [];
+        foreach ($_GET['id_ingrediente'] as $ingrediente) {
+            $ingredientes[] = explode("|", $ingrediente)[0];
+            $precos[] = explode("|", $ingrediente)[1];
+        } 
+        $preco = array_sum($precos);
 
         require_once('../models/pratosClass.php');
         require_once('../models/categoriaClass.php');
@@ -40,7 +46,7 @@
 
         $classPrato = new Prato();
         $classPrato->id_categoria = $_GET['id_categoria'];
-        $classPrato->id_ingrediente = $_GET['id_ingrediente'];
+        $classPrato->id_ingrediente = $ingredientes;
         $classPrato->titulo = $_GET['titulo'];
         $classPrato->descricao = $_GET['descricao'];
         $classPrato->resumo = $_GET['resumo'];
@@ -54,7 +60,9 @@
         if($_GET['btn-salvar'] == "Salvar"){
             if($pratosDAO->insert($classPrato)){
                 $pratosDAO->insertIngrediente($classPrato);
+                 header('location:pratos.php');
             }
+            
         }else{
            $pratosDAO->id = $_GET['id'];
            $pratosDAO->update($classPrato);
@@ -196,8 +204,7 @@
 
                                     for($i = 0; $i < @count($lista); $i++){
                                 ?>
-                                <label class="label-generic"><input type="checkbox" id="ingredientes" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>"><?php echo($lista[$i]->titulo)?></label>
-                                <input type="hidden" name="ingrediente_preco[]" id="ingrediente_preco" value="<?php echo($lista[$i]->preco)?>">
+                                <label class="label-generic"><input type="checkbox" id="ingredientes" name="id_ingrediente[]" value="<?php echo($lista[$i]->id)?>|<?php echo($lista[$i]->preco)?>"><?php echo($lista[$i]->titulo)?></label>
                                 <?php
                                     }
                                 ?>

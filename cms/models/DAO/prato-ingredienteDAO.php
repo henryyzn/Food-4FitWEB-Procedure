@@ -13,7 +13,7 @@ class pratoIngredienteDAO {
     public function selectAllIngredientes($id_prato){
         $listIngredientes = null;
 
-        $sql="SELECT distinct ingrediente.titulo AS titulo FROM tbl_ingrediente AS ingrediente INNER JOIN tbl_prato_ingrediente AS prato_ingrediente WHERE prato_ingrediente.id_prato = '".$id_prato."';";
+        $sql="SELECT ingrediente.titulo FROM tbl_prato_ingrediente AS prato_ingrediente INNER JOIN tbl_ingrediente AS ingrediente ON ingrediente.id = prato_ingrediente.id_ingrediente WHERE prato_ingrediente.id_prato = '".$id_prato."';";
 
         //Instancia a classe
         $conex = new mysql_db();

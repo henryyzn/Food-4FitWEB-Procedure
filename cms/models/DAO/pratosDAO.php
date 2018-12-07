@@ -35,10 +35,10 @@
                 '".$_SESSION['last_id']."',
                 'assets/archives/pratos/".$classPrato->foto."');";
 
-                if($PDO_conex->query($sql2)){
-                    header("location:pratos.php");
-                }else{
+                if(!$PDO_conex->query($sql2)){
                     echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                } else {
+                    return true;
                 }
             }else{
                  echo('<script>alert("Erro ao inserir informações no sistema. Tente novamente ou contate o técnico.");</script>');
@@ -47,16 +47,17 @@
             $conex->desconectar();
         }
         public function insertIngrediente($classIngrediente){
-            $sql = "INSERT INTO tbl_prato_ingrediente(id_prato, id_ingrediente) values (
-                    '".$_SESSION['last_id']."',
-                    '".$classIngrediente->id_ingrediente."');";
+            foreach ($classIngrediente->id_ingrediente as $ingrediente) {
+                $sql = "INSERT INTO tbl_prato_ingrediente(id_prato, id_ingrediente) values (
+                        '".$_SESSION['last_id']."',
+                        '".$ingrediente."');";
+                echo $sql;
 
-            $conex = new mysql_db();
-            $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql)){
-                header('location:pratos.php');
-            }else{
-                echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                $conex = new mysql_db();
+                $PDO_conex = $conex->conectar();
+                if(!$PDO_conex->query($sql)){
+                    echo('<script>alert("Erro ao inserir informações no sistema.</br>Tente novamente ou contate o técnico.");</script>');
+                }
             }
         }
 
@@ -76,13 +77,6 @@
                 $listPrato->descricao = $rs['descricao'];
                 $listPrato->resumo = $rs['resumo'];
                 $listPrato->ativo = $rs['ativo'];
-
-            $conex = new mysql_db();
-            $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql))
-                echo('select no Banco');
-            else
-                echo('Erro');
 
             $conex->desconectar();
 

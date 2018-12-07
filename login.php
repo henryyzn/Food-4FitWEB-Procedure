@@ -26,6 +26,7 @@
     $_SESSION['pergunta_secreta_usuario'] = null;
     $_SESSION['resposta_secreta_usuario'] = null;
     $_SESSION['id_pergunta_secreta_usuario'] = null;
+    $erro = false;
 
     if(isset($_GET['btn-login'])){
 
@@ -38,7 +39,7 @@
 
         $listUsuario = $loginUsuarioDAO->checkLogin($login, $senha);
 
-        if(@count($listUsuario)>0){
+        if($listUsuario){
             $_SESSION['id_usuario'] = $listUsuario->id;
             $_SESSION['tipo_pessoa_usuario'] = $listUsuario->tipo_pessoa;
             $_SESSION['primeiroNome_usuario'] = $listUsuario->nome;
@@ -60,6 +61,8 @@
             $_SESSION['resposta_secreta_usuario'] = $listUsuario->resp_secreta;
             $_SESSION['id_pergunta_secreta_usuario'] = $listUsuario->id_pergunta_secreta;
             header('location:meu-perfil.php');
+        } else {
+            $erro = true;
         }
     }
 ?>
@@ -101,6 +104,9 @@
             <form class="form-generic-content width-600px" method="GET" name="frmlogin" action="login.php">
                 <h2>FOOD<br />4FIT</h2>
                 <span>COMIDA FITNESS</span>
+                <?php if ($erro) { ?>
+                    <span style="color: #f00; text-align: center;">Usuário ou senha incorretos.</span>
+                <?php } ?>
                 <label for="login" class="label-generic margin-top-30px">Login:</label>
                 <input type="email" name="login" id="login" class="input-generic">
                 <label for="senha" class="label-generic">Senha:</label>

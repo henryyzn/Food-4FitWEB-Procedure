@@ -53,13 +53,6 @@ class comentarioPostDAO {
             $listComentarios->data = $rs['data'];
             $listComentarios->ativo = $rs['ativo'];
 
-            $conex = new mysql_db();
-            $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql))
-                echo('select no Banco');
-            else
-                echo('Erro');
-
             $conex->desconectar();
 
             return $listComentarios;

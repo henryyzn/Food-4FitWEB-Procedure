@@ -75,13 +75,6 @@
             $listUserEndereco->uf = $rs['uf'];
             $listUserEndereco->cidade = $rs['cidade'];
 
-                $conex = new mysql_db();
-            $PDO_conex = $conex->conectar();
-            if($PDO_conex->query($sql))
-                echo('select no Banco');
-            else
-                echo('Erro');
-
             $conex->desconectar();
 
             return $listUserEndereco;

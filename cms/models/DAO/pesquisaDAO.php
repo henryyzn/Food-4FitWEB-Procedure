@@ -36,9 +36,9 @@ class pesquisaDAO {
     }
 
     public function search($key){
-        $listPesquisa = null;
+        $listPesquisa = array();
 
-        $sql = "SELECT prato.id as id, prato.titulo as titulo, prato.resumo AS resumo, prato.preco AS preco, fotoprato.foto as foto FROM tbl_prato as prato INNER JOIN tbl_foto_prato as fotoprato WHERE prato.id = fotoprato.id_prato AND titulo LIKE '%".$key."%';";
+        $sql = "SELECT prato.id as id, prato.titulo as titulo, prato.resumo AS resumo, prato.preco AS preco, fotoprato.foto as foto FROM tbl_prato as prato INNER JOIN tbl_foto_prato as fotoprato ON prato.id = fotoprato.id_prato WHERE titulo LIKE '%$key%' OR descricao LIKE '%$key%' OR resumo LIKE '%$key%'";
         //echo $sql;
         //Instancia a classe
         $conex = new mysql_db();

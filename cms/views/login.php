@@ -4,6 +4,7 @@
     require_once("../models/DAO/dataBase.php");
     require_once("../models/DAO/login.php");
     require_once("../../caminho-pasta.php");
+    $erro = false;
 
     if(isset($_POST['btn-login'])){
         require_once('../models/DAO/login.php');
@@ -27,7 +28,7 @@
         $listLogin = $loginDAO->checkLogin($matricula, $senha);
 
         //Resgatando do Banco de dados
-        if(@count($listLogin)>0){
+        if($listLogin){
             $_SESSION['id_funcionario'] = $listLogin->id;
             $_SESSION['matricula_funcionario'] = $listLogin->matricula;
             $_SESSION['nome_funcionario'] = $listLogin->nome_completo;
@@ -41,6 +42,8 @@
             $_SESSION['cpf_funcionario'] = $listLogin->cpf;
 
             header('location:index.php');
+        } else {
+            $erro = true;
         }
     }
 ?>
@@ -71,6 +74,9 @@
                 <img src="../../assets/images/logo/logo-4fit.svg" alt="">
             </figure>
             <form action="login.php" name="frmlogin" method="POST" id="form-login" class="width-550px margin-auto padding-top-60px" autocomplete="off">
+                <?php if ($erro) { ?>
+                    <span style="color: #f00; text-align: center;">Usuário ou senha incorretos.</span>
+                <?php } ?>
                 <input type="text" name="matricula" placeholder="Matrícula" class="margin-bottom-20px" autocomplete="off" required>
                 <input type="password" name="senha" autocomplete="off" id="senha" placeholder="Senha" required>
                 <div id="rodape">

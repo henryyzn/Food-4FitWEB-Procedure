@@ -14,7 +14,7 @@ class mysql_db
 	public function __construct(){
 		$this->server="127.0.0.1";
        		$this->user="root";
-        	$this->senha="";
+        	$this->senha="bcd127";
        		$this->dataBaseName="db_food4fit";
 	}
 

@@ -35,7 +35,7 @@
 
                 $conex->desconectar();
             }else{
-                echo "<script>alert('Erro ao realizar login no sistema. Tente novamente ou contate o técnico.'); window.location = 'login.php';</script>";
+                return null;
             }
         }
     }

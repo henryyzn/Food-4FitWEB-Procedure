@@ -22,7 +22,10 @@
         $classCadUser->cpf = $_GET['cpf'];
         $classCadUser->cnpj = $_GET['cnpj'];
         $classCadUser->dataNasc = $_GET['dtnasc'];
-        $classCadUser->genero = $_GET['sexo'];
+        if (isset($_GET["sexo"])) {
+            $classCadUser->genero = $_GET['sexo'];
+        }
+        
         $classCadUser->telefone = $_GET['telefone'];
         $classCadUser->celular = $_GET['celular'];
         $passwd = md5($_GET['senha']);
@@ -65,21 +68,44 @@
 	<script src="assets/public/js/jquery.mask.min.js"></script>
 	<script>
         $(document).ready(function(){
-            $("#razaoSocial").css('display', 'none');
-            $("#nomeFantasia").css('display', 'none');
-            $("#label-razaoSocial").css('display', 'none');
-            $("#label-nomeFantasia").css('display', 'none');
+            $("#razaoSocial, label[for='razaoSocial']").hide();
+            $("#nomeFantasia, label[for='nomeFantasia']").hide();
+            $("#inscricaoEstadual, label[for='inscricaoEstadual']").hide();
+            $("#cnpj, label[for='cnpj']").hide();
+            
+            $("form :input").prop("required", function() {
+                return $(this).is(":visible");
+            });
+            
             $("#fisica").on('change', function(){
-                $("#razaoSocial").css('display', 'none');
-                $("#nomeFantasia").css('display', 'none');
-                $("#label-razaoSocial").css('display', 'none');
-                $("#label-nomeFantasia").css('display', 'none');
+                $("#nome, label[for='nome']").show();
+                $("#sobrenome, label[for='sobrenome']").show();
+                $("#rg, label[for='rg']").show();
+                $("#cpf, label[for='cpf']").show();
+                $("#dtnasc, label[for='dtnasc']").show();
+                $("#sexo, #label-sexo").show();
+                $("#razaoSocial, label[for='razaoSocial']").hide();
+                $("#nomeFantasia, label[for='nomeFantasia']").hide();
+                $("#inscricaoEstadual, label[for='inscricaoEstadual']").hide();
+                $("#cnpj, label[for='cnpj']").hide();
+                $("form :input").prop("required", function() {
+                    return $(this).is(":visible");
+                });
             });
             $("#juridica").on('change', function(){
-                $("#razaoSocial").css('display', 'block');
-                $("#nomeFantasia").css('display', 'block');
-                $("#label-razaoSocial").css('display', 'block');
-                $("#label-nomeFantasia").css('display', 'block');
+                $("#nome, label[for='nome']").hide();
+                $("#sobrenome, label[for='sobrenome']").hide();
+                $("#rg, label[for='rg']").hide();
+                $("#cpf, label[for='cpf']").hide();
+                $("#dtnasc, label[for='dtnasc']").hide();
+                $("#sexo, #label-sexo").hide();
+                $("#razaoSocial, label[for='razaoSocial']").show();
+                $("#nomeFantasia, label[for='nomeFantasia']").show();
+                $("#inscricaoEstadual, label[for='inscricaoEstadual']").show();
+                $("#cnpj, label[for='cnpj']").show();
+                $("form :input").prop("required", function() {
+                    return $(this).is(":visible");
+                });
             });
         });
     </script>
@@ -124,27 +150,27 @@
                 <input type="email" name="email" id="email" class="input-generic" placeholder="Ex: endereco@provedor.com" required>
 
                 <label for="rg" class="label-generic margin-top-30px">RG:</label>
-                <input type="text" name="rg" id="rg" class="input-generic" placeholder="Ex: 12.345.678-9">
+                <input type="text" name="rg" id="rg" class="input-generic" placeholder="Ex: 12.345.678-9" pattern="\d{2}\.\d{3}\.\d{3}-\d" title="12.345.678-9">
 
 
 
                 <label for="cpf" class="label-generic margin-top-30px">CPF:</label>
-                <input type="text" name="cpf" id="cpf" class="input-generic" placeholder="Ex: 111.222.333-44">
+                <input type="text" name="cpf" id="cpf" class="input-generic" placeholder="Ex: 111.222.333-44" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="111.222.333-44">
 
 
 
                 <label for="inscricaoEstadual" class="label-generic margin-top-30px">Inscrição Estadual:</label>
-                <input type="text" name="inscricaoEstadual" id="inscricaoEstadual" class="input-generic" placeholder="Ex: 980.572.254.579">
+                <input type="text" name="inscricaoEstadual" id="inscricaoEstadual" class="input-generic" placeholder="Ex: 980.572.254.579" pattern="\d{3}\.\d{3}\.\d{3}\.\d{3}" title="980.572.254.579">
 
 
 
                 <label for="cnpj" class="label-generic margin-top-30px">CNPJ:</label>
-                <input type="text" name="cnpj" id="cnpj" class="input-generic" placeholder="Ex: 55.233.069/0001-57" >
+                <input type="text" name="cnpj" id="cnpj" class="input-generic" placeholder="Ex: 55.233.069/0001-57" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" title="55.233.069/0001-57">
 
                 <label for="dtnasc" class="label-generic margin-top-30px">Data de Nascimento:</label>
-                <input type="text" name="dtnasc" id="dtnasc" class="input-generic" placeholder="Ex: 01/01/1990">
+                <input type="text" name="dtnasc" id="dtnasc" class="input-generic" placeholder="Ex: 01/01/1990" pattern="\d{2}/\d{2}/\d{4}" title="01/01/1990">
 
-                <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px">Gênero:</span>
+                <span style="display: block; font-size: 18px; font-family: 'Roboto Bold'; color: #000;" class="margin-top-30px margin-bottom-15px" id="label-sexo">Gênero:</span>
                 <div id="sexo" style="display: flex;">
                     <input type="radio" name="sexo" id="homem" value="M">
                     <label for="homem" class="label-generic">Homem</label>
@@ -153,10 +179,10 @@
                 </div>
 
                 <label for="telefone" class="label-generic margin-top-30px">Telefone:</label>
-                <input type="tel" name="telefone" id="telefone" class="input-generic" placeholder="Ex: (11) 9999-9999">
+                <input type="tel" name="telefone" id="telefone" class="input-generic" placeholder="Ex: 1187654321" pattern="\d{10}" title="1187654321">
 
                 <label for="celular" class="label-generic margin-top-30px">Celular:</label>
-                <input type="text" name="celular" id="celular" class="input-generic" placeholder="Ex: (11) 98888-8888">
+                <input type="text" name="celular" id="celular" class="input-generic" placeholder="Ex: 11987654321" pattern="\d{11}" title="11987654321">
 
                 <span class="aviso-contato">Caso necessário o contato através de e-mail ou<br>
                     telefone/celular, usaremos o seu nome escolhido como vulgo.

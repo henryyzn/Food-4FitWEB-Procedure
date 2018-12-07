@@ -52,19 +52,7 @@
             <span class="padding-left-50px padding-bottom-30px">Data da Postagem: <b><?php echo($data)?></b></span>
         </header>
         <div class="publication-text-block">
-            <?php
-                require_once("cms/models/DAO/personal-fitnessDAO.php");
-
-                $personalFitnessDAO = new personalFitnessDAO();
-
-                $lista = $personalFitnessDAO->selectId($id);
-
-                if(@count($lista)>0){
-            ?>
-            <p><?php echo($lista->texto)?></p>
-            <?php
-                }
-            ?>
+            <p><?php echo($texto)?></p>
         </div>
 	</section>
 	<?php require_once("components/footer.html"); ?><!-- RODAPÉ VIA PHP -->
