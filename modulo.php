@@ -2,7 +2,6 @@
     @session_start();
     function validateLog(){
         if(!isset($_SESSION['id_usuario'])) {
-            session_unset();
             header("location:login.php");
         }
     }
